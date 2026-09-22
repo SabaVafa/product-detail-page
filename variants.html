@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex" />
+<title>Metzler PDP – Varianten</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" />
+<style>
+  :root {
+    --teal: #015253; --teal-600: #013d3e; --dark: #141619; --paper: #F5F6FA;
+    --ink: #1A171B; --muted: #6A6A6A; --line: #E6E6E8; --white: #fff;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink);
+    font-family: "Inter", -apple-system, "Segoe UI", Roboto, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  .topbar { background: var(--teal); color: var(--white); padding: 0.9rem 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+  .topbar__mark { display: inline-grid; place-items: center; width: 1.9rem; height: 1.9rem; background: #D42924; color: #fff; font-weight: 800; border-radius: 4px; }
+  .topbar__name { font-weight: 800; letter-spacing: 0.02em; font-size: 1.1rem; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+  .head h1 { margin: 0 0 0.4rem; font-size: 1.75rem; letter-spacing: -0.02em; }
+  .head p { margin: 0; color: var(--muted); font-size: 1rem; max-width: 60ch; line-height: 1.5; }
+  .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+  @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+  .card { background: var(--white); border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
+    display: flex; flex-direction: column; transition: box-shadow .2s ease, transform .2s ease; }
+  .card:hover { box-shadow: 0 1.25rem 2.5rem rgba(10,20,20,0.12); transform: translateY(-2px); }
+  /* live scaled preview – the real PDP variant rendered at desktop width, scaled down */
+  .card__preview { position: relative; height: 270px; overflow: hidden; background: #fff; border-bottom: 1px solid var(--line); }
+  .card__preview iframe { position: absolute; top: 0; left: 0; width: 1250px; height: 843px; border: 0;
+    transform: scale(0.32); transform-origin: top left; pointer-events: none; }
+  .card__preview a.card__cover { position: absolute; inset: 0; z-index: 2; }   /* whole preview clickable */
+  .card__body { padding: 1.15rem 1.25rem 1.35rem; display: flex; flex-direction: column; gap: 0.5rem; flex: 1; }
+  .card__eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.6875rem; font-weight: 800;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); }
+  .card__num { display: inline-grid; place-items: center; width: 1.5rem; height: 1.5rem; border-radius: 6px;
+    background: #E4F0EE; color: var(--teal); font-size: 0.75rem; }
+  .card__title { margin: 0; font-size: 1.15rem; letter-spacing: -0.01em; }
+  .card__desc { margin: 0; color: var(--muted); font-size: 0.9rem; line-height: 1.5; flex: 1; }
+  .card__open { align-self: flex-start; margin-top: 0.35rem; display: inline-flex; align-items: center; gap: 0.4rem;
+    padding: 0.6rem 1.1rem; border-radius: 999px; background: var(--teal); color: #fff; text-decoration: none;
+    font-weight: 700; font-size: 0.875rem; transition: background .15s ease; }
+  .card__open:hover { background: var(--teal-600); }
+  .card__open svg { width: 1rem; height: 1rem; }
+  .foot { margin-top: 2.5rem; color: var(--muted); font-size: 0.8125rem; line-height: 1.6; }
+  .foot code { background: #eceef3; padding: 0.1rem 0.4rem; border-radius: 4px; font-size: 0.8125rem; }
+</style>
+</head>
+<body>
+  <div class="topbar"><span class="topbar__mark">M</span><span class="topbar__name">METZLER</span></div>
+  <main class="wrap">
+    <div class="head">
+      <h1>PDP-Varianten im Vergleich</h1>
+      <p>Vier Gestaltungsvarianten der Produktseite (Metzler VDM10 2.0). Auf eine Vorschau tippen oder „Öffnen“ wählen – die Variante lädt mit eingeblendetem Umschalter, sodass sich alle Versionen direkt vergleichen lassen.</p>
+    </div>
+
+    <div class="grid">
+      <!-- V1 -->
+      <article class="card">
+        <div class="card__preview">
+          <a class="card__cover" href="index.html?review=1" aria-label="v1 öffnen"></a>
+          <iframe src="index.html" title="Vorschau v1 – Basis" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+        </div>
+        <div class="card__body">
+          <span class="card__eyebrow"><span class="card__num">1</span> Basis</span>
+          <h2 class="card__title">Standard-Produktseite</h2>
+          <p class="card__desc">Die aktuelle Referenzansicht – Ausgangspunkt für alle weiteren Varianten.</p>
+          <a class="card__open" href="index.html?review=1">Öffnen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+
+      <!-- V2 -->
+      <article class="card">
+        <div class="card__preview">
+          <a class="card__cover" href="index.html?flow=b&amp;review=1" aria-label="v2 öffnen"></a>
+          <iframe src="index.html?flow=b" title="Vorschau v2 – Farb-Seitenfenster" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+        </div>
+        <div class="card__body">
+          <span class="card__eyebrow"><span class="card__num">2</span> Farb-Seitenfenster</span>
+          <h2 class="card__title">Beschriftete Farbliste</h2>
+          <p class="card__desc">Farbauswahl zusätzlich über ein Seitenfenster mit Bezeichnungen – „Alle Farben mit Bezeichnung ansehen“.</p>
+          <a class="card__open" href="index.html?flow=b&amp;review=1">Öffnen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+
+      <!-- V3 -->
+      <article class="card">
+        <div class="card__preview">
+          <a class="card__cover" href="index.html?flow=c&amp;review=1" aria-label="v3 öffnen"></a>
+          <iframe src="index.html?flow=c" title="Vorschau v3 – Auswahlfeld" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+        </div>
+        <div class="card__body">
+          <span class="card__eyebrow"><span class="card__num">3</span> Auswahlfeld</span>
+          <h2 class="card__title">Select-Feld für Farben</h2>
+          <p class="card__desc">Farbliste über ein Auswahlfeld unter den Swatches; Kopfzeile im Format „Farbe: …“.</p>
+          <a class="card__open" href="index.html?flow=c&amp;review=1">Öffnen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+
+      <!-- V4 -->
+      <article class="card">
+        <div class="card__preview">
+          <a class="card__cover" href="index.html?flow=d&amp;review=1" aria-label="v4 öffnen"></a>
+          <iframe src="index.html?flow=d" title="Vorschau v4 – Material-Swatches" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+        </div>
+        <div class="card__body">
+          <span class="card__eyebrow"><span class="card__num">4</span> Material-Swatches</span>
+          <h2 class="card__title">Echte Materialoberflächen</h2>
+          <p class="card__desc">Farbfelder zeigen die tatsächliche Materialtextur; modernes Sale-Badge und interaktiver 3D-Chip.</p>
+          <a class="card__open" href="index.html?flow=d&amp;review=1">Öffnen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+    </div>
+
+    <p class="foot">
+      Interner Vorschau-Index. Der Varianten-Umschalter unten links erscheint nur mit <code>?review=1</code> in der URL und bleibt echten Besucher:innen verborgen.
+    </p>
+  </main>
+<style id="pf-lockdown-css">
+footer a,[class*="topbar"] a,[class*="top-bar"] a,[class*="trustbar"] a,[class*="claims"] a{pointer-events:none !important;cursor:default !important;}
+</style>
+<script id="pf-lockdown-js">
+(function(){function blk(a){if(!a)return false;var h=a.getAttribute('href')||'';if(/^(https?:|tel:|mailto:)/i.test(h))return true;return !!(a.closest&&a.closest('footer,[class*="topbar"],[class*="top-bar"],[class*="trustbar"],[class*="claims"]'));}
+['click','auxclick'].forEach(function(ev){document.addEventListener(ev,function(e){var t=e.target;var a=t&&t.closest?t.closest('a'):null;if(a&&blk(a)){e.preventDefault();e.stopPropagation();}},true);});})();
+</script>
+</body>
+</html>

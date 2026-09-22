@@ -1,0 +1,19 @@
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+
+# Local dev config (not for the published site)
+.claude/
+
+# Internal working notes / design-system reference — kept locally, not published
+Design SYSTEM/
+metzler-content-briefing.md
+vdm10-configurator-data.md
+figma-swatches-and-assets.md
+CHROME-COMPONENTS.md
+
+# Developer hand-off spec + its source screenshots — kept local, never on the public Pages site
+provenance-pills-spec.html
+ReviewPills/
+
+.github/workflows/
