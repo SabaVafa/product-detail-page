@@ -20,7 +20,7 @@
 <!-- New PDP sections -->
 <link rel="stylesheet" href="pdp.css?v=35" />
 <!-- Version B – inline build panel -->
-<link rel="stylesheet" href="pdp-b.css?v=717" />
+<link rel="stylesheet" href="pdp-b.css?v=718" />
 <!-- Prototype variant switch – append ?flow=b (v2) or ?flow=c (v3) to load an alternative
      color-selection flow. Default (no param) renders v1 exactly as-is. Runs in <head> so the
      class is set before paint. v2 = "Alle Farben" text link → side window; v3 = a selected-
@@ -446,6 +446,39 @@
           <p class="pdp-price__meta">inkl. 19% USt. · <a href="#">Versandkostenfreie Lieferung</a></p>
           <div class="pdp-avail">
             <span class="pdp-avail__status">Sofort verfügbar</span>
+          </div>
+        </div>
+
+        <!-- EU-Energielabel · Energieeffizienzklasse. Nach VO (EU) 2019/2015 in der
+             Nähe des Preises platziert; verschachteltes Label (Pfeil öffnet die
+             vollständige A–G-Skala) inkl. Verweis auf das Produktdatenblatt. -->
+        <div class="pdp-nrg">
+          <button type="button" class="pdp-nrg__badge" id="bNrgToggle"
+                  aria-expanded="false" aria-controls="bNrgPanel" aria-haspopup="dialog">
+            <span class="pdp-nrg__arrow" aria-hidden="true">G</span>
+            <span class="pdp-nrg__txt">
+              <span class="pdp-nrg__label">Energieeffizienzklasse&nbsp;G</span>
+              <span class="pdp-nrg__hint">Skala A–G · Label &amp; Datenblatt ansehen</span>
+            </span>
+            <svg class="pdp-nrg__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="pdp-nrg__panel" id="bNrgPanel" role="dialog" aria-label="EU-Energielabel" hidden>
+            <p class="pdp-nrg__head">EU-Energielabel</p>
+            <ul class="pdp-nrg__ladder" aria-label="Energieeffizienzklassen A bis G, dieses Produkt Klasse G">
+              <li style="--c:#009036;--ink:#fff;--w:46%"><span>A</span></li>
+              <li style="--c:#55ab26;--ink:#fff;--w:54%"><span>B</span></li>
+              <li style="--c:#c8d200;--ink:#1a171b;--w:62%"><span>C</span></li>
+              <li style="--c:#ffed00;--ink:#1a171b;--w:70%"><span>D</span></li>
+              <li style="--c:#fbba00;--ink:#1a171b;--w:78%"><span>E</span></li>
+              <li style="--c:#eb6909;--ink:#fff;--w:86%"><span>F</span></li>
+              <li style="--c:#e30613;--ink:#fff;--w:94%" class="is-active"><span>G</span></li>
+              <b class="pdp-nrg__mark" aria-hidden="true">G</b>
+            </ul>
+            <p class="pdp-nrg__note">Skala von A (niedrigster Verbrauch) bis G. Dieses Produkt: Klasse&nbsp;G.</p>
+            <a class="pdp-nrg__sheet" href="#" target="_self">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>
+              <span>Produktdatenblatt</span>
+            </a>
           </div>
         </div>
 
@@ -1902,7 +1935,7 @@
 </div>
 
 <script src="chrome.js?v=14"></script>
-<script src="pdp-b.js?v=292"></script>
+<script src="pdp-b.js?v=293"></script>
 <style id="pf-lockdown-css">
 footer a,[class*="topbar"] a,[class*="top-bar"] a,[class*="trustbar"] a,[class*="claims"] a{pointer-events:none !important;cursor:default !important;}
 </style>
