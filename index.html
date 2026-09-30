@@ -20,7 +20,7 @@
 <!-- New PDP sections -->
 <link rel="stylesheet" href="pdp.css?v=35" />
 <!-- Version B – inline build panel -->
-<link rel="stylesheet" href="pdp-b.css?v=719" />
+<link rel="stylesheet" href="pdp-b.css?v=720" />
 <!-- Prototype variant switch – append ?flow=b (v2) or ?flow=c (v3) to load an alternative
      color-selection flow. Default (no param) renders v1 exactly as-is. Runs in <head> so the
      class is set before paint. v2 = "Alle Farben" text link → side window; v3 = a selected-
@@ -454,13 +454,10 @@
              vollständige A–G-Skala) inkl. Verweis auf das Produktdatenblatt. -->
         <div class="pdp-nrg">
           <button type="button" class="pdp-nrg__badge" id="bNrgToggle"
-                  aria-expanded="false" aria-controls="bNrgPanel" aria-haspopup="dialog">
+                  aria-expanded="false" aria-controls="bNrgPanel" aria-haspopup="dialog"
+                  aria-label="Energieeffizienzklasse G – Label und Produktdatenblatt ansehen"
+                  title="Energieeffizienzklasse G – Label &amp; Datenblatt ansehen">
             <img class="pdp-nrg__arrow" src="assets/energylabel/G_Left.svg" width="53" height="29" alt="Energieeffizienzklasse G" />
-            <span class="pdp-nrg__txt">
-              <span class="pdp-nrg__label">Energieeffizienzklasse&nbsp;G</span>
-              <span class="pdp-nrg__hint">Label &amp; Datenblatt ansehen</span>
-            </span>
-            <svg class="pdp-nrg__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
           </button>
           <div class="pdp-nrg__panel" id="bNrgPanel" role="dialog" aria-label="EU-Energielabel" hidden>
             <p class="pdp-nrg__head">EU-Energielabel</p>
