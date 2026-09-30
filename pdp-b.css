@@ -740,12 +740,10 @@
 }
 .pdp-b .pdp-nrg__badge:hover { border-color: var(--color-graphite-300); box-shadow: var(--shadow-soft); }
 .pdp-b .pdp-nrg__badge:focus-visible { outline: 2px solid var(--color-teal); outline-offset: 2px; }
-/* Class arrow – the iconic EU pentagon, class G = red, white letter */
+/* Class arrow – official compact EU energy-class badge (G_Left.svg): red
+   left-pointing flag with the class letter + an A–G scale indicator */
 .pdp-b .pdp-nrg__arrow {
-  flex: none; display: grid; place-items: center;
-  width: 2.05rem; height: 1.55rem; padding-right: 0.28rem;
-  background: #e30613; color: #fff; font-weight: 800; font-size: 0.95rem; line-height: 1;
-  clip-path: polygon(0 0, 74% 0, 100% 50%, 74% 100%, 0 100%);
+  flex: none; display: block; width: auto; height: 1.75rem;
 }
 .pdp-b .pdp-nrg__txt { display: flex; flex-direction: column; gap: 0.1rem; min-width: 0; }
 .pdp-b .pdp-nrg__label { font-size: 0.8125rem; font-weight: 700; color: var(--text-secondary); line-height: 1.25; }
