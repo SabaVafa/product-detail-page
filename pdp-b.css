@@ -718,69 +718,26 @@
   text-transform: uppercase; color: var(--color-teal);
 }
 /* internal hairline separates "what it costs" (price · tax · shipping) from
-   "when you get it" (availability) – structure inside the panel, not a new box */
+   "when you get it" (availability). The row is a flex line: delivery status on
+   the left, the EU energy-class badge right-aligned – so it fills the space that
+   would otherwise sit blank, and the badge lives in the price panel's flow. */
 .pdp-b .pdp-price--lead .pdp-avail {
   width: 100%; margin-top: 0.15rem; padding-top: 0.7rem;
   border-top: 1px solid var(--color-graphite-200);
+  display: flex; align-items: center; justify-content: space-between; gap: 0.75rem;
 }
 
 /* ── EU-Energielabel ─────────────────────────────────────────────────────────
-   Regulatory badge shown right below the price (VO (EU) 2019/2015 – "in the
-   vicinity of the price"). Just the official compact class badge (G_Left.svg) –
-   a small, unobtrusive mark; clicking it opens the nested pop-out with the full
-   A–G ladder and the Produktdatenblatt link, so nothing else eats buy-box space. */
-/* z-index lifts the block (incl. the open pop-out) above the later buy-box
-   siblings – the colour picker / config – so the panel is never painted through. */
-.pdp-b .pdp-nrg { position: relative; z-index: 20; margin-top: 0.7rem; }
-.pdp-b .pdp-nrg__badge {
-  display: inline-flex; padding: 0.15rem; border: 0; background: none; cursor: pointer;
-  border-radius: var(--radius-sm); line-height: 0; transition: transform .12s ease;
+   Official compact class badge (G_Left.svg) shown in the vicinity of the price
+   (VO (EU) 2019/2015), in-flow on the availability row and linking to the
+   Produktdatenblatt. No floating panel – the badge itself carries class + scale. */
+.pdp-b .pdp-nrg {
+  flex: none; display: inline-flex; line-height: 0; border-radius: var(--radius-sm);
+  transition: transform .12s ease;
 }
-.pdp-b .pdp-nrg__badge:hover { transform: translateY(-1px); }
-.pdp-b .pdp-nrg__badge:focus-visible { outline: 2px solid var(--color-teal); outline-offset: 3px; }
-/* Official compact EU energy-class badge (red left-pointing G flag + A–G scale) */
-.pdp-b .pdp-nrg__arrow { display: block; width: auto; height: 1.9rem; }
-
-/* Pop-out: full A–G ladder + datasheet link. Anchored to the badge's left edge,
-   sized as a tidy popover (not a full-width panel) and clamped to the viewport. */
-.pdp-b .pdp-nrg__panel {
-  position: absolute; z-index: 5; left: 0; top: calc(100% + 0.45rem);
-  width: min(20rem, calc(100vw - 2.5rem));
-  padding: 0.95rem 1rem 0.9rem; background: var(--color-white);
-  border: 1px solid var(--color-graphite-200); border-radius: var(--radius-lg);
-  box-shadow: 0 0.75rem 1.75rem rgba(26,23,27,0.14);
-}
-.pdp-b .pdp-nrg__panel[hidden] { display: none; }
-.pdp-b .pdp-nrg__head { margin: 0 0 0.6rem; font-size: 0.6875rem; font-weight: 700;
-  letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
-/* padding-right reserves a fixed column on the right for the class pointer, so the
-   colored bars never run under it however wide the widest (G) bar is */
-.pdp-b .pdp-nrg__ladder { position: relative; list-style: none; margin: 0; padding: 0 2.5rem 0 0;
-  display: flex; flex-direction: column; gap: 0.28rem; }
-.pdp-b .pdp-nrg__ladder li {
-  height: 1.5rem; width: var(--w); min-width: 3.2rem;
-  display: flex; align-items: center; padding-left: 0.55rem;
-  background: var(--c); color: var(--ink); font-weight: 800; font-size: 0.8125rem; line-height: 1;
-  clip-path: polygon(0 0, calc(100% - 0.75rem) 0, 100% 50%, calc(100% - 0.75rem) 100%, 0 100%);
-}
-.pdp-b .pdp-nrg__ladder li:not(.is-active) { opacity: 0.82; }
-.pdp-b .pdp-nrg__ladder li.is-active { opacity: 1; }
-/* Class pointer – dark marker in the reserved right column, aligned to the matched
-   class row (G = last), pointing left at the scale (standard EU cue) */
-.pdp-b .pdp-nrg__mark {
-  position: absolute; right: 0; bottom: -0.05rem;
-  display: grid; place-items: center; width: 1.9rem; height: 1.6rem; padding-right: 0.2rem;
-  background: var(--color-digital-black); color: #fff; font-weight: 800; font-size: 0.8125rem; line-height: 1;
-  clip-path: polygon(30% 0, 100% 0, 100% 100%, 30% 100%, 0 50%);
-}
-.pdp-b .pdp-nrg__note { margin: 0.7rem 0 0; font-size: 0.6875rem; line-height: 1.45; color: var(--text-muted); }
-.pdp-b .pdp-nrg__sheet {
-  display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 0.6rem;
-  font-size: 0.8125rem; font-weight: 600; color: var(--color-teal);
-  text-decoration: underline; text-underline-offset: 2px;
-}
-.pdp-b .pdp-nrg__sheet svg { width: 1rem; height: 1rem; flex: none; }
-.pdp-b .pdp-nrg__sheet:hover { color: var(--color-teal-600); }
+.pdp-b .pdp-nrg:hover { transform: translateY(-1px); }
+.pdp-b .pdp-nrg:focus-visible { outline: 2px solid var(--color-teal); outline-offset: 3px; }
+.pdp-b .pdp-nrg__arrow { display: block; width: auto; height: 1.6rem; }
 
 /* Preisdetails & Menge accordion lives in the checkout now (after the config); hide it
    until a colour is chosen – nothing to detail yet */

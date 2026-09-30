@@ -1545,24 +1545,6 @@ var MZSwipe = (function () {
     }
   })();
 
-  /* ── EU-Energielabel: nested pop-out (arrow badge → full A–G ladder) ── */
-  (function () {
-    var trigger = document.getElementById('bNrgToggle');
-    var panel = document.getElementById('bNrgPanel');
-    if (!trigger || !panel) return;
-    function open() { panel.hidden = false; trigger.setAttribute('aria-expanded', 'true'); }
-    function close() { panel.hidden = true; trigger.setAttribute('aria-expanded', 'false'); }
-    trigger.addEventListener('click', function () {
-      if (panel.hidden) open(); else close();
-    });
-    document.addEventListener('click', function (e) {
-      if (!panel.hidden && !panel.contains(e.target) && !trigger.contains(e.target)) close();
-    });
-    document.addEventListener('keydown', function (e) {
-      if (!panel.hidden && e.key === 'Escape') { close(); trigger.focus(); }
-    });
-  })();
-
   var mtoggle = document.querySelector('.pdp-media__toggle');
   if (mtoggle) mtoggle.addEventListener('click', function (e) {
     var b = e.target.closest('button'); if (!b) return;
