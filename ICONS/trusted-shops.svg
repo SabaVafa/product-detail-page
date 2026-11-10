@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Trusted Shops emblem (official "e" mark), from e_trusted_shops-rgb.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" role="img" aria-label="Trusted Shops">
+  <mask id="ts-e">
+    <rect width="1000" height="1000" fill="#fff"/>
+    <circle cx="500" cy="500" r="315" fill="#000"/>
+  </mask>
+  <g fill="#1A171B">
+    <circle cx="500" cy="500" r="500" mask="url(#ts-e)"/>
+    <path d="M632.8,597.3C587,665.1,523.2,726.8,437.6,726.8c-90.6,0-143.4-56.8-143.4-148.4c0-148.4,109.6-293.8,264-293.8c51.8,0,121.5,20.9,121.5,83.7c0,112.5-176.3,150.4-263,172.3c-3,18.9-6,37.8-6,56.8c0,38.8,20.9,74.7,63.7,74.7c55.8,0,100.6-53.8,133.5-93.6L632.8,597.3z M585,355.3c0-22.9-12.9-40.8-36.8-40.8c-71.7,0-108.6,139.4-122.5,194.2C492.3,488.8,585,434,585,355.3z"/>
+  </g>
+</svg>

@@ -119,6 +119,7 @@ var MZSwipe = (function () {
   'use strict';
   var $ = function (id) { return document.getElementById(id); };
   var BASE = 699;
+  var GRAVUR = 8.5;        /* Namensgravur surcharge (Aktionspreis, regulär 10,00 €) */
   var FONTS = {
     Klassisch: "'Cinzel',Georgia,serif",
     Elegant: "'Playfair Display',Georgia,serif",
@@ -255,6 +256,7 @@ var MZSwipe = (function () {
   function total() {
     var t = state.mainQty * (BASE + state.finishDelta);
     t += innenSum();
+    if (state.gravurOn) t += GRAVUR;
     if (hasStrom()) t += state.stromDelta * state.stromQty;
     return t + extrasSum();
   }
@@ -331,6 +333,7 @@ var MZSwipe = (function () {
        item reveals it, already expanded (reveal persists; expand fires once so we
        respect the user if they later collapse it) */
     var paidExtra = innenSum() + extrasSum()
+      + (state.gravurOn ? GRAVUR : 0)
       + (hasStrom() ? state.stromDelta * state.stromQty : 0)
       + (state.finishDelta > 0 ? state.finishDelta * state.mainQty : 0);
     if (paidExtra > 0 && checkout) {
@@ -343,7 +346,7 @@ var MZSwipe = (function () {
     }
 
     setTxt('bPickAnschluss', state.anschluss || 'Bitte wählen');
-    setTxt('bPickGravur', state.gravurOn ? (state.gravurText ? '„' + state.gravurText + '" · ' + state.font : 'Mit Gravur') : 'Ohne Gravur');
+    setTxt('bPickGravur', state.gravurOn ? (state.gravurText ? '„' + state.gravurText + '" · ' + state.font + ' · +' + euro(GRAVUR) : 'Mit Gravur · +' + euro(GRAVUR)) : 'Ohne Gravur');
     setTxt('bPickInnen', hasInnen() ? innenLabel() : 'Ohne Innenstation');
     setTxt('bPickStrom', hasStrom() ? state.strom + ' · +' + euro(state.stromDelta * state.stromQty) : 'Standard · inklusive');
     setTxt('bPickExtras', extrasCount() ? extrasCount() + ' ausgewählt · +' + euro(extrasSum()) : 'Kein Zubehör');
@@ -443,7 +446,7 @@ var MZSwipe = (function () {
     var h = '';
     h += row('<b>Metzler VDM10 2.0</b>', esc(finishText()), roQty(state.mainQty), euro(state.mainQty * (BASE + state.finishDelta)));
     if (state.anschluss) h += row('Anschluss', esc(state.anschluss), null, 'inklusive');
-    if (state.gravurOn) h += row('Gravur', state.gravurText ? '„' + esc(state.gravurText) + '" · ' + state.font : 'Mit Namensgravur', null, 'inklusive');
+    if (state.gravurOn) h += row('Gravur', state.gravurText ? '„' + esc(state.gravurText) + '" · ' + state.font : 'Mit Namensgravur', null, '+' + euro(GRAVUR));
     for (var ik in state.innenSel) { var iv = state.innenSel[ik]; h += row(esc(iv.label || ik), null, roQty(iv.qty), euro(iv.price * iv.qty)); }
     if (hasStrom()) h += row(esc(state.strom), null, null, euro(state.stromDelta * state.stromQty));
     for (var k in state.extras) { var x = state.extras[k]; h += row(esc(x.label || k), null, roQty(x.qty), euro(x.price * x.qty)); }
@@ -1563,15 +1566,21 @@ var MZSwipe = (function () {
     applyConn(); refresh();   /* no auto-advance – user continues via "Weiter" */
   });
 
-  /* ── 2 · Gravur ── */
+  /* ── 2 · Gravur (modern Ohne|Mit segmented switch) ── */
   var seg = $('bGravurSeg');
   if (seg) seg.addEventListener('click', function (e) {
-    var b = e.target.closest('.cfg-opt'); if (!b) return;
-    state.gravurOn = b.classList.toggle('is-selected');   /* toggle add-on; unselected = ohne Gravur */
-    $('bGravurField').classList.toggle('is-shown', state.gravurOn);
-    if (!state.gravurOn) { state.gravurText = ''; var gc = $('bGravurText'); if (gc) gc.value = ''; }
+    var b = e.target.closest('[data-gravur]'); if (!b) return;
+    var on = b.getAttribute('data-gravur') === 'on';
+    if (on === state.gravurOn) return;                    /* already on this side – nothing to do */
+    state.gravurOn = on;
+    seg.setAttribute('data-on', on ? 'true' : 'false');   /* slides the thumb */
+    seg.querySelectorAll('[data-gravur]').forEach(function (x) {
+      x.setAttribute('aria-pressed', (x.getAttribute('data-gravur') === 'on') === on ? 'true' : 'false');
+    });
+    $('bGravurField').classList.toggle('is-shown', on);
+    if (!on) { state.gravurText = ''; var gc = $('bGravurText'); if (gc) gc.value = ''; }
     refresh();
-    if (state.gravurOn) { var gtf = $('bGravurText'); if (gtf) gtf.focus(); }
+    if (on) { var gtf = $('bGravurText'); if (gtf) gtf.focus(); }
   });
   var gt = $('bGravurText'); if (gt) gt.addEventListener('input', function () { this.classList.remove('is-invalid'); state.gravurText = this.value; refresh(); });
   var fonts = $('bFonts');

@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="de">
+<head>
+<style id="pf-ext-css">[data-pf-ext]{pointer-events:none !important;cursor:default !important;}</style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex" />
+<title>Trusted Shops – Platzierungen</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" />
+<style>
+  :root {
+    --teal: #015253; --teal-600: #013d3e; --dark: #141619; --paper: #F5F6FA;
+    --ink: #1A171B; --muted: #6A6A6A; --line: #E6E6E8; --white: #fff; --amber: #B26A00;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink);
+    font-family: "Inter", -apple-system, "Segoe UI", Roboto, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  .topbar { background: var(--teal); color: var(--white); padding: 0.9rem 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+  .topbar__mark { display: inline-grid; place-items: center; width: 1.9rem; height: 1.9rem; background: #D42924; color: #fff; font-weight: 800; border-radius: 4px; }
+  .topbar__name { font-weight: 800; letter-spacing: 0.02em; font-size: 1.1rem; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+  .head h1 { margin: 0 0 0.4rem; font-size: 1.75rem; letter-spacing: -0.02em; }
+  .head p { margin: 0; color: var(--muted); font-size: 1rem; max-width: 70ch; line-height: 1.55; }
+  .head p a { color: var(--teal); }
+  .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+  @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
+  .card { background: var(--white); border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
+    display: flex; flex-direction: column; transition: box-shadow .2s ease, transform .2s ease; }
+  .card:hover { box-shadow: 0 1.25rem 2.5rem rgba(10,20,20,0.12); transform: translateY(-2px); }
+  .card__preview { position: relative; height: 300px; overflow: hidden; background: #fff; border-bottom: 1px solid var(--line); }
+  .card__preview iframe { position: absolute; top: 0; left: 0; width: 1250px; height: 940px; border: 0;
+    transform: scale(0.355); transform-origin: top left; pointer-events: none; }
+  .card__preview a.card__cover { position: absolute; inset: 0; z-index: 2; }
+  .card__body { padding: 1.15rem 1.25rem 1.35rem; display: flex; flex-direction: column; gap: 0.5rem; flex: 1; }
+  .card__eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.6875rem; font-weight: 800;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); }
+  .card__num { display: inline-grid; place-items: center; min-width: 1.5rem; height: 1.5rem; padding: 0 0.4rem; border-radius: 6px;
+    background: #E4F0EE; color: var(--teal); font-size: 0.7rem; }
+  .card__title { margin: 0; font-size: 1.1rem; letter-spacing: -0.01em; }
+  .card__desc { margin: 0; color: var(--muted); font-size: 0.9rem; line-height: 1.5; flex: 1; }
+  .card__tag { align-self: flex-start; font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.55rem; border-radius: 999px; }
+  .card__tag--best { background: #E4F0EE; color: var(--teal-600); }
+  .card__tag--warn { background: #FBEEDD; color: var(--amber); }
+  .card__open { align-self: flex-start; margin-top: 0.2rem; display: inline-flex; align-items: center; gap: 0.4rem;
+    padding: 0.6rem 1.1rem; border-radius: 999px; background: var(--teal); color: #fff; text-decoration: none;
+    font-weight: 700; font-size: 0.875rem; transition: background .15s ease; }
+  .card__open:hover { background: var(--teal-600); }
+  .card__open svg { width: 1rem; height: 1rem; }
+  .foot { margin-top: 2.5rem; color: var(--muted); font-size: 0.8125rem; line-height: 1.6; }
+  .foot code { background: #eceef3; padding: 0.1rem 0.4rem; border-radius: 4px; }
+</style>
+</head>
+<body>
+  <div class="topbar"><span class="topbar__mark">M</span><span class="topbar__name">METZLER</span></div>
+  <main class="wrap">
+    <div class="head">
+      <h1>Trusted-Shops-Siegel · Platzierungen im Vergleich</h1>
+      <p>Dasselbe PDP (VDM10 2.0, Version B) mit dem Trusted-Shops-Signal an unterschiedlichen Stellen. Auf eine Vorschau tippen oder „Öffnen" wählen – jede Vorschau springt automatisch zur jeweiligen Position. Bewertungshinweise basieren auf der Evidenz: Siegel wirken am stärksten nah an der Kaufentscheidung, und mehr als zwei Siegel nebeneinander können die Conversion senken.</p>
+    </div>
+
+    <div class="grid" id="grid">
+      <!-- 0 · none -->
+      <article class="card">
+        <div class="card__preview"><a class="card__cover" href="index.html?flow=b" aria-label="Ohne Siegel öffnen"></a>
+          <iframe data-pos="none" src="index.html?flow=b" title="Ohne Siegel" loading="lazy" scrolling="no" tabindex="-1"></iframe></div>
+        <div class="card__body">
+          <span class="card__eyebrow"><span class="card__num">0</span> Basis</span>
+          <h2 class="card__title">Ohne Siegel</h2>
+          <p class="card__desc">Ausgangszustand – kein Trusted-Shops-Signal auf der Seite.</p>
+          <a class="card__open" href="index.html?flow=b">Öffnen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+
+      <!-- 1 · buybox -->
+      <article class="card">
+        <div class="card__preview"><a class="card__cover" href="index.html?flow=b&ts=buybox" aria-label="Unter dem Preis öffnen"></a>
+          <iframe data-pos="buybox" src="index.html?flow=b&ts=buybox" title="Unter dem Preis" loading="lazy" scrolling="no" tabindex="-1"></iframe></div>
+        <div class="card__body">
+          <span class="card__eyebrow"><span class="card__num">1</span> Kaufbox</span>
+          <h2 class="card__title">Unter dem Preis</h2>
+          <p class="card__desc">Kompakte Vertrauenszeile direkt unter dem Preis – nah an der Kaufentscheidung; höherwertige Warenkörbe profitieren.</p>
+          <span class="card__tag card__tag--best">Nah an der Entscheidung</span>
+          <a class="card__open" href="index.html?flow=b&ts=buybox">Öffnen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+
+      <!-- 2 · cta -->
+      <article class="card">
+        <div class="card__preview"><a class="card__cover" href="index.html?flow=b&ts=cta" aria-label="Unter dem Warenkorb-Button öffnen"></a>
+          <iframe data-pos="cta" src="index.html?flow=b&ts=cta" title="Unter dem CTA" loading="lazy" scrolling="no" tabindex="-1"></iframe></div>
+        <div class="card__body">
+          <span class="card__eyebrow"><span class="card__num">2</span> Call-to-Action</span>
+          <h2 class="card__title">Unter dem „In den Warenkorb"-Button</h2>
+          <p class="card__desc">Direkt am Button, am Punkt der Entscheidung. Laut Evidenz die wirkungsstärkste Position für Siegel.</p>
+          <span class="card__tag card__tag--best">Stärkste Position (Evidenz)</span>
+          <a class="card__open" href="index.html?flow=b&ts=cta">Öffnen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+
+      <!-- 3 · reviews -->
+      <article class="card">
+        <div class="card__preview"><a class="card__cover" href="index.html?flow=b&ts=reviews" aria-label="Bei den Bewertungen öffnen"></a>
+          <iframe data-pos="reviews" src="index.html?flow=b&ts=reviews" title="Bei den Bewertungen" loading="lazy" scrolling="no" tabindex="-1"></iframe></div>
+        <div class="card__body">
+          <span class="card__eyebrow"><span class="card__num">3</span> Bewertungen</span>
+          <h2 class="card__title">Als Bewertungs-Widget</h2>
+          <p class="card__desc">Siegel + echte TS-Note („Sehr gut · 10.796 Bewertungen") bei den Kundenstimmen – Social Proof statt reines Logo.</p>
+          <span class="card__tag card__tag--best">Social Proof</span>
+          <a class="card__open" href="index.html?flow=b&ts=reviews">Öffnen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+
+      <!-- 4 · feat (current) -->
+      <article class="card">
+        <div class="card__preview"><a class="card__cover" href="index.html?flow=b&ts=feat" aria-label="In der Merkmal-Karte öffnen"></a>
+          <iframe data-pos="feat" src="index.html?flow=b&ts=feat" title="In der Merkmal-Karte" loading="lazy" scrolling="no" tabindex="-1"></iframe></div>
+        <div class="card__body">
+          <span class="card__eyebrow"><span class="card__num">4</span> Beschreibung</span>
+          <h2 class="card__title">Als 3. Badge in der Merkmal-Karte</h2>
+          <p class="card__desc">Die zuletzt umgesetzte Variante – neben „Garantie" und „Germany".</p>
+          <span class="card__tag card__tag--warn">Achtung: 3. Siegel in einer Reihe</span>
+          <a class="card__open" href="index.html?flow=b&ts=feat">Öffnen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+
+      <!-- 5 · float (competitor: TS standard widget) -->
+      <article class="card">
+        <div class="card__preview"><a class="card__cover" href="index.html?flow=b&ts=float" aria-label="Schwebendes Trustbadge öffnen"></a>
+          <iframe data-pos="float" src="index.html?flow=b&ts=float" title="Schwebendes Trustbadge" loading="lazy" scrolling="no" tabindex="-1"></iframe></div>
+        <div class="card__body">
+          <span class="card__eyebrow"><span class="card__num">5</span> Wettbewerb</span>
+          <h2 class="card__title">Schwebendes Trustbadge (unten rechts)</h2>
+          <p class="card__desc">Das Trusted-Shops-Standard-Widget, das die meisten Shops nutzen – fest in der Ecke, auf jeder Seite sichtbar.</p>
+          <span class="card__tag card__tag--best">TS-Standard</span>
+          <a class="card__open" href="index.html?flow=b&ts=float">Öffnen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+
+      <!-- 6 · title (competitor: rating by the title) -->
+      <article class="card">
+        <div class="card__preview"><a class="card__cover" href="index.html?flow=b&ts=title" aria-label="Bewertung am Titel öffnen"></a>
+          <iframe data-pos="title" src="index.html?flow=b&ts=title" title="Bewertung am Titel" loading="lazy" scrolling="no" tabindex="-1"></iframe></div>
+        <div class="card__body">
+          <span class="card__eyebrow"><span class="card__num">6</span> Wettbewerb</span>
+          <h2 class="card__title">Bewertung direkt am Produkttitel</h2>
+          <p class="card__desc">TS-Sterne + „Sehr gut · 10.796 Bewertungen" direkt unter dem Titel – gängiges Muster bei Wettbewerbern.</p>
+          <span class="card__tag card__tag--best">Früh sichtbar</span>
+          <a class="card__open" href="index.html?flow=b&ts=title">Öffnen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+
+      <!-- 7 · tsofficial (TS official inline widget) -->
+      <article class="card">
+        <div class="card__preview"><a class="card__cover" href="index.html?flow=b&ts=tsofficial" aria-label="Offizielles TS-Widget öffnen"></a>
+          <iframe data-pos="tsofficial" src="index.html?flow=b&ts=tsofficial" title="Offizielles TS-Widget" loading="lazy" scrolling="no" tabindex="-1"></iframe></div>
+        <div class="card__body">
+          <span class="card__eyebrow"><span class="card__num">7</span> Wettbewerb</span>
+          <h2 class="card__title">Offizielles TS-Widget (Note + Score)</h2>
+          <p class="card__desc">Im Stil des Trusted-Shops-Inline-Widgets: „SEHR GUT", Note 4,80/5,00 und Sternreihe – unter dem Preis.</p>
+          <span class="card__tag card__tag--best">Offizieller Look</span>
+          <a class="card__open" href="index.html?flow=b&ts=tsofficial">Öffnen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+    </div>
+
+    <p class="foot">
+      Interner Vorschau-Index. Lokaler Prototyp – nicht veröffentlicht. Positionen werden per <code>?ts=buybox|cta|reviews|feat</code> gesteuert; ohne Parameter erscheint kein Siegel.
+    </p>
+  </main>
+
+<script>
+  /* Same-origin: scroll each preview iframe to its badge position so the thumbnail
+     actually shows the placement being evaluated. */
+  document.querySelectorAll('.card__preview iframe').forEach(function (fr) {
+    fr.addEventListener('load', function () {
+      var pos = fr.getAttribute('data-pos');
+      if (pos === 'none') return;
+      try {
+        var doc = fr.contentDocument;
+        var slot = doc.querySelector('.ts-slot[data-pos="' + pos + '"]');
+        if (slot) {
+          var y = slot.getBoundingClientRect().top + (fr.contentWindow.pageYOffset || 0) - 150;
+          fr.contentWindow.scrollTo(0, Math.max(0, y));
+        }
+      } catch (e) { /* ignore */ }
+    });
+  });
+</script>
+<style id="pf-lockdown-css">
+footer a,[class*="topbar"] a,[class*="top-bar"] a{pointer-events:none !important;cursor:default !important;}
+</style>
+<script id="pf-ext-js">(function(){var EXT=/^(https?:|tel:|mailto:)/i,OWN=/^https?:\/\/sabavafa\.github\.io/i;function bad(t){if(!t||!t.closest)return null;var a=t.closest('a');if(a){var h=a.getAttribute('href')||'';if(EXT.test(h)&&!OWN.test(h))return a;}return null;}['click','auxclick','keydown'].forEach(function(ev){document.addEventListener(ev,function(e){var el=bad(e.target);if(!el)return;if(ev!=='keydown'||e.key==='Enter'||e.key===' '){e.preventDefault();e.stopImmediatePropagation();}},true);});})();</script>
+</body>
+</html>
