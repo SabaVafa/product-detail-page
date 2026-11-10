@@ -603,16 +603,16 @@
    unlike a lone checkbox, and modern, unlike the two old-school radios. */
 .grav-switch { position: relative; display: grid; grid-template-columns: 1fr 1fr; isolation: isolate;
   background: var(--color-white); border: 1px solid var(--color-graphite-200);
-  border-radius: var(--radius); padding: 0.25rem; }
-.grav-switch__thumb { position: absolute; z-index: 0; top: 0.25rem; bottom: 0.25rem; left: 0.25rem;
-  width: calc(50% - 0.25rem); background: #01525314; border-radius: calc(var(--radius) - 0.125rem);
+  border-radius: var(--radius); padding: 6px; }
+.grav-switch__thumb { position: absolute; z-index: 0; top: 6px; bottom: 6px; left: 6px;
+  width: calc(50% - 6px); background: #01525314; border-radius: calc(var(--radius) - 0.125rem);
   box-shadow: inset 0 0 0 1px rgba(1,82,83,0.22); will-change: transform;
   /* snappy, slightly springy slide – modern without overshooting past the track */
   transition: transform .44s cubic-bezier(.22,1,.36,1), box-shadow .25s ease; }
 .grav-switch[data-on="true"] .grav-switch__thumb { transform: translateX(100%); }
 .grav-switch__opt { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.1rem;
   border: 0; background: none; cursor: pointer; font-family: inherit; font-size: 0.9rem; font-weight: 600;
-  color: var(--text-muted); padding: 0.3rem 1.1rem; border-radius: calc(var(--radius) - 0.125rem);
+  color: var(--text-muted); padding: 0.3rem 0.8rem; border-radius: calc(var(--radius) - 0.125rem);
   transition: color .28s ease; -webkit-tap-highlight-color: transparent; }
 .grav-switch__opt[aria-pressed="true"] { color: var(--color-teal); }
 .grav-switch__opt:focus-visible { outline: 2px solid var(--color-teal); outline-offset: 2px; }
