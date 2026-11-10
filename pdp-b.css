@@ -612,7 +612,7 @@
 .grav-switch[data-on="true"] .grav-switch__thumb { transform: translateX(100%); }
 .grav-switch__opt { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.1rem;
   border: 0; background: none; cursor: pointer; font-family: inherit; font-size: 0.9rem; font-weight: 600;
-  color: var(--text-muted); padding: 0.55rem 0.6rem; border-radius: calc(var(--radius) - 0.125rem);
+  color: var(--text-muted); padding: 0.3rem 1.1rem; border-radius: calc(var(--radius) - 0.125rem);
   transition: color .28s ease; -webkit-tap-highlight-color: transparent; }
 .grav-switch__opt[aria-pressed="true"] { color: var(--color-teal); }
 .grav-switch__opt:focus-visible { outline: 2px solid var(--color-teal); outline-offset: 2px; }
