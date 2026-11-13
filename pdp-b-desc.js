@@ -2663,3 +2663,11 @@ var MZSwipe = (function () {
   }
   markRows();
 })();
+
+/* ── Beschreibung: before/after comparison slider ── */
+(function () {
+  var ba = document.getElementById('dscBa'); if (!ba) return;
+  var range = ba.querySelector('.dsc-ba__range'); if (!range) return;
+  function upd(){ ba.style.setProperty('--ba', range.value + '%'); }
+  range.addEventListener('input', upd); upd();
+})();

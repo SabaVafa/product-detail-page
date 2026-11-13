@@ -1,0 +1,68 @@
+/* ============================================================================
+   Live layout layer for the transferred Siebert product description.
+   The description markup (#sx-beschreibung) was taken verbatim from the live
+   shop, whose grid + display utilities live in the global theme CSS – not in
+   the opc block's own embedded <style>. Those rules are reproduced here, scoped
+   to #sx-beschreibung, using the shop's real (shifted) breakpoints as read from
+   the live cascade:
+     col-md ≥ 992px · col-lg ≥ 1200px · col-xl ≥ 1600px
+     d-* at 576 / 768 / 992 / 1200 · row/col gutter 15px (8px below 576px)
+   ========================================================================== */
+
+/* ---- grid ---------------------------------------------------------------- */
+#sx-beschreibung .row{display:flex;flex-wrap:wrap;margin-left:-15px;margin-right:-15px}
+@media (max-width:575px){#sx-beschreibung .row{margin-left:-8px;margin-right:-8px}}
+
+#sx-beschreibung .col,
+#sx-beschreibung [class*="col-"]{position:relative;min-height:1px;width:100%;padding-left:15px;padding-right:15px}
+@media (max-width:575px){
+  #sx-beschreibung .col,
+  #sx-beschreibung [class*="col-"]{padding-left:8px;padding-right:8px}
+}
+
+#sx-beschreibung .col-12{width:100%}
+@media (min-width:992px){
+  #sx-beschreibung .col-md-12{width:100%}
+  #sx-beschreibung .col-md-7{width:58.3333%}
+  #sx-beschreibung .col-md-6{width:50%}
+  #sx-beschreibung .col-md-5{width:41.6667%}
+}
+@media (min-width:1200px){
+  #sx-beschreibung .col-lg-12{width:100%}
+  #sx-beschreibung .col-lg-7{width:58.3333%}
+  #sx-beschreibung .col-lg-6{width:50%}
+  #sx-beschreibung .col-lg-5{width:41.6667%}
+  #sx-beschreibung .col-lg-4{width:33.3333%}
+}
+@media (min-width:1600px){
+  #sx-beschreibung .col-xl-12{width:100%}
+  #sx-beschreibung .col-xl-7{width:58.3333%}
+  #sx-beschreibung .col-xl-6{width:50%}
+  #sx-beschreibung .col-xl-5{width:41.6667%}
+  #sx-beschreibung .col-xl-4{width:33.3333%}
+}
+
+/* ---- display utilities (shop breakpoints) -------------------------------- */
+#sx-beschreibung .d-none{display:none!important}
+#sx-beschreibung .d-block{display:block!important}
+@media (min-width:576px){#sx-beschreibung .d-sm-none{display:none!important}#sx-beschreibung .d-sm-block{display:block!important}}
+@media (min-width:768px){#sx-beschreibung .d-md-none{display:none!important}#sx-beschreibung .d-md-block{display:block!important}}
+@media (min-width:992px){#sx-beschreibung .d-lg-none{display:none!important}#sx-beschreibung .d-lg-block{display:block!important}}
+@media (min-width:1200px){#sx-beschreibung .d-xl-none{display:none!important}}
+
+/* ---- OPC responsive-visibility system -----------------------------------
+   The opc editor toggles xs/desktop variants (e.g. the hero) with these
+   wrapper classes, not with .d-*. Breakpoints: xs <768 · sm 768–991.98 ·
+   md 992–1199.98 · lg ≥1200. (So the hero swaps to the wide banner at 992px.) */
+@media (max-width:767.98px){#sx-beschreibung .opc-hidden-xs{display:none!important}}
+@media (min-width:768px) and (max-width:991.98px){#sx-beschreibung .opc-hidden-sm{display:none!important}}
+@media (min-width:992px) and (max-width:1199.98px){#sx-beschreibung .opc-hidden-md{display:none!important}}
+@media (min-width:1200px){#sx-beschreibung .opc-hidden-lg{display:none!important}}
+
+/* ---- misc utilities ------------------------------------------------------ */
+#sx-beschreibung .w-100{width:100%}
+#sx-beschreibung .dpflex-a-c{display:flex;align-items:center}
+#sx-beschreibung .clearfix::after{content:"";display:table;clear:both}
+#sx-beschreibung .img-fluid{max-width:100%;height:auto!important}
+#sx-beschreibung img.rounded{border-radius:var(--img-rnd,.5rem)}
+#sx-beschreibung .col-12:empty{display:none}

@@ -3342,3 +3342,95 @@ body.is-scrolled #quickbar {
   .colorwin__sw { width: 4.75rem; height: 4.75rem; }
   .colorwin__name { font-size: 1.0625rem; }
 }
+
+/* ═══ Beschreibung · modular band system (Siebert) ════════════════════════════
+   Reusable story bands: header, feature grid, image+text split, option cards,
+   format comparison, before/after slider, step timeline. Consistent vertical
+   rhythm so each live section drops into the matching component. */
+.pdp-b.dsc .psx-sec__inner, .pdp-b .dsc .psx-sec__inner { max-width: 74rem; }
+.pdp-b .dsc-band { padding: 3.25rem 0; border-top: 1px solid var(--color-graphite-200); }
+.pdp-b .dsc-band:first-child { border-top: 0; padding-top: 0.5rem; }
+@media (max-width: 48rem){ .pdp-b .dsc-band { padding: 2.25rem 0; } }
+.pdp-b .dsc-band__eyebrow { display:block; font-size:0.6875rem; font-weight:800; letter-spacing:0.14em; text-transform:uppercase; color:var(--color-teal); margin:0 0 0.5rem; }
+.pdp-b .dsc-band__title { margin:0 0 0.6rem; font-size:clamp(1.3rem,2.6vw,1.9rem); letter-spacing:-0.02em; line-height:1.15; color:var(--color-digital-black); }
+.pdp-b .dsc-band__lead { margin:0; max-width:62ch; font-size:1rem; line-height:1.6; color:var(--text-secondary); }
+
+/* intro hero */
+.pdp-b .dsc-hero__img { width:100%; height:auto; border-radius:var(--radius-lg); display:block; margin-bottom:1.5rem; }
+
+/* feature grid */
+.pdp-b .dsc-grid { list-style:none; margin:1.6rem 0 0; padding:0; display:grid; grid-template-columns:repeat(auto-fit,minmax(15rem,1fr)); gap:1.3rem 1.9rem; }
+.pdp-b .dsc-grid__item { display:flex; gap:0.75rem; }
+.pdp-b .dsc-grid__ico { flex:none; width:1.6rem; height:1.6rem; color:var(--color-teal); }
+.pdp-b .dsc-grid__ico svg { width:1.5rem; height:1.5rem; }
+.pdp-b .dsc-grid__b { margin:0 0 0.12rem; font-size:0.95rem; font-weight:700; color:var(--color-digital-black); }
+.pdp-b .dsc-grid__t { margin:0; font-size:0.875rem; line-height:1.5; color:var(--text-muted); }
+
+/* image + text split */
+.pdp-b .dsc-split { display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; align-items:center; margin-top:1.6rem; }
+.pdp-b .dsc-split--reverse .dsc-split__media { order:2; }
+.pdp-b .dsc-split__media img, .pdp-b .dsc-ph { width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:var(--radius-lg); display:block; background:var(--color-paper); }
+.pdp-b .dsc-split__b { margin:0 0 0.3rem; font-size:1rem; font-weight:700; color:var(--color-digital-black); }
+.pdp-b .dsc-split p { margin:0 0 0.9rem; font-size:0.9rem; line-height:1.6; color:var(--text-secondary); }
+@media (max-width:48rem){ .pdp-b .dsc-split { grid-template-columns:1fr; gap:1.25rem; } .pdp-b .dsc-split--reverse .dsc-split__media{order:0;} }
+
+/* option cards */
+.pdp-b .dsc-cards { list-style:none; margin:1.6rem 0 0; padding:0; display:grid; grid-template-columns:repeat(auto-fit,minmax(15rem,1fr)); gap:1.25rem; }
+.pdp-b .dsc-card { display:flex; flex-direction:column; background:var(--color-white); border:1px solid var(--color-graphite-200); border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-soft); }
+.pdp-b .dsc-card__media, .pdp-b .dsc-card__media img { width:100%; aspect-ratio:4/3; object-fit:cover; display:block; background:var(--color-paper); }
+.pdp-b .dsc-card__body { padding:1rem 1.1rem 1.15rem; display:flex; flex-direction:column; gap:0.3rem; flex:1; }
+.pdp-b .dsc-card__b { margin:0; font-size:0.95rem; font-weight:700; color:var(--color-digital-black); }
+.pdp-b .dsc-card__t { margin:0; font-size:0.8125rem; line-height:1.5; color:var(--text-muted); flex:1; }
+.pdp-b .dsc-tag { align-self:flex-start; margin-top:0.4rem; font-size:0.8125rem; font-weight:800; color:var(--color-teal); background:rgba(1,82,83,0.08); padding:0.2rem 0.55rem; border-radius:var(--radius-pill); }
+.pdp-b .dsc-tag--incl { color:var(--color-green); background:rgba(46,125,50,0.1); }
+
+/* format comparison */
+.pdp-b .dsc-formats { list-style:none; margin:1.6rem 0 0; padding:0; display:grid; grid-template-columns:repeat(auto-fit,minmax(9rem,1fr)); gap:1rem; }
+.pdp-b .dsc-format { border:1px solid var(--color-graphite-200); border-radius:var(--radius); padding:0.9rem 1rem; background:var(--color-white); }
+.pdp-b .dsc-format__k { font-size:1.05rem; font-weight:800; color:var(--color-teal); }
+.pdp-b .dsc-format__d { font-size:0.8125rem; color:var(--color-digital-black); font-weight:600; }
+.pdp-b .dsc-format__n { font-size:0.75rem; color:var(--text-muted); }
+
+/* before/after slider */
+.pdp-b .dsc-ba { position:relative; margin-top:1.6rem; border-radius:var(--radius-lg); overflow:hidden; aspect-ratio:16/9; background:var(--color-paper); }
+.pdp-b .dsc-ba>img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.pdp-b .dsc-ba__after { clip-path: inset(0 0 0 var(--ba,50%)); }
+.pdp-b .dsc-ba__range { position:absolute; inset:0; width:100%; height:100%; margin:0; opacity:0; cursor:ew-resize; }
+.pdp-b .dsc-ba__handle { position:absolute; top:0; bottom:0; left:var(--ba,50%); width:2px; background:#fff; box-shadow:0 0 0 1px rgba(0,0,0,.25); pointer-events:none; }
+.pdp-b .dsc-ba__handle::after{ content:""; position:absolute; top:50%; left:50%; width:2rem; height:2rem; transform:translate(-50%,-50%); border-radius:50%; background:#fff; box-shadow:0 2px 8px rgba(0,0,0,.3); }
+.pdp-b .dsc-ba__lab { position:absolute; top:0.6rem; padding:0.15rem 0.5rem; font-size:0.6875rem; font-weight:700; border-radius:var(--radius-sm); background:rgba(0,0,0,.55); color:#fff; }
+.pdp-b .dsc-ba__lab--l{left:0.6rem} .pdp-b .dsc-ba__lab--r{right:0.6rem}
+
+/* step timeline + stats */
+.pdp-b .dsc-steps { list-style:none; margin:1.6rem 0 0; padding:0; display:grid; grid-template-columns:repeat(auto-fit,minmax(13rem,1fr)); gap:1.3rem; }
+.pdp-b .dsc-step__n { font-size:0.6875rem; font-weight:800; letter-spacing:0.1em; color:var(--color-teal); }
+.pdp-b .dsc-step__b { margin:0.2rem 0 0.15rem; font-size:0.95rem; font-weight:700; color:var(--color-digital-black); }
+.pdp-b .dsc-step__t { margin:0; font-size:0.8125rem; line-height:1.5; color:var(--text-muted); }
+.pdp-b .dsc-stats { list-style:none; margin:1.6rem 0 0; padding:0; display:flex; flex-wrap:wrap; gap:1.9rem; }
+.pdp-b .dsc-stat__n { display:block; font-size:1.4rem; font-weight:800; color:var(--color-teal); letter-spacing:-0.02em; }
+.pdp-b .dsc-stat__t { font-size:0.8125rem; color:var(--text-muted); max-width:22ch; }
+
+/* placeholder slot for content still to come */
+.pdp-b .dsc-todo { margin-top:1.3rem; padding:1.1rem 1.25rem; border:1px dashed var(--color-graphite-300); border-radius:var(--radius-lg); font-size:0.8125rem; color:var(--text-muted); background:var(--color-paper); }
+
+/* ── Beschreibung · exact-transfer refinements (Intro + Das Wichtigste) ── */
+/* Intro hero: banner image with overlaid headline + award badge (right half) */
+.pdp-b .dsc-hero { position: relative; border-radius: var(--radius-lg); overflow: hidden; }
+.pdp-b .dsc-hero__bg { display: block; width: 100%; height: auto; }
+.pdp-b .dsc-hero__overlay { position: absolute; top: 0; right: 0; bottom: 0; width: 50%; padding: 2.2rem 2.4rem;
+  display: flex; flex-direction: column; justify-content: center; gap: 1.1rem; }
+.pdp-b .dsc-hero__title { margin: 0; font-size: clamp(1.7rem, 4vw, 3rem); line-height: 1.04; letter-spacing: -0.025em; font-weight: 800; color: var(--color-digital-black); }
+.pdp-b .dsc-hero__badge { width: clamp(4.5rem, 11vw, 7rem); height: auto; border-radius: var(--radius); box-shadow: var(--shadow-soft); }
+@media (max-width: 40rem){
+  .pdp-b .dsc-hero__overlay { position: static; width: 100%; padding: 1.1rem 0 0; }
+  .pdp-b .dsc-hero__title { font-size: 1.7rem; }
+}
+/* centered band header */
+.pdp-b .dsc-band--center { text-align: center; }
+.pdp-b .dsc-band--center .dsc-band__lead { margin-left: auto; margin-right: auto; }
+/* single-column feature list (used inside a split) */
+.pdp-b .dsc-grid--list { grid-template-columns: 1fr; gap: 1.35rem; margin-top: 0; }
+.pdp-b .dsc-grid--list .dsc-grid__item { gap: 0.9rem; align-items: flex-start; }
+/* tinted rounded-square icons (live style) */
+.pdp-b .dsc-grid__ico { width: 2.5rem; height: 2.5rem; border-radius: 0.7rem; background: rgba(1,82,83,0.08); display: grid; place-items: center; color: var(--color-teal); }
+.pdp-b .dsc-grid__ico svg { width: 1.35rem; height: 1.35rem; }
