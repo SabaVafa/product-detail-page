@@ -1084,16 +1084,16 @@ html[data-ts="float"]      .pdp-b .ts-slot[data-pos="float"]      { display: fle
    translate to the swatch's offset (left edge). Unlike mobile (whose continuous scroll
    makes the motion smooth on its own), desktop hover is DISCRETE – so the line would
    teleport between swatches and read as jumpy. An eased transition makes it GLIDE between
-   swatches instead (the "magic line" pattern). Easing is a calm decelerating ease-out
-   (NO overshoot): when the pointer sweeps the row and the line re-targets on every swatch,
-   an overshoot/spring would compound into jittery, hard-to-track motion – a clean settle
-   keeps the movement legible and trackable. */
+   swatches instead (the "magic line" pattern). Easing is a gentle ease-in-out (soft start
+   AND soft settle, NO overshoot): low velocity at both ends keeps the move from reading as
+   sharp, while a spring/overshoot would compound into jittery, hard-to-track motion when the
+   pointer sweeps the row and the line re-targets on every swatch. */
 @media (hover: hover) {
   body:not(.swtouch) .bx-swatches { position: relative; }
   body:not(.swtouch) .bx-swline { display: block; position: absolute; top: -0.55rem; left: 0; z-index: 2;
     height: 2px; width: 2rem; border-radius: var(--radius-sm); background: var(--color-teal);
     opacity: 0; pointer-events: none; will-change: transform;
-    transition: transform .48s cubic-bezier(.4, 0, .2, 1), opacity .22s ease; }   /* gentle both-ends ease (low initial velocity → no harsh jolt); longer so fast sweeps trail smoothly */
+    transition: transform .55s cubic-bezier(.65, 0, .35, 1), opacity .22s ease; }   /* gentle ease-in-out: soft at both ends so the glide never reads as sharp; long enough that fast sweeps trail smoothly */
   body:not(.swtouch) .bx-swline.is-on { opacity: 1; }   /* shown only for a hovered/selected swatch – hidden at rest when no colour is chosen */
 }
 
