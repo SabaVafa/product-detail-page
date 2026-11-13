@@ -228,7 +228,7 @@ var MZSwipe = (function () {
 
   var ralUI = null;   /* set by setupRalPicker() – { open, close, flash, sync } */
   var state = {
-    finish: '', finishDelta: 0, article: '', mainQty: 1,   /* no colour pre-selected – user must choose (each colour is its own article) */
+    finish: '', finishDelta: 0, article: '', mainQty: 1,   /* seeded to Anthrazit RAL 7016 at init (see swatch setup); each colour is its own article */
     ral: null,   /* Wunschfarbe: { code, name, hex } once a RAL is picked */
     anschluss: null, conn: null,
     gravurOn: false, gravurText: '', font: 'Klassisch',
@@ -707,6 +707,22 @@ var MZSwipe = (function () {
     sw.addEventListener('focusin', previewName);
     sw.addEventListener('focusout', restoreName);
     window.addEventListener('resize', restSwlineToSelected, { passive: true });
+
+    /* Default finish: pre-select Anthrazit RAL 7016 so the page opens on a
+       chosen colour (configurator unlocked, title + price already configured)
+       rather than the "Bitte Farbe wählen" gate. Reuses the same state the
+       click handler sets; the init refresh() below renders it. */
+    var defSw = sw.querySelector('.pdp-swatch[data-finish="Anthrazit RAL 7016"]') || sw.querySelector('.pdp-swatch');
+    if (defSw) {
+      sw.querySelectorAll('.pdp-swatch').forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
+      defSw.setAttribute('aria-pressed', 'true');
+      state.finish = defSw.getAttribute('data-finish');
+      state.finishDelta = parseFloat(defSw.getAttribute('data-delta')) || 0;
+      state.article = defSw.getAttribute('data-article') || state.article;
+      var defPanel = $('cfgbPanel');
+      if (defPanel) defPanel.classList.remove('is-locked');   /* a colour is chosen → unlock the configurator */
+    }
+
     restSwlineToSelected();   /* initial position (selected swatch, or hidden if none) */
   }
 
