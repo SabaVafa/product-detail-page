@@ -142,6 +142,34 @@ var MZSwipe = (function () {
   var LIGHT_FINISHES = { 'Verkehrsweiß RAL 9016': 1, 'Edelstahl gebürstet': 1 };
   var CONN = { 'LAN / PoE': 'lan', '2-Draht IP': '2draht' };
 
+  /* Main product render per finish (keyed by the swatch's article) – picking a
+     colour swaps the big hero image to the Siebert in that finish, mirroring the
+     live shop. Wunschfarbe shows the mailbox inside the RAL ring (custom colour). */
+  var MAINIMG = {
+    '31101': 'assets/briefkasten/siebert-farbe-anthrazit-ral7016.jpg',
+    '31102': 'assets/briefkasten/siebert-farbe-verkehrsweiss-ral9016.jpg',
+    '31103': 'assets/briefkasten/siebert-farbe-graualuminium-ral9007.jpg',
+    '31104': 'assets/briefkasten/siebert-farbe-eisenglimmer-db703.jpg',
+    '31105': 'assets/briefkasten/siebert-farbe-tiefschwarz-ral9005.jpg',
+    '31106': 'assets/briefkasten/siebert-farbe-edelstahl-gebuerstet.jpg',
+    '31107': 'assets/briefkasten/siebert-farbe-basaltgrau-ral7012.jpg',
+    '31108': 'assets/briefkasten/siebert-farbe-wunschfarbe.jpg'
+  };
+  /* Swap the hero to the finish's render with a short cross-fade (sets src while
+     dimmed so the old frame never flips visibly). Keeps the engrave overlay. */
+  function setMainImage(article, finish) {
+    var img = document.getElementById('pdpMainImg');
+    var src = MAINIMG[article];
+    if (!img || !src) return false;
+    img.style.opacity = '0.35';
+    window.setTimeout(function () {
+      img.src = src;
+      if (finish) img.alt = 'Metzler Briefkasten Siebert aus Stahl in ' + finish + ' mit Lasergravur';
+      img.style.opacity = '1';
+    }, 160);
+    return true;
+  }
+
   /* ── RAL Classic palette (Wunschfarbe picker) – code | German name | hex ── */
   var WUNSCHFARBE = 'Wunschfarbe nach RAL';
   /* order = neutrals band (white/black, grey, brown) then the warm→cool spectrum */
@@ -658,7 +686,10 @@ var MZSwipe = (function () {
     }
     state.finish = b.getAttribute('data-finish'); state.finishDelta = parseFloat(b.getAttribute('data-delta')) || 0;
     state.article = b.getAttribute('data-article') || state.article;
-    var img = $('pdpMainImg'); if (img) { img.style.opacity = '0.35'; window.setTimeout(function () { img.style.opacity = '1'; }, 200); }
+    /* swap the hero to the chosen finish's render (falls back to a plain fade) */
+    if (!setMainImage(state.article, state.finish)) {
+      var img = $('pdpMainImg'); if (img) { img.style.opacity = '0.35'; window.setTimeout(function () { img.style.opacity = '1'; }, 200); }
+    }
     /* Wunschfarbe → reveal the inline RAL picker; any standard colour → close it and drop the RAL */
     if (ralUI) { if (state.finish === WUNSCHFARBE) ralUI.open(); else { ralUI.close(); state.ral = null; } }
     /* colour chosen → unlock the configurator (colour drives the available options) */
@@ -721,6 +752,9 @@ var MZSwipe = (function () {
       state.article = defSw.getAttribute('data-article') || state.article;
       var defPanel = $('cfgbPanel');
       if (defPanel) defPanel.classList.remove('is-locked');   /* a colour is chosen → unlock the configurator */
+      /* seed the hero to the default finish's render instantly (no fade on load) */
+      var defImg = $('pdpMainImg'), defMain = MAINIMG[state.article];
+      if (defImg && defMain) { defImg.src = defMain; if (state.finish) defImg.alt = 'Metzler Briefkasten Siebert aus Stahl in ' + state.finish + ' mit Lasergravur'; }
     }
 
     restSwlineToSelected();   /* initial position (selected swatch, or hidden if none) */
