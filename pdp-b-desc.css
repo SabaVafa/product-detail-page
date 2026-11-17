@@ -3479,6 +3479,42 @@ body.is-scrolled #quickbar {
   #sx-beschreibung .kfg .kfg__steps{ margin:1.5rem 0 0; }
 }
 
+/* ── Befestigung: the three ways to mount it, side by side with their price ─────
+   Replaces one big scene + two small tiles (where "Wand", the included default,
+   had no picture at all). Phones: a swipe row so it stays one card tall. */
+#sx-beschreibung .mnts{ list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:1rem; }
+#sx-beschreibung .mnt{ display:flex; flex-direction:column; margin:0; border-radius:var(--radius-lg); background:#fff; box-shadow:0 0 0 1px rgba(26,23,27,.08), 0 0.25rem 1rem rgba(0,0,0,.05); overflow:hidden; }
+#sx-beschreibung .mnt::marker{ content:none; }
+#sx-beschreibung .mnt__img{ position:relative; margin:0; aspect-ratio:4/3; overflow:hidden; background:#efece6; }
+#sx-beschreibung .mnt__img img{ display:block; width:100%; height:100%; object-fit:cover; }
+#sx-beschreibung .mnt--wand .mnt__img img{ object-position:9% 50%; }   /* the clip's first frame: centres the box (x 205–490 of 1400) */
+#sx-beschreibung .mnt__txt{ flex:1; padding:1rem 1.1rem 0; }
+#sx-beschreibung .mnt__txt b{ display:block; font-size:1rem; line-height:1.3; color:var(--color-digital-black); }
+#sx-beschreibung .mnt__txt span{ display:block; margin-top:0.2rem; font-size:0.875rem; line-height:1.4; color:var(--text-secondary); }
+#sx-beschreibung .mnt__price{ margin:0.75rem 1.1rem 1.1rem; font-size:1rem; font-weight:700; color:var(--color-teal); }
+#sx-beschreibung .mnt__price.is-incl{ align-self:flex-start; padding:0.2rem 0.6rem; border-radius:var(--radius-pill); background:rgba(1,82,83,.08); font-size:0.8125rem; }
+@media (max-width:47.9375rem){
+  #sx-beschreibung .mnts{ grid-template-columns:none; grid-auto-flow:column; grid-auto-columns:78%; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; padding:0.25rem 0.25rem 0.75rem; margin:0 -0.25rem; }
+  #sx-beschreibung .mnts::-webkit-scrollbar{ display:none; }
+  #sx-beschreibung .mnt{ scroll-snap-align:start; }
+}
+/* ── Dekoration: the live scene switcher, laid out beside its options ───────────
+   Wide: scene left, the six variants as a 3 × 2 grid right (one screen instead
+   of scene-then-row). Phones: the variants become a swipe row under the scene. */
+@media (min-width:64rem){
+  #sx-beschreibung .mz-sg-7be0a00000042{ max-width:none; display:grid; grid-template-columns:minmax(0, 1.15fr) minmax(0, 1fr); column-gap:clamp(2rem, 4vw, 4rem); align-items:center; }
+  #sx-beschreibung .mz-sg-7be0a00000042 .sg-buehne{ max-width:none; margin:0; }
+  #sx-beschreibung .mz-sg-7be0a00000042 .sg-kacheln{ grid-template-columns:repeat(3, minmax(0, 1fr)); justify-content:stretch; gap:0.75rem; margin-top:0; }
+}
+@media (max-width:47.9375rem){
+  #sx-beschreibung .mz-sg-7be0a00000042 .sg-kacheln{ grid-template-columns:none; grid-auto-flow:column; grid-auto-columns:38%; justify-content:start; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; padding:0.25rem; margin:1rem -0.25rem 0; }
+  #sx-beschreibung .mz-sg-7be0a00000042 .sg-kacheln::-webkit-scrollbar{ display:none; }
+  #sx-beschreibung .mz-sg-7be0a00000042 .sg-kachel{ scroll-snap-align:start; }
+}
+
+/* Einwurf stage: the clip is AI-flagged on live – badge top-right, clear of the play button */
+#sx-beschreibung .mbxdemo__stage::after{ top:0.5rem; bottom:auto; }
+
 /* Verfügbare Farben (live block): its icon list sits in a .mz-body, whose generic
    list indent (.mz-body ul) would push it right – keep it flush like on live. */
 #sx-beschreibung .mz-kap .mz-ikl{ padding-left:0; margin:0; }
