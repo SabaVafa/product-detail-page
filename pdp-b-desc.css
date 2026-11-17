@@ -1566,10 +1566,7 @@ body.kbd-open .cfgb-dock.is-fixed { display: none !important; }
   .pdp-b .cfgb #bFonts .cfg-font__tagm { display: inline; }
 }
 
-/* step headers: the "Optional" chip sits in one column at the right on every width
-   (it followed the title length on desktop, so chips zigzagged and the pick line
-   ran under them) */
-.pdp-b .cfgb .stepr__title { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; width: 100%; }
+/* step headers: number/check, title, current pick, chevron – no "Optional" / "Ändern" labels */
 .pdp-b .cfgb .stepr__titles { flex: 1; min-width: 0; }
 
 /* ── Feature info modal ("Mehr erfahren" in the configurator) ───────────────────
