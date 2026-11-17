@@ -3377,138 +3377,67 @@ body.is-scrolled #quickbar {
 #sx-beschreibung [data-area-id="col-0"]:has(> .dsc-brand) > .mz-body + div,
 #sx-beschreibung [data-area-id="col-0"]:has(> .dsc-brand) > .mz-body + div + div{ display:none; }
 
-/* ── Einwerfen → Verwahren → Entnehmen: one choreographed mailbox ─────────────
-   Lid and door are slices of the real Siebert render (clip-path along the
-   chevron seam), hinged in 3D – so the box always shows the picked finish
-   (pdp-b-desc.js swaps --mbx-img). Every part runs on ONE 12 s clock and the
-   step bar runs on the same clock, so nothing can drift:
-     0.0–4.8 s  Einwerfen   lid lifts, DIN C6 → DIN lang → C4 slide in, lid shuts
-     4.8–6.6 s  Verwahren   lock engages, then releases
-     6.6–12 s   Entnehmen   door drops open, mail is lifted out, door closes
-   Geometry is in % of the photo's box (x 95–805, y 99–801 of 900 px); the seam
-   sits at 19.8 % (left) / 26.8 % (right) with the diagonal from 43.5 % to 55.9 %. */
-.pdp-b .mbxdemo { --T:12s; --mbx-img:url("assets/briefkasten/siebert-farbe-anthrazit-ral7016.jpg"); --mbx-in1:#1d2126; --mbx-in2:#3b424b; max-width:40rem; margin:0 auto; }
-.pdp-b .mbxdemo__stage { position:relative; aspect-ratio:1/1; container-type:inline-size; border-radius:var(--radius-lg); overflow:hidden; background:#ebe6de url("assets/briefkasten/siebert-hero-wand-poster.jpg") 100% 50% / auto 100% no-repeat; box-shadow:var(--shadow-md); }
-.pdp-b .mbxdemo__stage::before { content:""; position:absolute; inset:0; pointer-events:none; background:radial-gradient(90% 70% at 72% 18%, rgba(255,255,255,.28), transparent 60%), linear-gradient(to bottom, transparent 62%, rgba(70,52,36,.10)); }
+/* ── Einwerfen → Entnehmen: the real Siebert on the wall ────────────────────────
+   The product is the live hero clip (real footage, 1400×400, 10.75 s): the lid
+   lifts ~2–4 s, the door drops open ~6–8.5 s and shows the mail inside. While
+   the lid is up, a DIN-lang letter and a C4 envelope are posted into the slot –
+   CSS animations on the clip's own timeline, scrubbed to video.currentTime by
+   pdp-b-desc.js so they can never drift. The box's front rim (y ≈ 82 px of the
+   clip) swallows them. The end cross-fades into frame 0 for a seamless loop.  */
+.pdp-b .mbxdemo { --T:10.75s; max-width:40rem; margin:0 auto; }
+.pdp-b .mbxdemo__stage { position:relative; aspect-ratio:3/2; container-type:inline-size; overflow:hidden; border-radius:var(--radius-lg); background:#e9e3da; box-shadow:var(--shadow-md); }
+/* crop of the clip: x 120–720 px (box + room for the open door), full height */
+.pdp-b .mbxdemo__vid, .pdp-b .mbxdemo__still { position:absolute; top:0; left:-20%; width:233.334%; max-width:none; height:100%; object-fit:fill; display:block; }
+.pdp-b .mbxdemo__still { opacity:0; pointer-events:none; }
 
-.pdp-b .mbx { position:absolute; left:28%; top:42%; width:44%; aspect-ratio:710/702; perspective:220cqw; perspective-origin:50% 0%; }
-.pdp-b .mbx > * { position:absolute; inset:0; display:block; }
-.pdp-b .mbx__sh { background:rgba(48,36,24,.36); border-radius:0.2cqw; transform:translate(-6%, 5%); filter:blur(2.6cqw); }
-.pdp-b .mbx__in { background:linear-gradient(to bottom, var(--mbx-in1), var(--mbx-in2)); box-shadow:inset 0 4cqw 3cqw -1cqw rgba(0,0,0,.55), inset 2.4cqw 0 2cqw -1.4cqw rgba(0,0,0,.4), inset -2.4cqw 0 2cqw -1.4cqw rgba(0,0,0,.4), 0 .3cqw .9cqw rgba(0,0,0,.25); }
-.pdp-b .mbx__tex { position:absolute; left:-13.38%; top:-14.1%; width:126.76%; height:128.21%; background:var(--mbx-img) 0 0 / 100% 100% no-repeat; }
-.pdp-b .mbx__lid { clip-path:polygon(0 0, 100% 0, 100% 26.8%, 55.9% 26.8%, 43.5% 19.8%, 0 19.8%); transform-origin:50% 0; animation:mbx-lid var(--T) infinite both; }
-.pdp-b .mbx__door { clip-path:polygon(0 19.8%, 43.5% 19.8%, 55.9% 26.8%, 100% 26.8%, 100% 100%, 0 100%); transform-origin:50% 100%; animation:mbx-door var(--T) infinite both; }
-.pdp-b .mbx__door::after { content:""; position:absolute; inset:0; background:linear-gradient(to bottom, #000, rgba(0,0,0,.55)); opacity:0; animation:mbx-doorshade var(--T) infinite both; }
+.pdp-b .mbxdemo__post { position:absolute; inset:0; pointer-events:none; clip-path:polygon(0 -60%, 100% -60%, 100% 21.45%, 0 20.25%); }
+.pdp-b .mbxdemo__env { position:absolute; bottom:79.5%; filter:drop-shadow(-0.7cqw 0.9cqw 0.8cqw rgba(30,25,20,.3)); animation:var(--T) linear infinite both paused; }
+.pdp-b .mbxdemo__env svg { display:block; width:100%; height:auto; }
+.pdp-b .mbxdemo__env--dl { left:28.3%; width:24.5%; animation-name:mbx-dl; }   /* 220 × 110 mm at the box's scale (37 cm ≙ 247 px) */
+.pdp-b .mbxdemo__env--c4 { left:22.6%; width:36%; animation-name:mbx-c4; }     /* 324 × 229 mm, long side first */
 
-/* letters posted from above – between lid and door, so the door edge swallows them */
-.pdp-b .mbx__drop { clip-path:polygon(-100% -300%, 200% -300%, 200% 100%, -100% 100%); }
-.pdp-b .mbx__env { position:absolute; bottom:80.2%; filter:drop-shadow(0 .7cqw .9cqw rgba(0,0,0,.2)); animation:mbx-post var(--T) infinite both; }
-.pdp-b .mbx__env svg, .pdp-b .mbx__mail svg { display:block; width:100%; height:auto; }
-.pdp-b .mbx__env--c6 { left:10%; width:43.8%; --from:-430%; --dx:-26%; --r0:-14deg; --in:128%; }
-.pdp-b .mbx__env--dl { left:24%; width:59.5%; --from:-440%; --dx:22%; --r0:11deg; --in:128%; animation-delay:.9s; }
-.pdp-b .mbx__env--c4 { left:19%; width:61.9%; --from:-152%; --dx:-6%; --r0:-7deg; --in:112%; animation-delay:1.8s; }
-.pdp-b .mbx__tag { position:absolute; left:calc(100% + 1.8cqw); top:50%; translate:0 -50%; white-space:nowrap; font-style:normal; font-size:clamp(0.625rem, 2.3cqw, 0.8125rem); font-weight:700; letter-spacing:.02em; line-height:1; color:var(--color-digital-black); background:#fff; border-radius:var(--radius-pill); padding:.45em .75em; box-shadow:0 .15rem .5rem rgba(0,0,0,.14); animation:mbx-tag var(--T) infinite both; animation-delay:inherit; }
+/* size tags with a leader line to the letter (as in the Einwurf illustration) */
+.pdp-b .mbxdemo__tag { position:absolute; left:65%; top:8.5%; font-size:clamp(0.625rem, 2.3cqw, 0.8125rem); font-weight:700; letter-spacing:0.02em; line-height:1; white-space:nowrap; color:var(--color-digital-black); background:#fff; border-radius:var(--radius-pill); padding:0.45em 0.8em; box-shadow:0 0.15rem 0.5rem rgba(0,0,0,.14); opacity:0; pointer-events:none; animation:var(--T) linear infinite both paused; }
+.pdp-b .mbxdemo__tag::before { content:""; position:absolute; right:100%; top:50%; width:var(--lead); height:1px; background:rgba(26,23,27,.55); }
+.pdp-b .mbxdemo__tag::after { content:""; position:absolute; right:calc(100% + var(--lead) - 3px); top:calc(50% - 3px); width:6px; height:6px; border-radius:50%; background:var(--color-digital-black); box-shadow:0 0 0 2px #fff; }
+.pdp-b .mbxdemo__tag--dl { --lead:13cqw; animation-name:mbx-tag-dl; }
+.pdp-b .mbxdemo__tag--c4 { --lead:7.5cqw; top:7.5%; animation-name:mbx-tag-c4; }
 
-/* the mail inside – hidden behind the door until it opens, then lifted out */
-.pdp-b .mbx__stack { transform-origin:50% 60%; animation:mbx-takeout var(--T) infinite both; }
-.pdp-b .mbx__mail { position:absolute; filter:drop-shadow(0 .5cqw .7cqw rgba(0,0,0,.3)); }
-.pdp-b .mbx__mail--c4 { left:24%; top:30%; width:46%; rotate:-5deg; }   /* bottom stays inside the box (≈ 97 %) */
-.pdp-b .mbx__mail--dl { left:31%; top:41%; width:52%; rotate:4deg; }
-.pdp-b .mbx__mail--c6 { left:16%; top:48%; width:38%; rotate:-3deg; }
-
-.pdp-b .mbx__lock { inset:20% 0 0; display:grid; place-items:center; pointer-events:none; }
-.pdp-b .mbx__chip { position:relative; width:15%; aspect-ratio:1; border-radius:50%; display:grid; place-items:center; background:rgba(255,255,255,.95); color:var(--color-digital-black); box-shadow:0 .8cqw 2.2cqw rgba(0,0,0,.28); animation:mbx-chip var(--T) infinite both; }
-.pdp-b .mbx__chip svg { width:56%; height:auto; display:block; overflow:visible; }
-.pdp-b .mbx__chip::after { content:""; position:absolute; inset:0; border-radius:50%; border:.45cqw solid var(--color-teal); opacity:0; animation:mbx-ring var(--T) infinite both; }
-.pdp-b .mbx__shackle { animation:mbx-shackle var(--T) infinite both; }
-
-.pdp-b .mbxdemo__play { position:absolute; right:0.75rem; bottom:0.75rem; width:2.25rem; height:2.25rem; padding:0; border:0; border-radius:50%; display:grid; place-items:center; cursor:pointer; color:var(--color-digital-black); background:rgba(255,255,255,.9); box-shadow:0 .1rem .45rem rgba(0,0,0,.16); transition:background-color .2s; }
+.pdp-b .mbxdemo__play { position:absolute; right:0.75rem; bottom:0.75rem; width:2.25rem; height:2.25rem; padding:0; border:0; border-radius:50%; display:grid; place-items:center; cursor:pointer; color:var(--color-digital-black); background:rgba(255,255,255,.9); box-shadow:0 0.1rem 0.45rem rgba(0,0,0,.16); transition:background-color .2s; }
 .pdp-b .mbxdemo__play:hover { background:#fff; }
 .pdp-b .mbxdemo__play:focus-visible, .pdp-b .mbxstep:focus-visible { outline:2px solid var(--color-teal); outline-offset:2px; }
 .pdp-b .mbxdemo__play svg { width:0.875rem; height:0.875rem; display:block; }
 .pdp-b .mbxdemo__play .i-play, .pdp-b .mbxdemo.is-paused .mbxdemo__play .i-pause { display:none; }
 .pdp-b .mbxdemo.is-paused .mbxdemo__play .i-play { display:block; }
 
-/* step bar – same clock: the active number fills, the line runs through the phase */
-.pdp-b .mbxsteps { list-style:none; margin:1rem 0 0; padding:0; display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:0.75rem; }
+/* step bar – follows the clip: the active number fills, the line runs through the phase */
+.pdp-b .mbxsteps { list-style:none; margin:1rem 0 0; padding:0; display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:1rem; }
 .pdp-b .mbxsteps li { margin:0; padding:0; }
 .pdp-b .mbxsteps li::before, .pdp-b .mbxsteps li::marker { content:none; }
 .pdp-b .mbxstep { display:grid; grid-template-columns:1.375rem minmax(0, 1fr); grid-template-areas:"bar bar" "n t" ". s"; column-gap:0.5rem; align-items:center; width:100%; padding:0 0 0.25rem; margin:0; border:0; background:none; font:inherit; color:inherit; text-align:left; cursor:pointer; border-radius:var(--radius); }
 .pdp-b .mbxstep__bar { grid-area:bar; display:block; height:3px; margin-bottom:0.65rem; border-radius:2px; background:rgba(26,23,27,.1); overflow:hidden; }
-.pdp-b .mbxstep__bar i { display:block; height:100%; background:var(--color-teal); transform-origin:0 50%; transform:scaleX(0); animation:var(--T) linear infinite both; }
-.pdp-b .mbxstep__n { grid-area:n; width:1.375rem; height:1.375rem; border-radius:50%; display:grid; place-items:center; font-size:0.75rem; font-weight:700; border:1.5px solid rgba(26,23,27,.2); color:var(--text-secondary); animation:var(--T) linear infinite both; }
+.pdp-b .mbxstep__bar i { display:block; height:100%; background:var(--color-teal); transform-origin:0 50%; transform:scaleX(var(--p, 0)); }
+.pdp-b .mbxstep__n { grid-area:n; width:1.375rem; height:1.375rem; border-radius:50%; display:grid; place-items:center; font-size:0.75rem; font-weight:700; border:1.5px solid rgba(26,23,27,.2); color:var(--text-secondary); transition:background-color .25s, border-color .25s, color .25s; }
+.pdp-b .mbxstep.is-on .mbxstep__n { background:var(--color-teal); border-color:var(--color-teal); color:#fff; }
 .pdp-b .mbxstep b { grid-area:t; font-size:0.875rem; font-weight:700; line-height:1.3; color:var(--color-digital-black); }
 .pdp-b .mbxstep__sub { grid-area:s; font-size:0.8125rem; line-height:1.35; color:var(--text-secondary); }
-.pdp-b .mbxstep--1 .mbxstep__bar i { animation-name:mbx-bar1; }  .pdp-b .mbxstep--1 .mbxstep__n { animation-name:mbx-n1; }
-.pdp-b .mbxstep--2 .mbxstep__bar i { animation-name:mbx-bar2; }  .pdp-b .mbxstep--2 .mbxstep__n { animation-name:mbx-n2; }
-.pdp-b .mbxstep--3 .mbxstep__bar i { animation-name:mbx-bar3; }  .pdp-b .mbxstep--3 .mbxstep__n { animation-name:mbx-n3; }
-@media (max-width:30rem){ .pdp-b .mbxsteps { gap:0.5rem; } .pdp-b .mbxstep { grid-template-areas:"bar bar" "n t" "s s"; } .pdp-b .mbxstep__sub { margin-top:0.2rem; font-size:0.75rem; } }
+@media (max-width:30rem){ .pdp-b .mbxstep { grid-template-areas:"bar bar" "n t" "s s"; } .pdp-b .mbxstep__sub { margin-top:0.2rem; font-size:0.75rem; } }
 
-/* ── the clock (12 s; % = s ÷ 0.12) ── */
-@keyframes mbx-lid {             /* opens 0.4–1.0 s, shuts 4.3–4.7 s with a small rebound */
-  0%, 3.3%  { transform:rotateX(0); animation-timing-function:cubic-bezier(.3,0,.2,1); }
-  8.3%      { transform:rotateX(-58deg); }
-  35.8%     { transform:rotateX(-58deg); animation-timing-function:cubic-bezier(.55,0,.9,.45); }
-  39.3%     { transform:rotateX(0); animation-timing-function:ease-out; }
-  40.4%     { transform:rotateX(-3deg); animation-timing-function:ease-in; }
-  41.5%, 100% { transform:rotateX(0); }
+/* ── letter timeline on the clip's 10.75 s (% = s ÷ 0.1075) ── */
+@keyframes mbx-dl {
+  0%, 34.9%   { transform:translate(-5%, -128%) rotate(-5deg); animation-timing-function:cubic-bezier(.22,.7,.3,1); }   /* 3.75 s: brought in from above */
+  39.1%       { transform:translate(0, -5%) rotate(-0.6deg); animation-timing-function:linear; }                         /* 4.2 s: lined up on the slot */
+  40.5%       { transform:translate(0, 6%) rotate(0); animation-timing-function:cubic-bezier(.45,0,.75,.4); }           /* 4.35 s: let go */
+  44.2%, 100% { transform:translate(0, 104%) rotate(0); }                                                                 /* 4.75 s: inside */
 }
-@keyframes mbx-post {            /* C6 timing; DIN lang +0.9 s, C4 +1.8 s via delay */
-  0%, 5%    { opacity:0; transform:translate(var(--dx), var(--from)) rotate(var(--r0)); animation-timing-function:cubic-bezier(.2,.7,.3,1); }
-  6%        { opacity:1; }
-  12.5%     { transform:translate(0, -6%) rotate(0); animation-timing-function:ease-in-out; }    /* 1.5 s: lined up on the slot */
-  15.8%     { transform:translate(0, 4%) rotate(0); animation-timing-function:cubic-bezier(.5,0,.9,.5); }   /* 1.9 s: sinking in */
-  19.1%     { opacity:1; transform:translate(0, var(--in)) rotate(0); }                       /* 2.3 s: gone inside */
-  19.2%, 100% { opacity:0; transform:translate(0, var(--in)) rotate(0); }
+@keyframes mbx-c4 {
+  0%, 43.7%   { transform:translate(4%, -64%) rotate(3.5deg); animation-timing-function:cubic-bezier(.22,.7,.3,1); }     /* 4.7 s */
+  47.9%       { transform:translate(0, -4%) rotate(0.4deg); animation-timing-function:linear; }                          /* 5.15 s */
+  49.3%       { transform:translate(0, 5%) rotate(0); animation-timing-function:cubic-bezier(.45,0,.75,.4); }           /* 5.3 s */
+  53.5%, 100% { transform:translate(0, 104%) rotate(0); }                                                                 /* 5.75 s – door opens from 6 s */
 }
-@keyframes mbx-tag {
-  0%, 8.3%  { opacity:0; transform:translateX(-0.6rem); }
-  10%, 15.4% { opacity:1; transform:none; }
-  16.7%, 100% { opacity:0; transform:none; }
-}
-@keyframes mbx-chip {            /* 4.9–5.2 s in, 6.4–6.7 s out */
-  0%, 40.8% { opacity:0; transform:scale(.6); animation-timing-function:cubic-bezier(.3,1.6,.5,1); }
-  43.3%, 53.3% { opacity:1; transform:scale(1); animation-timing-function:ease-in; }
-  55.8%, 100% { opacity:0; transform:scale(.85); }
-}
-@keyframes mbx-shackle {         /* clicks shut at 5.4 s, releases 6.1–6.3 s */
-  0%, 43.3% { transform:translateY(-3.4px); animation-timing-function:cubic-bezier(.6,0,.8,.4); }
-  45%, 50.8% { transform:translateY(0); animation-timing-function:cubic-bezier(.3,0,.2,1); }
-  52.5%, 100% { transform:translateY(-3.4px); }
-}
-@keyframes mbx-ring {
-  0%, 45%   { opacity:0; transform:scale(1); }
-  45.2%     { opacity:.75; transform:scale(1); animation-timing-function:ease-out; }
-  50%, 100% { opacity:0; transform:scale(1.75); }
-}
-@keyframes mbx-door {            /* drops open 6.6–7.4 s onto its stop, lifted shut 9.8–10.5 s */
-  0%, 55%   { transform:rotateX(0); animation-timing-function:cubic-bezier(.5,0,.85,.45); }
-  61.7%     { transform:rotateX(-64deg); animation-timing-function:cubic-bezier(.3,0,.4,1); }
-  63.3%     { transform:rotateX(-59deg); animation-timing-function:ease-in-out; }
-  64.6%, 81.7% { transform:rotateX(-62deg); animation-timing-function:cubic-bezier(.45,0,.7,.6); }
-  87.5%     { transform:rotateX(0); animation-timing-function:ease-out; }
-  88.3%     { transform:rotateX(-1.5deg); animation-timing-function:ease-in; }
-  89.2%, 100% { transform:rotateX(0); }
-}
-@keyframes mbx-doorshade {
-  0%, 55%   { opacity:0; animation-timing-function:cubic-bezier(.5,0,.85,.45); }
-  61.7%, 81.7% { opacity:.42; animation-timing-function:cubic-bezier(.45,0,.7,.6); }
-  87.5%, 100% { opacity:0; }
-}
-@keyframes mbx-takeout {         /* mail is inside from 4.1 s; lifted out 7.7–9.2 s */
-  0%, 34%   { opacity:0; transform:none; filter:brightness(.72); }
-  34.2%, 64.2% { opacity:1; transform:none; filter:brightness(.72); animation-timing-function:cubic-bezier(.4,0,.2,1); }
-  72.5%     { opacity:1; transform:translate(4%, -58%) scale(1.14) rotate(-3deg); filter:brightness(1); animation-timing-function:ease-in; }
-  76.7%, 100% { opacity:0; transform:translate(7%, -76%) scale(1.2) rotate(-4deg); filter:brightness(1); }
-}
-@keyframes mbx-bar1 { 0% { transform:scaleX(0); } 40%, 100% { transform:scaleX(1); } }
-@keyframes mbx-bar2 { 0%, 40% { transform:scaleX(0); } 55%, 100% { transform:scaleX(1); } }
-@keyframes mbx-bar3 { 0%, 55% { transform:scaleX(0); } 100% { transform:scaleX(1); } }
-@keyframes mbx-n1 { 0%, 39%  { background:var(--color-teal); border-color:var(--color-teal); color:#fff; } 40.5%, 99% { background:transparent; border-color:rgba(26,23,27,.2); color:var(--text-secondary); } 100% { background:var(--color-teal); border-color:var(--color-teal); color:#fff; } }
-@keyframes mbx-n2 { 0%, 39%  { background:transparent; border-color:rgba(26,23,27,.2); color:var(--text-secondary); } 40.5%, 54% { background:var(--color-teal); border-color:var(--color-teal); color:#fff; } 55.5%, 100% { background:transparent; border-color:rgba(26,23,27,.2); color:var(--text-secondary); } }
-@keyframes mbx-n3 { 0%, 54%  { background:transparent; border-color:rgba(26,23,27,.2); color:var(--text-secondary); } 55.5%, 99% { background:var(--color-teal); border-color:var(--color-teal); color:#fff; } 100% { background:transparent; border-color:rgba(26,23,27,.2); color:var(--text-secondary); } }
-/* no JS / reduced motion: hold still (the script parks it on a key frame per step) */
-@media (prefers-reduced-motion: reduce){ .pdp-b .mbxdemo *, .pdp-b .mbxdemo *::after { animation-play-state:paused !important; } }
+@keyframes mbx-tag-dl { 0%, 37.2% { opacity:0; transform:translateX(-0.5rem); } 38.3%, 42.3% { opacity:1; transform:none; } 43.5%, 100% { opacity:0; transform:none; } }
+@keyframes mbx-tag-c4 { 0%, 46.05% { opacity:0; transform:translateX(-0.5rem); } 47.2%, 51.6% { opacity:1; transform:none; } 52.8%, 100% { opacity:0; transform:none; } }
 .pdp-b .dsc-trust { display:flex; align-items:center; gap:0.85rem; margin-top:1.6rem; }
 .pdp-b .dsc-trust img { width:76px; height:auto; border-radius:0.375rem; box-shadow:0 0.0625rem 0.25rem rgba(0,0,0,0.1); flex:0 0 auto; }
 .pdp-b .dsc-trust__t { font-size:0.8125rem; line-height:1.45; color:var(--text-secondary); }

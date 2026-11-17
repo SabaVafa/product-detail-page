@@ -155,25 +155,9 @@ var MZSwipe = (function () {
     '31107': 'assets/briefkasten/siebert-farbe-basaltgrau-ral7012.jpg',
     '31108': 'assets/briefkasten/siebert-farbe-wunschfarbe.jpg'
   };
-  /* Einwurf/Entnahme demo in the description uses the same render as its lid and
-     door texture; the interior gets a matching shade (top, bottom). Wunschfarbe
-     keeps the last real finish – its render is the RAL ring, not a box. */
-  var MBX_INSIDE = {
-    '31101': ['#1d2126', '#3b424b'], '31102': ['#a9a8a2', '#d6d5cf'], '31103': ['#555657', '#87888a'],
-    '31104': ['#2a292a', '#4a4849'], '31105': ['#0c0c0d', '#252527'], '31106': ['#5a5c5e', '#9a9c9e'],
-    '31107': ['#2a302f', '#4b5452']
-  };
-  function setDemoFinish(article) {
-    var demo = document.querySelector('.mbxdemo'), tone = MBX_INSIDE[article];
-    if (!demo || !tone) return;
-    demo.style.setProperty('--mbx-img', 'url("' + MAINIMG[article] + '")');
-    demo.style.setProperty('--mbx-in1', tone[0]);
-    demo.style.setProperty('--mbx-in2', tone[1]);
-  }
   /* Swap the hero to the finish's render with a short cross-fade (sets src while
      dimmed so the old frame never flips visibly). Keeps the engrave overlay. */
   function setMainImage(article, finish) {
-    setDemoFinish(article);
     var img = document.getElementById('pdpMainImg');
     var src = MAINIMG[article];
     if (!img || !src) return false;
@@ -2738,34 +2722,72 @@ var MZSwipe = (function () {
   range.addEventListener('input', upd); upd();
 })();
 
-/* ── Beschreibung: Einwerfen → Verwahren → Entnehmen demo ──
-   All parts run on one CSS clock (pdp-b-desc.css, mbx-*); this only starts it
-   when the stage scrolls into view, pauses it off-screen, offers pause/play and
-   lets the step bar jump to a phase. Reduced motion: parked on a still per step. */
+/* ── Beschreibung: Einwerfen → Entnehmen demo ──
+   The real hero clip carries the product (lid up ~2–4 s, door open ~6–8.5 s).
+   The posted letters and their size tags are CSS animations on the clip's
+   10.75 s timeline, scrubbed to video.currentTime every frame so they stay
+   locked to the footage. Loads near the viewport, plays only in view, offers
+   pause/play, the step bar jumps to a phase, and the last 0.45 s cross-fade into
+   frame 0 so the loop has no hard cut. Reduced motion: no autoplay, the steps
+   show a still per phase. */
 (function () {
-  var demo = document.querySelector('.mbxdemo'); if (!demo || !demo.getAnimations) return;
-  var btn = demo.querySelector('.mbxdemo__play');
-  var START = [0, 4800, 6600];     /* phase starts (ms) */
-  var STILL = [3450, 5800, 8200];  /* key frame per phase: C4 on the slot, locked, mail lifted out */
+  var demo = document.querySelector('.mbxdemo'); if (!demo) return;
+  var vid = demo.querySelector('.mbxdemo__vid'), still = demo.querySelector('.mbxdemo__still');
+  var btn = demo.querySelector('.mbxdemo__play'), steps = demo.querySelectorAll('.mbxstep');
+  var END = 10.75, FADE = 0.45;
+  var START = [0, 5.9];    /* phase starts (s): Einwerfen, Entnehmen */
+  var STILL = [5.15, 9.6]; /* still per phase: C4 on the slot, mail in the open box */
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var playing = false, held = reduce, started = false;
-  function anims() { return demo.getAnimations({ subtree: true }); }
-  function seek(ms) { anims().forEach(function (a) { a.currentTime = ms; }); }
+  var playing = false, held = reduce, raf = 0, anims = null;
+  function load() { if (!vid.getAttribute('src')) { vid.preload = 'auto'; vid.src = vid.getAttribute('data-src'); } }   /* preload="none" alone would never fetch */
+  function paint() {
+    var t = vid.currentTime || 0;
+    if (!anims) {
+      anims = [];
+      demo.querySelectorAll('.mbxdemo__env, .mbxdemo__tag').forEach(function (el) {
+        if (el.getAnimations) anims = anims.concat(el.getAnimations());
+      });
+    }
+    anims.forEach(function (a) { a.currentTime = t * 1000; });
+    steps.forEach(function (s, i) {
+      var a = START[i], b = START[i + 1] || END;
+      s.style.setProperty('--p', Math.min(1, Math.max(0, (t - a) / (b - a))).toFixed(3));
+      s.classList.toggle('is-on', t >= a && t < b);
+    });
+    still.style.opacity = t > END - FADE ? ((t - END + FADE) / FADE).toFixed(3) : t < 0.3 ? (1 - t / 0.3).toFixed(3) : '0';
+  }
+  function tick() { paint(); raf = playing ? window.requestAnimationFrame(tick) : 0; }
   function run(on) {
     playing = on;
-    anims().forEach(function (a) { if (on) a.play(); else a.pause(); });
+    if (on) {
+      load();
+      var p = vid.play();
+      if (p && p.catch) p.catch(function () { run(false); });
+      if (!raf) raf = window.requestAnimationFrame(tick);
+    } else { vid.pause(); paint(); }
     demo.classList.toggle('is-paused', !on);
-    if (btn) btn.setAttribute('aria-label', on ? 'Animation anhalten' : 'Animation abspielen');
+    if (btn) btn.setAttribute('aria-label', on ? 'Video anhalten' : 'Video abspielen');
   }
-  run(false); seek(reduce ? STILL[0] : 0);
+  function seek(t) {
+    load();
+    if (vid.readyState >= 1) { vid.currentTime = t; paint(); return; }
+    vid.addEventListener('loadedmetadata', function () { vid.currentTime = t; paint(); }, { once: true });
+  }
+  vid.addEventListener('seeked', paint);
+  demo.classList.add('is-paused'); paint();
   if (btn) btn.addEventListener('click', function () { held = playing; run(!playing); });
-  demo.querySelectorAll('.mbxstep').forEach(function (s, i) {
+  steps.forEach(function (s, i) {
     s.addEventListener('click', function () { seek(playing ? START[i] : STILL[i]); });
   });
-  if (!('IntersectionObserver' in window)) { if (!held) run(true); return; }
+  if (!('IntersectionObserver' in window)) { if (held) seek(STILL[0]); else run(true); return; }
+  new IntersectionObserver(function (es, io) {
+    if (!es[0].isIntersecting) return;
+    io.disconnect(); load();
+    if (reduce) seek(STILL[0]);
+  }, { rootMargin: '300px 0px' }).observe(demo);
   new IntersectionObserver(function (es) {
     var vis = es[0].isIntersecting;
-    if (vis && !held && !playing) { if (!started) seek(0); started = true; run(true); }
+    if (vis && !held && !playing) run(true);
     else if (!vis && playing) run(false);
-  }, { threshold: 0.35 }).observe(demo);
+  }, { threshold: 0.4 }).observe(demo);
 })();
