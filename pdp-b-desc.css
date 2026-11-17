@@ -3552,11 +3552,12 @@ body.is-scrolled #quickbar {
 #sx-beschreibung .spot__pin.is-hot, #sx-beschreibung .spot__pin:hover{ transform:scale(1.18); background:#fff; color:var(--color-teal); }
 #sx-beschreibung .spot__pin:focus-visible{ outline:2px solid #fff; outline-offset:3px; }
 @media (prefers-reduced-motion: reduce){ #sx-beschreibung .spot__pin::before{ animation:none; } }
-/* the fact list: numbers instead of icons, so each fact maps to its pin */
-#sx-beschreibung .spot__n{ font-size:0.9375rem; font-weight:700; color:var(--color-teal); transition:background-color .2s, color .2s; }
+/* the fact list: numbers instead of icons, drawn exactly like the pins (same size,
+   fill, ring, shadow, hover swap), so each fact reads as its pin at a glance */
+#sx-beschreibung .spot__n{ width:2rem; height:2rem; border:2px solid #fff; border-radius:50%; background:var(--color-teal); color:#fff; font-size:0.8125rem; font-weight:700; line-height:1; box-shadow:0 0.2rem 0.6rem rgba(0,0,0,.22); transition:transform .2s, background-color .2s, color .2s, border-color .2s; }
 #sx-beschreibung li[data-spot]{ margin:-0.4rem; padding:0.4rem; border-radius:var(--radius-lg); transition:background-color .2s; }
 #sx-beschreibung li[data-spot].is-hot{ background:rgba(1,82,83,.06); }
-#sx-beschreibung li[data-spot].is-hot .spot__n{ background:var(--color-teal); color:#fff; }
+#sx-beschreibung li[data-spot].is-hot .spot__n{ transform:scale(1.18); background:#fff; color:var(--color-teal); border-color:var(--color-teal); }
 #sx-beschreibung .mz-ikl:has(> li[data-spot]){ gap:1.1rem; }
 
 /* ── Smarte Ausstattung: two paid options, ONE panel ─────────────────────────────
