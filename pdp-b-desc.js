@@ -1636,9 +1636,9 @@ var MZSwipe = (function () {
   /* ── 1 · Gravurdaten – Namensschild, Straße, Hausnummer (free, optional) ── */
   var gt = $('bGravName');
   var fonts = $('bFonts');
-  /* font tiles preview the customer's own name plate (falls back to the render's "Hoffmann") */
+  /* font tiles preview the customer's own name plate – "Muster123" (as on live) until a name is typed */
   function fontPreview() {
-    var name = state.gravurText || 'Hoffmann';
+    var name = state.gravurText || 'Muster123';
     if (fonts) fonts.querySelectorAll('.cfg-font__s').forEach(function (s) { s.textContent = name; });
   }
   [['bGravName', 'gravurText'], ['bGravStreet', 'gravurStreet'], ['bGravNr', 'gravurNr'], ['bGravNote', 'gravurNote']].forEach(function (p) {
