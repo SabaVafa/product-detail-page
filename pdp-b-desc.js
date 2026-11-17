@@ -2855,7 +2855,7 @@ var MZSwipe = (function () {
 (function () {
   var mod = document.getElementById('infoMod'); if (!mod) return;
   var body = document.getElementById('infoModBody'), title = document.getElementById('infoModTitle');
-  var eyebrow = document.getElementById('infoModEyebrow'), panel = mod.querySelector('.infomod__panel');
+  var panel = mod.querySelector('.infomod__panel');
   function q(sel) { return document.querySelector('#sx-beschreibung ' + sel); }
   function kopf(name) {   /* a section's head block, found by its eyebrow text */
     var eb = [].slice.call(document.querySelectorAll('#sx-beschreibung .mz-kopf .mz-eyebrow')).filter(function (e) { return e.textContent.trim() === name; })[0];
@@ -2874,7 +2874,6 @@ var MZSwipe = (function () {
     var m = MAP[key]; if (!m) return;
     var els = m.els().filter(Boolean); if (!els.length) return;
     trigger = from || null;
-    eyebrow.textContent = 'Mehr erfahren';
     title.textContent = m.t;
     els.forEach(function (el) {
       var ph = document.createComment('infomod'); el.parentNode.insertBefore(ph, el);
