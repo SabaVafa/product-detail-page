@@ -120,17 +120,21 @@ var MZSwipe = (function () {
   var $ = function (id) { return document.getElementById(id); };
   var BASE = 76.49;        /* Briefkasten Siebert Graualuminium – Aktionspreis (regulär 89,99 €) */
   var GRAVUR = 0;          /* Gravur ist beim Siebert kostenfrei */
+  /* the live shop's engraving fonts by their shop names; the licensed font files stay
+     on the shop – the prototype previews each with its closest free match */
   var FONTS = {
-    Klassisch: "'Cinzel',Georgia,serif",
-    Elegant: "'Playfair Display',Georgia,serif",
-    Fein: "'Cormorant Garamond',Georgia,serif",
-    Modern: "'Montserrat',Arial,sans-serif",
-    Schmal: "'Oswald','Arial Narrow',sans-serif",
-    Schreibschrift: "'Dancing Script',cursive",
-    Kalligrafie: "'Great Vibes',cursive",
-    Handschrift: "'Caveat',cursive",
-    Fraktur: "'UnifrakturMaguntia',serif",
-    Technisch: "'Roboto Mono','Courier New',monospace"
+    'Schriftart 0': 'Arial,Helvetica,sans-serif',
+    'Schriftart 1': 'Arial,Helvetica,sans-serif',
+    'Schriftart 2': "'Montserrat',Arial,sans-serif",
+    'Schriftart 4': "'Trebuchet MS',Arial,sans-serif",
+    'Schriftart 7': "'Michroma',Arial,sans-serif",
+    'Schriftart 8': "'Jost',Arial,sans-serif",
+    'Schriftart 9': 'Verdana,Arial,sans-serif',
+    'Schriftart 15': "'Kaushan Script',cursive",
+    'Schriftart 16': "'Great Vibes',cursive",
+    'Schriftart 17': "'Caveat',cursive",
+    'Schriftart 99': "'Times New Roman',Times,serif",
+    'Schriftart 77': 'Arial,Helvetica,sans-serif'
   };
   /* Briefkasten Siebert – the live shop's 7 configuration steps, in its order.
      None is required: the engraving is free and may stay empty, everything
@@ -264,7 +268,7 @@ var MZSwipe = (function () {
     finish: '', finishDelta: 0, article: '', mainQty: 1,   /* seeded to Anthrazit RAL 7016 at init (see swatch setup); each colour is its own article */
     ral: null,   /* Wunschfarbe: { code, name, hex } once a RAL is picked */
     anschluss: null, conn: null,
-    gravurOn: false, gravurText: '', font: 'Modern',   /* gravurText = Namensschild (drives the live engraving on the hero) */
+    gravurOn: false, gravurText: '', font: 'Schriftart 7',   /* gravurText = Namensschild; Schriftart 7 = "Schrift wie Produktbild" (live default) */
     gravurStreet: '', gravurNr: '', gravurNote: '',
     innenSel: {},   /* legacy (doorbell) – unused for the Siebert, kept so shared helpers stay valid */
     strom: 'Standard', stromDelta: 0, stromQty: 1,
@@ -1650,7 +1654,6 @@ var MZSwipe = (function () {
     var b = e.target.closest('.cfg-font'); if (!b) return;
     this.querySelectorAll('.cfg-font').forEach(function (x) { x.classList.remove('is-selected'); x.setAttribute('aria-pressed', 'false'); });
     b.classList.add('is-selected'); b.setAttribute('aria-pressed', 'true'); state.font = b.getAttribute('data-font');
-    setTxt('bFontName', state.font);
     if (gt) gt.style.fontFamily = FONTS[state.font] || ''; refresh();
   });
 
