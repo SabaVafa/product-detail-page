@@ -3389,6 +3389,10 @@ body.is-scrolled #quickbar {
 #sx-beschreibung [data-area-id="col-0"]:has(> .dsc-brand) > .mbxsteps{ grid-area:steps; width:100%; max-width:40rem; margin:1rem auto 0; }
 #sx-beschreibung [data-area-id="col-0"]:has(> .dsc-brand) > div[style*="margin-top:24px"]{ display:none; }   /* OPC spacer */
 
+/* Verfügbare Farben (live block): its icon list sits in a .mz-body, whose generic
+   list indent (.mz-body ul) would push it right – keep it flush like on live. */
+#sx-beschreibung .mz-kap .mz-ikl{ padding-left:0; margin:0; }
+
 /* Formats band: the size chips as their own block closing the section */
 #sx-beschreibung .dsc-fmt{ grid-area:fmt; margin-top:2.5rem; padding:1.5rem 1rem 1.25rem; border-radius:var(--radius-lg); background:rgba(1,82,83,.045); text-align:center; }
 #sx-beschreibung .dsc-fmt__title{ margin:0 0 1.25rem; font-size:0.8125rem; line-height:1.45; color:var(--text-secondary); }
