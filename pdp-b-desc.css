@@ -3733,6 +3733,27 @@ body.is-scrolled #quickbar {
 /* Einwurf stage: the clip is AI-flagged on live – badge top-right, clear of the play button */
 #sx-beschreibung .mbxdemo__stage::after{ top:0.5rem; bottom:auto; }
 
+/* Verfügbare Farben – tighter: the box stage (fixed 24rem, box at 82 %) and the
+   padding around it set the panel height; trim the air, keep every element.
+   ~609 → ~480 px on desktop. Live inline rules use !important on the title. */
+@media (min-width:48rem){
+  #sx-beschreibung .row.mz-kap-xdm { padding-top: 2.25rem; padding-bottom: 2.25rem; }
+  #sx-beschreibung .mz-kap-xdm .slider-viewport { height: 20rem; }
+  #sx-beschreibung .mz-kap-xdm .slide-track { height: 90%; }
+}
+#sx-beschreibung .mz-kap-xdm > [data-area-id] > .mz-eyebrow { margin-bottom: 0.9rem; }
+#sx-beschreibung .mz-kap-xdm .showcase-container { padding-bottom: 0; }
+#sx-beschreibung .mz-kap-xdm .info-panel { margin-top: 0.5rem; }
+#sx-beschreibung .mz-kap-xdm .swatch-nav { padding: 0.5rem 1rem; }
+#sx-beschreibung .mz-farbname .slider-product-title { min-height: 0 !important; margin-bottom: 1.25rem !important; }
+/* phones: the 16 px facts wrapped 2–3 lines each – 14 px, tighter rows, a slightly shorter stage */
+@media (max-width:47.9375rem){
+  #sx-beschreibung .mz-kap-xdm .mz-ikl { gap: 0.55rem; }
+  #sx-beschreibung .mz-kap-xdm .mz-ikl .mz-ikl-t { font-size: 0.875rem; line-height: 1.4; }
+  #sx-beschreibung .mz-kap-xdm .mz-ikl-ico { width: 2rem; height: 2rem; }
+  #sx-beschreibung .mz-kap-xdm .slider-viewport { height: 13.5rem; }
+}
+
 /* Verfügbare Farben (live block): its icon list sits in a .mz-body, whose generic
    list indent (.mz-body ul) would push it right – keep it flush like on live. */
 #sx-beschreibung .mz-kap .mz-ikl{ padding-left:0; margin:0; }
