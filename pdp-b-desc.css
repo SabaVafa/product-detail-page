@@ -3347,7 +3347,10 @@ body.is-scrolled #quickbar {
    Reusable story bands: header, feature grid, image+text split, option cards,
    format comparison, before/after slider, step timeline. Consistent vertical
    rhythm so each live section drops into the matching component. */
-.pdp-b.dsc .psx-sec__inner, .pdp-b .dsc .psx-sec__inner { max-width: 74rem; }
+/* Match the description to the page's overall layout: same container width as
+   the hero, buy block and the other PDP sections (var(--container) = 1600px),
+   not a narrower reading column – so the content edge never jumps inward. */
+.pdp-b.dsc .psx-sec__inner, .pdp-b .dsc .psx-sec__inner { max-width: var(--container); }
 .pdp-b .dsc-band { padding: 3.25rem 0; border-top: 1px solid var(--color-graphite-200); }
 .pdp-b .dsc-band:first-child { border-top: 0; padding-top: 0.5rem; }
 @media (max-width: 48rem){ .pdp-b .dsc-band { padding: 2.25rem 0; } }
