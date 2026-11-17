@@ -174,9 +174,18 @@ var MZSwipe = (function () {
     window.setTimeout(function () {
       img.src = src;
       if (finish) img.alt = 'Metzler Briefkasten Siebert aus Stahl in ' + finish + ' mit Lasergravur';
+      syncFirstThumb(img);
       img.style.opacity = '1';
     }, 160);
     return true;
+  }
+  /* The first gallery thumb is the finish render, so it follows the colour pick
+     (and becomes the current view again when the colour changes). */
+  function syncFirstThumb(img) {
+    var list = document.getElementById('pdpThumbs'), t = list && list.querySelector('li img');
+    if (!t || !img) return;
+    t.setAttribute('src', img.getAttribute('src')); t.alt = img.alt;
+    list.querySelectorAll('button').forEach(function (b, i) { b.setAttribute('aria-current', i === 0 ? 'true' : 'false'); });
   }
 
   /* ── RAL Classic palette (Wunschfarbe picker) – code | German name | hex ── */
@@ -771,7 +780,7 @@ var MZSwipe = (function () {
       if (defPanel) defPanel.classList.remove('is-locked');   /* a colour is chosen → unlock the configurator */
       /* seed the hero to the default finish's render instantly (no fade on load) */
       var defImg = $('pdpMainImg'), defMain = MAINIMG[state.article];
-      if (defImg && defMain) { defImg.src = defMain; if (state.finish) defImg.alt = 'Metzler Briefkasten Siebert aus Stahl in ' + state.finish + ' mit Lasergravur'; }
+      if (defImg && defMain) { defImg.src = defMain; if (state.finish) defImg.alt = 'Metzler Briefkasten Siebert aus Stahl in ' + state.finish + ' mit Lasergravur'; syncFirstThumb(defImg); }
     }
 
     restSwlineToSelected();   /* initial position (selected swatch, or hidden if none) */
@@ -1249,6 +1258,9 @@ var MZSwipe = (function () {
       });
     }
     function currentMainIdx() {
+      /* the first thumb follows the colour pick – refresh it before matching */
+      var t0 = thumbs.querySelector('li img');
+      if (t0) { data[0] = { src: t0.getAttribute('src'), alt: t0.getAttribute('alt') || '' }; thumbBtns[0].firstChild.src = data[0].src; }
       var cur = mainImg ? mainImg.getAttribute('src') : null;
       for (var j = 0; j < data.length; j++) { if (data[j].src === cur) return j; }
       return 0;
