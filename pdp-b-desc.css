@@ -3512,6 +3512,52 @@ body.is-scrolled #quickbar {
   #sx-beschreibung .mz-sg-7be0a00000042 .sg-kachel{ scroll-snap-align:start; }
 }
 
+/* ── Verarbeitung: two macro shots with what they show, headline alongside ───────
+   Wide: headline | Gravur | Korpus in one row (~300 px instead of ~530). Phones:
+   the two shots side by side under the headline. */
+#sx-beschreibung .vrb{ display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:1rem 0.75rem; align-items:start; }
+#sx-beschreibung .vrb > div:first-child{ grid-column:1 / -1; }
+#sx-beschreibung .vrb .mz-kopf-abstand{ margin-bottom:0.25rem; }
+#sx-beschreibung .vrb > .row{ display:contents; }
+#sx-beschreibung .vrb > .row > .clearfix{ display:none; }
+#sx-beschreibung .vrb > .row > [data-area-id]{ width:auto; max-width:none; flex:none; padding:0; }
+#sx-beschreibung .vrb__cap{ margin:0.6rem 0 0; font-size:0.8125rem; line-height:1.4; color:var(--text-secondary); }
+#sx-beschreibung .vrb__cap b{ display:block; font-size:0.9375rem; color:var(--color-digital-black); }
+@media (min-width:64rem){
+  #sx-beschreibung .vrb{ grid-template-columns:minmax(0, 0.8fr) repeat(2, minmax(0, 1fr)); column-gap:clamp(1.5rem, 3vw, 2.5rem); align-items:center; }
+  #sx-beschreibung .vrb > div:first-child{ grid-column:1; }
+  #sx-beschreibung .vrb .mz-kopf{ text-align:left; }
+}
+
+/* ── Abmessung und Lieferumfang: a spec sheet that actually shows the measures ───
+   Maße (front render with dimension lines on the box edges: x 95–805, y 99–801
+   of 900 px) | Seitenansicht | Das liegt bei – one row on wide screens. */
+#sx-beschreibung .row.abm{ display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:1.5rem 1rem; align-items:start; margin-inline:0; }
+#sx-beschreibung .abm > [data-area-id="col-0"]{ display:contents; }
+#sx-beschreibung .abm > [data-area-id="col-1"]{ grid-column:1 / -1; width:auto; max-width:none; flex:none; padding:0; }
+#sx-beschreibung .abm > .clearfix{ display:none; }
+#sx-beschreibung .abm .mz-h3{ font-size:1rem; }
+#sx-beschreibung .dim{ margin:0; }
+#sx-beschreibung .dim__box{ position:relative; border-radius:var(--radius-lg); background:#fff; box-shadow:0 0 0 1px rgba(26,23,27,.08); overflow:hidden; }
+#sx-beschreibung .dim__box img{ display:block; width:100%; height:auto; transform:scale(.86); transform-origin:58% 44%; }
+/* lines sit on the scaled render's edges: edge = 58/44 % + (edge − 58/44 %) × .86 */
+#sx-beschreibung .dim__w, #sx-beschreibung .dim__h{ position:absolute; display:grid; place-items:center; color:var(--color-digital-black); }
+#sx-beschreibung .dim__w{ left:17.2%; right:15%; bottom:8%; height:0; border-top:1.5px solid currentColor; }
+#sx-beschreibung .dim__h{ top:15.6%; bottom:17.3%; left:8.5%; width:0; border-left:1.5px solid currentColor; }
+#sx-beschreibung .dim__w::before, #sx-beschreibung .dim__w::after{ content:""; position:absolute; top:-0.4rem; height:0.8rem; border-left:1.5px solid currentColor; }
+#sx-beschreibung .dim__w::before{ left:0; } #sx-beschreibung .dim__w::after{ right:0; }
+#sx-beschreibung .dim__h::before, #sx-beschreibung .dim__h::after{ content:""; position:absolute; left:-0.4rem; width:0.8rem; border-top:1.5px solid currentColor; }
+#sx-beschreibung .dim__h::before{ top:0; } #sx-beschreibung .dim__h::after{ bottom:0; }
+#sx-beschreibung .dim__w i, #sx-beschreibung .dim__h i{ position:absolute; padding:0.1rem 0.4rem; border-radius:var(--radius); background:#fff; font-style:normal; font-size:0.75rem; font-weight:700; white-space:nowrap; }
+#sx-beschreibung .dim__w i{ top:-0.7rem; }
+#sx-beschreibung .dim__h i{ left:-1.4rem; transform:rotate(-90deg); }
+#sx-beschreibung .abm__cap{ margin:0.6rem 0 0; font-size:0.8125rem; line-height:1.4; color:var(--text-secondary); }
+#sx-beschreibung .abm__cap b{ display:block; font-size:0.9375rem; color:var(--color-digital-black); }
+@media (min-width:64rem){
+  #sx-beschreibung .row.abm{ grid-template-columns:minmax(0, 0.9fr) minmax(0, 0.75fr) minmax(0, 1.5fr); column-gap:clamp(1.5rem, 3vw, 2.5rem); }
+  #sx-beschreibung .abm > [data-area-id="col-1"]{ grid-column:auto; }
+}
+
 /* Einwurf stage: the clip is AI-flagged on live – badge top-right, clear of the play button */
 #sx-beschreibung .mbxdemo__stage::after{ top:0.5rem; bottom:auto; }
 
