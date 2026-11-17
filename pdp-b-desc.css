@@ -1476,6 +1476,102 @@ body.kbd-open .cfgb-dock.is-fixed { display: none !important; }
   .pdp-b .cfgb .cfg-opt__rec { position: static; align-self: flex-start; margin: 0 0 0.3rem; }
 }
 
+/* ── Briefkasten Siebert: vertical configuration flow at every width ─────────────
+   The live shop runs its configurator as numbered accordion steps stacked
+   vertically under a chevron ribbon; the desktop wizard showed one step at a
+   time. Desktop now uses the same accordion phones already had (one step open,
+   "Weiter" inside each), the ribbon names only the current step – as on live. */
+@media (min-width: 48.0625rem) {
+  .pdp-b .cfgb .cfgb-nav { display: none; }
+  .pdp-b .cfgb .cfgb-dock__title { display: none; }   /* the open step's header already names it */
+  .pdp-b .cfgb .cfgb-dock .cfgb-bar__track { margin-bottom: 0; }
+  .pdp-b .cfgb .cfgb-dock .cfgb-bar__step:not(.is-current) .cfgb-bar__label { display: none; }
+  .pdp-b .cfgb .cfgb-dock .cfgb-bar__step.is-current { flex-grow: 3; }
+  .pdp-b .cfgb .cfgb-stage { padding: 1rem 1.1rem 1.1rem; }
+  .pdp-b .cfgb .stepr { display: flex; flex-direction: column; gap: 0.6rem; }
+  .pdp-b .cfgb .stepr__item { display: block; border: 1px solid var(--color-graphite-200); border-radius: var(--radius); background: var(--color-white); }
+  .pdp-b .cfgb .stepr__item.is-active { box-shadow: 0 0.5rem 1.5rem rgba(1,82,83,0.08); }
+  .pdp-b .cfgb .stepr__head { display: flex !important; }
+  .pdp-b .cfgb .stepr__req { display: none; }
+  .pdp-b .cfgb .stepr__body { display: grid !important; grid-template-rows: 0fr !important; }
+  .pdp-b .cfgb .stepr__item.is-active .stepr__body { grid-template-rows: 1fr !important; }
+  .pdp-b .cfgb .stepr__inner { overflow: hidden; }
+  .pdp-b .cfgb .stepr__pad { padding: 0.1rem 1.1rem 1.2rem; }
+}
+
+/* The doorbell's live engraving overlay sits on the bottom plate; the Siebert render
+   already shows its engraved plates, so an overlay would print over "Bachstraße". */
+.pdp-b #bEngrave { display: none; }
+
+/* Siebert step content – info note with the feature link, feature image, facts,
+   engraving fields, font tiles, proof text */
+.pdp-b .cfg-note { display: flex; align-items: center; flex-wrap: wrap; gap: 0.35rem 0.55rem; margin: 0 0 0.9rem; padding: 0.6rem 0.75rem;
+  border: 1px solid rgba(1,82,83,.16); border-radius: var(--radius-lg); background: var(--color-teal-50); font-size: 0.875rem; line-height: 1.4; color: var(--color-digital-black); }
+.pdp-b .cfg-note > svg { width: 1.15rem; height: 1.15rem; flex: none; color: var(--color-teal); }
+.pdp-b .cfg-note__t { flex: 1 1 10rem; }
+.pdp-b .cfg-more { display: inline-flex; align-items: center; gap: 0.3rem; margin-left: auto; padding: 0.35rem 0.7rem; border: 1px solid var(--color-teal); border-radius: var(--radius-pill);
+  background: var(--color-white); font-family: inherit; font-size: 0.8125rem; font-weight: 700; color: var(--color-teal); white-space: nowrap; cursor: pointer; transition: background-color .15s, color .15s; }
+.pdp-b .cfg-more::after { content: "→"; font-weight: 400; }
+.pdp-b .cfg-more:hover { background: var(--color-teal); color: var(--color-white); }
+.pdp-b .cfg-more:focus-visible { outline: 2px solid var(--color-teal); outline-offset: 2px; }
+.pdp-b .cfg-media { position: relative; margin: 0 0 0.9rem; aspect-ratio: 16 / 9; border-radius: var(--radius-lg); overflow: hidden; background: #ecebe8; }
+.pdp-b .cfg-media img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.pdp-b .cfg-media figcaption { position: absolute; left: 0; bottom: 0.75rem; padding: 0.3rem 0.65rem; background: rgba(0,0,0,.55); color: #fff;
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+.pdp-b .cfg-facts { list-style: none; display: grid; gap: 0.4rem; margin: 0 0 1rem; padding: 0; }
+.pdp-b .cfg-facts li { position: relative; margin: 0; padding-left: 1.35rem; font-size: 0.875rem; line-height: 1.45; color: var(--color-graphite-700); }
+.pdp-b .cfg-facts li::before { content: ""; position: absolute; left: 0.1rem; top: 0.32rem; width: 0.75rem; height: 0.4rem; border-left: 2px solid var(--color-teal); border-bottom: 2px solid var(--color-teal); transform: rotate(-45deg); }
+.pdp-b .cfg-facts b { color: var(--color-digital-black); }
+.pdp-b .cfg-gfields { display: grid; grid-template-columns: minmax(0, 1fr) 7rem; gap: 0.6rem; margin: 0 0 1rem; }
+.pdp-b .cfg-gfield { display: flex; flex-direction: column; gap: 0.25rem; margin: 0; font-size: 0.75rem; font-weight: 700; color: var(--color-graphite-700); }
+.pdp-b .cfg-gfield:first-child { grid-column: 1 / -1; }
+.pdp-b .cfg-sublabel { margin: 0 0 0.5rem; font-size: 0.8125rem; font-weight: 700; color: var(--color-digital-black); }
+.pdp-b .cfgb .cfg-fonts { padding-top: 0.5rem; }   /* room for the "Wie Produktbild" tag */
+.pdp-b .cfg-font { position: relative; }
+.pdp-b .cfg-font__tag { position: absolute; top: -0.55rem; left: 50%; transform: translateX(-50%); padding: 0.1rem 0.45rem; border-radius: var(--radius-pill);
+  background: #009951; color: #fff; font-size: 0.625rem; font-weight: 700; line-height: 1.3; white-space: nowrap; }
+.pdp-b .cfg-comment { margin: 1rem 0 0; }
+.pdp-b .cfg-comment summary { cursor: pointer; font-size: 0.8125rem; font-weight: 700; color: var(--color-teal); text-decoration: underline; text-underline-offset: 0.2em; }
+.pdp-b .cfg-comment textarea.cfg-input { height: auto; min-height: 4.5rem; margin-top: 0.5rem; resize: vertical; }
+.pdp-b .cfg-proof { margin: 0 0 0.9rem; font-size: 0.875rem; line-height: 1.5; color: var(--color-graphite-700); }
+
+/* ── Feature info modal ("Mehr erfahren" in the configurator) ───────────────────
+   Centered dialog on wide screens, bottom sheet on phones; the description block
+   moved in keeps its own layout, only its page spacing is reset. */
+.infomod { position: fixed; inset: 0; z-index: 1200; display: flex; align-items: center; justify-content: center; padding: 1.5rem; }
+.infomod[hidden] { display: none; }
+.infomod__backdrop { position: absolute; inset: 0; background: rgba(10,14,16,.55); opacity: 0; transition: opacity .25s; }
+.infomod__panel { position: relative; display: flex; flex-direction: column; width: min(64rem, 100%); max-height: min(88vh, 62rem); border-radius: var(--radius-xl);
+  background: var(--color-white); box-shadow: 0 1.5rem 4rem rgba(0,0,0,.3); opacity: 0; transform: translateY(1rem); transition: opacity .25s, transform .3s cubic-bezier(.2,.8,.2,1); }
+.infomod.is-open .infomod__backdrop { opacity: 1; }
+.infomod.is-open .infomod__panel { opacity: 1; transform: none; }
+.infomod__head { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; padding: 1.1rem 1.4rem 0.9rem; border-bottom: 1px solid var(--color-graphite-200); }
+.infomod__eyebrow { margin: 0 0 0.2rem; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-teal); }
+.infomod__title { margin: 0; font-size: 1.375rem; font-weight: 800; line-height: 1.2; color: var(--color-digital-black); }
+.infomod__close { flex: none; display: grid; place-items: center; width: 2.5rem; height: 2.5rem; padding: 0; border: 0; border-radius: 50%; background: var(--color-graphite-100, #f1f1f2); color: var(--color-digital-black); cursor: pointer; }
+.infomod__close:hover { background: var(--color-graphite-200); }
+.infomod__close svg { width: 1.15rem; height: 1.15rem; }
+.infomod__close:focus-visible, .infomod__back:focus-visible { outline: 2px solid var(--color-teal); outline-offset: 2px; }
+.infomod__body { flex: 1; overflow: auto; overscroll-behavior: contain; padding: 1.4rem; }
+.infomod__body > * + * { margin-top: 1.5rem; }
+#infoMod .mz-kopf, #infoMod .mz-kopf .mz-kopf-lead { max-width: none; margin-left: 0; margin-right: 0; text-align: left; }   /* id: beats the OPC inline .mz-kopf rules */
+#sx-beschreibung #infoMod .mz-display, #sx-beschreibung #infoMod .mz-display span { font-size: clamp(1.25rem, 1rem + 1vw, 1.625rem); }   /* 2 ids: beats the section-head scale */
+#sx-beschreibung #infoMod .mz-lead, #sx-beschreibung #infoMod .mz-lead p { font-size: 1rem; }
+.infomod__body .mz-kopf > .mz-eyebrow { display: none; }   /* the dialog's own eyebrow already says where we are */
+.infomod__body .mz-kopf-abstand { margin-bottom: 0; }
+.infomod__foot { display: flex; justify-content: flex-end; padding: 0.9rem 1.4rem 1.1rem; border-top: 1px solid var(--color-graphite-200); }
+.infomod__back { padding: 0.75rem 1.4rem; border: 0; border-radius: var(--radius); background: var(--color-teal); color: var(--color-white); font-family: inherit; font-size: 0.9375rem; font-weight: 700; cursor: pointer; }
+.infomod__back:hover { background: var(--color-teal-600); }
+@media (max-width: 47.9375rem) {
+  .infomod { align-items: flex-end; padding: 0; }
+  .infomod__panel { width: 100%; max-height: 92vh; border-radius: var(--radius-xl) var(--radius-xl) 0 0; transform: translateY(2rem); }
+  .infomod__head { padding: 1rem 1rem 0.8rem; }
+  .infomod__body { padding: 1rem; }
+  .infomod__foot { padding: 0.8rem 1rem calc(0.9rem + env(safe-area-inset-bottom)); }
+  .infomod__back { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) { .infomod__backdrop, .infomod__panel { transition: none; } }
+
 .cfgb-nav { display: flex; gap: 0.75rem; padding: 1.3rem 1.35rem 1.4rem; }
 .cfgb-nav__back { border: 1px solid var(--color-graphite-300); background: var(--color-white); color: var(--color-graphite-700);
   border-radius: var(--radius); padding: 0.8rem 1.4rem; font-family: inherit; font-size: 0.875rem; font-weight: 700; cursor: pointer;

@@ -132,12 +132,17 @@ var MZSwipe = (function () {
     Fraktur: "'UnifrakturMaguntia',serif",
     Technisch: "'Roboto Mono','Courier New',monospace"
   };
+  /* Briefkasten Siebert – the live shop's 7 configuration steps, in its order.
+     None is required: the engraving is free and may stay empty, everything
+     else is an optional add-on (Befestigung: max. one, wall mount included). */
   var STEPS = [
-    { key: 'anschluss', name: 'Anschluss', req: true },
     { key: 'gravur', name: 'Gravurdaten' },
-    { key: 'innen', name: 'Innenstationen' },
-    { key: 'strom', name: 'Stromversorgung' },
-    { key: 'zubehoer', name: 'Erweiterungen & Zubehör' }
+    { key: 'lock', name: 'Smart-Briefkastenschloss' },
+    { key: 'sensor', name: 'Funk-Briefkastensensor' },
+    { key: 'mount', name: 'Befestigung' },
+    { key: 'zubehoer', name: 'Erweiterungen & Zubehör' },
+    { key: 'deko', name: 'Dekorieren & Verzieren' },
+    { key: 'proof', name: 'Entwurf zur Freigabe' }
   ];
   var LIGHT_FINISHES = { 'Verkehrsweiß RAL 9016': 1, 'Edelstahl gebürstet': 1 };
   var CONN = { 'LAN / PoE': 'lan', '2-Draht IP': '2draht' };
@@ -259,10 +264,12 @@ var MZSwipe = (function () {
     finish: '', finishDelta: 0, article: '', mainQty: 1,   /* seeded to Anthrazit RAL 7016 at init (see swatch setup); each colour is its own article */
     ral: null,   /* Wunschfarbe: { code, name, hex } once a RAL is picked */
     anschluss: null, conn: null,
-    gravurOn: false, gravurText: '', font: 'Klassisch',
-    innenSel: {},   /* name -> { price, qty, label } – multi-select, own qty each */
+    gravurOn: false, gravurText: '', font: 'Modern',   /* gravurText = Namensschild (drives the live engraving on the hero) */
+    gravurStreet: '', gravurNr: '', gravurNote: '',
+    innenSel: {},   /* legacy (doorbell) – unused for the Siebert, kept so shared helpers stay valid */
     strom: 'Standard', stromDelta: 0, stromQty: 1,
-    extras: {}   /* name -> { price, qty, label } */
+    mount: null,   /* Befestigung – { name, price, label } or null (= wall mount, included) */
+    extras: {}   /* name -> { price, qty, label, group } – group: lock | sensor | zubehoer | deko | proof */
   };
 
   var items = [].slice.call(document.querySelectorAll('#cfgbSteps .stepr__item'));
@@ -281,12 +288,21 @@ var MZSwipe = (function () {
   function hasStrom() { return state.strom && state.strom !== 'Standard'; }
   function extrasCount() { return Object.keys(state.extras).length; }
   function extrasSum() { var s = 0; for (var k in state.extras) s += state.extras[k].price * state.extras[k].qty; return s; }
+  /* one step's add-ons (lock / sensor / zubehoer / deko / proof) */
+  function groupSel(g) { var r = []; for (var k in state.extras) if (state.extras[k].group === g) r.push(state.extras[k]); return r; }
+  function groupSum(g) { return groupSel(g).reduce(function (s, x) { return s + x.price * x.qty; }, 0); }
+  function groupPick(g, none) {
+    var sel = groupSel(g); if (!sel.length) return none;
+    var n = sel.reduce(function (s, x) { return s + x.qty; }, 0);
+    return (sel.length === 1 ? (n > 1 ? n + '× ' : '') + sel[0].label : n + ' ausgewählt') + ' · +' + euro(groupSum(g));
+  }
+  function mountSum() { return state.mount ? state.mount.price : 0; }
   function total() {
     var t = state.mainQty * (BASE + state.finishDelta);
     t += innenSum();
     if (state.gravurOn) t += GRAVUR;
     if (hasStrom()) t += state.stromDelta * state.stromQty;
-    return t + extrasSum();
+    return t + mountSum() + extrasSum();
   }
   function setTxt(id, t) { var el = $(id); if (el) el.textContent = t; }
   function curIndex() { for (var i = 0; i < items.length; i++) if (items[i].classList.contains('is-active')) return i; return -1; }
@@ -360,7 +376,7 @@ var MZSwipe = (function () {
     /* Preisdetails stays hidden until the config carries a surcharge; the first paid
        item reveals it, already expanded (reveal persists; expand fires once so we
        respect the user if they later collapse it) */
-    var paidExtra = innenSum() + extrasSum()
+    var paidExtra = innenSum() + extrasSum() + mountSum()
       + (state.gravurOn ? GRAVUR : 0)
       + (hasStrom() ? state.stromDelta * state.stromQty : 0)
       + (state.finishDelta > 0 ? state.finishDelta * state.mainQty : 0);
@@ -373,11 +389,15 @@ var MZSwipe = (function () {
       }
     }
 
-    setTxt('bPickAnschluss', state.anschluss || 'Bitte wählen');
-    setTxt('bPickGravur', state.gravurOn ? (state.gravurText ? '„' + state.gravurText + '" · ' + state.font + ' · +' + euro(GRAVUR) : 'Mit Gravur · +' + euro(GRAVUR)) : 'Ohne Gravur');
-    setTxt('bPickInnen', hasInnen() ? innenLabel() : 'Ohne Innenstation');
-    setTxt('bPickStrom', hasStrom() ? state.strom + ' · +' + euro(state.stromDelta * state.stromQty) : 'Standard · inklusive');
-    setTxt('bPickExtras', extrasCount() ? extrasCount() + ' ausgewählt · +' + euro(extrasSum()) : 'Kein Zubehör');
+    /* collapsed step headers summarise what is picked in each step */
+    var gravParts = [state.gravurText, state.gravurStreet, state.gravurNr].filter(Boolean);
+    setTxt('bPickGravur', gravParts.length ? '„' + gravParts.join(' · ') + '" · ' + state.font + ' · kostenfrei' : 'Ohne Gravurtext');
+    setTxt('bPickLock', groupPick('lock', 'Ohne Smart-Schloss'));
+    setTxt('bPickSensor', groupPick('sensor', 'Ohne Sensor'));
+    setTxt('bPickMount', state.mount ? state.mount.label + ' · +' + euro(state.mount.price) : 'Wandmontage · inklusive');
+    setTxt('bPickExtras', groupPick('zubehoer', 'Kein Zubehör'));
+    setTxt('bPickDeko', groupPick('deko', 'Ohne Dekoration'));
+    setTxt('bPickProof', groupPick('proof', 'Ohne Entwurf'));
 
     var eng = $('bEngrave');
     if (eng) {
@@ -421,7 +441,7 @@ var MZSwipe = (function () {
       s.setAttribute('aria-selected', i === cur ? 'true' : 'false');
       if (i === cur) { s.setAttribute('aria-current', 'step'); } else { s.removeAttribute('aria-current'); }
     });
-    setTxt('bStepN', 'Schritt ' + (cur + 1) + ' von 5');
+    setTxt('bStepN', 'Schritt ' + (cur + 1) + ' von ' + STEPS.length);
     setTxt('bStepName', STEPS[cur].name);
     var flag = $('bStepFlag');
     if (flag) { var req = STEPS[cur].req === true; flag.textContent = req ? 'erforderlich' : 'optional'; flag.classList.toggle('is-opt', !req); flag.hidden = false; }
@@ -438,11 +458,7 @@ var MZSwipe = (function () {
      until the requirement is met (cleared in updateDock via syncStepErrors) and re-pulses
      on every fresh failed attempt. Only steps that can be required can enter this state. */
   var erroredSteps = {};
-  function stepValid(i) {
-    if (i === 0) return !!state.anschluss;                       /* Anschluss (required) */
-    if (i === 1) return !(state.gravurOn && !state.gravurText);  /* Gravur text, only if engraving is on */
-    return true;                                                 /* remaining steps are optional */
-  }
+  function stepValid(i) { return true; }   /* Siebert: no required step (engraving is free and optional) */
   function stepTab(i) { return document.querySelector('#bSeg .cfgb-bar__step[data-goto="' + i + '"]'); }
   function flagStepError(i) {
     erroredSteps[i] = true;
@@ -472,11 +488,10 @@ var MZSwipe = (function () {
   function renderSummary() {
     var el = $('bSummary'); if (!el) return;
     var h = '';
-    h += row('<b>Metzler VDM10 2.0</b>', esc(finishText()), roQty(state.mainQty), euro(state.mainQty * (BASE + state.finishDelta)));
-    if (state.anschluss) h += row('Anschluss', esc(state.anschluss), null, 'inklusive');
-    if (state.gravurOn) h += row('Gravur', state.gravurText ? '„' + esc(state.gravurText) + '" · ' + state.font : 'Mit Namensgravur', null, '+' + euro(GRAVUR));
-    for (var ik in state.innenSel) { var iv = state.innenSel[ik]; h += row(esc(iv.label || ik), null, roQty(iv.qty), euro(iv.price * iv.qty)); }
-    if (hasStrom()) h += row(esc(state.strom), null, null, euro(state.stromDelta * state.stromQty));
+    h += row('<b>Metzler Briefkasten Siebert</b>', esc(finishText()), roQty(state.mainQty), euro(state.mainQty * (BASE + state.finishDelta)));
+    var gravParts = [state.gravurText, state.gravurStreet, state.gravurNr].filter(Boolean);
+    if (gravParts.length) h += row('Gravur', '„' + esc(gravParts.join(' · ')) + '" · ' + esc(state.font), null, 'inklusive');
+    if (state.mount) h += row(esc(state.mount.label), null, null, euro(state.mount.price));
     for (var k in state.extras) { var x = state.extras[k]; h += row(esc(x.label || k), null, roQty(x.qty), euro(x.price * x.qty)); }
     document.querySelectorAll('.cfgb-summary').forEach(function (x) { x.innerHTML = h; });
     var n = el.querySelectorAll('.sum-row').length;
@@ -622,8 +637,6 @@ var MZSwipe = (function () {
   function flashRequired() { var f = $('bStepFlag'); if (!f || f.classList.contains('is-opt')) return; f.classList.remove('is-pulse'); void f.offsetWidth; f.classList.add('is-pulse'); window.setTimeout(function () { f.classList.remove('is-pulse'); }, 1200); }
   function fwdStep() {
     var cur = curIndex();
-    if (cur === 0 && !state.anschluss) { scrollToProgress(); flashStep(0); flashInvalid($('bAnschluss')); flashRequired(); flagStepError(0); return; }
-    if (cur === 1 && state.gravurOn && !state.gravurText) { scrollToProgress(); flashStep(1); flashInvalid($('bGravurText')); flagStepError(1); return; }
     if (cur < STEPS.length - 1) openStep(cur + 1);
   }
   function backStep() { var cur = curIndex(); if (cur > 0) openStep(cur - 1); }
@@ -1616,29 +1629,37 @@ var MZSwipe = (function () {
     applyConn(); refresh();   /* no auto-advance – user continues via "Weiter" */
   });
 
-  /* ── 2 · Gravur (modern Ohne|Mit segmented switch) ── */
-  var seg = $('bGravurSeg');
-  if (seg) seg.addEventListener('click', function (e) {
-    var b = e.target.closest('[data-gravur]'); if (!b) return;
-    var on = b.getAttribute('data-gravur') === 'on';
-    if (on === state.gravurOn) return;                    /* already on this side – nothing to do */
-    state.gravurOn = on;
-    seg.setAttribute('data-on', on ? 'true' : 'false');   /* slides the thumb */
-    seg.querySelectorAll('[data-gravur]').forEach(function (x) {
-      x.setAttribute('aria-pressed', (x.getAttribute('data-gravur') === 'on') === on ? 'true' : 'false');
+  /* ── 1 · Gravurdaten – Namensschild, Straße, Hausnummer (free, optional) ── */
+  var gt = $('bGravName');
+  [['bGravName', 'gravurText'], ['bGravStreet', 'gravurStreet'], ['bGravNr', 'gravurNr'], ['bGravNote', 'gravurNote']].forEach(function (p) {
+    var f = $(p[0]); if (!f) return;
+    f.addEventListener('input', function () {
+      state[p[1]] = this.value.trim();
+      state.gravurOn = !!state.gravurText;   /* the name plate drives the live engraving on the hero */
+      refresh();
     });
-    $('bGravurField').classList.toggle('is-shown', on);
-    if (!on) { state.gravurText = ''; var gc = $('bGravurText'); if (gc) gc.value = ''; }
-    refresh();
-    if (on) { var gtf = $('bGravurText'); if (gtf) gtf.focus(); }
   });
-  var gt = $('bGravurText'); if (gt) gt.addEventListener('input', function () { this.classList.remove('is-invalid'); state.gravurText = this.value; refresh(); });
   var fonts = $('bFonts');
   if (fonts) fonts.addEventListener('click', function (e) {
     var b = e.target.closest('.cfg-font'); if (!b) return;
     this.querySelectorAll('.cfg-font').forEach(function (x) { x.classList.remove('is-selected'); });
     b.classList.add('is-selected'); state.font = b.getAttribute('data-font');
     if (gt) gt.style.fontFamily = FONTS[state.font] || ''; refresh();
+  });
+
+  /* ── 4 · Befestigung – max. one alternative to the included wall mount; tap again to undo ── */
+  var mount = $('bMount');
+  if (mount) mount.addEventListener('click', function (e) {
+    var b = e.target.closest('.cfg-opt'); if (!b) return;
+    var wasSel = b.classList.contains('is-selected');
+    this.querySelectorAll('.cfg-opt').forEach(function (x) { x.classList.remove('is-selected'); });
+    if (wasSel) state.mount = null;
+    else {
+      b.classList.add('is-selected');
+      state.mount = { name: b.getAttribute('data-mount'), price: parseFloat(b.getAttribute('data-delta')) || 0,
+        label: ((b.querySelector('.cfg-opt__name') || {}).textContent || '').trim() };
+    }
+    refresh();
   });
 
   /* ── 3 · Innenstationen → multi-select, each with its own qty (no auto-advance,
@@ -1673,14 +1694,14 @@ var MZSwipe = (function () {
       if (b.classList.contains('is-unavailable')) return;
       var name = b.getAttribute('data-extra'), d = parseFloat(b.getAttribute('data-delta')) || 0;
       var label = (b.querySelector('.cfg-opt__name') || {}).textContent || name;
-      if (b.classList.toggle('is-selected')) state.extras[name] = { price: d, qty: 1, label: label.trim() };
+      if (b.classList.toggle('is-selected')) state.extras[name] = { price: d, qty: 1, label: label.trim(), group: b.getAttribute('data-group') || 'zubehoer' };
       else delete state.extras[name];
       refresh();
     });
   });
 
   /* ── Validate-on-cart (never lock) ── */
-  function firstInvalid() { if (!state.anschluss) return 0; if (state.gravurOn && !state.gravurText) return 1; return -1; }
+  function firstInvalid() { return -1; }   /* Siebert: colour (checked above) is the only gate */
   function addToCart() {
     /* colour is the first gate – surface the requirement at the swatches, not on the CTA */
     if (!state.finish) {
@@ -1705,8 +1726,6 @@ var MZSwipe = (function () {
       openStep(iv, true);
       scrollToProgress();
       flashStep(iv);
-      if (iv === 0) { flashInvalid($('bAnschluss')); flashRequired(); }
-      else { flashInvalid($('bGravurText')); }
       flagStepError(iv);
       return;
     }
@@ -2814,6 +2833,73 @@ var MZSwipe = (function () {
       var li = row.querySelector('li[data-spot="' + n + '"]');
       if (li && li.getBoundingClientRect().bottom > window.innerHeight - 90) li.scrollIntoView({ block: 'center', behavior: 'smooth' });
     });
+  });
+})();
+
+/* ── Configurator "Mehr erfahren" → feature modal ──
+   Each feature step links to the description block that explains it. The block is
+   MOVED into the modal while open (a comment placeholder keeps its spot) and put
+   back on close – one interactive source (tabs, scene switcher keep working), no
+   copies to keep in sync. The modal sits inside #sx-beschreibung so the blocks keep
+   their scoped styles. */
+(function () {
+  var mod = document.getElementById('infoMod'); if (!mod) return;
+  var body = document.getElementById('infoModBody'), title = document.getElementById('infoModTitle');
+  var eyebrow = document.getElementById('infoModEyebrow'), panel = mod.querySelector('.infomod__panel');
+  function q(sel) { return document.querySelector('#sx-beschreibung ' + sel); }
+  function kopf(name) {   /* a section's head block, found by its eyebrow text */
+    var eb = [].slice.call(document.querySelectorAll('#sx-beschreibung .mz-kopf .mz-eyebrow')).filter(function (e) { return e.textContent.trim() === name; })[0];
+    return eb ? eb.closest('.mz-kopf') : null;
+  }
+  var MAP = {
+    gravur:   { t: 'Gravurdaten', els: function () { return [q('.kfg'), q('.vrb')]; } },
+    lock:     { t: 'Smart-Briefkastenschloss', els: function () { return [kopf('Smarte Ausstattung'), q('.smart')]; }, tab: 'smartTabLock' },
+    sensor:   { t: 'Funk-Briefkastensensor', els: function () { return [kopf('Smarte Ausstattung'), q('.smart')]; }, tab: 'smartTabSensor' },
+    mount:    { t: 'Befestigung', els: function () { return [kopf('Befestigung'), q('.mnts')]; } },
+    zubehoer: { t: 'Erweiterungen & Zubehör', els: function () { return [kopf('Erweiterungen & Zubehör'), q('.mz-zk')]; } },
+    deko:     { t: 'Dekorieren & Verzieren', els: function () { return [kopf('Dekoration'), q('.mz-sg-7be0a00000042')]; } }
+  };
+  var moved = [], trigger = null;
+  function open(key, from) {
+    var m = MAP[key]; if (!m) return;
+    var els = m.els().filter(Boolean); if (!els.length) return;
+    trigger = from || null;
+    eyebrow.textContent = 'Mehr erfahren';
+    title.textContent = m.t;
+    els.forEach(function (el) {
+      var ph = document.createComment('infomod'); el.parentNode.insertBefore(ph, el);
+      moved.push([el, ph]); body.appendChild(el);
+    });
+    if (m.tab) { var tb = document.getElementById(m.tab); if (tb) tb.click(); }   /* lock / sensor: open the matching tab */
+    mod.hidden = false;
+    MZScroll.lock();
+    body.scrollTop = 0;
+    void mod.offsetWidth;   /* commit the hidden→shown state so the fade/slide-in runs */
+    mod.classList.add('is-open');
+    mod.querySelector('.infomod__close').focus();
+  }
+  function close() {
+    if (mod.hidden) return;
+    moved.forEach(function (p) { p[1].parentNode.insertBefore(p[0], p[1]); p[1].parentNode.removeChild(p[1]); });
+    moved = [];
+    mod.classList.remove('is-open');
+    mod.hidden = true;
+    MZScroll.unlock();
+    if (trigger) trigger.focus();
+  }
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest('.cfg-more');
+    if (t) { e.preventDefault(); open(t.getAttribute('data-info'), t); return; }
+    if (!mod.hidden && e.target.closest('[data-im-close]')) close();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (mod.hidden) return;
+    if (e.key === 'Escape') { close(); return; }
+    if (e.key !== 'Tab') return;   /* keep focus inside the dialog */
+    var f = [].slice.call(panel.querySelectorAll('button, [href], input, textarea, select, [tabindex]:not([tabindex="-1"])')).filter(function (x) { return x.offsetParent !== null; });
+    if (!f.length) return;
+    if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f[f.length - 1].focus(); }
+    else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
   });
 })();
 
