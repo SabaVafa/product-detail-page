@@ -3558,6 +3558,46 @@ body.is-scrolled #quickbar {
   #sx-beschreibung .abm > [data-area-id="col-1"]{ grid-column:auto; }
 }
 
+/* ── Warum Siebert: the slider's before/after, spelled out row by row ───────────
+   Its four bullets repeated "Das Wichtigste" – now each row pairs the old
+   problem (struck through, red ✗) with how the Siebert solves it (green ✓),
+   in the same red/green as the slider's VORHER / NACHHER tags. */
+#sx-beschreibung .vs{ max-width:34rem; }
+#sx-beschreibung .vs__head, #sx-beschreibung .vs__rows li{ display:grid; grid-template-columns:minmax(0, 0.8fr) minmax(0, 1.2fr); column-gap:1.25rem; }
+#sx-beschreibung .vs__head{ margin:0 0 0.5rem; }
+#sx-beschreibung .vs__tag{ justify-self:start; padding:0.3rem 0.6rem; border-radius:var(--radius); color:#fff; font-size:0.6875rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; line-height:1; }
+#sx-beschreibung .vs__tag--old{ background:#D42924; }
+#sx-beschreibung .vs__tag--new{ background:#009951; }
+#sx-beschreibung .vs__rows{ list-style:none; margin:0; padding:0; }
+#sx-beschreibung .vs__rows li{ align-items:start; margin:0; padding:0.8rem 0; border-top:1px solid rgba(26,23,27,.08); }
+#sx-beschreibung .vs__rows li::marker{ content:none; }
+#sx-beschreibung .vs__old, #sx-beschreibung .vs__new{ display:grid; grid-template-columns:1.1rem minmax(0, 1fr); column-gap:0.5rem; align-items:start; }
+#sx-beschreibung .vs__old svg, #sx-beschreibung .vs__new svg{ width:1.1rem; height:1.1rem; margin-top:0.12rem; }
+#sx-beschreibung .vs__old svg{ color:#D42924; }
+#sx-beschreibung .vs__new svg{ grid-row:span 2; color:#009951; }
+#sx-beschreibung .vs__old s{ font-size:0.875rem; line-height:1.4; color:var(--text-secondary); text-decoration-color:rgba(212,41,36,.55); }
+#sx-beschreibung .vs__new b{ font-size:0.9375rem; line-height:1.35; color:var(--color-digital-black); }
+#sx-beschreibung .vs__new em{ font-style:normal; font-size:0.8125rem; line-height:1.4; color:var(--text-secondary); }
+
+/* ── Warum Metzler: the six production steps read as one journey ────────────────
+   Wide: all six in a single row (Konstruktion → Versand at one glance) instead
+   of two rows of three. Below 64 rem: a swipe row instead of six full-width
+   cards stacked (~2,400 px on phones). */
+@media (min-width:64rem){
+  #sx-beschreibung .mz-steprow > [data-area-id]{ flex:0 0 16.6667%; max-width:16.6667%; }
+  #sx-beschreibung .mz-steprow .mz-step{ margin-bottom:0; }
+  #sx-beschreibung .mz-steprow .mz-step-title{ font-size:0.9375rem; }
+  #sx-beschreibung .mz-steprow .mz-step-body{ font-size:0.8125rem; line-height:1.45; }
+}
+@media (max-width:63.9375rem){
+  #sx-beschreibung .row.mz-steprow{ flex-wrap:nowrap; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; padding-bottom:0.5rem; }
+  #sx-beschreibung .row.mz-steprow::-webkit-scrollbar{ display:none; }
+  #sx-beschreibung .mz-steprow > [data-area-id]{ flex:0 0 72%; max-width:72%; scroll-snap-align:start; }
+  #sx-beschreibung .mz-steprow > .clearfix{ display:none; }
+  #sx-beschreibung .mz-steprow .mz-step{ margin-bottom:0.5rem; }
+}
+@media (min-width:40rem) and (max-width:63.9375rem){ #sx-beschreibung .mz-steprow > [data-area-id]{ flex-basis:40%; max-width:40%; } }
+
 /* Einwurf stage: the clip is AI-flagged on live – badge top-right, clear of the play button */
 #sx-beschreibung .mbxdemo__stage::after{ top:0.5rem; bottom:auto; }
 
