@@ -2733,7 +2733,7 @@ var MZSwipe = (function () {
 (function () {
   var demo = document.querySelector('.mbxdemo'); if (!demo) return;
   var vid = demo.querySelector('.mbxdemo__vid'), still = demo.querySelector('.mbxdemo__still');
-  var btn = demo.querySelector('.mbxdemo__play'), steps = demo.querySelectorAll('.mbxstep');
+  var btn = demo.querySelector('.mbxdemo__play'), steps = document.querySelectorAll('.mbxsteps .mbxstep');   /* the step list sits in the copy column */
   var END = 10.75, FADE = 0.45;
   var START = [0, 5.9];    /* phase starts (s): Einwerfen, Entnehmen */
   var STILL = [5.15, 9.6]; /* still per phase: C4 on the slot, mail in the open box */

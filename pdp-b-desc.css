@@ -2291,7 +2291,7 @@ body.is-scrolled #quickbar {
 .rvw-review__head .rvw-stars svg { width: 1.35rem; height: 1.35rem; }   /* review-list rating – was tiny at 1rem */
 /* Icon-only verified badge: the seal alone (label kept for screen readers + a hover
    tooltip via title). No text, so no gap and the box shrinks to the seal. */
-.rvw-verified { display: inline-flex; align-items: center; gap: 0; font-size: 0.8125rem; font-weight: 700; color: var(--color-teal); white-space: nowrap; }
+.rvw-verified { position: relative; display: inline-flex; align-items: center; gap: 0; font-size: 0.8125rem; font-weight: 700; color: var(--color-teal); white-space: nowrap; }   /* anchors the visually-hidden label: without it the labels in the swipe row escape its clipping and widen the page on phones */
 .rvw-verified svg { width: 1.35rem; height: 1.35rem; }
 .rvw-vlabel { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .rvw-author { font-weight: 800; color: var(--color-digital-black); }
@@ -3358,6 +3358,13 @@ body.is-scrolled #quickbar {
    kept as a labelled visual pair: EINWURF (the formats illustration – post of
    every size drops in) and ENTNAHME (the video – the box opens to collect it). */
 #sx-beschreibung .mz-hero-xs, #sx-beschreibung .mz-hero-video { display: none !important; }   /* standalone hero folded into the merged section below */
+/* Zubehör cards (live inline styles): the fixed 2-col grid + 13 rem image made
+   each card wider than its column, so phones zoomed the whole page out. Two
+   columns only when each gets ≥ 24 rem; the text may shrink and hyphenate. */
+#sx-beschreibung .mz-zk { grid-template-columns:repeat(auto-fit, minmax(min(100%, 24rem), 1fr)); }
+#sx-beschreibung .mz-zk-k { min-width:0; }
+#sx-beschreibung .mz-zk-k > div { min-width:0; overflow-wrap:break-word; hyphens:auto; }
+@media (max-width:30rem){ #sx-beschreibung .mz-zk-k { padding:1rem; gap:1rem; } #sx-beschreibung .mz-zk-b { flex-basis:6.5rem; height:6.5rem; } }
 .pdp-b .dsc-brand { display:block; font-size:0.8125rem; font-weight:800; letter-spacing:0.09em; text-transform:uppercase; color:var(--color-teal); margin:0 0 0.7rem; }
 .pdp-b .dsc-merge__stages { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
 .pdp-b .dsc-merge__fig { margin:0; }
@@ -3367,15 +3374,51 @@ body.is-scrolled #quickbar {
 .pdp-b .dsc-merge__cap { display:block; margin-top:0.55rem; font-size:0.8125rem; line-height:1.4; color:var(--text-secondary); text-align:center; }
 .pdp-b .dsc-merge__cap b { display:block; color:var(--color-digital-black); font-weight:700; font-size:0.875rem; letter-spacing:0.02em; }
 @media (max-width:30rem){ .pdp-b .dsc-merge__stages { grid-template-columns:1fr; } }
-/* Centre the merged intro (brand → headline → 335 mm copy → chips → seal) like the
-   other section headers; the Einwurf/Entnahme stage pair runs full-width below it. */
-#sx-beschreibung [data-area-id="col-0"]:has(> .dsc-brand){ max-width:62rem; margin-inline:auto; text-align:center; }
-#sx-beschreibung [data-area-id="col-0"]:has(> .dsc-brand) .mz-body{ max-width:60ch; margin-inline:auto; }
-#sx-beschreibung [data-area-id="col-0"]:has(> .dsc-brand) .dsc-trust{ justify-content:center; }
-/* The C4/A4/DL/C6 size chips repeat what the Einwurf illustration already shows –
-   keep the illustration (stronger, in-context) and drop the chip row + its spacer. */
-#sx-beschreibung [data-area-id="col-0"]:has(> .dsc-brand) > .mz-body + div,
-#sx-beschreibung [data-area-id="col-0"]:has(> .dsc-brand) > .mz-body + div + div{ display:none; }
+/* ── Merged opener as ONE grid: copy + step chapters | live stage, formats band ──
+   col-0 dissolves (display:contents) so its parts and the stage (col-1) share a
+   grid. Phones/tablets: centred stack – copy, stage, steps, formats. ≥ 64 rem:
+   copy and the steps as chapters on the left, a larger stage on the right and
+   the formats as a full-width band – no idle side space on wide screens. */
+#sx-beschreibung .row:has(> [data-area-id="col-0"] > .dsc-brand){ display:grid; grid-template-columns:minmax(0, 1fr); grid-template-areas:"brand" "head" "body" "stage" "steps" "fmt"; margin-inline:0; }
+#sx-beschreibung .row:has(> [data-area-id="col-0"] > .dsc-brand) > .clearfix{ display:none; }
+#sx-beschreibung .row:has(> [data-area-id="col-0"] > .dsc-brand) > [data-area-id="col-1"]{ grid-area:stage; width:auto; max-width:none; flex:none; padding-inline:0; margin-top:1.5rem; }
+#sx-beschreibung [data-area-id="col-0"]:has(> .dsc-brand){ display:contents; text-align:center; }
+#sx-beschreibung [data-area-id="col-0"]:has(> .dsc-brand) > .dsc-brand{ grid-area:brand; }
+#sx-beschreibung [data-area-id="col-0"]:has(> .dsc-brand) > .dsc-brand + div{ grid-area:head; }
+#sx-beschreibung [data-area-id="col-0"]:has(> .dsc-brand) > .mz-body{ grid-area:body; max-width:60ch; margin-inline:auto; }
+#sx-beschreibung [data-area-id="col-0"]:has(> .dsc-brand) > .mbxsteps{ grid-area:steps; width:100%; max-width:40rem; margin:1rem auto 0; }
+#sx-beschreibung [data-area-id="col-0"]:has(> .dsc-brand) > div[style*="margin-top:24px"]{ display:none; }   /* OPC spacer */
+
+/* Formats band: the size chips as their own block closing the section */
+#sx-beschreibung .dsc-fmt{ grid-area:fmt; margin-top:2.5rem; padding:1.5rem 1rem 1.25rem; border-radius:var(--radius-lg); background:rgba(1,82,83,.045); text-align:center; }
+#sx-beschreibung .dsc-fmt__title{ margin:0 0 1.25rem; font-size:0.8125rem; line-height:1.45; color:var(--text-secondary); }
+#sx-beschreibung .dsc-fmt__title b{ display:block; margin-bottom:0.15rem; font-size:0.9375rem; color:var(--color-digital-black); }
+/* narrow: 2 × 2 instead of 4 in a row (column flow over 4 rows = icon, caption, icon, caption) */
+@media (max-width:36rem){
+  #sx-beschreibung .dsc-fmt .mz-fmt{ --sp:6rem; grid-template-columns:repeat(2, minmax(0, 1fr)); grid-template-rows:repeat(4, auto); justify-content:stretch; column-gap:1rem; }
+  #sx-beschreibung .dsc-fmt .mz-fmt .cap{ margin-bottom:0.9rem; }
+  /* row order, largest first: C4 | A4, then DIN Lang | C6 */
+  #sx-beschreibung .dsc-fmt .mz-fmt > svg:nth-of-type(odd){ grid-column:1; }   #sx-beschreibung .dsc-fmt .mz-fmt > .cap:nth-of-type(odd){ grid-column:1; }
+  #sx-beschreibung .dsc-fmt .mz-fmt > svg:nth-of-type(even){ grid-column:2; }  #sx-beschreibung .dsc-fmt .mz-fmt > .cap:nth-of-type(even){ grid-column:2; }
+  #sx-beschreibung .dsc-fmt .mz-fmt > svg:nth-of-type(-n+2){ grid-row:1; }     #sx-beschreibung .dsc-fmt .mz-fmt > .cap:nth-of-type(-n+2){ grid-row:2; }
+  #sx-beschreibung .dsc-fmt .mz-fmt > svg:nth-of-type(n+3){ grid-row:3; }      #sx-beschreibung .dsc-fmt .mz-fmt > .cap:nth-of-type(n+3){ grid-row:4; }
+}
+
+@media (min-width:64rem){
+  #sx-beschreibung .row:has(> [data-area-id="col-0"] > .dsc-brand){ grid-template-columns:minmax(0, 1fr) minmax(0, 1.5fr); column-gap:clamp(2.5rem, 4vw, 5rem); grid-template-rows:1fr auto auto auto auto 1fr auto; grid-template-areas:". stage" "brand stage" "head stage" "body stage" "steps stage" ". stage" "fmt fmt"; }
+  #sx-beschreibung .row:has(> [data-area-id="col-0"] > .dsc-brand) > [data-area-id="col-1"]{ margin-top:0; }
+  #sx-beschreibung [data-area-id="col-0"]:has(> .dsc-brand){ text-align:left; }
+  #sx-beschreibung [data-area-id="col-0"]:has(> .dsc-brand) > .mz-body{ margin-inline:0; max-width:34rem; }
+  #sx-beschreibung [data-area-id="col-0"]:has(> .dsc-brand) > .mbxsteps{ grid-template-columns:minmax(0, 1fr); gap:0; max-width:26rem; margin:1.5rem 0 0; }
+  /* steps become chapters: a vertical progress line beside each */
+  #sx-beschreibung .mbxstep{ grid-template-columns:3px 1.375rem minmax(0, 1fr); grid-template-areas:"bar n t" "bar . s"; column-gap:0.75rem; padding:0.7rem 0; }
+  #sx-beschreibung .mbxstep__bar{ width:3px; height:auto; margin:0; align-self:stretch; }
+  #sx-beschreibung .mbxstep__bar i{ transform:scaleY(var(--p, 0)); transform-origin:50% 0; }
+  #sx-beschreibung .mbxdemo{ max-width:none; }
+  #sx-beschreibung .dsc-fmt{ display:grid; grid-template-columns:minmax(0, 17rem) minmax(0, 1fr); align-items:center; column-gap:3rem; padding:2rem 2.5rem; text-align:left; }
+  #sx-beschreibung .dsc-fmt__title{ margin:0; }
+  #sx-beschreibung .dsc-fmt .mz-fmt{ --sp:7.5rem; column-gap:2.5rem; justify-content:end; }
+}
 
 /* ── Einwerfen → Entnehmen: the real Siebert on the wall ────────────────────────
    The product is the live hero clip (real footage, 1400×400, 10.75 s): the lid
@@ -3384,24 +3427,25 @@ body.is-scrolled #quickbar {
    CSS animations on the clip's own timeline, scrubbed to video.currentTime by
    pdp-b-desc.js so they can never drift. The box's front rim (y ≈ 82 px of the
    clip) swallows them. The end cross-fades into frame 0 for a seamless loop.  */
-.pdp-b .mbxdemo { --T:10.75s; max-width:40rem; margin:0 auto; }
-.pdp-b .mbxdemo__stage { position:relative; aspect-ratio:3/2; container-type:inline-size; overflow:hidden; border-radius:var(--radius-lg); background:#e9e3da; box-shadow:var(--shadow-md); }
-/* crop of the clip: x 120–720 px (box + room for the open door), full height */
-.pdp-b .mbxdemo__vid, .pdp-b .mbxdemo__still { position:absolute; top:0; left:-20%; width:233.334%; max-width:none; height:100%; object-fit:fill; display:block; }
+.pdp-b .mbxdemo { --T:10.75s; --x0:120; --cw:600; max-width:40rem; margin:0 auto; }   /* crop of the clip in source px: from x0, cw wide, full 400 px height */
+.pdp-b .mbxdemo__stage { position:relative; aspect-ratio:var(--cw) / 400; container-type:inline-size; overflow:hidden; border-radius:var(--radius-lg); background:#e9e3da; box-shadow:var(--shadow-md); }
+/* phones: x 120–720 px (box + room for the open door); ≥ 90 rem: x 0–800 so the larger stage stays ~1:1, never upscaled */
+.pdp-b .mbxdemo__vid, .pdp-b .mbxdemo__still { position:absolute; top:0; left:calc(var(--x0) / var(--cw) * -100%); width:calc(1400 / var(--cw) * 100%); max-width:none; height:100%; object-fit:fill; display:block; }
 .pdp-b .mbxdemo__still { opacity:0; pointer-events:none; }
 
 .pdp-b .mbxdemo__post { position:absolute; inset:0; pointer-events:none; clip-path:polygon(0 -60%, 100% -60%, 100% 21.45%, 0 20.25%); }
 .pdp-b .mbxdemo__env { position:absolute; bottom:79.5%; filter:drop-shadow(-0.7cqw 0.9cqw 0.8cqw rgba(30,25,20,.3)); animation:var(--T) linear infinite both paused; }
 .pdp-b .mbxdemo__env svg { display:block; width:100%; height:auto; }
-.pdp-b .mbxdemo__env--dl { left:28.3%; width:24.5%; animation-name:mbx-dl; }   /* 220 × 110 mm at the box's scale (37 cm ≙ 247 px) */
-.pdp-b .mbxdemo__env--c4 { left:22.6%; width:36%; animation-name:mbx-c4; }     /* 324 × 229 mm, long side first */
+.pdp-b .mbxdemo__env--dl { left:calc((290 - var(--x0)) / var(--cw) * 100%); width:calc(147 / var(--cw) * 100%); animation-name:mbx-dl; }   /* 220 × 110 mm at the box's scale (37 cm ≙ 247 px) */
+.pdp-b .mbxdemo__env--c4 { left:calc((256 - var(--x0)) / var(--cw) * 100%); width:calc(216 / var(--cw) * 100%); animation-name:mbx-c4; }     /* 324 × 229 mm, long side first */
 
 /* size tags with a leader line to the letter (as in the Einwurf illustration) */
-.pdp-b .mbxdemo__tag { position:absolute; left:65%; top:8.5%; font-size:clamp(0.625rem, 2.3cqw, 0.8125rem); font-weight:700; letter-spacing:0.02em; line-height:1; white-space:nowrap; color:var(--color-digital-black); background:#fff; border-radius:var(--radius-pill); padding:0.45em 0.8em; box-shadow:0 0.15rem 0.5rem rgba(0,0,0,.14); opacity:0; pointer-events:none; animation:var(--T) linear infinite both paused; }
+.pdp-b .mbxdemo__tag { position:absolute; left:calc((510 - var(--x0)) / var(--cw) * 100%); top:8.5%; font-size:clamp(0.625rem, 2.3cqw, 0.8125rem); font-weight:700; letter-spacing:0.02em; line-height:1; white-space:nowrap; color:var(--color-digital-black); background:#fff; border-radius:var(--radius-pill); padding:0.45em 0.8em; box-shadow:0 0.15rem 0.5rem rgba(0,0,0,.14); opacity:0; pointer-events:none; animation:var(--T) linear infinite both paused; }
 .pdp-b .mbxdemo__tag::before { content:""; position:absolute; right:100%; top:50%; width:var(--lead); height:1px; background:rgba(26,23,27,.55); }
 .pdp-b .mbxdemo__tag::after { content:""; position:absolute; right:calc(100% + var(--lead) - 3px); top:calc(50% - 3px); width:6px; height:6px; border-radius:50%; background:var(--color-digital-black); box-shadow:0 0 0 2px #fff; }
-.pdp-b .mbxdemo__tag--dl { --lead:13cqw; animation-name:mbx-tag-dl; }
-.pdp-b .mbxdemo__tag--c4 { --lead:7.5cqw; top:7.5%; animation-name:mbx-tag-c4; }
+.pdp-b .mbxdemo__tag--dl { --lead:calc(78 / var(--cw) * 100cqw); animation-name:mbx-tag-dl; }
+.pdp-b .mbxdemo__tag--c4 { --lead:calc(45 / var(--cw) * 100cqw); top:7.5%; animation-name:mbx-tag-c4; }
+@media (min-width:90rem){ #sx-beschreibung .mbxdemo { --x0:0; --cw:800; } }
 
 .pdp-b .mbxdemo__play { position:absolute; right:0.75rem; bottom:0.75rem; width:2.25rem; height:2.25rem; padding:0; border:0; border-radius:50%; display:grid; place-items:center; cursor:pointer; color:var(--color-digital-black); background:rgba(255,255,255,.9); box-shadow:0 0.1rem 0.45rem rgba(0,0,0,.16); transition:background-color .2s; }
 .pdp-b .mbxdemo__play:hover { background:#fff; }

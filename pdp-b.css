@@ -2291,7 +2291,7 @@ body.is-scrolled #quickbar {
 .rvw-review__head .rvw-stars svg { width: 1.35rem; height: 1.35rem; }   /* review-list rating – was tiny at 1rem */
 /* Icon-only verified badge: the seal alone (label kept for screen readers + a hover
    tooltip via title). No text, so no gap and the box shrinks to the seal. */
-.rvw-verified { display: inline-flex; align-items: center; gap: 0; font-size: 0.8125rem; font-weight: 700; color: var(--color-teal); white-space: nowrap; }
+.rvw-verified { position: relative; display: inline-flex; align-items: center; gap: 0; font-size: 0.8125rem; font-weight: 700; color: var(--color-teal); white-space: nowrap; }   /* anchors the visually-hidden label: without it the labels in the swipe row escape its clipping and widen the page on phones */
 .rvw-verified svg { width: 1.35rem; height: 1.35rem; }
 .rvw-vlabel { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .rvw-author { font-weight: 800; color: var(--color-digital-black); }
