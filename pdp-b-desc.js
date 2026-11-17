@@ -2833,6 +2833,25 @@ var MZSwipe = (function () {
   }, { threshold: 0.4 }).observe(demo);
 })();
 
+/* ── Beschreibung: Vorher / Mit Siebert – the list follows the before/after slider.
+   The share of each photo on show sets how present its column is: at the 50/50 rest
+   point both are full; sliding towards "Nachher" pales the problems, towards "Vorher"
+   the benefits (eased, so the change is gentle near the middle and clear at the ends).
+   Also follows the slider's intro nudge and arrow keys – both fire "input". ── */
+(function () {
+  var r = document.querySelector('#sx-beschreibung input[aria-label="Vorher-Nachher-Vergleich"]'); if (!r) return;
+  var row = r.closest('.row'), vs = (row && row.querySelector('.vs')) || document.querySelector('#sx-beschreibung .vs');
+  if (!vs) return;
+  function ease(x) { x = Math.max(0, Math.min(1, x)); return x * x * (3 - 2 * x); }
+  function follow() {
+    var v = (parseFloat(r.value) || 0) / 100;   /* share of the "Vorher" photo on show */
+    vs.style.setProperty('--vs-old', ease(v * 2).toFixed(3));
+    vs.style.setProperty('--vs-new', ease((1 - v) * 2).toFixed(3));
+  }
+  r.addEventListener('input', follow);
+  follow();
+})();
+
 /* ── Beschreibung: Das Wichtigste – a pin and its fact light each other up ── */
 (function () {
   var fig = document.querySelector('#sx-beschreibung .spot'); if (!fig) return;

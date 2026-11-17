@@ -3714,18 +3714,30 @@ body.is-scrolled #quickbar {
 #sx-beschreibung .vs__head, #sx-beschreibung .vs__rows li{ display:grid; grid-template-columns:minmax(0, 0.8fr) minmax(0, 1.2fr); column-gap:1.25rem; }
 #sx-beschreibung .vs__head{ margin:0 0 0.5rem; }
 #sx-beschreibung .vs__tag{ justify-self:start; padding:0.3rem 0.6rem; border-radius:var(--radius); color:#fff; font-size:0.6875rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; line-height:1; }
-#sx-beschreibung .vs__tag--old{ background:#D42924; }
-#sx-beschreibung .vs__tag--new{ background:#009951; }
+#sx-beschreibung .vs__tag--old{ background:#D42924; background:color-mix(in srgb, #D42924 calc(var(--vs-old) * 100%), var(--color-graphite-500)); }
+#sx-beschreibung .vs__tag--new{ background:#009951; background:color-mix(in srgb, #009951 calc(var(--vs-new) * 100%), var(--color-graphite-500)); }
 #sx-beschreibung .vs__rows{ list-style:none; margin:0; padding:0; }
 #sx-beschreibung .vs__rows li{ align-items:start; margin:0; padding:0.8rem 0; border-top:1px solid rgba(26,23,27,.08); }
 #sx-beschreibung .vs__rows li::marker{ content:none; }
 #sx-beschreibung .vs__old, #sx-beschreibung .vs__new{ display:grid; grid-template-columns:1.1rem minmax(0, 1fr); column-gap:0.5rem; align-items:start; }
 #sx-beschreibung .vs__old svg, #sx-beschreibung .vs__new svg{ width:1.1rem; height:1.1rem; margin-top:0.12rem; }
-#sx-beschreibung .vs__old svg{ color:#D42924; }
-#sx-beschreibung .vs__new svg{ grid-row:span 2; color:#009951; }
+#sx-beschreibung .vs__old svg{ color:#D42924; color:color-mix(in srgb, #D42924 calc(var(--vs-old) * 100%), var(--color-graphite-500)); }
+#sx-beschreibung .vs__new svg{ grid-row:span 2; color:#009951; color:color-mix(in srgb, #009951 calc(var(--vs-new) * 100%), var(--color-graphite-500)); }
 #sx-beschreibung .vs__old .vs__t{ font-size:0.9375rem; font-weight:400; line-height:1.35; color:var(--color-graphite-600); }   /* same size + line as the Siebert title; the ✕ and the muted grey mark the problem (no strike-through: in the shop that means an old price) */
 #sx-beschreibung .vs__new b{ font-size:0.9375rem; line-height:1.35; color:var(--color-digital-black); }
 #sx-beschreibung .vs__new em{ font-style:normal; font-size:0.8125rem; line-height:1.4; color:var(--text-secondary); }
+/* the list follows the before/after slider: JS sets --vs-old / --vs-new (0–1, eased) from
+   the share of each photo on show – both 1 at the 50/50 rest point, so nothing is dimmed
+   until someone drags. The side being slid away pales (text to 40 %, cross / tick and tag
+   fade to grey); rows follow 35 ms apart, so a fast drag ripples down the list. */
+#sx-beschreibung .vs{ --vs-old:1; --vs-new:1; }
+#sx-beschreibung .vs__old, #sx-beschreibung .vs__tag--old{ opacity:calc(0.4 + 0.6 * var(--vs-old)); }
+#sx-beschreibung .vs__new, #sx-beschreibung .vs__tag--new{ opacity:calc(0.4 + 0.6 * var(--vs-new)); }
+#sx-beschreibung .vs__old, #sx-beschreibung .vs__new, #sx-beschreibung .vs__tag, #sx-beschreibung .vs__old svg, #sx-beschreibung .vs__new svg{ transition:opacity .18s ease-out, color .18s ease-out, background-color .18s ease-out; }
+#sx-beschreibung .vs__rows li:nth-child(2) > *, #sx-beschreibung .vs__rows li:nth-child(2) svg{ transition-delay:35ms; }
+#sx-beschreibung .vs__rows li:nth-child(3) > *, #sx-beschreibung .vs__rows li:nth-child(3) svg{ transition-delay:70ms; }
+#sx-beschreibung .vs__rows li:nth-child(4) > *, #sx-beschreibung .vs__rows li:nth-child(4) svg{ transition-delay:105ms; }
+@media (prefers-reduced-motion: reduce){ #sx-beschreibung .vs__old, #sx-beschreibung .vs__new, #sx-beschreibung .vs__tag, #sx-beschreibung .vs__old svg, #sx-beschreibung .vs__new svg{ transition:none; } }
 
 /* ── Warum Metzler: the six production steps read as one journey ────────────────
    Wide: all six in a single row (Konstruktion → Versand at one glance) instead
