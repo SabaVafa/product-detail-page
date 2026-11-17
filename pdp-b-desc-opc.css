@@ -66,12 +66,3 @@
 #sx-beschreibung .img-fluid{max-width:100%;height:auto!important}
 #sx-beschreibung img.rounded{border-radius:var(--img-rnd,.5rem)}
 #sx-beschreibung .col-12:empty{display:none}
-
-/* ---- intro hero: cap width on large screens -----------------------------
-   The wide hero banner is a fixed composition – mailbox baked into the left of
-   the photo, title + badge absolutely pinned top-right – built for the shop's
-   ~1270px content width. At the full 1600px page width the blank stucco in the
-   middle stretches into dead space. Cap just this banner (centred) to its
-   designed width so it keeps its balance, while the rest of the description
-   content still runs full-width for consistency with the page. */
-#sx-beschreibung .mz-hero-video{max-width:1270px;margin-left:auto;margin-right:auto}
