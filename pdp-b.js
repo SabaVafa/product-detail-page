@@ -2549,8 +2549,9 @@ var MZSwipe = (function () {
    ============================================================ */
 (function () {
   'use strict';
-  var htmlCls = document.documentElement.classList;
-  if (!htmlCls.contains('flow-b') && !htmlCls.contains('flow-c') && !htmlCls.contains('flow-d')) return;   /* v2 + v3 + v4 share this module */
+  /* Shared by the main variant and v2/v3/v4: the "Alle Farben mit Bezeichnung"
+     link + labelled side window. Inert on any page without the swatches or the
+     #colorwin markup thanks to the grid/win presence checks below. */
   var grid = document.getElementById('pdpSwatches');
   var link = document.getElementById('colorListLink');   /* v2 opener – "Alle Farben" text link */
   var card = document.getElementById('colorCardLink');   /* v3 opener – selected-finish summary card */

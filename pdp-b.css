@@ -3138,8 +3138,9 @@ body.is-scrolled #quickbar {
    ============================================================ */
 /* v2 KEEPS v1's swatch grid (fast one-click selection) and ADDS a secondary link that opens
    the full labelled list – so both user groups are served from the same interface. The link
-   markup lives in index.html but only shows under ?flow=b. */
-.bx-color__listlink { display: none; align-items: center; gap: 0.45rem; margin-top: 0;
+   markup lives in index.html; shown on the main variant and flow-b, replaced by
+   the .bx-listfield card in flow-c. */
+.bx-color__listlink { display: inline-flex; align-self: flex-start; align-items: center; gap: 0.45rem; margin-top: 0;
   padding: 0.15rem 0; background: none; border: 0; cursor: pointer; font: inherit; font-size: 0.875rem; font-weight: 700;
   color: var(--color-teal); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.22em;
   transition: color .15s ease; }
