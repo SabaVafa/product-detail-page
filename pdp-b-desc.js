@@ -1631,19 +1631,26 @@ var MZSwipe = (function () {
 
   /* ── 1 · Gravurdaten – Namensschild, Straße, Hausnummer (free, optional) ── */
   var gt = $('bGravName');
+  var fonts = $('bFonts');
+  /* font tiles preview the customer's own name plate (falls back to the render's "Hoffmann") */
+  function fontPreview() {
+    var name = state.gravurText || 'Hoffmann';
+    if (fonts) fonts.querySelectorAll('.cfg-font__s').forEach(function (s) { s.textContent = name; });
+  }
   [['bGravName', 'gravurText'], ['bGravStreet', 'gravurStreet'], ['bGravNr', 'gravurNr'], ['bGravNote', 'gravurNote']].forEach(function (p) {
     var f = $(p[0]); if (!f) return;
     f.addEventListener('input', function () {
       state[p[1]] = this.value.trim();
-      state.gravurOn = !!state.gravurText;   /* the name plate drives the live engraving on the hero */
+      state.gravurOn = !!state.gravurText;
+      if (p[0] === 'bGravName') fontPreview();
       refresh();
     });
   });
-  var fonts = $('bFonts');
   if (fonts) fonts.addEventListener('click', function (e) {
     var b = e.target.closest('.cfg-font'); if (!b) return;
-    this.querySelectorAll('.cfg-font').forEach(function (x) { x.classList.remove('is-selected'); });
-    b.classList.add('is-selected'); state.font = b.getAttribute('data-font');
+    this.querySelectorAll('.cfg-font').forEach(function (x) { x.classList.remove('is-selected'); x.setAttribute('aria-pressed', 'false'); });
+    b.classList.add('is-selected'); b.setAttribute('aria-pressed', 'true'); state.font = b.getAttribute('data-font');
+    setTxt('bFontName', state.font);
     if (gt) gt.style.fontFamily = FONTS[state.font] || ''; refresh();
   });
 

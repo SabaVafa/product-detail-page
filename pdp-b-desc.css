@@ -1497,14 +1497,18 @@ body.kbd-open .cfgb-dock.is-fixed { display: none !important; }
   .pdp-b .cfgb .stepr__item.is-active .stepr__body { grid-template-rows: 1fr !important; }
   .pdp-b .cfgb .stepr__inner { overflow: hidden; }
   .pdp-b .cfgb .stepr__pad { padding: 0.1rem 1.1rem 1.2rem; }
+  /* options as compact tiles like the live shop – a lone item no longer stretches
+     into a full-width card with a 550 px picture */
+  .pdp-b .cfgb #cfgbSteps .cfg-opts { grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr)); }
 }
 
 /* The doorbell's live engraving overlay sits on the bottom plate; the Siebert render
    already shows its engraved plates, so an overlay would print over "Bachstraße". */
 .pdp-b #bEngrave { display: none; }
 
-/* Siebert step content – info note with the feature link, feature image, facts,
-   engraving fields, font tiles, proof text */
+/* Siebert step content – info note with the feature link (details live in the
+   "Mehr erfahren" dialog, so steps carry only the choice), engraving fields,
+   font tiles, proof text */
 .pdp-b .cfg-note { display: flex; align-items: center; flex-wrap: wrap; gap: 0.35rem 0.55rem; margin: 0 0 0.9rem; padding: 0.6rem 0.75rem;
   border: 1px solid rgba(1,82,83,.16); border-radius: var(--radius-lg); background: var(--color-teal-50); font-size: 0.875rem; line-height: 1.4; color: var(--color-digital-black); }
 .pdp-b .cfg-note > svg { width: 1.15rem; height: 1.15rem; flex: none; color: var(--color-teal); }
@@ -1514,14 +1518,8 @@ body.kbd-open .cfgb-dock.is-fixed { display: none !important; }
 .pdp-b .cfg-more::after { content: "→"; font-weight: 400; }
 .pdp-b .cfg-more:hover { background: var(--color-teal); color: var(--color-white); }
 .pdp-b .cfg-more:focus-visible { outline: 2px solid var(--color-teal); outline-offset: 2px; }
-.pdp-b .cfg-media { position: relative; margin: 0 0 0.9rem; aspect-ratio: 16 / 9; border-radius: var(--radius-lg); overflow: hidden; background: #ecebe8; }
-.pdp-b .cfg-media img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.pdp-b .cfg-media figcaption { position: absolute; left: 0; bottom: 0.75rem; padding: 0.3rem 0.65rem; background: rgba(0,0,0,.55); color: #fff;
-  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
-.pdp-b .cfg-facts { list-style: none; display: grid; gap: 0.4rem; margin: 0 0 1rem; padding: 0; }
-.pdp-b .cfg-facts li { position: relative; margin: 0; padding-left: 1.35rem; font-size: 0.875rem; line-height: 1.45; color: var(--color-graphite-700); }
-.pdp-b .cfg-facts li::before { content: ""; position: absolute; left: 0.1rem; top: 0.32rem; width: 0.75rem; height: 0.4rem; border-left: 2px solid var(--color-teal); border-bottom: 2px solid var(--color-teal); transform: rotate(-45deg); }
-.pdp-b .cfg-facts b { color: var(--color-digital-black); }
+.pdp-b .cfg-note--link { margin-bottom: 0.75rem; padding: 0; border: 0; background: none; }   /* link only: the header already says "Optional" */
+.pdp-b .cfg-note--link .cfg-more { margin-left: 0; }
 .pdp-b .cfg-gfields { display: grid; grid-template-columns: minmax(0, 1fr) 7rem; gap: 0.6rem; margin: 0 0 1rem; }
 .pdp-b .cfg-gfield { display: flex; flex-direction: column; gap: 0.25rem; margin: 0; font-size: 0.75rem; font-weight: 700; color: var(--color-graphite-700); }
 .pdp-b .cfg-gfield:first-child { grid-column: 1 / -1; }
@@ -1534,6 +1532,38 @@ body.kbd-open .cfgb-dock.is-fixed { display: none !important; }
 .pdp-b .cfg-comment summary { cursor: pointer; font-size: 0.8125rem; font-weight: 700; color: var(--color-teal); text-decoration: underline; text-underline-offset: 0.2em; }
 .pdp-b .cfg-comment textarea.cfg-input { height: auto; min-height: 4.5rem; margin-top: 0.5rem; resize: vertical; }
 .pdp-b .cfg-proof { margin: 0 0 0.9rem; font-size: 0.875rem; line-height: 1.5; color: var(--color-graphite-700); }
+
+/* ── Schriftart: every tile is a mini Edelstahl name plate with the customer's own
+   name (live from "Namensschild", "Hoffmann" until typed) – the choice is made on
+   the real result, not on "Muster123". Even 3-up grid, text always fits the plate
+   (container units × a per-font optical scale --fs), check badge on the pick. ── */
+.pdp-b .cfg-fonthead { display: flex; align-items: baseline; justify-content: space-between; gap: 0.75rem; margin: 0 0 0.55rem; }
+.pdp-b .cfg-fonthead .cfg-sublabel { margin: 0; }
+.pdp-b .cfg-sublabel__val { margin-left: 0.3rem; font-weight: 600; color: var(--color-teal); }
+.pdp-b .cfg-fonthead__hint { font-size: 0.75rem; color: var(--text-secondary); }
+.pdp-b .cfgb #bFonts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.6rem; padding-top: 0; }
+.pdp-b .cfgb #bFonts .cfg-font { position: relative; display: flex; flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 0.4rem; min-height: 0;
+  padding: 0.45rem 0.45rem 0.5rem; border: 1.5px solid var(--color-graphite-200); border-radius: var(--radius-lg); background: var(--color-white); cursor: pointer; transition: border-color .15s, box-shadow .15s; }
+.pdp-b .cfgb #bFonts .cfg-font:hover { border-color: var(--color-graphite-400); }
+.pdp-b .cfgb #bFonts .cfg-font.is-selected { border-color: var(--color-teal); box-shadow: 0 0 0 1px var(--color-teal); background: var(--color-white); }
+.pdp-b .cfgb #bFonts .cfg-font.is-selected::after { content: ""; position: absolute; top: -0.5rem; right: -0.5rem; width: 1.2rem; height: 1.2rem; border-radius: 50%; box-shadow: 0 0 0 2px var(--color-white);
+  background: var(--color-teal) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E") center / 0.7rem no-repeat; }
+.pdp-b .cfgb #bFonts .cfg-font:focus-visible { outline: 2px solid var(--color-teal); outline-offset: 2px; }
+.pdp-b .cfg-font__plate { container-type: inline-size; display: flex; align-items: center; justify-content: center; height: 2.9rem; padding: 0 0.45rem; border-radius: 3px; overflow: hidden;
+  background: linear-gradient(180deg, rgba(255,255,255,.6), rgba(255,255,255,0) 45%, rgba(0,0,0,.07)), repeating-linear-gradient(0deg, #d8dbdd 0 1px, #e7e9eb 1px 3px);
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,.08); }
+.pdp-b .cfgb #bFonts .cfg-font__s { display: block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  font-size: calc(var(--fs, 1) * 15.5cqi); line-height: 1.25; color: #26292c; text-shadow: 0 1px 0 rgba(255,255,255,.75); }   /* dark, laser-engraved look */
+.pdp-b .cfgb #bFonts .cfg-font.is-selected .cfg-font__s { color: #1b1e21; }
+.pdp-b .cfgb #bFonts .cfg-font__n { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.01em; text-transform: none; text-align: center; color: var(--color-graphite-700); }
+.pdp-b .cfgb #bFonts .cfg-font.is-selected .cfg-font__n { color: var(--color-teal); }
+.pdp-b .cfgb #bFonts .cfg-font__tag { position: static; align-self: center; transform: none; margin-top: -0.15rem; padding: 0.05rem 0.45rem; font-size: 0.625rem; }
+
+/* step headers: the "Optional" chip sits in one column at the right on every width
+   (it followed the title length on desktop, so chips zigzagged and the pick line
+   ran under them) */
+.pdp-b .cfgb .stepr__title { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; width: 100%; }
+.pdp-b .cfgb .stepr__titles { flex: 1; min-width: 0; }
 
 /* ── Feature info modal ("Mehr erfahren" in the configurator) ───────────────────
    Centered dialog on wide screens, bottom sheet on phones; the description block
