@@ -3746,6 +3746,20 @@ body.is-scrolled #quickbar {
 #sx-beschreibung .mz-kap-xdm .info-panel { margin-top: 0.5rem; }
 #sx-beschreibung .mz-kap-xdm .swatch-nav { padding: 0.5rem 1rem; }
 #sx-beschreibung .mz-farbname .slider-product-title { min-height: 0 !important; margin-bottom: 1.25rem !important; }
+/* Two columns: the eyebrow belongs to the text column, so the visual (box stack +
+   swatches) spans the full panel height and centres on what is VISIBLE – its
+   stage has ~2.9rem of empty space above the box (stage air + the render's
+   transparent top margin), pulled out with a negative top margin. Result:
+   equal space above the box and below the swatches. */
+@media (min-width:62rem){
+  #sx-beschreibung .mz-kap-xdm > [data-area-id="col-0"] { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); grid-template-rows: auto 1fr; column-gap: 2rem; }
+  #sx-beschreibung .mz-kap-xdm > [data-area-id="col-0"] > .mz-eyebrow { grid-column: 1; grid-row: 1; }
+  #sx-beschreibung .mz-kap-xdm > [data-area-id="col-0"] > .row { display: contents; }
+  #sx-beschreibung .mz-kap-xdm > [data-area-id="col-0"] > .row > .clearfix { display: none; }
+  #sx-beschreibung .mz-kap-xdm > [data-area-id="col-0"] > .row > [data-area-id] { width: auto; max-width: none; flex: none; padding-left: 0; padding-right: 0; }
+  #sx-beschreibung .mz-kap-xdm > [data-area-id="col-0"] > .row > [data-area-id="col-0"] { grid-column: 1; grid-row: 2; align-self: start; }
+  #sx-beschreibung .mz-kap-xdm > [data-area-id="col-0"] > .row > [data-area-id="col-1"] { grid-column: 2; grid-row: 1 / 3; align-self: center; margin-top: -2.9rem; }
+}
 /* phones: the 16 px facts wrapped 2–3 lines each – 14 px, tighter rows, a slightly shorter stage */
 @media (max-width:47.9375rem){
   #sx-beschreibung .mz-kap-xdm .mz-ikl { gap: 0.55rem; }
