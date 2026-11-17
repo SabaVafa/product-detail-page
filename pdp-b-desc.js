@@ -2791,3 +2791,40 @@ var MZSwipe = (function () {
     else if (!vis && playing) run(false);
   }, { threshold: 0.4 }).observe(demo);
 })();
+
+/* ── Beschreibung: Das Wichtigste – a pin and its fact light each other up ── */
+(function () {
+  var fig = document.querySelector('#sx-beschreibung .spot'); if (!fig) return;
+  var row = fig.closest('.row') || document;
+  function hot(n, on) {
+    row.querySelectorAll('[data-spot="' + n + '"]').forEach(function (el) { el.classList.toggle('is-hot', on); });
+  }
+  row.querySelectorAll('[data-spot]').forEach(function (el) {
+    var n = el.getAttribute('data-spot');
+    el.addEventListener('mouseenter', function () { hot(n, true); });
+    el.addEventListener('mouseleave', function () { hot(n, false); });
+  });
+  fig.querySelectorAll('.spot__pin').forEach(function (pin) {
+    var n = pin.getAttribute('data-spot');
+    pin.addEventListener('focus', function () { hot(n, true); });
+    pin.addEventListener('blur', function () { hot(n, false); });
+    pin.addEventListener('click', function () {   /* touch: keep it lit and bring the fact into view */
+      row.querySelectorAll('.is-hot').forEach(function (el) { el.classList.remove('is-hot'); });
+      hot(n, true);
+      var li = row.querySelector('li[data-spot="' + n + '"]');
+      if (li && li.getBoundingClientRect().bottom > window.innerHeight - 90) li.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    });
+  });
+})();
+
+/* ── Beschreibung: slot gauge – the format bars draw in once in view ── */
+(function () {
+  var fit = document.querySelector('#sx-beschreibung .fit');
+  if (!fit || !('IntersectionObserver' in window)) return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  fit.classList.add('is-armed');
+  new IntersectionObserver(function (es, io) {
+    if (!es[0].isIntersecting) return;
+    fit.classList.add('is-in'); io.disconnect();
+  }, { threshold: 0.5 }).observe(fit);
+})();

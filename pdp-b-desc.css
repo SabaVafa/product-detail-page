@@ -3374,12 +3374,12 @@ body.is-scrolled #quickbar {
 .pdp-b .dsc-merge__cap { display:block; margin-top:0.55rem; font-size:0.8125rem; line-height:1.4; color:var(--text-secondary); text-align:center; }
 .pdp-b .dsc-merge__cap b { display:block; color:var(--color-digital-black); font-weight:700; font-size:0.875rem; letter-spacing:0.02em; }
 @media (max-width:30rem){ .pdp-b .dsc-merge__stages { grid-template-columns:1fr; } }
-/* ── Merged opener as ONE grid: copy + step chapters | live stage, formats band ──
+/* ── Merged opener as ONE grid: copy + slot gauge | live stage + steps ──────────
    col-0 dissolves (display:contents) so its parts and the stage (col-1) share a
-   grid. Phones/tablets: centred stack – copy, stage, steps, formats. ≥ 64 rem:
-   copy and the steps as chapters on the left, a larger stage on the right and
-   the formats as a full-width band – no idle side space on wide screens. */
-#sx-beschreibung .row:has(> [data-area-id="col-0"] > .dsc-brand){ display:grid; grid-template-columns:minmax(0, 1fr); grid-template-areas:"brand" "head" "body" "stage" "steps" "fmt"; margin-inline:0; }
+   grid. Phones/tablets: centred stack – copy, stage, steps, gauge. ≥ 64 rem: copy
+   and the slot gauge on the left, the larger stage with its steps on the right –
+   the formats live in space that was idle instead of a band of their own. */
+#sx-beschreibung .row:has(> [data-area-id="col-0"] > .dsc-brand){ display:grid; grid-template-columns:minmax(0, 1fr); grid-template-areas:"brand" "head" "body" "stage" "steps" "fit"; margin-inline:0; }
 #sx-beschreibung .row:has(> [data-area-id="col-0"] > .dsc-brand) > .clearfix{ display:none; }
 #sx-beschreibung .row:has(> [data-area-id="col-0"] > .dsc-brand) > [data-area-id="col-1"]{ grid-area:stage; width:auto; max-width:none; flex:none; padding-inline:0; margin-top:1.5rem; }
 #sx-beschreibung [data-area-id="col-0"]:has(> .dsc-brand){ display:contents; text-align:center; }
@@ -3389,39 +3389,62 @@ body.is-scrolled #quickbar {
 #sx-beschreibung [data-area-id="col-0"]:has(> .dsc-brand) > .mbxsteps{ grid-area:steps; width:100%; max-width:40rem; margin:1rem auto 0; }
 #sx-beschreibung [data-area-id="col-0"]:has(> .dsc-brand) > div[style*="margin-top:24px"]{ display:none; }   /* OPC spacer */
 
+/* ── Das Wichtigste in Kürze: one real photo, five numbered hotspots ─────────────
+   Each fact points at the part of the box it is about (slot, newspaper
+   compartment, coating, name plate, hidden lock); the pins pulse in turn to
+   guide the eye, and hovering or tapping a pin or a fact lights up its partner. */
+#sx-beschreibung .spot{ position:relative; max-width:36rem; margin:0 auto; border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-md); }
+#sx-beschreibung .spot img{ display:block; width:100%; height:auto; }
+#sx-beschreibung .spot__pin{ position:absolute; left:var(--x); top:var(--y); width:2rem; height:2rem; margin:-1rem 0 0 -1rem; padding:0; border:2px solid #fff; border-radius:50%; display:grid; place-items:center; background:var(--color-teal); color:#fff; font-family:inherit; font-size:0.8125rem; font-weight:700; line-height:1; cursor:pointer; box-shadow:0 0.2rem 0.6rem rgba(0,0,0,.35); transition:transform .2s, background-color .2s, color .2s; }
+#sx-beschreibung .spot__pin::before{ content:""; position:absolute; inset:-0.45rem; border-radius:50%; border:2px solid #fff; opacity:0; animation:spot-ping 3s ease-out infinite; pointer-events:none; }
+#sx-beschreibung .spot__pin:nth-of-type(2)::before{ animation-delay:.6s; }
+#sx-beschreibung .spot__pin:nth-of-type(3)::before{ animation-delay:1.2s; }
+#sx-beschreibung .spot__pin:nth-of-type(4)::before{ animation-delay:1.8s; }
+#sx-beschreibung .spot__pin:nth-of-type(5)::before{ animation-delay:2.4s; }
+@keyframes spot-ping{ 0%{ transform:scale(.75); opacity:.95; } 30%, 100%{ transform:scale(1.45); opacity:0; } }
+#sx-beschreibung .spot__pin.is-hot, #sx-beschreibung .spot__pin:hover{ transform:scale(1.18); background:#fff; color:var(--color-teal); }
+#sx-beschreibung .spot__pin:focus-visible{ outline:2px solid #fff; outline-offset:3px; }
+@media (prefers-reduced-motion: reduce){ #sx-beschreibung .spot__pin::before{ animation:none; } }
+/* the fact list: numbers instead of icons, so each fact maps to its pin */
+#sx-beschreibung .spot__n{ font-size:0.9375rem; font-weight:700; color:var(--color-teal); transition:background-color .2s, color .2s; }
+#sx-beschreibung li[data-spot]{ margin:-0.4rem; padding:0.4rem; border-radius:var(--radius-lg); transition:background-color .2s; }
+#sx-beschreibung li[data-spot].is-hot{ background:rgba(1,82,83,.06); }
+#sx-beschreibung li[data-spot].is-hot .spot__n{ background:var(--color-teal); color:#fff; }
+#sx-beschreibung .mz-ikl:has(> li[data-spot]){ gap:1.1rem; }
+
 /* Verfügbare Farben (live block): its icon list sits in a .mz-body, whose generic
    list indent (.mz-body ul) would push it right – keep it flush like on live. */
 #sx-beschreibung .mz-kap .mz-ikl{ padding-left:0; margin:0; }
 
-/* Formats band: the size chips as their own block closing the section */
-#sx-beschreibung .dsc-fmt{ grid-area:fmt; margin-top:2.5rem; padding:1.5rem 1rem 1.25rem; border-radius:var(--radius-lg); background:rgba(1,82,83,.045); text-align:center; }
-#sx-beschreibung .dsc-fmt__title{ margin:0 0 1.25rem; font-size:0.8125rem; line-height:1.45; color:var(--text-secondary); }
-#sx-beschreibung .dsc-fmt__title b{ display:block; margin-bottom:0.15rem; font-size:0.9375rem; color:var(--color-digital-black); }
-/* narrow: 2 × 2 instead of 4 in a row (column flow over 4 rows = icon, caption, icon, caption) */
-@media (max-width:36rem){
-  #sx-beschreibung .dsc-fmt .mz-fmt{ --sp:6rem; grid-template-columns:repeat(2, minmax(0, 1fr)); grid-template-rows:repeat(4, auto); justify-content:stretch; column-gap:1rem; }
-  #sx-beschreibung .dsc-fmt .mz-fmt .cap{ margin-bottom:0.9rem; }
-  /* row order, largest first: C4 | A4, then DIN Lang | C6 */
-  #sx-beschreibung .dsc-fmt .mz-fmt > svg:nth-of-type(odd){ grid-column:1; }   #sx-beschreibung .dsc-fmt .mz-fmt > .cap:nth-of-type(odd){ grid-column:1; }
-  #sx-beschreibung .dsc-fmt .mz-fmt > svg:nth-of-type(even){ grid-column:2; }  #sx-beschreibung .dsc-fmt .mz-fmt > .cap:nth-of-type(even){ grid-column:2; }
-  #sx-beschreibung .dsc-fmt .mz-fmt > svg:nth-of-type(-n+2){ grid-row:1; }     #sx-beschreibung .dsc-fmt .mz-fmt > .cap:nth-of-type(-n+2){ grid-row:2; }
-  #sx-beschreibung .dsc-fmt .mz-fmt > svg:nth-of-type(n+3){ grid-row:3; }      #sx-beschreibung .dsc-fmt .mz-fmt > .cap:nth-of-type(n+3){ grid-row:4; }
-}
+/* Slot gauge: each format drawn to scale against the 335 mm slot (dashed line) –
+   one glance says "it all fits", in a fraction of the space a chip row needs. */
+#sx-beschreibung .fit{ grid-area:fit; width:100%; max-width:34rem; margin:2rem auto 0; text-align:left; }
+#sx-beschreibung .fit__rows li{ display:grid; grid-template-columns:8.5rem minmax(0, 1fr); column-gap:1rem; align-items:center; }
+#sx-beschreibung .fit__head{ display:flex; justify-content:space-between; align-items:baseline; gap:1rem; margin:0 0 0.5rem; font-size:0.875rem; line-height:1.3; color:var(--color-digital-black); }
+#sx-beschreibung .fit__slot{ justify-self:end; font-size:0.75rem; font-weight:700; letter-spacing:0.02em; color:var(--color-teal); }
+#sx-beschreibung .fit__rows{ position:relative; list-style:none; margin:0; padding:0; }
+#sx-beschreibung .fit__rows::after{ content:""; position:absolute; top:-0.35rem; bottom:0.1rem; right:0; border-right:2px dashed var(--color-teal); pointer-events:none; }
+#sx-beschreibung .fit__rows li{ margin:0; padding:0.35rem 0; }
+#sx-beschreibung .fit__rows li::before, #sx-beschreibung .fit__rows li::marker{ content:none; }
+#sx-beschreibung .fit__name{ font-size:0.75rem; line-height:1.3; color:var(--text-secondary); }
+#sx-beschreibung .fit__name b{ display:block; font-size:0.875rem; color:var(--color-digital-black); }
+#sx-beschreibung .fit__bar{ position:relative; display:block; height:1.5rem; border-radius:0.375rem; background:rgba(1,82,83,.07); }
+#sx-beschreibung .fit__bar i{ position:absolute; inset:0 auto 0 0; width:calc(var(--mm) / 335 * 100%); display:flex; align-items:center; justify-content:flex-end; padding:0 0.5rem; box-sizing:border-box; border-radius:inherit; background:var(--color-teal); color:#fff; font-style:normal; font-size:0.6875rem; font-weight:700; white-space:nowrap; font-variant-numeric:tabular-nums; }
+/* bars draw in once the gauge is in view (JS arms it; no JS / reduced motion: static) */
+#sx-beschreibung .fit.is-armed .fit__bar i{ clip-path:inset(0 100% 0 0); transition:clip-path .9s cubic-bezier(.2,.8,.2,1); }
+#sx-beschreibung .fit.is-armed.is-in .fit__bar i{ clip-path:inset(0 0 0 0); }
+#sx-beschreibung .fit.is-armed li:nth-child(2) .fit__bar i{ transition-delay:.08s; }
+#sx-beschreibung .fit.is-armed li:nth-child(3) .fit__bar i{ transition-delay:.16s; }
+#sx-beschreibung .fit.is-armed li:nth-child(4) .fit__bar i{ transition-delay:.24s; }
 
 @media (min-width:64rem){
-  #sx-beschreibung .row:has(> [data-area-id="col-0"] > .dsc-brand){ grid-template-columns:minmax(0, 1fr) minmax(0, 1.5fr); column-gap:clamp(2.5rem, 4vw, 5rem); grid-template-rows:1fr auto auto auto auto 1fr auto; grid-template-areas:". stage" "brand stage" "head stage" "body stage" "steps stage" ". stage" "fmt fmt"; }
+  #sx-beschreibung .row:has(> [data-area-id="col-0"] > .dsc-brand){ grid-template-columns:minmax(0, 1fr) minmax(0, 1.5fr); column-gap:clamp(2.5rem, 4vw, 5rem); grid-template-rows:1fr auto auto auto auto 1fr auto; grid-template-areas:". stage" "brand stage" "head stage" "body stage" "fit stage" ". stage" ". steps"; }
   #sx-beschreibung .row:has(> [data-area-id="col-0"] > .dsc-brand) > [data-area-id="col-1"]{ margin-top:0; }
   #sx-beschreibung [data-area-id="col-0"]:has(> .dsc-brand){ text-align:left; }
   #sx-beschreibung [data-area-id="col-0"]:has(> .dsc-brand) > .mz-body{ margin-inline:0; max-width:34rem; }
-  #sx-beschreibung [data-area-id="col-0"]:has(> .dsc-brand) > .mbxsteps{ grid-template-columns:minmax(0, 1fr); gap:0; max-width:26rem; margin:1.5rem 0 0; }
-  /* steps become chapters: a vertical progress line beside each */
-  #sx-beschreibung .mbxstep{ grid-template-columns:3px 1.375rem minmax(0, 1fr); grid-template-areas:"bar n t" "bar . s"; column-gap:0.75rem; padding:0.7rem 0; }
-  #sx-beschreibung .mbxstep__bar{ width:3px; height:auto; margin:0; align-self:stretch; }
-  #sx-beschreibung .mbxstep__bar i{ transform:scaleY(var(--p, 0)); transform-origin:50% 0; }
+  #sx-beschreibung [data-area-id="col-0"]:has(> .dsc-brand) > .mbxsteps{ max-width:none; margin:1rem 0 0; }
+  #sx-beschreibung .fit{ margin:1.75rem 0 0; }
   #sx-beschreibung .mbxdemo{ max-width:none; }
-  #sx-beschreibung .dsc-fmt{ display:grid; grid-template-columns:minmax(0, 17rem) minmax(0, 1fr); align-items:center; column-gap:3rem; padding:2rem 2.5rem; text-align:left; }
-  #sx-beschreibung .dsc-fmt__title{ margin:0; }
-  #sx-beschreibung .dsc-fmt .mz-fmt{ --sp:7.5rem; column-gap:2.5rem; justify-content:end; }
 }
 
 /* ── Einwerfen → Entnehmen: the real Siebert on the wall ────────────────────────
