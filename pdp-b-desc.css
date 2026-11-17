@@ -3376,6 +3376,28 @@ body.is-scrolled #quickbar {
    keep the illustration (stronger, in-context) and drop the chip row + its spacer. */
 #sx-beschreibung [data-area-id="col-0"]:has(> .dsc-brand) > .mz-body + div,
 #sx-beschreibung [data-area-id="col-0"]:has(> .dsc-brand) > .mz-body + div + div{ display:none; }
+
+/* ── One-box stage: both actions on a single mailbox ─────────────────────────
+   The video plays the flap opening (Entnahme) while envelopes animate down into
+   the top slot (Einwurf) – so the drop-in and the collection happen together. */
+.pdp-b .dropstage { position:relative; aspect-ratio:1/1; max-width:40rem; margin:0 auto; border-radius:var(--radius-lg); overflow:hidden; background:#ece8e1; box-shadow:var(--shadow-md); }
+.pdp-b .dropstage__vid { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:22% center; display:block; }
+.pdp-b .dropstage__fall { position:absolute; inset:0; pointer-events:none; }
+.pdp-b .dropstage__env { position:absolute; display:block; filter:drop-shadow(0 0.5rem 0.75rem rgba(0,0,0,.28)); }
+.pdp-b .dropstage__env svg { display:block; width:100%; height:auto; }
+.pdp-b .dropstage__env--1 { left:38%; width:13%; animation:dropenv 3.6s ease-in infinite; }
+.pdp-b .dropstage__env--2 { left:42%; width:18%; animation:dropenv 3.6s ease-in infinite 1.2s; }
+.pdp-b .dropstage__env--3 { left:40%; width:23%; animation:dropenv 3.6s ease-in infinite 2.4s; }
+@keyframes dropenv {
+  0%   { top:-14%; opacity:0; transform:translateX(-50%) rotate(-7deg); }
+  14%  { opacity:1; }
+  58%  { top:30%; opacity:1; transform:translateX(-50%) rotate(3deg); }
+  74%  { top:41%; opacity:0; transform:translateX(-50%) rotate(6deg); }
+  100% { top:41%; opacity:0; }
+}
+@media (prefers-reduced-motion: reduce){ .pdp-b .dropstage__env { animation:none !important; opacity:0; } }
+.pdp-b .dropstage__cap { margin:0.7rem 0 0; text-align:center; font-size:0.8125rem; line-height:1.4; color:var(--text-secondary); }
+.pdp-b .dropstage__cap b { display:block; color:var(--color-digital-black); font-weight:700; font-size:0.875rem; letter-spacing:0.02em; }
 .pdp-b .dsc-trust { display:flex; align-items:center; gap:0.85rem; margin-top:1.6rem; }
 .pdp-b .dsc-trust img { width:76px; height:auto; border-radius:0.375rem; box-shadow:0 0.0625rem 0.25rem rgba(0,0,0,0.1); flex:0 0 auto; }
 .pdp-b .dsc-trust__t { font-size:0.8125rem; line-height:1.45; color:var(--text-secondary); }
