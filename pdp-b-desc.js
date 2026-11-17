@@ -2817,6 +2817,40 @@ var MZSwipe = (function () {
   });
 })();
 
+/* ── Beschreibung: Smarte Ausstattung – option switch + lock "ways" ── */
+(function () {
+  var box = document.querySelector('#sx-beschreibung .smart'); if (!box) return;
+  var tabs = [].slice.call(box.querySelectorAll('.smart__tab'));
+  function pick(tab, focus) {
+    tabs.forEach(function (t) {
+      var on = t === tab;
+      t.classList.toggle('is-on', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    });
+    if (focus) tab.focus();
+  }
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { pick(t); });
+    t.addEventListener('keydown', function (e) {   /* ←/→ move between the two options */
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      e.preventDefault();
+      pick(tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length], true);
+    });
+  });
+  var img = box.querySelector('#smartLock .smart__media img'), hint = box.querySelector('.smart__hint');
+  box.querySelectorAll('.smart__way').forEach(function (w, i, all) {
+    w.addEventListener('click', function () {
+      all.forEach(function (o) { o.classList.toggle('is-on', o === w); o.setAttribute('aria-pressed', o === w ? 'true' : 'false'); });
+      if (hint) hint.textContent = w.getAttribute('data-hint');
+      if (!img) return;
+      img.style.opacity = '0.35';
+      window.setTimeout(function () { img.src = w.getAttribute('data-img'); img.alt = w.getAttribute('data-alt'); img.style.opacity = '1'; }, 150);
+    });
+  });
+})();
+
 /* ── Beschreibung: slot gauge – the format bars draw in once in view ── */
 (function () {
   var fit = document.querySelector('#sx-beschreibung .fit');

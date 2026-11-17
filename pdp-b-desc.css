@@ -3361,10 +3361,17 @@ body.is-scrolled #quickbar {
 /* Zubehör cards (live inline styles): the fixed 2-col grid + 13 rem image made
    each card wider than its column, so phones zoomed the whole page out. Two
    columns only when each gets ≥ 24 rem; the text may shrink and hyphenate. */
-#sx-beschreibung .mz-zk { grid-template-columns:repeat(auto-fit, minmax(min(100%, 24rem), 1fr)); }
+#sx-beschreibung .mz-zk { grid-template-columns:minmax(0, 1fr); }
 #sx-beschreibung .mz-zk-k { min-width:0; }
 #sx-beschreibung .mz-zk-k > div { min-width:0; overflow-wrap:break-word; hyphens:auto; }
 @media (max-width:30rem){ #sx-beschreibung .mz-zk-k { padding:1rem; gap:1rem; } #sx-beschreibung .mz-zk-b { flex-basis:6.5rem; height:6.5rem; } }
+@media (min-width:40rem){ #sx-beschreibung .mz-zk { grid-template-columns:repeat(2, minmax(0, 1fr)); } }
+/* wide: the four options as one row of upright cards – picture, name, use, price */
+@media (min-width:64rem){
+  #sx-beschreibung .mz-zk { grid-template-columns:repeat(4, minmax(0, 1fr)); }
+  #sx-beschreibung .mz-zk-k { flex-direction:column; align-items:stretch; gap:0.9rem; padding:1.25rem 1.25rem 1.4rem; }
+  #sx-beschreibung .mz-zk-b { flex:none; width:100%; height:10rem; }
+}
 .pdp-b .dsc-brand { display:block; font-size:0.8125rem; font-weight:800; letter-spacing:0.09em; text-transform:uppercase; color:var(--color-teal); margin:0 0 0.7rem; }
 .pdp-b .dsc-merge__stages { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
 .pdp-b .dsc-merge__fig { margin:0; }
@@ -3389,6 +3396,11 @@ body.is-scrolled #quickbar {
 #sx-beschreibung [data-area-id="col-0"]:has(> .dsc-brand) > .mbxsteps{ grid-area:steps; width:100%; max-width:40rem; margin:1rem auto 0; }
 #sx-beschreibung [data-area-id="col-0"]:has(> .dsc-brand) > div[style*="margin-top:24px"]{ display:none; }   /* OPC spacer */
 
+/* Section headlines: the live 2.875 rem (46 px, same on phones) broke most of them
+   onto two lines – scale fluidly 26 → 36 px and tighten the gap below the head. */
+#sx-beschreibung .mz-display, #sx-beschreibung .mz-display span{ font-size:clamp(1.625rem, 1.1rem + 1.8vw, 2.25rem); line-height:1.15; letter-spacing:-0.01em; }
+#sx-beschreibung .mz-kopf-abstand{ margin-bottom:2rem; }
+
 /* ── Das Wichtigste in Kürze: one real photo, five numbered hotspots ─────────────
    Each fact points at the part of the box it is about (slot, newspaper
    compartment, coating, name plate, hidden lock); the pins pulse in turn to
@@ -3411,6 +3423,61 @@ body.is-scrolled #quickbar {
 #sx-beschreibung li[data-spot].is-hot{ background:rgba(1,82,83,.06); }
 #sx-beschreibung li[data-spot].is-hot .spot__n{ background:var(--color-teal); color:#fff; }
 #sx-beschreibung .mz-ikl:has(> li[data-spot]){ gap:1.1rem; }
+
+/* ── Smarte Ausstattung: two paid options, ONE panel ─────────────────────────────
+   A switch (Smart-Schloss / Briefsensor, price on the tab) swaps image, facts and
+   price; inside the lock the three ways to open it swap the photo. Replaces two
+   stacked rows of the same weight – about 40 % less height, nothing dropped. */
+#sx-beschreibung .smart{ max-width:64rem; margin:0 auto; }
+#sx-beschreibung .smart__tabs{ display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:0.5rem; max-width:34rem; margin:0 auto 1.25rem; padding:0.3rem; border-radius:var(--radius-xl); background:rgba(1,82,83,.06); }
+#sx-beschreibung .smart__tab{ display:flex; align-items:center; justify-content:center; gap:0.6rem; padding:0.65rem 0.75rem; border:0; border-radius:var(--radius-lg); background:transparent; color:var(--text-secondary); font:inherit; text-align:left; cursor:pointer; transition:background-color .2s, color .2s, box-shadow .2s; }
+#sx-beschreibung .smart__tab svg{ width:1.375rem; height:1.375rem; flex:none; }
+#sx-beschreibung .smart__tab b{ display:block; font-size:0.9375rem; line-height:1.2; color:inherit; }
+#sx-beschreibung .smart__tab em{ display:block; font-style:normal; font-size:0.8125rem; font-weight:600; line-height:1.2; }
+#sx-beschreibung .smart__tab.is-on{ background:#fff; color:var(--color-teal); box-shadow:0 0.1rem 0.5rem rgba(0,0,0,.1); }
+#sx-beschreibung .smart__tab.is-on b{ color:var(--color-digital-black); }
+#sx-beschreibung .smart__tab:focus-visible, #sx-beschreibung .smart__way:focus-visible{ outline:2px solid var(--color-teal); outline-offset:2px; }
+#sx-beschreibung .smart__panel{ display:grid; grid-template-columns:minmax(0, 1fr); gap:1.25rem; align-items:center; animation:smart-in .35s cubic-bezier(.2,.8,.2,1); }
+#sx-beschreibung .smart__panel[hidden]{ display:none; }
+@keyframes smart-in{ from{ opacity:0; transform:translateY(0.375rem); } to{ opacity:1; transform:none; } }
+#sx-beschreibung .smart__media{ margin:0; aspect-ratio:4/3; border-radius:var(--radius-lg); overflow:hidden; background:#f2f2f0; box-shadow:var(--shadow-md); }
+#sx-beschreibung .smart__media img{ display:block; width:100%; height:100%; object-fit:cover; transition:opacity .2s; }
+#sx-beschreibung .smart__t{ margin:0 0 0.75rem; font-size:1.375rem; font-weight:700; line-height:1.25; color:var(--color-digital-black); }
+#sx-beschreibung .smart__list{ margin:0 0 1rem; padding:0; list-style:none; display:grid; gap:0.5rem; }
+#sx-beschreibung .smart__list li{ position:relative; padding-left:1.6rem; margin:0; font-size:0.9375rem; line-height:1.45; color:var(--color-digital-black); }
+#sx-beschreibung .smart__list li::before{ content:""; position:absolute; left:0.15rem; top:0.3rem; width:0.9rem; height:0.5rem; border-left:2px solid var(--color-teal); border-bottom:2px solid var(--color-teal); transform:rotate(-45deg); }
+#sx-beschreibung .smart__label{ margin:0 0 0.45rem; font-size:0.75rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-secondary); }
+#sx-beschreibung .smart__ways{ display:flex; flex-wrap:wrap; gap:0.4rem; }
+#sx-beschreibung .smart__way{ padding:0.45rem 0.85rem; border:1.5px solid rgba(26,23,27,.18); border-radius:var(--radius-pill); background:#fff; color:var(--color-digital-black); font:inherit; font-size:0.8125rem; font-weight:600; cursor:pointer; transition:border-color .2s, background-color .2s, color .2s; }
+#sx-beschreibung .smart__way:hover{ border-color:var(--color-teal); }
+#sx-beschreibung .smart__way.is-on{ border-color:var(--color-teal); background:var(--color-teal); color:#fff; }
+#sx-beschreibung .smart__hint{ min-height:1.4em; margin:0.5rem 0 0; font-size:0.8125rem; color:var(--text-secondary); }
+#sx-beschreibung .smart__price{ display:flex; align-items:baseline; gap:0.6rem; margin:1.25rem 0 0; padding-top:1rem; border-top:1px solid rgba(26,23,27,.1); font-size:0.8125rem; color:var(--text-secondary); }
+#sx-beschreibung .smart__price b{ font-size:1.25rem; color:var(--color-teal); }
+@media (min-width:48rem){ #sx-beschreibung .smart__panel{ grid-template-columns:minmax(0, 1.15fr) minmax(0, 1fr); gap:clamp(2rem, 4vw, 3.5rem); } }
+@media (prefers-reduced-motion: reduce){ #sx-beschreibung .smart__panel{ animation:none; } }
+
+/* ── Konfigurator: steps beside the screen, not a 764 px photo under a headline ──
+   Wide: head + three numbered steps left, the laptop shot right. Phones: the two
+   tall phone screenshots sit side by side instead of ~1,900 px stacked. */
+#sx-beschreibung .kfg{ display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:1.25rem 0.75rem; align-items:start; }
+#sx-beschreibung .kfg > div:first-child{ grid-column:1 / -1; }
+#sx-beschreibung .kfg .mz-kopf-abstand{ margin-bottom:0.5rem; }
+#sx-beschreibung .kfg .mz-kfg-bild:not(.mz-kfg-bild-mobil){ grid-column:1 / -1; }
+#sx-beschreibung .kfg .mz-kfg-bild img{ border-radius:var(--radius-lg); }
+#sx-beschreibung .kfg__steps{ list-style:none; counter-reset:kfg; display:grid; gap:0.9rem; width:100%; max-width:30rem; margin:1.25rem auto 0; padding:0; text-align:left; }
+#sx-beschreibung .kfg__steps li{ counter-increment:kfg; display:grid; grid-template-columns:2rem minmax(0, 1fr); column-gap:0.8rem; align-items:center; margin:0; }
+#sx-beschreibung .kfg__steps li::before{ content:counter(kfg); grid-row:span 2; width:2rem; height:2rem; border-radius:50%; display:grid; place-items:center; background:rgba(1,82,83,.08); color:var(--color-teal); font-weight:700; font-size:0.875rem; }
+#sx-beschreibung .kfg__steps li::marker{ content:none; }
+#sx-beschreibung .kfg__steps b{ font-size:1rem; line-height:1.3; color:var(--color-digital-black); }
+#sx-beschreibung .kfg__steps span{ font-size:0.875rem; line-height:1.4; color:var(--text-secondary); }
+@media (min-width:64rem){
+  #sx-beschreibung .kfg{ grid-template-columns:minmax(0, 0.8fr) minmax(0, 1.2fr); column-gap:clamp(2.5rem, 4vw, 5rem); align-items:center; }
+  #sx-beschreibung .kfg > div:first-child{ grid-column:1; }
+  #sx-beschreibung .kfg .mz-kfg-bild:not(.mz-kfg-bild-mobil){ grid-column:2; }
+  #sx-beschreibung .kfg .mz-kopf{ text-align:left; }
+  #sx-beschreibung .kfg .kfg__steps{ margin:1.5rem 0 0; }
+}
 
 /* Verfügbare Farben (live block): its icon list sits in a .mz-body, whose generic
    list indent (.mz-body ul) would push it right – keep it flush like on live. */
