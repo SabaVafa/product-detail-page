@@ -3715,7 +3715,7 @@ body.is-scrolled #quickbar {
 #sx-beschreibung .vs__old svg, #sx-beschreibung .vs__new svg{ width:1.1rem; height:1.1rem; margin-top:0.12rem; }
 #sx-beschreibung .vs__old svg{ color:#D42924; }
 #sx-beschreibung .vs__new svg{ grid-row:span 2; color:#009951; }
-#sx-beschreibung .vs__old s{ font-size:0.875rem; line-height:1.4; color:var(--text-secondary); text-decoration-color:rgba(212,41,36,.55); }
+#sx-beschreibung .vs__old .vs__t{ font-size:0.9375rem; font-weight:400; line-height:1.35; color:var(--color-graphite-600); }   /* same size + line as the Siebert title; the ✕ and the muted grey mark the problem (no strike-through: in the shop that means an old price) */
 #sx-beschreibung .vs__new b{ font-size:0.9375rem; line-height:1.35; color:var(--color-digital-black); }
 #sx-beschreibung .vs__new em{ font-style:normal; font-size:0.8125rem; line-height:1.4; color:var(--text-secondary); }
 
