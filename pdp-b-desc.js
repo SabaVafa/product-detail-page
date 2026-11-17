@@ -155,9 +155,25 @@ var MZSwipe = (function () {
     '31107': 'assets/briefkasten/siebert-farbe-basaltgrau-ral7012.jpg',
     '31108': 'assets/briefkasten/siebert-farbe-wunschfarbe.jpg'
   };
+  /* Einwurf/Entnahme demo in the description uses the same render as its lid and
+     door texture; the interior gets a matching shade (top, bottom). Wunschfarbe
+     keeps the last real finish – its render is the RAL ring, not a box. */
+  var MBX_INSIDE = {
+    '31101': ['#1d2126', '#3b424b'], '31102': ['#a9a8a2', '#d6d5cf'], '31103': ['#555657', '#87888a'],
+    '31104': ['#2a292a', '#4a4849'], '31105': ['#0c0c0d', '#252527'], '31106': ['#5a5c5e', '#9a9c9e'],
+    '31107': ['#2a302f', '#4b5452']
+  };
+  function setDemoFinish(article) {
+    var demo = document.querySelector('.mbxdemo'), tone = MBX_INSIDE[article];
+    if (!demo || !tone) return;
+    demo.style.setProperty('--mbx-img', 'url("' + MAINIMG[article] + '")');
+    demo.style.setProperty('--mbx-in1', tone[0]);
+    demo.style.setProperty('--mbx-in2', tone[1]);
+  }
   /* Swap the hero to the finish's render with a short cross-fade (sets src while
      dimmed so the old frame never flips visibly). Keeps the engrave overlay. */
   function setMainImage(article, finish) {
+    setDemoFinish(article);
     var img = document.getElementById('pdpMainImg');
     var src = MAINIMG[article];
     if (!img || !src) return false;
@@ -2720,4 +2736,36 @@ var MZSwipe = (function () {
   var range = ba.querySelector('.dsc-ba__range'); if (!range) return;
   function upd(){ ba.style.setProperty('--ba', range.value + '%'); }
   range.addEventListener('input', upd); upd();
+})();
+
+/* ── Beschreibung: Einwerfen → Verwahren → Entnehmen demo ──
+   All parts run on one CSS clock (pdp-b-desc.css, mbx-*); this only starts it
+   when the stage scrolls into view, pauses it off-screen, offers pause/play and
+   lets the step bar jump to a phase. Reduced motion: parked on a still per step. */
+(function () {
+  var demo = document.querySelector('.mbxdemo'); if (!demo || !demo.getAnimations) return;
+  var btn = demo.querySelector('.mbxdemo__play');
+  var START = [0, 4800, 6600];     /* phase starts (ms) */
+  var STILL = [3450, 5800, 8200];  /* key frame per phase: C4 on the slot, locked, mail lifted out */
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var playing = false, held = reduce, started = false;
+  function anims() { return demo.getAnimations({ subtree: true }); }
+  function seek(ms) { anims().forEach(function (a) { a.currentTime = ms; }); }
+  function run(on) {
+    playing = on;
+    anims().forEach(function (a) { if (on) a.play(); else a.pause(); });
+    demo.classList.toggle('is-paused', !on);
+    if (btn) btn.setAttribute('aria-label', on ? 'Animation anhalten' : 'Animation abspielen');
+  }
+  run(false); seek(reduce ? STILL[0] : 0);
+  if (btn) btn.addEventListener('click', function () { held = playing; run(!playing); });
+  demo.querySelectorAll('.mbxstep').forEach(function (s, i) {
+    s.addEventListener('click', function () { seek(playing ? START[i] : STILL[i]); });
+  });
+  if (!('IntersectionObserver' in window)) { if (!held) run(true); return; }
+  new IntersectionObserver(function (es) {
+    var vis = es[0].isIntersecting;
+    if (vis && !held && !playing) { if (!started) seek(0); started = true; run(true); }
+    else if (!vis && playing) run(false);
+  }, { threshold: 0.35 }).observe(demo);
 })();
