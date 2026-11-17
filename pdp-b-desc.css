@@ -1588,7 +1588,7 @@ body.kbd-open .cfgb-dock.is-fixed { display: none !important; }
 .infomod__close { flex: none; display: grid; place-items: center; width: 2.5rem; height: 2.5rem; padding: 0; border: 0; border-radius: 50%; background: var(--color-graphite-100, #f1f1f2); color: var(--color-digital-black); cursor: pointer; }
 .infomod__close:hover { background: var(--color-graphite-200); }
 .infomod__close svg { width: 1.15rem; height: 1.15rem; }
-.infomod__close:focus-visible, .infomod__back:focus-visible { outline: 2px solid var(--color-teal); outline-offset: 2px; }
+.infomod__close:focus-visible { outline: 2px solid var(--color-teal); outline-offset: 2px; }
 .infomod__body { flex: 1; overflow: auto; overscroll-behavior: contain; padding: 1.4rem; }
 .infomod__body > * + * { margin-top: 1.5rem; }
 #infoMod .mz-kopf, #infoMod .mz-kopf .mz-kopf-lead { max-width: none; margin-left: 0; margin-right: 0; text-align: left; }   /* id: beats the OPC inline .mz-kopf rules */
@@ -1596,16 +1596,11 @@ body.kbd-open .cfgb-dock.is-fixed { display: none !important; }
 #sx-beschreibung #infoMod .mz-lead, #sx-beschreibung #infoMod .mz-lead p { font-size: 1rem; }
 .infomod__body .mz-kopf > .mz-eyebrow { display: none; }   /* the dialog's own eyebrow already says where we are */
 .infomod__body .mz-kopf-abstand { margin-bottom: 0; }
-.infomod__foot { display: flex; justify-content: flex-end; padding: 0.9rem 1.4rem 1.1rem; border-top: 1px solid var(--color-graphite-200); }
-.infomod__back { padding: 0.75rem 1.4rem; border: 0; border-radius: var(--radius); background: var(--color-teal); color: var(--color-white); font-family: inherit; font-size: 0.9375rem; font-weight: 700; cursor: pointer; }
-.infomod__back:hover { background: var(--color-teal-600); }
 @media (max-width: 47.9375rem) {
   .infomod { align-items: flex-end; padding: 0; }
   .infomod__panel { width: 100%; max-height: 92vh; border-radius: var(--radius-xl) var(--radius-xl) 0 0; transform: translateY(2rem); }
   .infomod__head { padding: 1rem 1rem 0.8rem; }
-  .infomod__body { padding: 1rem; }
-  .infomod__foot { padding: 0.8rem 1rem calc(0.9rem + env(safe-area-inset-bottom)); }
-  .infomod__back { width: 100%; }
+  .infomod__body { padding: 1rem 1rem calc(1.25rem + env(safe-area-inset-bottom)); }
 }
 @media (prefers-reduced-motion: reduce) { .infomod__backdrop, .infomod__panel { transition: none; } }
 
