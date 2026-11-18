@@ -3556,8 +3556,11 @@ body.is-scrolled #quickbar {
    --dsc-gap: the space on BOTH sides of every subsection divider (and above the closing
    band) – 40 px on phones to 64 px wide, just under the 44–72 px section padding.
    --dsc-head: standard head (eyebrow · heading · lead) to its content, 24 → 32 px.
+   --dsc-split: the one gap between picture and text in every split (kit Section 08:
+   1fr | 1fr, 5rem) – 40 → 80 px. Splits are two equal columns on the full content
+   width, picture side alternating down the page; stacked below 64rem.
    The live divider is 4rem above / 3rem below (!important) – evened out here. */
-#sx-beschreibung{ --dsc-gap:clamp(2.5rem, 5vw, 4rem); --dsc-head:clamp(1.5rem, 3vw, 2rem); }
+#sx-beschreibung{ --dsc-gap:clamp(2.5rem, 5vw, 4rem); --dsc-head:clamp(1.5rem, 3vw, 2rem); --dsc-split:clamp(2.5rem, 5vw, 5rem); }
 #sx-beschreibung .mz-divider{ margin:var(--dsc-gap) 0 !important; }
 #sx-beschreibung .mz-kopf-abstand{ margin-bottom:var(--dsc-head); }
 
@@ -3589,7 +3592,7 @@ body.is-scrolled #quickbar {
    A switch (Smart-Schloss / Briefsensor, price on the tab) swaps image, facts and
    price; inside the lock the three ways to open it swap the photo. Replaces two
    stacked rows of the same weight – about 40 % less height, nothing dropped. */
-#sx-beschreibung .smart{ max-width:64rem; margin:0 auto; }
+#sx-beschreibung .smart{ max-width:none; margin:0; }
 #sx-beschreibung .smart__tabs{ display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:0.5rem; max-width:34rem; margin:0 auto 1.25rem; padding:0.3rem; border-radius:var(--radius-xl); background:rgba(1,82,83,.06); }
 #sx-beschreibung .smart__tab{ display:flex; align-items:center; justify-content:center; gap:0.6rem; padding:0.65rem 0.75rem; border:0; border-radius:var(--radius-lg); background:transparent; color:var(--text-secondary); font:inherit; text-align:left; cursor:pointer; transition:background-color .2s, color .2s, box-shadow .2s; }
 #sx-beschreibung .smart__tab svg{ width:1.375rem; height:1.375rem; flex:none; }
@@ -3623,7 +3626,7 @@ body.is-scrolled #quickbar {
 #sx-beschreibung .smart__hint{ min-height:1.4em; margin:0.5rem 0 0; font-size:0.8125rem; color:var(--text-secondary); }
 #sx-beschreibung .smart__price{ display:flex; align-items:baseline; gap:0.6rem; margin:1.25rem 0 0; padding-top:1rem; border-top:1px solid rgba(26,23,27,.1); font-size:0.8125rem; color:var(--text-secondary); }
 #sx-beschreibung .smart__price b{ font-size:1.25rem; color:var(--color-teal); }
-@media (min-width:48rem){ #sx-beschreibung .smart__panel{ grid-template-columns:minmax(0, 1.15fr) minmax(0, 1fr); gap:clamp(2rem, 4vw, 3.5rem); } }
+@media (min-width:64rem){ #sx-beschreibung .smart__panel{ grid-template-columns:repeat(2, minmax(0, 1fr)); gap:var(--dsc-split); } }
 @media (prefers-reduced-motion: reduce){ #sx-beschreibung .smart__panel{ animation:none; } }
 
 /* ── Konfigurator: the standard centred head, then the steps beside the screen ──
@@ -3644,36 +3647,61 @@ body.is-scrolled #quickbar {
 #sx-beschreibung .kfg__steps b{ font-size:1rem; line-height:1.3; color:var(--color-digital-black); }
 #sx-beschreibung .kfg__steps span{ font-size:0.875rem; line-height:1.4; color:var(--text-secondary); }
 @media (min-width:64rem){
-  #sx-beschreibung .kfg{ grid-template-columns:minmax(0, 0.8fr) minmax(0, 1.2fr); grid-template-areas:"eb eb" "h h" "steps img"; column-gap:clamp(2.5rem, 4vw, 5rem); align-items:center; }
+  #sx-beschreibung .kfg{ grid-template-columns:repeat(2, minmax(0, 1fr)); grid-template-areas:"eb eb" "h h" "steps img"; column-gap:var(--dsc-split); align-items:center; }
   #sx-beschreibung .kfg .kfg__steps{ margin:0; }
   #sx-beschreibung .kfg .mz-kfg-bild:not(.mz-kfg-bild-mobil){ margin-top:0; }
 }
 
-/* ── Befestigung: the live scene gallery (.mz-sg-7be0a0000003e) – one stage photo,
-   seven stand tiles that swap it, as on the live shop. Kit rule: no hover lift, so
-   hover only tints the frame. Phones: the tiles become one swipe row instead of
-   four rows of two under the stage. Same for the Dekoration gallery (…42). */
+/* ── Scene galleries (Befestigung …3e, Dekoration …42): one layout for both ──────
+   The live component (stage photo + option tiles that swap it). Wide: a split like
+   every other – scene in one column, the tiles in two rows in the other (columns =
+   half the options: Deko 3 × 2, Befestigung 4 + 3), so choosing and seeing stay in
+   one view. Befestigung's scene sits right to keep the picture sides alternating
+   (Smart left → Befestigung right → Dekoration left). Tablets: the live stacked
+   form. Phones: the scene, then one swipe row. Kit: no hover lift. */
 #sx-beschreibung [class*="mz-sg-"] .sg-kachel:hover{ transform:none; }
 #sx-beschreibung [class*="mz-sg-"] .sg-kachel:not(.active):hover{ border-color:var(--color-graphite-300); }
-@media (max-width:35.9375rem){
-  #sx-beschreibung .mz-sg-7be0a0000003e .sg-kacheln{ grid-template-columns:none; grid-auto-flow:column; grid-auto-columns:30%; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; margin:1rem -1rem 0; padding:0 1rem 0.25rem; scroll-padding-inline:1rem; }
-  #sx-beschreibung .mz-sg-7be0a0000003e .sg-kacheln::-webkit-scrollbar{ display:none; }
-  #sx-beschreibung .mz-sg-7be0a0000003e .sg-kachel{ scroll-snap-align:start; }
-  #sx-beschreibung .mz-sg-7be0a0000003e .sg-kachel .mz-tile-name, #sx-beschreibung .mz-sg-7be0a0000003e .sg-kachel .mz-tile-price{ font-size:0.8125rem; line-height:1.3; }
-}
-/* ── Dekoration: the live scene switcher, laid out beside its options ───────────
-   Wide: scene left, the six variants as a 3 × 2 grid right (one screen instead
-   of scene-then-row). Phones: the variants become a swipe row under the scene. */
 @media (min-width:64rem){
-  #sx-beschreibung .mz-sg-7be0a00000042{ max-width:none; display:grid; grid-template-columns:minmax(0, 1.15fr) minmax(0, 1fr); column-gap:clamp(2rem, 4vw, 4rem); align-items:center; }
-  #sx-beschreibung .mz-sg-7be0a00000042 .sg-buehne{ max-width:none; margin:0; }
-  #sx-beschreibung .mz-sg-7be0a00000042 .sg-kacheln{ grid-template-columns:repeat(3, minmax(0, 1fr)); justify-content:stretch; gap:0.75rem; margin-top:0; }
+  #sx-beschreibung [class*="mz-sg-"]{ max-width:none; display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); column-gap:var(--dsc-split); align-items:center; }
+  #sx-beschreibung [class*="mz-sg-"] .sg-buehne{ max-width:none; margin:0; }
+  #sx-beschreibung [class*="mz-sg-"] .sg-kacheln{ justify-content:stretch; gap:0.75rem; margin-top:0; }
+  #sx-beschreibung .mz-sg-7be0a00000042 .sg-kacheln{ grid-template-columns:repeat(3, minmax(0, 1fr)); }
+  #sx-beschreibung .mz-sg-7be0a0000003e .sg-kacheln{ grid-template-columns:repeat(4, minmax(0, 1fr)); }
+  #sx-beschreibung .mz-sg-7be0a0000003e .sg-buehne{ order:2; }
 }
 @media (max-width:47.9375rem){
-  #sx-beschreibung .mz-sg-7be0a00000042 .sg-kacheln{ grid-template-columns:none; grid-auto-flow:column; grid-auto-columns:38%; justify-content:start; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; padding:0.25rem; margin:1rem -0.25rem 0; }
-  #sx-beschreibung .mz-sg-7be0a00000042 .sg-kacheln::-webkit-scrollbar{ display:none; }
-  #sx-beschreibung .mz-sg-7be0a00000042 .sg-kachel{ scroll-snap-align:start; }
+  #sx-beschreibung [class*="mz-sg-"] .sg-kacheln{ grid-template-columns:none; grid-auto-flow:column; grid-auto-columns:30%; justify-content:start; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; margin:1rem -1rem 0; padding:0 1rem 0.25rem; scroll-padding-inline:1rem; }
+  #sx-beschreibung [class*="mz-sg-"] .sg-kacheln::-webkit-scrollbar{ display:none; }
+  #sx-beschreibung [class*="mz-sg-"] .sg-kachel{ scroll-snap-align:start; }
+  #sx-beschreibung [class*="mz-sg-"] .sg-kachel .mz-tile-name, #sx-beschreibung [class*="mz-sg-"] .sg-kachel .mz-tile-price{ font-size:0.8125rem; line-height:1.3; }
 }
+
+/* ── Live OPC splits (Das Wichtigste, Warum dieser Briefkasten?): the same equal
+   split – the bootstrap row (col-md-6 + 1.875rem gutters) becomes the grid; below
+   64rem they stack like every other split (col-md-6 would keep them side by side). */
+@media (max-width:63.9375rem){
+  #sx-beschreibung .row:is(:has(> [data-area-id] > .spot), :has(> [data-area-id] .vs)) > [data-area-id]{ flex:0 0 100%; width:100%; max-width:100%; }
+  #sx-beschreibung .row:is(:has(> [data-area-id] > .spot), :has(> [data-area-id] .vs)) > [data-area-id] + .clearfix + [data-area-id],
+  #sx-beschreibung .row:is(:has(> [data-area-id] > .spot), :has(> [data-area-id] .vs)) > [data-area-id="col-1"]{ margin-top:1.5rem; }
+}
+@media (min-width:64rem){
+  #sx-beschreibung .row:is(:has(> [data-area-id] > .spot), :has(> [data-area-id] .vs)){ display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); column-gap:var(--dsc-split); align-items:center; margin-inline:0; }
+  #sx-beschreibung .row:is(:has(> [data-area-id] > .spot), :has(> [data-area-id] .vs)) > .clearfix{ display:none; }
+  #sx-beschreibung .row:is(:has(> [data-area-id] > .spot), :has(> [data-area-id] .vs)) > [data-area-id]{ width:auto; max-width:none; flex:none; padding-inline:0; }
+}
+
+/* ── Picture cards (Material und Gravur, Qualität im Detail): one card – picture
+   first, then an 18 px title and its text; 1rem between the cards. Material put
+   its title above the picture and sat on the bootstrap gutters. */
+@media (min-width:48rem){
+  #sx-beschreibung .row.mz-mg:not(.abm){ display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:1rem; margin-inline:0; }
+  #sx-beschreibung .row.mz-mg:not(.abm) > .clearfix{ display:none; }
+  #sx-beschreibung .row.mz-mg:not(.abm) > [data-area-id]{ width:auto; max-width:none; flex:none; padding-inline:0; }
+}
+#sx-beschreibung .row.mz-mg:not(.abm) > [data-area-id]{ display:flex; flex-direction:column; }
+#sx-beschreibung .row.mz-mg:not(.abm) > [data-area-id] > h3{ order:2; margin:1rem 0 0; font-size:1.125rem; line-height:1.3; }
+#sx-beschreibung .row.mz-mg:not(.abm) > [data-area-id] > h3 ~ *{ order:3; }
+#sx-beschreibung .row.mz-mg:not(.abm) > [data-area-id] > h3 + *{ order:1; }
 
 /* ── Verarbeitung: two macro shots with what they show, headline alongside ───────
    Wide: headline | Gravur | Korpus in one row (~300 px instead of ~530). Phones:
@@ -3685,8 +3713,8 @@ body.is-scrolled #quickbar {
 #sx-beschreibung .vrb > .row{ display:contents; }
 #sx-beschreibung .vrb > .row > .clearfix{ display:none; }
 #sx-beschreibung .vrb > .row > [data-area-id]{ width:auto; max-width:none; flex:none; padding:0; }
-#sx-beschreibung .vrb__cap{ margin:0.6rem 0 0; font-size:0.8125rem; line-height:1.4; color:var(--text-secondary); }
-#sx-beschreibung .vrb__cap b{ display:block; font-size:0.9375rem; color:var(--color-digital-black); }
+#sx-beschreibung .vrb__cap{ margin:1rem 0 0; font-size:0.875rem; line-height:1.45; color:var(--text-secondary); }
+#sx-beschreibung .vrb__cap b{ display:block; margin-bottom:0.25rem; font-size:1.125rem; line-height:1.3; color:var(--color-digital-black); }
 
 /* ── Abmessung und Lieferumfang: a spec sheet that actually shows the measures ───
    Maße (front render with dimension lines on the box edges: x 95–805, y 99–801
@@ -3783,7 +3811,7 @@ body.is-scrolled #quickbar {
    transparent top margin), pulled out with a negative top margin. Result:
    equal space above the box and below the swatches. */
 @media (min-width:62rem){
-  #sx-beschreibung .mz-kap-xdm > [data-area-id="col-0"] { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); grid-template-rows: auto 1fr; column-gap: 2rem; }
+  #sx-beschreibung .mz-kap-xdm > [data-area-id="col-0"] { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto 1fr; column-gap: var(--dsc-split); }
   #sx-beschreibung .mz-kap-xdm > [data-area-id="col-0"] > .mz-eyebrow { grid-column: 1; grid-row: 1; }
   #sx-beschreibung .mz-kap-xdm > [data-area-id="col-0"] > .row { display: contents; }
   #sx-beschreibung .mz-kap-xdm > [data-area-id="col-0"] > .row > .clearfix { display: none; }
@@ -3851,7 +3879,7 @@ body.is-scrolled #quickbar {
 #sx-beschreibung .fit.is-armed li:nth-child(4) .fit__bar em{ transition-delay:.94s; }
 
 @media (min-width:64rem){
-  #sx-beschreibung .row:has(> [data-area-id="col-0"] > .dsc-head){ grid-template-columns:minmax(0, 1fr) minmax(0, 1.5fr); column-gap:clamp(2.5rem, 4vw, 5rem); grid-template-rows:auto auto auto 1fr; grid-template-areas:"head head" "body stage" "fit stage" ". stage"; }
+  #sx-beschreibung .row:has(> [data-area-id="col-0"] > .dsc-head){ grid-template-columns:repeat(2, minmax(0, 1fr)); column-gap:var(--dsc-split); grid-template-rows:auto auto auto 1fr; grid-template-areas:"head head" "body stage" "fit stage" ". stage"; }
   #sx-beschreibung .row:has(> [data-area-id="col-0"] > .dsc-head) > [data-area-id="col-1"]{ margin-top:0; align-self:start; }
   #sx-beschreibung [data-area-id="col-0"]:has(> .dsc-head){ text-align:left; }
   #sx-beschreibung [data-area-id="col-0"]:has(> .dsc-head) > .mz-body{ margin-inline:0; max-width:34rem; }
