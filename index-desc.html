@@ -20,7 +20,7 @@
 <!-- New PDP sections -->
 <link rel="stylesheet" href="pdp.css?v=35" />
 <!-- Version B – inline build panel -->
-<link rel="stylesheet" href="pdp-b-desc.css?v=126" />
+<link rel="stylesheet" href="pdp-b-desc.css?v=132" />
 <link rel="stylesheet" href="pdp-b-desc-opc.css?v=2" />
 <!-- Prototype variant switch – append ?flow=b (v2) or ?flow=c (v3) to load an alternative
      color-selection flow. Default (no param) renders v1 exactly as-is. Runs in <head> so the
@@ -603,8 +603,8 @@
           <ol class="stepr" id="cfgbSteps">
 
             <!-- 1 · Gravurdaten -->
-            <li class="stepr__item is-active" data-step="0" data-key="gravur">
-              <button class="stepr__head" type="button" aria-expanded="true"><span class="stepr__node"><span class="stepr__num">1</span><svg class="stepr__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span class="stepr__titles"><span class="stepr__title">Gravurdaten</span><span class="stepr__pick" id="bPickGravur">Ohne Gravurtext</span></span><svg class="stepr__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+            <li class="stepr__item" data-step="0" data-key="gravur">
+              <button class="stepr__head" type="button" aria-expanded="false"><span class="stepr__node"><span class="stepr__num">1</span><svg class="stepr__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span class="stepr__titles"><span class="stepr__title">Gravurdaten</span><span class="stepr__pick" id="bPickGravur">Ohne Gravurtext</span></span><svg class="stepr__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
               <div class="stepr__body"><div class="stepr__inner"><div class="stepr__pad">
 <div class="cfg-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg><span class="cfg-note__t">Die Gravur ist <b>kostenfrei</b> – per Laser in Edelstahl, dauerhaft lesbar.</span><button type="button" class="cfg-more" data-info="gravur" aria-haspopup="dialog">So entsteht die Gravur</button></div><div class="cfg-gfields"><label class="cfg-gfield"><span>Namensschild</span><input class="cfg-input" id="bGravName" type="text" maxlength="24" placeholder="z. B. Hoffmann" autocomplete="family-name"></label><label class="cfg-gfield"><span>Straße</span><input class="cfg-input" id="bGravStreet" type="text" maxlength="30" placeholder="z. B. Bachstraße" autocomplete="address-line1"></label><label class="cfg-gfield cfg-gfield--nr"><span>Hausnummer</span><input class="cfg-input" id="bGravNr" type="text" maxlength="6" placeholder="27" inputmode="text"></label></div><div class="cfg-group"><p class="cfg-sublabel">Schriftart</p><div class="cfg-fonts" id="bFonts" role="group" aria-label="Schriftart wählen"><button class="cfg-font" data-font="Schriftart 0" type="button" aria-pressed="false" style="--fs:1.0"><span class="cfg-font__plate"><span class="cfg-font__s" style="font-family:Arial,Helvetica,sans-serif;">Muster123</span></span><span class="cfg-font__n">Schriftart 0</span></button><button class="cfg-font" data-font="Schriftart 1" type="button" aria-pressed="false" style="--fs:1.0"><span class="cfg-font__plate"><span class="cfg-font__s" style="font-family:Arial,Helvetica,sans-serif;font-style:italic">Muster123</span></span><span class="cfg-font__n">Schriftart 1</span></button><button class="cfg-font" data-font="Schriftart 2" type="button" aria-pressed="false" style="--fs:0.95"><span class="cfg-font__plate"><span class="cfg-font__s" style="font-family:'Montserrat',Arial,sans-serif;">Muster123</span></span><span class="cfg-font__n">Schriftart 2</span></button><button class="cfg-font" data-font="Schriftart 4" type="button" aria-pressed="false" style="--fs:1.02"><span class="cfg-font__plate"><span class="cfg-font__s" style="font-family:'Trebuchet MS',Arial,sans-serif;">Muster123</span></span><span class="cfg-font__n">Schriftart 4</span></button><button class="cfg-font is-selected" data-font="Schriftart 7" type="button" aria-pressed="true" style="--fs:0.78"><span class="cfg-font__tag"><span class="cfg-font__tagt"><span class="cfg-font__tagx">Schrift w</span><span class="cfg-font__tagm">W</span>ie Produktbild</span></span><span class="cfg-font__plate"><span class="cfg-font__s" style="font-family:'Michroma',Arial,sans-serif;">Muster123</span></span><span class="cfg-font__n">Schriftart 7</span></button><button class="cfg-font" data-font="Schriftart 8" type="button" aria-pressed="false" style="--fs:1.02"><span class="cfg-font__plate"><span class="cfg-font__s" style="font-family:'Jost',Arial,sans-serif;">Muster123</span></span><span class="cfg-font__n">Schriftart 8</span></button><button class="cfg-font" data-font="Schriftart 9" type="button" aria-pressed="false" style="--fs:0.9"><span class="cfg-font__plate"><span class="cfg-font__s" style="font-family:Verdana,Arial,sans-serif;">Muster123</span></span><span class="cfg-font__n">Schriftart 9</span></button><button class="cfg-font" data-font="Schriftart 15" type="button" aria-pressed="false" style="--fs:1.0"><span class="cfg-font__plate"><span class="cfg-font__s" style="font-family:'Kaushan Script',cursive;">Muster123</span></span><span class="cfg-font__n">Schriftart 15</span></button><button class="cfg-font" data-font="Schriftart 16" type="button" aria-pressed="false" style="--fs:1.25"><span class="cfg-font__plate"><span class="cfg-font__s" style="font-family:'Great Vibes',cursive;">Muster123</span></span><span class="cfg-font__n">Schriftart 16</span></button><button class="cfg-font" data-font="Schriftart 17" type="button" aria-pressed="false" style="--fs:1.22"><span class="cfg-font__plate"><span class="cfg-font__s" style="font-family:'Caveat',cursive;">Muster123</span></span><span class="cfg-font__n">Schriftart 17</span></button><button class="cfg-font" data-font="Schriftart 99" type="button" aria-pressed="false" style="--fs:1.08"><span class="cfg-font__plate"><span class="cfg-font__s" style="font-family:'Times New Roman',Times,serif;">Muster123</span></span><span class="cfg-font__n">Schriftart 99</span></button><button class="cfg-font" data-font="Schriftart 77" type="button" aria-pressed="false" style="--fs:0.95"><span class="cfg-font__plate"><span class="cfg-font__s" style="font-family:Arial,Helvetica,sans-serif;font-style:italic;font-weight:700">Muster123</span></span><span class="cfg-font__n">Schriftart 77</span></button></div></div><details class="cfg-comment"><summary>Kommentar zur Gravur</summary><textarea class="cfg-input" id="bGravNote" rows="2" placeholder="Ausrichtung, Sonderwunsch usw."></textarea></details>
                 <button type="button" class="cfgb-next" data-next>Weiter</button>
@@ -1326,109 +1326,6 @@ class="clearfix d-none d-sm-block d-md-none"></div><div
 class="clearfix d-none d-md-block d-lg-none"></div><div
 class="clearfix d-none d-lg-block d-xl-none"></div></div><div
 class="opc-Divider hr-sect  mz-divider opc-Divider-empty" style=""></div><div
-style="" class=""><div
-class="mz-kopf mz-kopf-abstand"><p
-class="mz-eyebrow">Befestigung</p><p><span
-class="mz-display">Wandbriefkasten oder Standbriefkasten – Wand, Ständer oder Zaun</span></p><div
-class="mz-lead mz-kopf-lead"><p><strong>Für die Wandmontage ist alles dabei</strong> – Befestigungsmaterial liegt bei, ganz ohne Aufpreis. Wo keine Wand ist, macht einer von sieben Ständern den Siebert zum freistehenden <strong>Standbriefkasten</strong> – ein eleganter Postkasten als Blickfang im Vorgarten, vom klassischen Standfuß bis zum Design-Ständer Anna. Alle direkt im Konfigurator wählbar.</p></div></div></div><div
-style="" class=""><style type="text/css">.mz-sg-7be0a0000003e{max-width:60rem;margin:0 auto}
-.mz-sg-7be0a0000003e .sg-buehne{position:relative;max-width:50rem;margin:0 auto}
-.mz-sg-7be0a0000003e .sg-buehne img{width:100%;height:auto;display:block;border-radius:0.5rem;
-box-shadow:0 0.75rem 2rem rgba(0,0,0,0.12);transition:opacity .35s ease}
-.mz-sg-7be0a0000003e .sg-buehne img.wechsel{opacity:0}
-.mz-sg-7be0a0000003e .sg-cap{max-width:50rem;margin:0 auto}
-/* RASTER statt flex-wrap (Korrektur 30.07.): Mit `flex:0 1 8.5rem` haben zwar
-   alle Kacheln dieselbe Basisbreite, aber `min-width:auto` laesst sie nicht
-   unter ihre laengste unteilbare Textzeile schrumpfen. Namen wie
-   „Zaunbefestigung" blockieren damit mehr Platz als kurze – in der Folge passen
-   in eine Zeile drei Kacheln, in die naechste nur zwei, und die sechste bleibt
-   allein stehen (gemeldet 30.07.: Umbruch 3/2/1 statt 3/3).
-   Im Raster ist die Spaltenzahl gesetzt statt vom Text abgeleitet, die Zeilen
-   sind dadurch immer gleich besetzt. Spaltenzahl = Anzahl der Optionen, damit
-   der Baustein auch mit vier oder acht Kacheln aufgeht (wie bildgalerie()). */
-.mz-sg-7be0a0000003e .sg-kacheln{display:grid;grid-template-columns:repeat(7,1fr);
-gap:0.75rem;margin-top:1.25rem}
-.mz-sg-7be0a0000003e .sg-kachel{min-width:0;text-align:center;cursor:pointer;font:inherit;
-color:inherit;border:0.125rem solid transparent;border-radius:0.5rem;
-padding:0.5rem 0.25rem;transition:border-color .25s,transform .25s;background:#fff}
-.mz-sg-7be0a0000003e .sg-kachel:hover{transform:translateY(-0.25rem)}
-.mz-sg-7be0a0000003e .sg-kachel:focus-visible{outline:0.125rem solid var(--teal);outline-offset:0.125rem}
-.mz-sg-7be0a0000003e .sg-kachel.active{border-color:var(--teal)}
-.mz-sg-7be0a0000003e .sg-kachel img{width:100%;height:auto;display:block;border-radius:0.25rem;
-background:#f6f6f6}
-/* Lange Namen umbrechen statt die Spalte aufzudehnen – sonst kommt die
-   Ungleichheit ueber die Hintertuer zurueck. */
-.mz-sg-7be0a0000003e .sg-kachel .mz-tile-name{display:block;margin:0.5rem 0 0.125rem;
-overflow-wrap:break-word;hyphens:auto}
-.mz-sg-7be0a0000003e .sg-kachel .mz-tile-price{display:block;margin:0;white-space:nowrap}
-/* Tablet: halbe Spaltenzahl, damit 6 -> 3+3 und 4 -> 2+2 aufgehen. */
-@media (max-width:63.9375rem){
-.mz-sg-7be0a0000003e .sg-kacheln{grid-template-columns:repeat(4,1fr);gap:0.5rem}
-}
-/* Handy: zwei Spalten, sonst wird die Kachel schmaler als ihr Preis. */
-@media (max-width:35.9375rem){
-.mz-sg-7be0a0000003e .sg-kacheln{grid-template-columns:repeat(2,1fr)}
-}</style><div
-class="mz-sg-7be0a0000003e"><div
-class="sg-buehne mz-ki"><img
-loading="lazy" decoding="async" src="assets/briefkasten/siebert-befestigung-anna-2-v2.jpg" alt="Metzler Briefkasten Siebert als Standbriefkasten auf dem Design-Standfuß Anna 2 im Vorgarten"></div><div
-class="sg-kacheln">
-<button
-type="button" class="sg-kachel" aria-pressed="false" aria-label="Szene mit Erpo Edelstahl V2A anzeigen"><img
-src="assets/briefkasten/opt-staender-erpo-edelstahl.jpg" alt="Metzler Briefkastenständer Erpo aus V2A Edelstahl" loading="lazy"><span
-class="mz-tile-name">Erpo Edelstahl V2A</span><span
-class="mz-tile-price">+ 69,99 €</span></button><button
-type="button" class="sg-kachel" aria-pressed="false" aria-label="Szene mit Erpo Anthrazit anzeigen"><img
-src="assets/briefkasten/opt-staender-erpo-anthrazit.jpg" alt="Metzler Briefkastenständer Erpo in Anthrazit" loading="lazy"><span
-class="mz-tile-name">Erpo Anthrazit</span><span
-class="mz-tile-price">+ 59,99 €</span></button><button
-type="button" class="sg-kachel" aria-pressed="false" aria-label="Szene mit Standfuß Anna 1 anzeigen"><img
-src="assets/briefkasten/opt-staender-anna-1.jpg" alt="Metzler Design-Standfuß Anna 1 in RAL 7016 Anthrazit" loading="lazy"><span
-class="mz-tile-name">Standfuß Anna 1</span><span
-class="mz-tile-price">+ 99,00 €</span></button><button
-type="button" class="sg-kachel active" aria-pressed="true" aria-label="Szene mit Standfuß Anna 2 anzeigen"><img
-src="assets/briefkasten/opt-staender-anna-2.jpg" alt="Metzler Design-Standfuß Anna 2 in RAL 7016 Anthrazit" loading="lazy"><span
-class="mz-tile-name">Standfuß Anna 2</span><span
-class="mz-tile-price">+ 99,00 €</span></button><button
-type="button" class="sg-kachel" aria-pressed="false" aria-label="Szene mit Standfuß Anna 3 anzeigen"><img
-src="assets/briefkasten/opt-staender-anna-3.jpg" alt="Metzler Design-Standfuß Anna 3 in RAL 7016 Anthrazit" loading="lazy"><span
-class="mz-tile-name">Standfuß Anna 3</span><span
-class="mz-tile-price">+ 99,00 €</span></button><button
-type="button" class="sg-kachel" aria-pressed="false" aria-label="Szene mit Zaunbefestigung anzeigen"><img
-src="assets/briefkasten/opt-zaunbefestigung.jpg" alt="Zaunbefestigung für Metzler Briefkästen in Anthrazit" loading="lazy"><span
-class="mz-tile-name">Zaunbefestigung</span><span
-class="mz-tile-price">+ 32,99 €</span></button><button
-type="button" class="sg-kachel" aria-pressed="false" aria-label="Szene mit Zum Einbetonieren anzeigen"><img
-src="assets/briefkasten/opt-staender-einbetonieren.jpg" alt="Metzler Briefkastenständer universell zum Einbetonieren" loading="lazy"><span
-class="mz-tile-name">Zum Einbetonieren</span><span
-class="mz-tile-price">+ 69,99 €</span></button></div></div> <script>(function(){
-var P=[{"img": "assets/briefkasten/siebert-befestigung-erpo-edelstahl-v2.jpg", "alt": "Metzler Briefkasten Siebert auf Erpo-Ständer aus V2A Edelstahl im Vorgarten", "ki": true}, {"img": "assets/briefkasten/siebert-befestigung-erpo-anthrazit-v2.jpg", "alt": "Metzler Briefkasten Siebert auf Erpo-Ständer in Anthrazit RAL 7016 im Vorgarten", "ki": true}, {"img": "assets/briefkasten/siebert-befestigung-anna-1-v2.jpg", "alt": "Metzler Briefkasten Siebert als Standbriefkasten auf dem Design-Standfuß Anna 1 im Vorgarten", "ki": true}, {"img": "assets/briefkasten/siebert-befestigung-anna-2-v2.jpg", "alt": "Metzler Briefkasten Siebert als Standbriefkasten auf dem Design-Standfuß Anna 2 im Vorgarten", "ki": true}, {"img": "assets/briefkasten/siebert-befestigung-anna-3-v2.jpg", "alt": "Metzler Briefkasten Siebert als Standbriefkasten auf dem Design-Standfuß Anna 3 im Vorgarten", "ki": true}, {"img": "assets/briefkasten/siebert-befestigung-zaun-v2.jpg", "alt": "Metzler Briefkasten Siebert mit Zaunbefestigung am Doppelstabmattenzaun", "ki": true}, {"img": "assets/briefkasten/siebert-befestigung-einbetonieren-v2.jpg", "alt": "Metzler Briefkasten Siebert auf einbetoniertem Standpfosten im Vorgarten", "ki": true}], w=document.querySelector('.mz-sg-7be0a0000003e'); if(!w) return;
-var buehne=w.querySelector('.sg-buehne');
-var img=buehne.querySelector('img');
-var kacheln=w.querySelectorAll('.sg-kachel');
-function go(n){
-  img.classList.add('wechsel');
-  setTimeout(function(){
-    img.src=P[n].img; img.alt=P[n].alt;
-    /* KI-Kennzeichnung mitschalten: die Buehne zeigt je nach Auswahl eine
-       generierte oder eine echte Aufnahme. Ein festes Overlay waere in
-       beide Richtungen falsch – beim Siebert ist ausgerechnet das
-       Startbild eine echte Aufnahme des Auftraggebers. */
-    buehne.classList.toggle('mz-ki', !!P[n].ki);
-    img.classList.remove('wechsel');
-  },180);
-  kacheln.forEach(function(k,i){
-    k.classList.toggle('active', i===n);
-    k.setAttribute('aria-pressed', i===n ? 'true' : 'false');
-  });
-}
-kacheln.forEach(function(k,n){
-  k.addEventListener('click', function(){
-    if(!k.classList.contains('active')) go(n);
-  });
-});
-})();</script> </div><div
-class="opc-Divider hr-sect  mz-divider opc-Divider-empty" style=""></div><div
 style="" class="mz-kopf mz-kopf-abstand"><p class="mz-eyebrow">Warum dieser Briefkasten?</p><p><span class="mz-display">Schluss mit nasser, geknickter Post</span></p></div><div
 class="row  dpflex-a-c"><div
 class="col  col-md-6 col-lg-6 col-xl-6 col-12" data-area-id="col-0"><div
@@ -1797,6 +1694,109 @@ style="margin-top:24px; margin-bottom:24px; " class=""></div><div
 class="opc-Divider hr-sect  mz-divider opc-Divider-empty" style=""></div><div
 style="" class=""><div
 class="mz-kopf mz-kopf-abstand"><p
+class="mz-eyebrow">Befestigung</p><p><span
+class="mz-display">Wandbriefkasten oder Standbriefkasten – Wand, Ständer oder Zaun</span></p><div
+class="mz-lead mz-kopf-lead"><p><strong>Für die Wandmontage ist alles dabei</strong> – Befestigungsmaterial liegt bei, ganz ohne Aufpreis. Wo keine Wand ist, macht einer von sieben Ständern den Siebert zum freistehenden <strong>Standbriefkasten</strong> – ein eleganter Postkasten als Blickfang im Vorgarten, vom klassischen Standfuß bis zum Design-Ständer Anna. Alle direkt im Konfigurator wählbar.</p></div></div></div><div
+style="" class=""><style type="text/css">.mz-sg-7be0a0000003e{max-width:60rem;margin:0 auto}
+.mz-sg-7be0a0000003e .sg-buehne{position:relative;max-width:50rem;margin:0 auto}
+.mz-sg-7be0a0000003e .sg-buehne img{width:100%;height:auto;display:block;border-radius:0.5rem;
+box-shadow:0 0.75rem 2rem rgba(0,0,0,0.12);transition:opacity .35s ease}
+.mz-sg-7be0a0000003e .sg-buehne img.wechsel{opacity:0}
+.mz-sg-7be0a0000003e .sg-cap{max-width:50rem;margin:0 auto}
+/* RASTER statt flex-wrap (Korrektur 30.07.): Mit `flex:0 1 8.5rem` haben zwar
+   alle Kacheln dieselbe Basisbreite, aber `min-width:auto` laesst sie nicht
+   unter ihre laengste unteilbare Textzeile schrumpfen. Namen wie
+   „Zaunbefestigung" blockieren damit mehr Platz als kurze – in der Folge passen
+   in eine Zeile drei Kacheln, in die naechste nur zwei, und die sechste bleibt
+   allein stehen (gemeldet 30.07.: Umbruch 3/2/1 statt 3/3).
+   Im Raster ist die Spaltenzahl gesetzt statt vom Text abgeleitet, die Zeilen
+   sind dadurch immer gleich besetzt. Spaltenzahl = Anzahl der Optionen, damit
+   der Baustein auch mit vier oder acht Kacheln aufgeht (wie bildgalerie()). */
+.mz-sg-7be0a0000003e .sg-kacheln{display:grid;grid-template-columns:repeat(7,1fr);
+gap:0.75rem;margin-top:1.25rem}
+.mz-sg-7be0a0000003e .sg-kachel{min-width:0;text-align:center;cursor:pointer;font:inherit;
+color:inherit;border:0.125rem solid transparent;border-radius:0.5rem;
+padding:0.5rem 0.25rem;transition:border-color .25s,transform .25s;background:#fff}
+.mz-sg-7be0a0000003e .sg-kachel:hover{transform:translateY(-0.25rem)}
+.mz-sg-7be0a0000003e .sg-kachel:focus-visible{outline:0.125rem solid var(--teal);outline-offset:0.125rem}
+.mz-sg-7be0a0000003e .sg-kachel.active{border-color:var(--teal)}
+.mz-sg-7be0a0000003e .sg-kachel img{width:100%;height:auto;display:block;border-radius:0.25rem;
+background:#f6f6f6}
+/* Lange Namen umbrechen statt die Spalte aufzudehnen – sonst kommt die
+   Ungleichheit ueber die Hintertuer zurueck. */
+.mz-sg-7be0a0000003e .sg-kachel .mz-tile-name{display:block;margin:0.5rem 0 0.125rem;
+overflow-wrap:break-word;hyphens:auto}
+.mz-sg-7be0a0000003e .sg-kachel .mz-tile-price{display:block;margin:0;white-space:nowrap}
+/* Tablet: halbe Spaltenzahl, damit 6 -> 3+3 und 4 -> 2+2 aufgehen. */
+@media (max-width:63.9375rem){
+.mz-sg-7be0a0000003e .sg-kacheln{grid-template-columns:repeat(4,1fr);gap:0.5rem}
+}
+/* Handy: zwei Spalten, sonst wird die Kachel schmaler als ihr Preis. */
+@media (max-width:35.9375rem){
+.mz-sg-7be0a0000003e .sg-kacheln{grid-template-columns:repeat(2,1fr)}
+}</style><div
+class="mz-sg-7be0a0000003e"><div
+class="sg-buehne mz-ki"><img
+loading="lazy" decoding="async" src="assets/briefkasten/siebert-befestigung-anna-2-v2.jpg" alt="Metzler Briefkasten Siebert als Standbriefkasten auf dem Design-Standfuß Anna 2 im Vorgarten"></div><div
+class="sg-kacheln">
+<button
+type="button" class="sg-kachel" aria-pressed="false" aria-label="Szene mit Erpo Edelstahl V2A anzeigen"><img
+src="assets/briefkasten/opt-staender-erpo-edelstahl.jpg" alt="Metzler Briefkastenständer Erpo aus V2A Edelstahl" loading="lazy"><span
+class="mz-tile-name">Erpo Edelstahl V2A</span><span
+class="mz-tile-price">+ 69,99 €</span></button><button
+type="button" class="sg-kachel" aria-pressed="false" aria-label="Szene mit Erpo Anthrazit anzeigen"><img
+src="assets/briefkasten/opt-staender-erpo-anthrazit.jpg" alt="Metzler Briefkastenständer Erpo in Anthrazit" loading="lazy"><span
+class="mz-tile-name">Erpo Anthrazit</span><span
+class="mz-tile-price">+ 59,99 €</span></button><button
+type="button" class="sg-kachel" aria-pressed="false" aria-label="Szene mit Standfuß Anna 1 anzeigen"><img
+src="assets/briefkasten/opt-staender-anna-1.jpg" alt="Metzler Design-Standfuß Anna 1 in RAL 7016 Anthrazit" loading="lazy"><span
+class="mz-tile-name">Standfuß Anna 1</span><span
+class="mz-tile-price">+ 99,00 €</span></button><button
+type="button" class="sg-kachel active" aria-pressed="true" aria-label="Szene mit Standfuß Anna 2 anzeigen"><img
+src="assets/briefkasten/opt-staender-anna-2.jpg" alt="Metzler Design-Standfuß Anna 2 in RAL 7016 Anthrazit" loading="lazy"><span
+class="mz-tile-name">Standfuß Anna 2</span><span
+class="mz-tile-price">+ 99,00 €</span></button><button
+type="button" class="sg-kachel" aria-pressed="false" aria-label="Szene mit Standfuß Anna 3 anzeigen"><img
+src="assets/briefkasten/opt-staender-anna-3.jpg" alt="Metzler Design-Standfuß Anna 3 in RAL 7016 Anthrazit" loading="lazy"><span
+class="mz-tile-name">Standfuß Anna 3</span><span
+class="mz-tile-price">+ 99,00 €</span></button><button
+type="button" class="sg-kachel" aria-pressed="false" aria-label="Szene mit Zaunbefestigung anzeigen"><img
+src="assets/briefkasten/opt-zaunbefestigung.jpg" alt="Zaunbefestigung für Metzler Briefkästen in Anthrazit" loading="lazy"><span
+class="mz-tile-name">Zaunbefestigung</span><span
+class="mz-tile-price">+ 32,99 €</span></button><button
+type="button" class="sg-kachel" aria-pressed="false" aria-label="Szene mit Zum Einbetonieren anzeigen"><img
+src="assets/briefkasten/opt-staender-einbetonieren.jpg" alt="Metzler Briefkastenständer universell zum Einbetonieren" loading="lazy"><span
+class="mz-tile-name">Zum Einbetonieren</span><span
+class="mz-tile-price">+ 69,99 €</span></button></div></div> <script>(function(){
+var P=[{"img": "assets/briefkasten/siebert-befestigung-erpo-edelstahl-v2.jpg", "alt": "Metzler Briefkasten Siebert auf Erpo-Ständer aus V2A Edelstahl im Vorgarten", "ki": true}, {"img": "assets/briefkasten/siebert-befestigung-erpo-anthrazit-v2.jpg", "alt": "Metzler Briefkasten Siebert auf Erpo-Ständer in Anthrazit RAL 7016 im Vorgarten", "ki": true}, {"img": "assets/briefkasten/siebert-befestigung-anna-1-v2.jpg", "alt": "Metzler Briefkasten Siebert als Standbriefkasten auf dem Design-Standfuß Anna 1 im Vorgarten", "ki": true}, {"img": "assets/briefkasten/siebert-befestigung-anna-2-v2.jpg", "alt": "Metzler Briefkasten Siebert als Standbriefkasten auf dem Design-Standfuß Anna 2 im Vorgarten", "ki": true}, {"img": "assets/briefkasten/siebert-befestigung-anna-3-v2.jpg", "alt": "Metzler Briefkasten Siebert als Standbriefkasten auf dem Design-Standfuß Anna 3 im Vorgarten", "ki": true}, {"img": "assets/briefkasten/siebert-befestigung-zaun-v2.jpg", "alt": "Metzler Briefkasten Siebert mit Zaunbefestigung am Doppelstabmattenzaun", "ki": true}, {"img": "assets/briefkasten/siebert-befestigung-einbetonieren-v2.jpg", "alt": "Metzler Briefkasten Siebert auf einbetoniertem Standpfosten im Vorgarten", "ki": true}], w=document.querySelector('.mz-sg-7be0a0000003e'); if(!w) return;
+var buehne=w.querySelector('.sg-buehne');
+var img=buehne.querySelector('img');
+var kacheln=w.querySelectorAll('.sg-kachel');
+function go(n){
+  img.classList.add('wechsel');
+  setTimeout(function(){
+    img.src=P[n].img; img.alt=P[n].alt;
+    /* KI-Kennzeichnung mitschalten: die Buehne zeigt je nach Auswahl eine
+       generierte oder eine echte Aufnahme. Ein festes Overlay waere in
+       beide Richtungen falsch – beim Siebert ist ausgerechnet das
+       Startbild eine echte Aufnahme des Auftraggebers. */
+    buehne.classList.toggle('mz-ki', !!P[n].ki);
+    img.classList.remove('wechsel');
+  },180);
+  kacheln.forEach(function(k,i){
+    k.classList.toggle('active', i===n);
+    k.setAttribute('aria-pressed', i===n ? 'true' : 'false');
+  });
+}
+kacheln.forEach(function(k,n){
+  k.addEventListener('click', function(){
+    if(!k.classList.contains('active')) go(n);
+  });
+});
+})();</script> </div><div
+class="opc-Divider hr-sect  mz-divider opc-Divider-empty" style=""></div><div
+style="" class=""><div
+class="mz-kopf mz-kopf-abstand"><p
 class="mz-eyebrow">Dekoration</p><p><span
 class="mz-display">Dekorieren &amp; Verzieren – aus dem Briefkasten wird ein Hingucker</span></p><div
 class="mz-lead mz-kopf-lead"><p>Blumenkästen, Dekorahmen und Regale der Cubic-, Frame- und Plate-Familie verwandeln den Eingangsbereich – bepflanzt, beleuchtet oder als Ablage. Neun Varianten ab 5,99 € im Konfigurator.</p></div></div></div><div
@@ -1892,32 +1892,55 @@ kacheln.forEach(function(k,n){
     if(!k.classList.contains('active')) go(n);
   });
 });
-})();</script> </div><!-- Warum Metzler – one brand block for every PDP. Metzler Design System: Section 14b
-     „Über Metzler“ (photo · eyebrow · display-5 · one paragraph) + the key-figure row of
-     Section 19. Light on purpose: a PDP carries at most one dark band. Self-contained – its
-     own styles, tokens with fallbacks, prefix mz-brand – so it drops into any description. -->
+})();</script> </div><!-- Warum Metzler – one brand block for every PDP. Metzler Design System v2.8: the Section 14b
+     story layout („Über Metzler“: photo · eyebrow · Display 5 · one paragraph) with the key figures
+     and the trust row of the live „Über uns“ page („Gute Gründe, uns zu vertrauen“), on a paper
+     band (--color-paper). The award tiles are the ones that speak for this product – on other
+     categories swap the ntv / Vergleich.org tiles for that category's awards (Red Dot and German
+     Design Award belong to the XDM10). Full width: it bleeds to both window edges with negative
+     margins and keeps its content on the page grid with the same amount of padding (the page
+     clips the few pixels of scrollbar overflow sideways). Self-contained – its own styles, tokens
+     with fallbacks, prefix mz-brand – so it drops into any description. -->
 <div><style type="text/css">
-.mz-brand{margin:1.5rem 0;padding:2rem 1.25rem;border-radius:var(--radius-xl,0.75rem);background:var(--color-paper,#F5F6FA);text-align:left}
-.mz-brand__grid{display:grid;gap:1.5rem;align-items:center}
-.mz-brand__img{display:block;width:100%;height:auto;margin:0;border-radius:var(--radius-lg,0.5rem)}
-.mz-brand__eyebrow{margin:0 0 0.75rem;font-size:0.75rem;font-weight:700;line-height:1.4;letter-spacing:0.15em;text-transform:uppercase;color:var(--color-graphite-600,#6A6A6A)}
-.mz-brand__title{margin:0 0 1rem;font-size:1.75rem;font-weight:700;line-height:1.15;letter-spacing:-0.02em;color:var(--color-digital-black,#1A171B);text-wrap:balance}
-.mz-brand__lead{margin:0;max-width:35rem;font-size:1rem;line-height:1.6;color:var(--color-graphite-700,#54545C);text-wrap:pretty}
-.mz-brand__facts{list-style:none;margin:2rem 0 0;padding:1.5rem 0 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));row-gap:1.5rem;border-top:0.0625rem solid var(--color-graphite-200,#E6E6E8)}
-.mz-brand__facts li{display:flex;flex-direction:column;gap:0.3rem;min-width:0;margin:0;padding:0 0 0 1rem;border-left:0.0625rem solid var(--color-graphite-200,#E6E6E8)}
-.mz-brand__facts li:nth-child(odd){padding-left:0;border-left:0}
-.mz-brand__facts li::before,.mz-brand__facts li::marker{content:none}
-.mz-brand__facts strong{font-size:1.25rem;font-weight:700;line-height:1.1;letter-spacing:-0.02em;color:var(--color-digital-black,#1A171B);white-space:nowrap}
-.mz-brand__facts span{font-size:0.8125rem;line-height:1.4;color:var(--color-graphite-600,#6A6A6A)}
-@media(min-width:48rem){.mz-brand{padding:2.5rem 2rem}.mz-brand__title{font-size:clamp(1.75rem,0.9rem + 1.5vw,2.25rem)}}
+.mz-brand{position:relative;margin:1.5rem calc(50% - 50vw) 0;padding:3.5rem calc(50vw - 50%);background:var(--color-paper,#F5F6FA);color:var(--color-digital-black,#1A171B);text-align:left}
+.mz-brand__grid{display:grid;gap:2rem;align-items:center}
+.mz-brand__img{display:block;width:100%;height:auto;margin:0;border-radius:var(--radius-lg,0.5rem);box-shadow:0 1.25rem 2.5rem rgba(0,0,0,0.12)}
+.mz-brand__eyebrow{margin:0 0 1rem;font-size:0.75rem;font-weight:700;line-height:1.4;letter-spacing:0.15em;text-transform:uppercase;color:var(--color-graphite-600,#6A6A6A)}
+.mz-brand__title{margin:0 0 1.25rem;font-size:1.75rem;font-weight:700;line-height:1.15;letter-spacing:-0.02em;color:var(--color-digital-black,#1A171B);text-wrap:balance}
+.mz-brand__lead{margin:0;max-width:34rem;font-size:1rem;line-height:1.7;color:var(--color-graphite-700,#54545C);text-wrap:pretty}
+/* key figures (as the „Über uns“ strip): packed left with one gap, so short figures leave no holes */
+.mz-brand__figs{list-style:none;margin:2rem 0 0;padding:0;display:flex;flex-wrap:wrap;gap:1.25rem 2.5rem}
+.mz-brand__figs li{display:flex;flex-direction:column;gap:0.25rem;margin:0;padding:0}
+.mz-brand__figs li::before,.mz-brand__figs li::marker{content:none}
+.mz-brand__figs strong{font-size:1.25rem;font-weight:700;line-height:1.1;letter-spacing:-0.02em;color:var(--color-digital-black,#1A171B);white-space:nowrap}
+.mz-brand__figs span{font-size:0.6875rem;font-weight:700;line-height:1.3;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-graphite-600,#6A6A6A)}
+/* trust row: every award on a white tile, centred in equal columns – the badges sit on one line,
+   their texts under them; the last row centres (2 + 2 + 1 on phones, 3 + 2 on tablets, 5 wide) */
+.mz-brand__awards{list-style:none;margin:2.5rem 0 0;padding:2.5rem 0 0;display:flex;flex-wrap:wrap;justify-content:center;row-gap:2rem;border-top:0.0625rem solid var(--color-graphite-300,#DADADA)}
+.mz-brand__awards li{flex:0 0 50%;display:flex;flex-direction:column;align-items:center;gap:0.3rem;min-width:0;margin:0;padding:0 0.5rem;text-align:center}
+.mz-brand__awards li::before,.mz-brand__awards li::marker{content:none}
+.mz-brand__badge{display:grid;place-items:center;width:4.75rem;height:4.75rem;margin:0 0 0.625rem;border:0.0625rem solid var(--color-graphite-200,#E6E6E8);border-radius:var(--radius-lg,0.5rem);background:var(--color-white,#FFF);box-shadow:0 0.125rem 0.5rem rgba(0,0,0,0.04)}
+.mz-brand__badge img{display:block;width:auto;height:2.75rem;max-width:3.75rem;margin:0}
+.mz-brand__badge img.mz-brand__badge--pad{height:4.5rem;max-width:none}   /* SVGs that carry their own margin */
+.mz-brand__badge img.mz-brand__badge--lg{height:3.375rem}
+.mz-brand__awards strong{font-size:1rem;font-weight:700;line-height:1.3;color:var(--color-digital-black,#1A171B);text-wrap:balance}
+.mz-brand__awards li > span:last-child{font-size:0.6875rem;font-weight:700;line-height:1.4;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-graphite-600,#6A6A6A);text-wrap:balance}
+/* one rhythm: the hairline sits midway between the story and the awards, the band's bottom
+   padding matches its top */
+@media(min-width:48rem){
+.mz-brand{padding-block:4.5rem}
+.mz-brand__title{font-size:var(--display-5-size,2.25rem)}
+.mz-brand__awards{margin-top:3rem;padding-top:3rem}
+.mz-brand__awards li{flex-basis:33.333%}
+}
 @media(min-width:64rem){
-.mz-brand{padding:3rem}
-.mz-brand__grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(2.5rem,5vw,5rem)}
-.mz-brand__facts{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:2.5rem;padding-top:2rem}
-.mz-brand__facts li,.mz-brand__facts li:nth-child(odd){padding-left:1.5rem;border-left:0.0625rem solid var(--color-graphite-200,#E6E6E8)}
-.mz-brand__facts li:first-child{padding-left:0;border-left:0}
-.mz-brand__facts strong{font-size:1.5rem}
-.mz-brand__facts span{font-size:0.8125rem}
+.mz-brand{padding-block:5.5rem}
+.mz-brand__grid{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(3rem,5vw,5rem)}
+.mz-brand__lead{font-size:var(--text-body-lg-size,1.125rem)}
+.mz-brand__figs{margin-top:2.25rem;column-gap:3rem}
+.mz-brand__figs strong{font-size:1.375rem}
+.mz-brand__awards{margin-top:3.5rem;padding-top:3.5rem}
+.mz-brand__awards li{flex-basis:20%}
 }
 </style><section class="mz-brand" aria-labelledby="mzBrandTitle">
 <div class="mz-brand__grid">
@@ -1925,14 +1948,21 @@ kacheln.forEach(function(k,n){
 <div>
 <p class="mz-brand__eyebrow">Warum Metzler</p>
 <h2 class="mz-brand__title" id="mzBrandTitle">Mehr als ein Shop – ein Familienunternehmen seit 2013</h2>
-<p class="mz-brand__lead">In Reutlingen entwickeln, fertigen und prüfen 165 Mitarbeitende jedes Produkt selbst – rostfreier Edelstahl statt Kunststoff, materialtiefe Lasergravur statt Aufdruck.</p>
+<p class="mz-brand__lead">In Reutlingen entwickeln, fertigen und prüfen wir jedes Produkt selbst – rostfreier Edelstahl statt Kunststoff, materialtiefe Lasergravur statt Aufdruck. So entsteht ein Eingang, der Wind und Wetter über Jahrzehnte trotzt.</p>
+<ul class="mz-brand__figs" role="list">
+<li><strong>Seit 2013</strong><span>Manufaktur</span></li>
+<li><strong>165</strong><span>Mitarbeitende</span></li>
+<li><strong>500</strong><span>Designs</span></li>
+<li><strong>2 Mio.</strong><span>Kunden</span></li>
+</ul>
 </div>
 </div>
-<ul class="mz-brand__facts" role="list">
-<li><strong>über 2 Mio.</strong><span>zufriedene Kunden</span></li>
-<li><strong>4× Platz 1</strong><span>ntv Life &amp; Living Award, Kategorie Briefkästen</span></li>
-<li><strong>4,7 von 5</strong><span>aus über 30.000 Bewertungen</span></li>
-<li><strong>10 Jahre</strong><span>Metzler Garantie</span></li>
+<ul class="mz-brand__awards" role="list" aria-label="Gute Gründe, uns zu vertrauen">
+<li><span class="mz-brand__badge"><img src="assets/ntv-award-siegel.webp" width="262" height="176" loading="lazy" alt=""></span><strong>Beliebtester Anbieter</strong><span>ntv · Briefkästen · 4× in Folge</span></li>
+<li><span class="mz-brand__badge"><img class="mz-brand__badge--pad" src="assets/badge-vergleich-org.svg" width="105" height="105" loading="lazy" alt=""></span><strong>Vergleichssieger</strong><span>Vergleich.org · sehr gut</span></li>
+<li><span class="mz-brand__badge"><img class="mz-brand__badge--lg" src="assets/badge-top-shop.svg" width="64" height="64" loading="lazy" alt=""></span><strong>Top Shop</strong><span>3 Jahre · Computer Bild</span></li>
+<li><span class="mz-brand__badge"><img src="assets/badge-trusted-shops.webp" width="240" height="240" loading="lazy" alt=""></span><strong>Käuferschutz</strong><span>Trusted Shops · ★ 4,73 / 5</span></li>
+<li><span class="mz-brand__badge"><img class="mz-brand__badge--pad" src="assets/badge-metzler-garantie.svg" width="105" height="105" loading="lazy" alt=""></span><strong>Metzler Garantie</strong><span>bis zu 10 Jahre</span></li>
 </ul>
 </section></div><div
 style="margin-top:60px; margin-bottom:60px; " class=""></div><div
