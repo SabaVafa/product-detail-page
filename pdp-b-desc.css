@@ -579,13 +579,13 @@
    step value, labels, links, option text 13 · step number, font names 12 · tags 12/11 – nothing smaller */
 .stepr__title { font-size: 1rem; font-weight: 700; color: var(--color-digital-black); display: flex; align-items: center; gap: 0.5rem; }
 .stepr__pick { font-size: 0.8125rem; color: var(--color-graphite-600); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.stepr__item.is-active .stepr__pick { display: none; }
+.stepr__item.is-active .stepr__pick { height: 0; opacity: 0; }   /* collapsed, not removed: the accordion animates it */
 .stepr__item:not(.is-done):not(.is-active) .stepr__pick { color: var(--color-teal); font-weight: 600; }
 .stepr__edit { font-size: 0.75rem; font-weight: 700; color: var(--color-teal); flex-shrink: 0; display: none; }
 .stepr__item.is-done .stepr__edit { display: inline; }
 .stepr__item.is-active .stepr__edit { display: none; }
 .stepr__chev { width: 1.1rem; height: 1.1rem; color: var(--color-graphite-400); flex-shrink: 0;
-  transition: transform .35s cubic-bezier(.2,.7,.2,1), color .2s ease; }
+  transition: transform .42s cubic-bezier(.4,0,.2,1), color .2s ease; }   /* the accordion's clock (pdp-b-desc.js ACC_MS) */
 .stepr__item.is-active .stepr__chev { transform: rotate(180deg); color: var(--color-teal); }
 .stepr__item.is-done .stepr__chev { display: none; }
 /* body height morph */
@@ -593,6 +593,7 @@
 .stepr__item.is-active .stepr__body { grid-template-rows: 1fr; }
 /* openStep() lays a step change out once without motion to measure where it ends */
 .cfgb-measure .stepr__item, .cfgb-measure .stepr__item * { transition: none !important; }
+#cfgbSteps.is-acc .stepr__body { transition: none; }   /* JS runs the heights on one clock with the scroll (toggleSteps) */
 .stepr__inner { overflow: hidden; min-height: 0; }
 .stepr__pad { padding: 0.1rem 1rem 1.2rem; display: flex; flex-direction: column; gap: 1rem; }
 /* staggered reveal */
@@ -3699,7 +3700,6 @@ body.is-scrolled #quickbar {
 #sx-beschreibung .smart__wayt{ display:block; margin:0.625rem 0 0.25rem; font-size:0.875rem; font-weight:700; line-height:1.35; color:var(--color-digital-black); }
 #sx-beschreibung #infoMod .smart__ways{ gap:0.625rem; }   /* dialog: the gallery dialogs' tile gap */
 @media (max-width:47.9375rem){ #sx-beschreibung .smart__ways{ gap:0.625rem; } #sx-beschreibung .smart__way{ padding-inline:0.375rem; } #sx-beschreibung .smart__wayt{ font-size:0.8125rem; } }   /* phones: the galleries' 13 px tile labels; "Finger-/abdruck" breaks only if it must */
-#sx-beschreibung .smart__hint{ min-height:1.4em; margin:0.5rem 0 0; font-size:0.8125rem; color:var(--text-secondary); }
 /* Sensor: how it works – the Konfigurator's numbered-step style (no icons: the kit has no letter or
    radio glyph in the booklet set the lock tiles use, and one icon style per page) */
 #sx-beschreibung .smart__steps{ list-style:none; counter-reset:sst; display:grid; gap:0.625rem; margin:0; padding:0; }
@@ -3729,8 +3729,17 @@ body.is-scrolled #quickbar {
 #sx-beschreibung .kfg__steps b{ font-size:1rem; line-height:1.3; color:var(--color-digital-black); }
 #sx-beschreibung .kfg__steps span{ font-size:0.875rem; line-height:1.4; color:var(--text-secondary); }
 @media (min-width:64rem){
+  /* the split every text | picture section uses (equal halves, full width, --dsc-split); the
+     three steps fill their half as full-width rows between hairlines, a step larger – a short
+     list in half the width left a hole beside the screen */
   #sx-beschreibung .kfg{ grid-template-columns:repeat(2, minmax(0, 1fr)); grid-template-areas:"eb eb" "h h" "steps img"; column-gap:var(--dsc-split); align-items:center; }
   #sx-beschreibung .kfg .kfg__steps{ margin:0; }
+  #sx-beschreibung .kfg:not(#infoMod .kfg) .kfg__steps{ max-width:none; gap:0; }
+  #sx-beschreibung .kfg:not(#infoMod .kfg) .kfg__steps li{ grid-template-columns:2.5rem minmax(0, 1fr); column-gap:1rem; padding:1.25rem 0; border-top:1px solid var(--color-graphite-200); }
+  #sx-beschreibung .kfg:not(#infoMod .kfg) .kfg__steps li:last-child{ border-bottom:1px solid var(--color-graphite-200); }
+  #sx-beschreibung .kfg:not(#infoMod .kfg) .kfg__steps li::before{ width:2.5rem; height:2.5rem; font-size:1rem; }
+  #sx-beschreibung .kfg:not(#infoMod .kfg) .kfg__steps b{ font-size:1.125rem; }
+  #sx-beschreibung .kfg:not(#infoMod .kfg) .kfg__steps span{ font-size:1rem; }
   #sx-beschreibung .kfg .mz-kfg-bild:not(.mz-kfg-bild-mobil){ margin-top:0; }
 }
 
@@ -3775,6 +3784,10 @@ body.is-scrolled #quickbar {
   #sx-beschreibung .row:is(:has(> [data-area-id] > .spot), :has(> [data-area-id] .vs)){ display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); column-gap:var(--dsc-split); align-items:center; margin-inline:0; }
   #sx-beschreibung .row:is(:has(> [data-area-id] > .spot), :has(> [data-area-id] .vs)) > .clearfix{ display:none; }
   #sx-beschreibung .row:is(:has(> [data-area-id] > .spot), :has(> [data-area-id] .vs)) > [data-area-id]{ width:auto; max-width:none; flex:none; padding-inline:0; }
+  /* side by side, picture and list fill their halves: the gap between them is --dsc-split, as in
+     every split (the picture's 36rem cap and the list's 34rem cap opened 120–150 px holes) */
+  #sx-beschreibung .row:has(> [data-area-id] > .spot) .spot{ max-width:none; margin:0; }
+  #sx-beschreibung .row:has(> [data-area-id] .vs) .vs{ max-width:none; }
 }
 
 /* ── Picture cards (Material und Gravur, Qualität im Detail): one card – picture
@@ -3828,7 +3841,8 @@ body.is-scrolled #quickbar {
 #sx-beschreibung .abm__cap{ margin:1rem 0 0; font-size:0.875rem; line-height:1.45; color:var(--text-secondary); }
 #sx-beschreibung .abm__cap b{ display:block; margin-bottom:0.25rem; font-size:1.125rem; line-height:1.3; color:var(--color-digital-black); }
 @media (min-width:64rem){
-  #sx-beschreibung .row.abm{ grid-template-columns:minmax(0, 0.9fr) minmax(0, 0.75fr) minmax(0, 1.5fr); column-gap:clamp(1.5rem, 3vw, 2.5rem); }
+  #sx-beschreibung .row.abm{ grid-template-columns:minmax(0, 0.9fr) minmax(0, 0.75fr) minmax(0, 1.5fr); column-gap:var(--dsc-split); }
+  #sx-beschreibung .abm .abm__side{ margin-left:calc(clamp(1.5rem, 3vw, 2.5rem) - var(--dsc-split)); }   /* the two drawings belong together: their own closer gap; the photo sits at the split gap */
   #sx-beschreibung .abm > [data-area-id="col-1"]{ grid-column:auto; }
 }
 
@@ -3970,6 +3984,7 @@ body.is-scrolled #quickbar {
   #sx-beschreibung .row:has(> [data-area-id="col-0"] > .dsc-head) > [data-area-id="col-1"]{ margin-top:0; align-self:start; }
   #sx-beschreibung [data-area-id="col-0"]:has(> .dsc-head){ text-align:left; }
   #sx-beschreibung [data-area-id="col-0"]:has(> .dsc-head) > .mz-body{ margin-inline:0; max-width:34rem; }
+  #sx-beschreibung [data-area-id="col-0"]:has(> .dsc-head) > .fit{ max-width:none; margin-inline:0; }   /* the card fills its half, flush with the stage beside it */
   /* the steps share the stage's area, right under it: the stage is 2/3 of the area's width (600 × 400 crop,
      .mbxdemo), and a % margin resolves against that width – they stay 1rem below it however tall the copy runs */
   #sx-beschreibung [data-area-id="col-0"]:has(> .dsc-head) > .mbxsteps{ grid-area:stage; align-self:start; max-width:none; margin:calc(100% * 400 / 600 + 1rem) 0 0; }

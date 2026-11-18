@@ -596,55 +596,113 @@ var MZSwipe = (function () {
   /* ── Single-step navigation (step-dock + Weiter/Zurück) ── */
   function openStep(i, skipScroll) {
     if (i < 0) i = 0; if (i > STEPS.length - 1) i = STEPS.length - 1;
-    /* where i's header will END once the step open now has collapsed (its body AND its header,
-       which grows back its summary line): lay the end state out with transitions off, read it,
-       put the start state back – the real toggle below then animates as usual (see scrollToStep) */
-    var endY = 0;   /* document y */
-    if (!skipScroll && items[i]) {
-      var was = items.map(function (it) { return it.classList.contains('is-active'); });
-      var root = document.documentElement;
-      root.style.overflowAnchor = 'none';   /* scroll anchoring would move the page during this pass and the scroll (released in scrollToStep) */
-      root.classList.add('cfgb-measure');
+    toggleSteps(function () {
       items.forEach(function (it, ix) { it.classList.toggle('is-active', ix === i); });
-      endY = window.pageYOffset + items[i].getBoundingClientRect().top;
-      items.forEach(function (it, ix) { it.classList.toggle('is-active', was[ix]); });
-      void root.offsetHeight;   /* commit the start state while transitions are still off */
-      root.classList.remove('cfgb-measure');
-    }
-    items.forEach(function (it, ix) { it.classList.toggle('is-active', ix === i); });
-    if (i > reached) reached = i;
-    refresh();
-    if (skipScroll) return;
-    if (items[i]) scrollToStep(items[i], endY);
+      if (i > reached) reached = i;
+      refresh();
+    }, items[i], skipScroll ? 'none' : 'reveal');
   }
-  /* Bring an opened step's header to just below the pinned header + step-dock – desktop and
-     mobile alike (both are accordions). Aim at where the header ENDS once the step above has
-     collapsed, so it is one smooth scroll that lands, not a scroll plus a correction hop.
-     The dock is compact while stuck: measure that height even if it isn't stuck yet. */
-  function scrollToStep(target, endY) {
+  /* Where an opened step's header lands: just below the pinned header + step-dock – desktop and
+     mobile alike (both are accordions). The dock is compact while stuck: measure that height
+     even if it isn't stuck yet. */
+  function dockBottom() {
     var dock = document.querySelector('.cfgb-dock');
     var hdr = document.querySelector('.header') || document.querySelector('header');
     var qb = document.getElementById('quickbar');
-    var under = function () {
-      if (!dock) return hdr ? hdr.getBoundingClientRect().height : 0;
-      if (dock.classList.contains('is-stuck')) return dock.getBoundingClientRect().bottom;
-      var phone = window.matchMedia('(max-width: 640px)').matches;   /* phones pin full-bleed below the header, wider screens below the quickbar */
-      var pinCls = phone ? ['is-stuck', 'is-fixed'] : ['is-stuck', 'is-fixed-dt'];
-      pinCls.forEach(function (c) { dock.classList.add(c); }); var h = dock.offsetHeight; pinCls.forEach(function (c) { dock.classList.remove(c); });
-      return (hdr ? hdr.getBoundingClientRect().height : 0) + (phone || !qb ? 0 : qb.offsetHeight) + h;
+    if (!dock) return hdr ? hdr.getBoundingClientRect().height : 0;
+    if (dock.classList.contains('is-stuck')) return dock.getBoundingClientRect().bottom;
+    var phone = window.matchMedia('(max-width: 640px)').matches;   /* phones pin full-bleed below the header, wider screens below the quickbar */
+    var pinCls = phone ? ['is-stuck', 'is-fixed'] : ['is-stuck', 'is-fixed-dt'];
+    pinCls.forEach(function (c) { dock.classList.add(c); }); var h = dock.offsetHeight; pinCls.forEach(function (c) { dock.classList.remove(c); });
+    return (hdr ? hdr.getBoundingClientRect().height : 0) + (phone || !qb ? 0 : qb.offsetHeight) + h;
+  }
+  /* ── Smooth accordion. A step change moves several things at once: the step closing, the
+     step opening, their header summary lines (shown only while a step is closed) and the page
+     scroll that brings the opened header under the dock. All of them run in ONE
+     requestAnimationFrame loop on one eased clock: the end state is laid out once with
+     transitions off and measured, every changing height is locked at its start value and
+     stepped to its end value, and the scroll follows the same curve – so the opened header
+     glides straight to its place, no drift, no correction hop (before: two CSS transitions
+     and a native smooth scroll on separate clocks, plus a settle jump at 650 ms). The opening
+     content fades up with it. mode: 'reveal' scrolls the target header under the dock,
+     'keep' only when it would otherwise end hidden under it, 'none' never scrolls. ── */
+  var ACC_MS = 420;
+  var accEase = bezier(0.4, 0, 0.2, 1);
+  var accRun = null;   /* finishes the running change – a new toggle first jumps it to its end */
+  var stepsEl = document.getElementById('cfgbSteps');
+  if (stepsEl) stepsEl.classList.add('is-acc');   /* JS drives the heights: the CSS fallback transition stands down */
+  function bezier(x1, y1, x2, y2) {
+    var cx = 3 * x1, bx = 3 * (x2 - x1) - cx, ax = 1 - cx - bx;
+    var cy = 3 * y1, by = 3 * (y2 - y1) - cy, ay = 1 - cy - by;
+    return function (x) {
+      var t = x;
+      for (var n = 0; n < 8; n++) {   /* Newton on x(t) = x */
+        var d = (3 * ax * t + 2 * bx) * t + cx; if (Math.abs(d) < 1e-6) break;
+        t -= (((ax * t + bx) * t + cx) * t - x) / d;
+      }
+      t = Math.min(1, Math.max(0, t));
+      return ((ay * t + by) * t + cy) * t;
     };
+  }
+  function toggleSteps(apply, target, mode) {
+    if (accRun) accRun();
     var root = document.documentElement;
-    root.style.overflowAnchor = 'none';
-    var go = function (docY) {   /* docY: the header's document y */
-      window.scrollTo({ top: Math.max(0, Math.round(docY - under() - 12)), behavior: 'smooth' });
-    };
-    go(endY);
-    window.setTimeout(function () {
-      /* settle check: correct only a visible miss (e.g. the page bottom capped the scroll) */
-      var miss = target.getBoundingClientRect().top - under() - 12;
-      if (Math.abs(miss) > 4 && window.innerHeight + window.pageYOffset < root.scrollHeight - 2) go(window.pageYOffset + target.getBoundingClientRect().top);
-      root.style.overflowAnchor = '';
-    }, 650);
+    var els = [];
+    items.forEach(function (it) {
+      var b = it.querySelector('.stepr__body'), p = it.querySelector('.stepr__pick');
+      if (b) els.push({ el: b, body: true });
+      if (p) els.push({ el: p, body: false });
+    });
+    var h0 = els.map(function (o) { return o.el.getBoundingClientRect().height; });
+    var y0 = window.pageYOffset;
+    var top0 = target ? target.getBoundingClientRect().top : 0;
+    root.style.overflowAnchor = 'none';   /* scroll anchoring would fight the scroll this loop writes */
+    root.classList.add('cfgb-measure');
+    apply();                               /* classes + refresh(): the end state */
+    var h1 = els.map(function (o) { return o.el.getBoundingClientRect().height; });
+    var y1 = y0;
+    if (target && mode !== 'none') {
+      var land = dockBottom() + 12;
+      if (mode === 'reveal' || top0 < land) {
+        y1 = y0 + target.getBoundingClientRect().top - land;
+        y1 = Math.max(0, Math.min(y1, root.scrollHeight - window.innerHeight));
+      }
+    }
+    var moving = els.filter(function (o, k) { o.from = h0[k]; o.to = h1[k]; return Math.abs(o.from - o.to) > 0.5; });
+    moving.forEach(function (o) {
+      if (o.body) o.el.style.setProperty('grid-template-rows', '1fr', 'important');   /* the track follows the locked height */
+      o.el.style.height = o.from + 'px'; o.el.style.overflow = 'hidden';
+    });
+    void root.offsetHeight;                /* commit the start state while transitions are still off */
+    root.classList.remove('cfgb-measure');
+    var scrolls = Math.abs(y1 - y0) >= 1, raf = 0, t0 = 0;
+    function set(e) {
+      moving.forEach(function (o) {
+        o.el.style.height = (o.from + (o.to - o.from) * e) + 'px';
+        if (!o.body) o.el.style.opacity = String(o.to > o.from ? e : 1 - e);
+      });
+      if (scrolls) window.scrollTo(0, y0 + (y1 - y0) * e);
+    }
+    function done() {
+      cancelAnimationFrame(raf); accRun = null;
+      moving.forEach(function (o) { o.el.style.removeProperty('grid-template-rows'); o.el.style.height = ''; o.el.style.overflow = ''; o.el.style.opacity = ''; });
+      root.style.scrollBehavior = ''; root.style.overflowAnchor = '';
+    }
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || (!moving.length && !scrolls)) { set(1); done(); return; }
+    root.style.scrollBehavior = 'auto';    /* per-frame scroll writes must not be smoothed a second time */
+    moving.forEach(function (o) {
+      if (!o.body || o.to <= o.from) return;
+      var pad = o.el.querySelector('.stepr__pad');
+      if (pad && pad.animate) pad.animate([{ opacity: 0, transform: 'translateY(0.5rem)' }, { opacity: 1, transform: 'none' }],
+        { duration: ACC_MS, delay: ACC_MS * 0.15, easing: 'cubic-bezier(.2,.7,.2,1)', fill: 'backwards' });
+    });
+    accRun = function () { set(1); done(); };
+    raf = requestAnimationFrame(function frame(now) {
+      if (!t0) t0 = now;
+      var p = Math.min(1, (now - t0) / ACC_MS);
+      set(accEase(p));
+      if (p < 1) raf = requestAnimationFrame(frame); else done();
+    });
   }
   function flashStep(i) { var it = items[i]; if (!it) return; var p = it.querySelector('.stepr__pad') || it; p.classList.remove('is-flash'); void p.offsetWidth; p.classList.add('is-flash'); }
   var invalidTimers = {};
@@ -688,8 +746,7 @@ var MZSwipe = (function () {
       var i = parseInt(it.getAttribute('data-step'), 10);
       if (isNaN(i)) return;
       if (it.classList.contains('is-active')) {
-        it.classList.remove('is-active');   /* collapse the open section */
-        refresh();
+        toggleSteps(function () { it.classList.remove('is-active'); refresh(); }, it, 'keep');   /* collapse the open section */
       } else {
         openStep(i);
       }
@@ -3009,11 +3066,10 @@ var MZSwipe = (function () {
       pick(tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length], true);
     });
   });
-  var img = box.querySelector('#smartLock .smart__media img'), hint = box.querySelector('.smart__hint');
+  var img = box.querySelector('#smartLock .smart__media img');
   box.querySelectorAll('.smart__way').forEach(function (w, i, all) {
     w.addEventListener('click', function () {
       all.forEach(function (o) { o.classList.toggle('is-on', o === w); o.setAttribute('aria-pressed', o === w ? 'true' : 'false'); });
-      if (hint) hint.textContent = w.getAttribute('data-hint');
       if (!img) return;
       img.style.opacity = '0.35';
       window.setTimeout(function () { img.src = w.getAttribute('data-img'); img.alt = w.getAttribute('data-alt'); img.style.opacity = '1'; }, 150);
