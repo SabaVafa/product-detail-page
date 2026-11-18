@@ -2944,6 +2944,7 @@ var MZSwipe = (function () {
     var els = m.els().filter(Boolean); if (!els.length) return;
     trigger = from || null;
     title.textContent = m.t;
+    mod.setAttribute('data-key', key);   /* per-dialog layouts (CSS) */
     els.forEach(function (el) {
       var ph = document.createComment('infomod'); el.parentNode.insertBefore(ph, el);
       moved.push([el, ph]); body.appendChild(el);
@@ -2966,6 +2967,7 @@ var MZSwipe = (function () {
     if (pageTab) { var pt = document.getElementById(pageTab); if (pt && !pt.classList.contains('is-on')) pt.click(); pageTab = null; }
     mod.classList.remove('is-open');
     mod.hidden = true;
+    mod.removeAttribute('data-key');
     MZScroll.unlock();
     if (trigger) trigger.focus();
   }

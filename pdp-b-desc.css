@@ -1634,15 +1634,43 @@ body.kbd-open .cfgb-dock.is-fixed { display: none !important; }
   #sx-beschreibung #infoMod .smart__media { grid-area: media; }
   #sx-beschreibung #infoMod .smart__copy { grid-area: copy; }
 }
+/* Gravurdaten dialog – "Vom Bildschirm in den Edelstahl": one screen, no scrolling, read left to
+   right. Head across the top; left "Konfigurator": the live-preview screenshot (16:9) and the three
+   steps; right "Verarbeitung": one tall macro of the real laser engraving with its caption, level
+   with the left column. A round arrow (NAV-07) between the two pictures says it: what you type on
+   screen becomes the engraving in the steel. Off-topic here and left out: the Korpus card and the
+   repeated "Qualität im Detail" head (the page keeps both). Phones: the stacked dialog. */
+#sx-beschreibung #infoMod[data-key="gravur"] .vrb > .row > [data-area-id="col-1"] { display: none; }
+@media (min-width: 64rem) {
+  #sx-beschreibung #infoMod[data-key="gravur"] .infomod__body { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-areas: "hd hd" "k1 k2" "pic card" "steps card"; grid-template-rows: auto auto auto 1fr; column-gap: 3.5rem; align-content: center; }
+  #sx-beschreibung #infoMod[data-key="gravur"] :is(.kfg, .kfg > div:first-child, .kfg .mz-kopf, .vrb, .vrb > div:first-child, .vrb .mz-kopf, .vrb > .row) { display: contents; }
+  #sx-beschreibung #infoMod[data-key="gravur"] .vrb > .row > .clearfix { display: none; }
+  #sx-beschreibung #infoMod[data-key="gravur"] .kfg .mz-kopf > p:not(.mz-eyebrow) { grid-area: hd; margin: 0 0 1.5rem; }
+  #sx-beschreibung #infoMod[data-key="gravur"] .vrb .mz-kopf > p:not(.mz-eyebrow) { display: none; }
+  #sx-beschreibung #infoMod[data-key="gravur"] .kfg .mz-kopf > .mz-eyebrow, #sx-beschreibung #infoMod[data-key="gravur"] .vrb .mz-kopf > .mz-eyebrow { display: block; margin: 0 0 0.75rem; text-align: left; }
+  #sx-beschreibung #infoMod[data-key="gravur"] .kfg .mz-kopf > .mz-eyebrow { grid-area: k1; }
+  #sx-beschreibung #infoMod[data-key="gravur"] .vrb .mz-kopf > .mz-eyebrow { grid-area: k2; }
+  #sx-beschreibung #infoMod[data-key="gravur"] .kfg .mz-kfg-bild:not(.mz-kfg-bild-mobil) { grid-area: pic; position: relative; max-width: none; margin: 0; }
+  #sx-beschreibung #infoMod[data-key="gravur"] .kfg .mz-kfg-bild:not(.mz-kfg-bild-mobil) img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+  #sx-beschreibung #infoMod[data-key="gravur"] .kfg .mz-kfg-bild:not(.mz-kfg-bild-mobil)::after { content: ""; position: absolute; z-index: 3; top: 50%; right: calc(-1.75rem - 1.25rem); width: 2.5rem; height: 2.5rem; margin-top: -1.25rem; border-radius: 50%; background: var(--color-white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='3.83 5 16.33 14' fill='none' stroke='%23015253' stroke-width='2.1' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M13.5 6.5L19 12l-5.5 5.5'/%3E%3C/svg%3E") center / 1rem auto no-repeat; box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, .14); }
+  #sx-beschreibung #infoMod[data-key="gravur"] .kfg .kfg__steps { grid-area: steps; max-width: none; margin: 1.25rem 0 0; gap: 0.75rem; }
+  #sx-beschreibung #infoMod[data-key="gravur"] .vrb > .row > [data-area-id="col-0"] { grid-area: card; display: flex; flex-direction: column; min-height: 0; }
+  #sx-beschreibung #infoMod[data-key="gravur"] .vrb > .row > [data-area-id="col-0"] .mz-img { flex: 1 1 auto; min-height: 0; }
+  #sx-beschreibung #infoMod[data-key="gravur"] .vrb > .row > [data-area-id="col-0"] .mz-img :is(picture, img) { display: block; width: 100%; height: 100% !important; object-fit: cover; }   /* !important: beats the OPC .img-fluid { height:auto !important } */
+}
 /* Befestigung / Dekoration dialogs: scene and tiles side by side, so the dialog stays
-   short (the page keeps them vertical). Scene 5/12 with its whole 4:3 picture (some
-   scenes have the box off-centre – a crop would cut it); tiles 4 + 3 / 3 × 2 at 13 px
+   short (the page keeps them vertical). Scene 5/12, filling the tile grid's height (cover)
+   with a crop focus per gallery, checked on all 13 scenes: Befestigung centre (the stand
+   is mid-frame in every scene), Dekoration 15 % (the box sits left of centre, the crop
+   trims the door); tiles 4 + 3 / 3 × 2 at 13 px
    with their pictures capped at 5.75rem, so the grid is about as tall as the scene and
    each tile keeps >= 105 px of text width ("Zaunbefestigung" never breaks). Below
    64rem: stacked. */
 @media (min-width:64rem){
-  #sx-beschreibung #infoMod [class*="mz-sg-"]{ max-width:none; display:grid; grid-template-columns:minmax(0, 5fr) minmax(0, 7fr); column-gap:2rem; align-items:center; }
+  #sx-beschreibung #infoMod [class*="mz-sg-"]{ max-width:none; display:grid; grid-template-columns:minmax(0, 5fr) minmax(0, 7fr); column-gap:2rem; align-items:stretch; }
   #sx-beschreibung #infoMod [class*="mz-sg-"] .sg-buehne{ max-width:none; margin:0; }
+  #sx-beschreibung #infoMod [class*="mz-sg-"] .sg-buehne img{ height:100%; object-fit:cover; object-position:50% 50%; }
+  #sx-beschreibung #infoMod .mz-sg-7be0a00000042 .sg-buehne img{ object-position:15% 50%; }
   #sx-beschreibung #infoMod [class*="mz-sg-"] .sg-kacheln{ margin-top:0; gap:0.625rem; }
   #sx-beschreibung #infoMod .mz-sg-7be0a0000003e .sg-kacheln{ grid-template-columns:repeat(4, minmax(0, 1fr)); }
   #sx-beschreibung #infoMod .mz-sg-7be0a00000042 .sg-kacheln{ grid-template-columns:repeat(3, minmax(0, 1fr)); }
@@ -3632,8 +3660,9 @@ body.is-scrolled #quickbar {
    price; inside the lock the three ways to open it swap the photo. Replaces two
    stacked rows of the same weight – about 40 % less height, nothing dropped. */
 #sx-beschreibung .smart{ max-width:none; margin:0; }
-#sx-beschreibung .smart__tabs{ display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:0.5rem; max-width:34rem; margin:0 auto 1.25rem; padding:0.3rem; border-radius:var(--radius-xl); background:rgba(1,82,83,.06); }
-#sx-beschreibung .smart__tab{ display:flex; align-items:center; justify-content:center; gap:0.6rem; padding:0.65rem 0.75rem; border:0; border-radius:var(--radius-lg); background:transparent; color:var(--text-secondary); font:inherit; text-align:left; cursor:pointer; transition:background-color .2s, color .2s, box-shadow .2s; }
+#sx-beschreibung .smart__tabs{ display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:0.5rem; width:100%; max-width:40rem; margin:0 auto 1.5rem; padding:0.3rem; border-radius:var(--radius-xl); background:rgba(1,82,83,.06); }   /* wider switch: 640 px, roomier options */
+@media (max-width:30rem){ #sx-beschreibung .smart__tab{ gap:0.5rem; padding:0.7rem 0.5rem; } #sx-beschreibung .smart__tab b{ font-size:0.875rem; white-space:nowrap; } }   /* phones: both names stay on one line */
+#sx-beschreibung .smart__tab{ display:flex; align-items:center; justify-content:center; gap:0.75rem; padding:0.8rem 1rem; border:0; border-radius:var(--radius-lg); background:transparent; color:var(--text-secondary); font:inherit; text-align:left; cursor:pointer; transition:background-color .2s, color .2s, box-shadow .2s; }
 #sx-beschreibung .smart__tab svg{ width:1.375rem; height:1.375rem; flex:none; }
 #sx-beschreibung .smart__tab b{ display:block; font-size:0.9375rem; line-height:1.2; color:inherit; }
 #sx-beschreibung .smart__tab em{ display:block; font-style:normal; font-size:0.8125rem; font-weight:600; line-height:1.2; }
@@ -3651,9 +3680,8 @@ body.is-scrolled #quickbar {
 #sx-beschreibung .smart__media{ margin:0; aspect-ratio:4/3; border-radius:var(--radius-lg); overflow:hidden; background:#f2f2f0; box-shadow:var(--shadow-md); }
 #sx-beschreibung .smart__media img{ display:block; width:100%; height:100%; object-fit:cover; transition:opacity .2s; }
 #sx-beschreibung .smart__t{ margin:0 0 0.75rem; font-size:1.375rem; font-weight:700; line-height:1.25; color:var(--color-digital-black); }
-#sx-beschreibung .smart__list{ margin:0 0 1rem; padding:0; list-style:none; display:grid; gap:0.5rem; }
-#sx-beschreibung .smart__list li{ position:relative; padding-left:1.6rem; margin:0; font-size:0.9375rem; line-height:1.45; color:var(--color-digital-black); }
-#sx-beschreibung .smart__list li::before{ content:""; position:absolute; left:0.15rem; top:0.3rem; width:0.9rem; height:0.5rem; border-left:2px solid var(--color-teal); border-bottom:2px solid var(--color-teal); transform:rotate(-45deg); }
+/* the points: the live icon list (mz-ikl – line icon in a teal-tint badge), as on the live shop */
+#sx-beschreibung .smart__copy .smart__ikl{ margin:0 0 1.25rem; }
 #sx-beschreibung .smart__label{ margin:0 0 0.45rem; font-size:0.75rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-secondary); }
 /* the three ways to open it: tiles in the text column under "So öffnen Sie ihn", the same tile as
    the Dekoration / Befestigung galleries (white tile, picture + bold name, teal frame when shown,
