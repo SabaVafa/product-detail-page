@@ -3660,7 +3660,7 @@ body.is-scrolled #quickbar {
    price; inside the lock the three ways to open it swap the photo. Replaces two
    stacked rows of the same weight – about 40 % less height, nothing dropped. */
 #sx-beschreibung .smart{ max-width:none; margin:0; }
-#sx-beschreibung .smart__tabs{ display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:0.5rem; width:100%; max-width:40rem; margin:0 auto 1.5rem; padding:0.3rem; border-radius:var(--radius-xl); background:rgba(1,82,83,.06); }   /* wider switch: 640 px, roomier options */
+#sx-beschreibung .smart__tabs{ display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:0.5rem; width:100%; max-width:40rem; margin:0 auto var(--dsc-head); padding:0.3rem; border-radius:var(--radius-xl); background:rgba(1,82,83,.06); }   /* wider switch: 640 px, roomier options */
 @media (max-width:30rem){ #sx-beschreibung .smart__tab{ gap:0.5rem; padding:0.7rem 0.5rem; } #sx-beschreibung .smart__tab b{ font-size:0.875rem; white-space:nowrap; } }   /* phones: both names stay on one line */
 #sx-beschreibung .smart__tab{ display:flex; align-items:center; justify-content:center; gap:0.75rem; padding:0.8rem 1rem; border:0; border-radius:var(--radius-lg); background:transparent; color:var(--text-secondary); font:inherit; text-align:left; cursor:pointer; transition:background-color .2s, color .2s, box-shadow .2s; }
 #sx-beschreibung .smart__tab svg{ width:1.375rem; height:1.375rem; flex:none; }
@@ -3669,7 +3669,9 @@ body.is-scrolled #quickbar {
 #sx-beschreibung .smart__tab.is-on{ background:#fff; color:var(--color-teal); box-shadow:0 0.1rem 0.5rem rgba(0,0,0,.1); }
 #sx-beschreibung .smart__tab.is-on b{ color:var(--color-digital-black); }
 #sx-beschreibung .smart__tab:focus-visible, #sx-beschreibung .smart__way:focus-visible{ outline:2px solid var(--color-teal); outline-offset:2px; }
-#sx-beschreibung .smart__panel{ display:grid; grid-template-columns:minmax(0, 1fr); gap:1.25rem; align-items:center; animation:smart-in .35s cubic-bezier(.2,.8,.2,1); }
+/* one rhythm: head → switch → content all --dsc-head apart; photo and text start on one line
+   (centring them moved the start with each panel's text length) */
+#sx-beschreibung .smart__panel{ display:grid; grid-template-columns:minmax(0, 1fr); gap:1.25rem; align-items:start; animation:smart-in .35s cubic-bezier(.2,.8,.2,1); }
 /* both panels share one cell: the hidden one keeps its space invisibly, so switching Schloss /
    Sensor never changes the section's height (the dialog shows just its own panel) */
 #sx-beschreibung .smart{ display:grid; grid-template-columns:minmax(0, 1fr); }

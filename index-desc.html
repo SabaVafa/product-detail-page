@@ -20,7 +20,7 @@
 <!-- New PDP sections -->
 <link rel="stylesheet" href="pdp.css?v=35" />
 <!-- Version B – inline build panel -->
-<link rel="stylesheet" href="pdp-b-desc.css?v=125" />
+<link rel="stylesheet" href="pdp-b-desc.css?v=126" />
 <link rel="stylesheet" href="pdp-b-desc-opc.css?v=2" />
 <!-- Prototype variant switch – append ?flow=b (v2) or ?flow=c (v3) to load an alternative
      color-selection flow. Default (no param) renders v1 exactly as-is. Runs in <head> so the
@@ -1288,6 +1288,147 @@ class="clearfix d-none d-sm-block d-md-none"></div><div
 class="clearfix d-none d-md-block d-lg-none"></div><div
 class="clearfix d-none d-lg-block d-xl-none"></div></div><div
 class="opc-Divider hr-sect  mz-divider opc-Divider-empty" style=""></div><div
+style="" class=""><div
+class="mz-kopf mz-kopf-abstand"><p
+class="mz-eyebrow">Befestigung</p><p><span
+class="mz-display">Wandbriefkasten oder Standbriefkasten – Wand, Ständer oder Zaun</span></p><div
+class="mz-lead mz-kopf-lead"><p><strong>Für die Wandmontage ist alles dabei</strong> – Befestigungsmaterial liegt bei, ganz ohne Aufpreis. Wo keine Wand ist, macht einer von sieben Ständern den Siebert zum freistehenden <strong>Standbriefkasten</strong> – ein eleganter Postkasten als Blickfang im Vorgarten, vom klassischen Standfuß bis zum Design-Ständer Anna. Alle direkt im Konfigurator wählbar.</p></div></div></div><div
+style="" class=""><style type="text/css">.mz-sg-7be0a0000003e{max-width:60rem;margin:0 auto}
+.mz-sg-7be0a0000003e .sg-buehne{position:relative;max-width:50rem;margin:0 auto}
+.mz-sg-7be0a0000003e .sg-buehne img{width:100%;height:auto;display:block;border-radius:0.5rem;
+box-shadow:0 0.75rem 2rem rgba(0,0,0,0.12);transition:opacity .35s ease}
+.mz-sg-7be0a0000003e .sg-buehne img.wechsel{opacity:0}
+.mz-sg-7be0a0000003e .sg-cap{max-width:50rem;margin:0 auto}
+/* RASTER statt flex-wrap (Korrektur 30.07.): Mit `flex:0 1 8.5rem` haben zwar
+   alle Kacheln dieselbe Basisbreite, aber `min-width:auto` laesst sie nicht
+   unter ihre laengste unteilbare Textzeile schrumpfen. Namen wie
+   „Zaunbefestigung" blockieren damit mehr Platz als kurze – in der Folge passen
+   in eine Zeile drei Kacheln, in die naechste nur zwei, und die sechste bleibt
+   allein stehen (gemeldet 30.07.: Umbruch 3/2/1 statt 3/3).
+   Im Raster ist die Spaltenzahl gesetzt statt vom Text abgeleitet, die Zeilen
+   sind dadurch immer gleich besetzt. Spaltenzahl = Anzahl der Optionen, damit
+   der Baustein auch mit vier oder acht Kacheln aufgeht (wie bildgalerie()). */
+.mz-sg-7be0a0000003e .sg-kacheln{display:grid;grid-template-columns:repeat(7,1fr);
+gap:0.75rem;margin-top:1.25rem}
+.mz-sg-7be0a0000003e .sg-kachel{min-width:0;text-align:center;cursor:pointer;font:inherit;
+color:inherit;border:0.125rem solid transparent;border-radius:0.5rem;
+padding:0.5rem 0.25rem;transition:border-color .25s,transform .25s;background:#fff}
+.mz-sg-7be0a0000003e .sg-kachel:hover{transform:translateY(-0.25rem)}
+.mz-sg-7be0a0000003e .sg-kachel:focus-visible{outline:0.125rem solid var(--teal);outline-offset:0.125rem}
+.mz-sg-7be0a0000003e .sg-kachel.active{border-color:var(--teal)}
+.mz-sg-7be0a0000003e .sg-kachel img{width:100%;height:auto;display:block;border-radius:0.25rem;
+background:#f6f6f6}
+/* Lange Namen umbrechen statt die Spalte aufzudehnen – sonst kommt die
+   Ungleichheit ueber die Hintertuer zurueck. */
+.mz-sg-7be0a0000003e .sg-kachel .mz-tile-name{display:block;margin:0.5rem 0 0.125rem;
+overflow-wrap:break-word;hyphens:auto}
+.mz-sg-7be0a0000003e .sg-kachel .mz-tile-price{display:block;margin:0;white-space:nowrap}
+/* Tablet: halbe Spaltenzahl, damit 6 -> 3+3 und 4 -> 2+2 aufgehen. */
+@media (max-width:63.9375rem){
+.mz-sg-7be0a0000003e .sg-kacheln{grid-template-columns:repeat(4,1fr);gap:0.5rem}
+}
+/* Handy: zwei Spalten, sonst wird die Kachel schmaler als ihr Preis. */
+@media (max-width:35.9375rem){
+.mz-sg-7be0a0000003e .sg-kacheln{grid-template-columns:repeat(2,1fr)}
+}</style><div
+class="mz-sg-7be0a0000003e"><div
+class="sg-buehne mz-ki"><img
+loading="lazy" decoding="async" src="assets/briefkasten/siebert-befestigung-anna-2-v2.jpg" alt="Metzler Briefkasten Siebert als Standbriefkasten auf dem Design-Standfuß Anna 2 im Vorgarten"></div><div
+class="sg-kacheln">
+<button
+type="button" class="sg-kachel" aria-pressed="false" aria-label="Szene mit Erpo Edelstahl V2A anzeigen"><img
+src="assets/briefkasten/opt-staender-erpo-edelstahl.jpg" alt="Metzler Briefkastenständer Erpo aus V2A Edelstahl" loading="lazy"><span
+class="mz-tile-name">Erpo Edelstahl V2A</span><span
+class="mz-tile-price">+ 69,99 €</span></button><button
+type="button" class="sg-kachel" aria-pressed="false" aria-label="Szene mit Erpo Anthrazit anzeigen"><img
+src="assets/briefkasten/opt-staender-erpo-anthrazit.jpg" alt="Metzler Briefkastenständer Erpo in Anthrazit" loading="lazy"><span
+class="mz-tile-name">Erpo Anthrazit</span><span
+class="mz-tile-price">+ 59,99 €</span></button><button
+type="button" class="sg-kachel" aria-pressed="false" aria-label="Szene mit Standfuß Anna 1 anzeigen"><img
+src="assets/briefkasten/opt-staender-anna-1.jpg" alt="Metzler Design-Standfuß Anna 1 in RAL 7016 Anthrazit" loading="lazy"><span
+class="mz-tile-name">Standfuß Anna 1</span><span
+class="mz-tile-price">+ 99,00 €</span></button><button
+type="button" class="sg-kachel active" aria-pressed="true" aria-label="Szene mit Standfuß Anna 2 anzeigen"><img
+src="assets/briefkasten/opt-staender-anna-2.jpg" alt="Metzler Design-Standfuß Anna 2 in RAL 7016 Anthrazit" loading="lazy"><span
+class="mz-tile-name">Standfuß Anna 2</span><span
+class="mz-tile-price">+ 99,00 €</span></button><button
+type="button" class="sg-kachel" aria-pressed="false" aria-label="Szene mit Standfuß Anna 3 anzeigen"><img
+src="assets/briefkasten/opt-staender-anna-3.jpg" alt="Metzler Design-Standfuß Anna 3 in RAL 7016 Anthrazit" loading="lazy"><span
+class="mz-tile-name">Standfuß Anna 3</span><span
+class="mz-tile-price">+ 99,00 €</span></button><button
+type="button" class="sg-kachel" aria-pressed="false" aria-label="Szene mit Zaunbefestigung anzeigen"><img
+src="assets/briefkasten/opt-zaunbefestigung.jpg" alt="Zaunbefestigung für Metzler Briefkästen in Anthrazit" loading="lazy"><span
+class="mz-tile-name">Zaunbefestigung</span><span
+class="mz-tile-price">+ 32,99 €</span></button><button
+type="button" class="sg-kachel" aria-pressed="false" aria-label="Szene mit Zum Einbetonieren anzeigen"><img
+src="assets/briefkasten/opt-staender-einbetonieren.jpg" alt="Metzler Briefkastenständer universell zum Einbetonieren" loading="lazy"><span
+class="mz-tile-name">Zum Einbetonieren</span><span
+class="mz-tile-price">+ 69,99 €</span></button></div></div> <script>(function(){
+var P=[{"img": "assets/briefkasten/siebert-befestigung-erpo-edelstahl-v2.jpg", "alt": "Metzler Briefkasten Siebert auf Erpo-Ständer aus V2A Edelstahl im Vorgarten", "ki": true}, {"img": "assets/briefkasten/siebert-befestigung-erpo-anthrazit-v2.jpg", "alt": "Metzler Briefkasten Siebert auf Erpo-Ständer in Anthrazit RAL 7016 im Vorgarten", "ki": true}, {"img": "assets/briefkasten/siebert-befestigung-anna-1-v2.jpg", "alt": "Metzler Briefkasten Siebert als Standbriefkasten auf dem Design-Standfuß Anna 1 im Vorgarten", "ki": true}, {"img": "assets/briefkasten/siebert-befestigung-anna-2-v2.jpg", "alt": "Metzler Briefkasten Siebert als Standbriefkasten auf dem Design-Standfuß Anna 2 im Vorgarten", "ki": true}, {"img": "assets/briefkasten/siebert-befestigung-anna-3-v2.jpg", "alt": "Metzler Briefkasten Siebert als Standbriefkasten auf dem Design-Standfuß Anna 3 im Vorgarten", "ki": true}, {"img": "assets/briefkasten/siebert-befestigung-zaun-v2.jpg", "alt": "Metzler Briefkasten Siebert mit Zaunbefestigung am Doppelstabmattenzaun", "ki": true}, {"img": "assets/briefkasten/siebert-befestigung-einbetonieren-v2.jpg", "alt": "Metzler Briefkasten Siebert auf einbetoniertem Standpfosten im Vorgarten", "ki": true}], w=document.querySelector('.mz-sg-7be0a0000003e'); if(!w) return;
+var buehne=w.querySelector('.sg-buehne');
+var img=buehne.querySelector('img');
+var kacheln=w.querySelectorAll('.sg-kachel');
+function go(n){
+  img.classList.add('wechsel');
+  setTimeout(function(){
+    img.src=P[n].img; img.alt=P[n].alt;
+    /* KI-Kennzeichnung mitschalten: die Buehne zeigt je nach Auswahl eine
+       generierte oder eine echte Aufnahme. Ein festes Overlay waere in
+       beide Richtungen falsch – beim Siebert ist ausgerechnet das
+       Startbild eine echte Aufnahme des Auftraggebers. */
+    buehne.classList.toggle('mz-ki', !!P[n].ki);
+    img.classList.remove('wechsel');
+  },180);
+  kacheln.forEach(function(k,i){
+    k.classList.toggle('active', i===n);
+    k.setAttribute('aria-pressed', i===n ? 'true' : 'false');
+  });
+}
+kacheln.forEach(function(k,n){
+  k.addEventListener('click', function(){
+    if(!k.classList.contains('active')) go(n);
+  });
+});
+})();</script> </div><div
+class="opc-Divider hr-sect  mz-divider opc-Divider-empty" style=""></div><div
+style="" class=""><div
+class="mz-kopf mz-kopf-abstand"><p
+class="mz-eyebrow">Abmessung und Lieferumfang</p><p><span
+class="mz-display">Alle Maße auf einen Blick</span></p><div
+class="mz-lead mz-kopf-lead"><p>Der Siebert misst 37 × 37 × 10,5 cm und wird montagefertig geliefert – mit zwei Schlüsseln und dem Befestigungsmaterial für die Wandmontage.</p></div></div></div><div
+class="row  mz-mg abm"><div
+class="col  col-md-12 col-lg-5 col-xl-5 col-12" data-area-id="col-0"><figure class="dim"><div class="dim__box"><img src="assets/briefkasten/siebert-farbe-anthrazit-ral7016.jpg" width="900" height="900" loading="lazy" decoding="async" alt="Briefkasten Siebert in der Vorderansicht mit Maßangaben"><span class="dim__w" aria-hidden="true"><i>37 cm</i></span><span class="dim__h" aria-hidden="true"><i>37 cm</i></span></div><figcaption class="abm__cap"><b>37 × 37 × 10,5 cm</b>Breite × Höhe × Tiefe</figcaption></figure><div class="abm__side"><div
+style="max-width:890px; margin-left: auto;margin-right: auto;" class="mz-img">
+<picture>
+<source
+ sizes="(max-width: 767px) 100vw, (max-width: 991px) 100vw, (max-width: 1299px) 41vw, (min-width: 1300px) 41vw, 100vw" width="890" height="1112" type="image/webp">
+<img
+src="assets/briefkasten/siebert-montagezeichnung.jpg" sizes="(max-width: 767px) 100vw, (max-width: 991px) 100vw, (max-width: 1299px) 41vw, (min-width: 1300px) 41vw, 100vw" class="img-aspect-ratio rounded lazyload img-fluid w-100" alt="Montagezeichnung des Metzler Briefkasten Siebert: der Kasten wird mit Dübeln und Schrauben an der Wand befestigt" width="890" height="1112" style="" draggable="false">
+</source></picture></div><p class="abm__cap"><b>Seitenansicht</b>Entnahmeklappe offen, mit Distanzhülsen an der Wand</p></div></div><div
+class="clearfix d-block d-sm-none"></div><div
+class="clearfix d-none d-sm-block d-md-none"></div><div
+class="col  col-md-12 col-lg-7 col-xl-7 col-12" data-area-id="col-1"><div
+style="" class=""><p><span
+class="mz-h3">Das liegt bei</span></p></div><div
+style="max-width:1270px; margin-left: auto;margin-right: auto;" class="opc-hidden-xs mz-img mz-cut mz-ki">
+<picture>
+<source
+ sizes="(max-width: 767px) 100vw, (max-width: 991px) 100vw, (max-width: 1299px) 58vw, (min-width: 1300px) 58vw, 100vw" width="1270" height="779" type="image/webp">
+<img
+src="assets/briefkasten/siebert-lieferumfang-tafel.jpg" sizes="(max-width: 767px) 100vw, (max-width: 991px) 100vw, (max-width: 1299px) 58vw, (min-width: 1300px) 58vw, 100vw" class="img-aspect-ratio rounded lazyload img-fluid w-100" alt="Befestigungsmaterial des Metzler Briefkasten Siebert: 2 Schlüssel, 4 Dübel (28 mm), 4 Distanzhülsen und 4 Schrauben (46 mm)" width="1270" height="779" style="" draggable="false">
+</source></picture></div><div
+style="max-width:720px; margin-left: auto;margin-right: auto;" class="opc-hidden-sm opc-hidden-md opc-hidden-lg mz-img mz-cut mz-ki">
+<picture>
+<source
+ sizes="(max-width: 767px) 100vw, (max-width: 991px) 100vw, (max-width: 1299px) 58vw, (min-width: 1300px) 58vw, 100vw" width="720" height="486" type="image/webp">
+<img
+src="assets/briefkasten/siebert-lieferumfang-tafel-xs.jpg" sizes="(max-width: 767px) 100vw, (max-width: 991px) 100vw, (max-width: 1299px) 58vw, (min-width: 1300px) 58vw, 100vw" class="img-aspect-ratio rounded lazyload img-fluid w-100" alt="Befestigungsmaterial des Metzler Briefkasten Siebert: 2 Schlüssel, 4 Dübel (28 mm), 4 Distanzhülsen und 4 Schrauben (46 mm)" width="720" height="486" style="" draggable="false">
+</source></picture></div></div><div
+class="clearfix d-block d-sm-none"></div><div
+class="clearfix d-none d-sm-block d-md-none"></div><div
+class="clearfix d-none d-md-block d-lg-none"></div><div
+class="clearfix d-none d-lg-block d-xl-none"></div></div><div
+class="opc-Divider hr-sect  mz-divider opc-Divider-empty" style=""></div><div
 style="" class="mz-kopf mz-kopf-abstand"><p class="mz-eyebrow">Warum dieser Briefkasten?</p><p><span class="mz-display">Schluss mit nasser, geknickter Post</span></p></div><div
 class="row  dpflex-a-c"><div
 class="col  col-md-6 col-lg-6 col-xl-6 col-12" data-area-id="col-0"><div
@@ -1295,7 +1436,7 @@ style="" class=""><div
 style="max-width:50rem;margin-left:auto;margin-right:auto;"><div
 id="ba7be0a0000001d" class="mz-ba" style="position:relative;border-radius:var(--radius-lg);overflow:hidden;user-select:none;touch-action:pan-y;">
 <img
-loading="lazy" decoding="async" class="mz-ki" src="assets/briefkasten/siebert-ba-nachher-graualuminium.jpg" style="display:block;width:100%;" alt="Nachher: DIN-C4-Umschlag gleitet flach in den Siebert" draggable="false"><div
+loading="lazy" decoding="async" class="mz-ki" src="assets/briefkasten/siebert-ba-nachher.jpg" style="display:block;width:100%;" alt="Nachher: DIN-C4-Umschlag gleitet flach in den Siebert" draggable="false"><div
 style="position:absolute;top:0.625rem;right:0.625rem;background:#009951;color:#fff;font-size:0.75rem;font-weight:700;letter-spacing:0.15em;padding:0.375rem 0.75rem;border-radius:0.25rem;box-shadow:0 0.125rem 0.5rem rgba(0,0,0,.35);text-transform:uppercase;line-height:1;">NACHHER</div><div
 id="ba7be0a0000001dt" class="mz-ba" style="position:absolute;top:0;left:0;bottom:0;width:50%;overflow:hidden;">
 <img
@@ -1321,6 +1462,96 @@ class="clearfix d-block d-sm-none"></div><div
 class="clearfix d-none d-sm-block d-md-none"></div><div
 class="clearfix d-none d-md-block d-lg-none"></div><div
 class="clearfix d-none d-lg-block d-xl-none"></div></div><div
+class="opc-Divider hr-sect  mz-divider opc-Divider-empty" style=""></div><div
+style="" class="mz-kopf mz-kopf-abstand"><p class="mz-eyebrow">Material und Gravur</p><p><span class="mz-display">Wetterfest gebaut, präzise graviert</span></p></div><div
+class="row  mz-mg"><div
+class="col  col-md-6 col-lg-6 col-xl-6 col-12" data-area-id="col-0"><h3 style=" text-align:left" class=" ">
+Witterungsbeständig</h3><div
+style="" class=""><div
+class="mz-vidwrap mz-media mz-img"><video
+class="mz-lazyvid mz-ki" preload="none" data-src="assets/briefkasten/siebert-wetter.mp4" poster="assets/briefkasten/siebert-wetter-poster.jpg" autoplay loop muted playsinline aria-label="Metzler Briefkasten Siebert bei starkem Regen, wetterbestaendig"></video></div></div><div
+style="" class=""><style type="text/css">.mz-ikl{list-style:none;padding:0;margin:0;display:grid;gap:0.75rem}.mz-ikl li{display:flex;align-items:center;gap:0.75rem}.mz-ikl-ico{display:inline-flex;align-items:center;justify-content:center;width:2.5rem;height:2.5rem;border-radius:0.5rem;background:rgba(1,82,83,0.08);color:var(--teal);flex:0 0 auto}.mz-ikl-ico svg{width:1.25rem;height:1.25rem;display:block}.mz-ikl-ico svg.mz-fingerabdruck{width:auto;height:1.4rem}.mz-ikl-ico svg.mz-schirm{width:auto;height:1.65rem}.mz-ikl .mz-ikl-t{margin:0;font-size:1rem;color:var(--schwarz)}.mz-ikl-t b{display:block;font-weight:700}.mz-ikl-t span{display:block;color:var(--text-muted)}</style><style type="text/css">.mz-mg,.row.mz-mg{align-items:flex-start}.mz-mg .mz-ikl{margin-top:1.25rem}@media(max-width:47.9375rem){.mz-mg,.row.mz-mg{row-gap:2rem}}</style><ul
+class="mz-ikl"><li>
+<span
+class="mz-ikl-ico"><svg
+viewbox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path
+d="M12 2L3 7v10l9 5 9-5V7l-9-5z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><path
+d="M3 7l9 5 9-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><path
+d="M12 22V12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"></path></svg></span><p
+class="mz-ikl-t">Galvanisierter Stahl mit UV-beständiger Pulverbeschichtung</p></li><li>
+<span
+class="mz-ikl-ico"><svg
+viewbox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><rect
+x="3" y="11" width="18" height="11" rx="2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"></rect><path
+d="M7 11V7a5 5 0 0110 0v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"></path></svg></span><p
+class="mz-ikl-t">Verdecktes Schloss – geschützt vor Nässe und Frost</p></li><li>
+<span
+class="mz-ikl-ico"><svg
+viewbox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><circle
+cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"></circle><path
+d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"></path></svg></span><p
+class="mz-ikl-t">Beschichtung hält Sonne, Regen und Frost stand</p></li></ul></div></div><div
+class="clearfix d-block d-sm-none"></div><div
+class="col  col-md-6 col-lg-6 col-xl-6 col-12" data-area-id="col-1"><h3 style=" text-align:left" class=" ">
+Individuelle Lasergravur</h3><div
+style="max-width:1080px; margin-left: auto;margin-right: auto;" class="mz-img mz-ki"><picture>
+<source
+ sizes="(max-width: 767px) 100vw, (max-width: 991px) 50vw, (max-width: 1299px) 50vw, (min-width: 1300px) 50vw, 100vw" width="1080" height="810" type="image/webp">
+<img
+src="assets/briefkasten/siebert-gravur-laser.jpg" sizes="(max-width: 767px) 100vw, (max-width: 991px) 50vw, (max-width: 1299px) 50vw, (min-width: 1300px) 50vw, 100vw" class="img-aspect-ratio lazyload img-fluid w-100" alt="Lasergravur mit Funkenflug brennt den Wunschnamen in die Edelstahl-Gravurleiste des Metzler Siebert" width="1080" height="810" style="" draggable="false">
+</source></picture></div><div
+style="" class=""><ul
+class="mz-ikl"><li>
+<span
+class="mz-ikl-ico"><svg
+viewbox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path
+d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"></path></svg></span><p
+class="mz-ikl-t">Gravur von Name, Straße und Hausnummer nach Ihren Wünschen</p></li><li>
+<span
+class="mz-ikl-ico"><svg
+viewbox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><circle
+cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"></circle><path
+d="M12 6v6l4 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"></path></svg></span><p
+class="mz-ikl-t">Kein Verblassen dank Lasergravur auf gebürstetem V4A-Edelstahl</p></li><li>
+<span
+class="mz-ikl-ico"><svg
+viewbox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path
+d="M3 8H6.5M11.5 8H21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><circle
+cx="9" cy="8" r="2.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"></circle><path
+d="M3 16H12.5M17.5 16H21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><circle
+cx="15" cy="16" r="2.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"></circle></svg></span><p
+class="mz-ikl-t">Schriftart und -größe wählbar, mit Vorschau im Bestellvorgang</p></li></ul></div></div><div
+class="clearfix d-block d-sm-none"></div><div
+class="clearfix d-none d-sm-block d-md-none"></div><div
+class="clearfix d-none d-md-block d-lg-none"></div><div
+class="clearfix d-none d-lg-block d-xl-none"></div></div><div
+class="opc-Divider hr-sect  mz-divider opc-Divider-empty" style=""></div><div class="vrb"><div
+style="" class=""><div
+class="mz-kopf mz-kopf-abstand"><p
+class="mz-eyebrow">Verarbeitung</p><p><span
+class="mz-display">Qualität im Detail</span></p></div></div><div
+class="row  "><div
+class="col  col-md-6 col-lg-6 col-xl-6 col-12" data-area-id="col-0"><div
+style="max-width:1080px; margin-left: auto;margin-right: auto;" class="mz-img mz-ki">
+<picture>
+<source
+ sizes="(max-width: 767px) 100vw, (max-width: 991px) 50vw, (max-width: 1299px) 50vw, (min-width: 1300px) 50vw, 100vw" width="1080" height="810" type="image/webp">
+<img
+src="assets/briefkasten/siebert-detail-gravur.jpg" sizes="(max-width: 767px) 100vw, (max-width: 991px) 50vw, (max-width: 1299px) 50vw, (min-width: 1300px) 50vw, 100vw" class="img-aspect-ratio rounded lazyload img-fluid w-100" alt="Makroaufnahme der gravierten V4A-Edelstahlleisten des Metzler Siebert mit Straßenname und Hausnummer" width="1080" height="810" style="" draggable="false">
+</source></picture></div><p class="vrb__cap"><b>Lasergravur</b>Gebürsteter V4A-Edelstahl – Schrift in der Oberfläche, kein Aufkleber</p></div><div
+class="clearfix d-block d-sm-none"></div><div
+class="col  col-md-6 col-lg-6 col-xl-6 col-12" data-area-id="col-1"><div
+style="max-width:1080px; margin-left: auto;margin-right: auto;" class="mz-img mz-ki">
+<picture>
+<source
+ sizes="(max-width: 767px) 100vw, (max-width: 991px) 50vw, (max-width: 1299px) 50vw, (min-width: 1300px) 50vw, 100vw" width="1080" height="810" type="image/webp">
+<img
+src="assets/briefkasten/siebert-detail-korpus.jpg" sizes="(max-width: 767px) 100vw, (max-width: 991px) 50vw, (max-width: 1299px) 50vw, (min-width: 1300px) 50vw, 100vw" class="img-aspect-ratio rounded lazyload img-fluid w-100" alt="Der Metzler Siebert im Studiolicht: pulverbeschichteter Korpus, saubere Kanten und Edelstahlleisten" width="1080" height="810" style="" draggable="false">
+</source></picture></div><p class="vrb__cap"><b>Korpus</b>Galvanisierter Stahl mit UV-beständiger Pulverbeschichtung</p></div><div
+class="clearfix d-block d-sm-none"></div><div
+class="clearfix d-none d-sm-block d-md-none"></div><div
+class="clearfix d-none d-md-block d-lg-none"></div><div
+class="clearfix d-none d-lg-block d-xl-none"></div></div></div><div
 class="row  mz-kap mz-kap-xdm mz-kap-d"><div
 class="col  col-md-12 col-lg-12 col-xl-12 col-12" data-area-id="col-0"><div
 style="" class="mz-eyebrow"><p>Verfügbare Farben</p></div><div
@@ -1463,70 +1694,7 @@ class="clearfix d-none d-lg-block d-xl-none"></div></div></div><div
 class="clearfix d-block d-sm-none"></div><div
 class="clearfix d-none d-sm-block d-md-none"></div><div
 class="clearfix d-none d-md-block d-lg-none"></div><div
-class="clearfix d-none d-lg-block d-xl-none"></div></div><div
-style="" class="mz-kopf mz-kopf-abstand"><p class="mz-eyebrow">Material und Gravur</p><p><span class="mz-display">Wetterfest gebaut, präzise graviert</span></p></div><div
-class="row  mz-mg"><div
-class="col  col-md-6 col-lg-6 col-xl-6 col-12" data-area-id="col-0"><h3 style=" text-align:left" class=" ">
-Witterungsbeständig</h3><div
-style="" class=""><div
-class="mz-vidwrap mz-media mz-img"><video
-class="mz-lazyvid mz-ki" preload="none" data-src="assets/briefkasten/siebert-wetter.mp4" poster="assets/briefkasten/siebert-wetter-poster.jpg" autoplay loop muted playsinline aria-label="Metzler Briefkasten Siebert bei starkem Regen, wetterbestaendig"></video></div></div><div
-style="" class=""><style type="text/css">.mz-ikl{list-style:none;padding:0;margin:0;display:grid;gap:0.75rem}.mz-ikl li{display:flex;align-items:center;gap:0.75rem}.mz-ikl-ico{display:inline-flex;align-items:center;justify-content:center;width:2.5rem;height:2.5rem;border-radius:0.5rem;background:rgba(1,82,83,0.08);color:var(--teal);flex:0 0 auto}.mz-ikl-ico svg{width:1.25rem;height:1.25rem;display:block}.mz-ikl-ico svg.mz-fingerabdruck{width:auto;height:1.4rem}.mz-ikl-ico svg.mz-schirm{width:auto;height:1.65rem}.mz-ikl .mz-ikl-t{margin:0;font-size:1rem;color:var(--schwarz)}.mz-ikl-t b{display:block;font-weight:700}.mz-ikl-t span{display:block;color:var(--text-muted)}</style><style type="text/css">.mz-mg,.row.mz-mg{align-items:flex-start}.mz-mg .mz-ikl{margin-top:1.25rem}@media(max-width:47.9375rem){.mz-mg,.row.mz-mg{row-gap:2rem}}</style><ul
-class="mz-ikl"><li>
-<span
-class="mz-ikl-ico"><svg
-viewbox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path
-d="M12 2L3 7v10l9 5 9-5V7l-9-5z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><path
-d="M3 7l9 5 9-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><path
-d="M12 22V12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"></path></svg></span><p
-class="mz-ikl-t">Galvanisierter Stahl mit UV-beständiger Pulverbeschichtung</p></li><li>
-<span
-class="mz-ikl-ico"><svg
-viewbox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><rect
-x="3" y="11" width="18" height="11" rx="2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"></rect><path
-d="M7 11V7a5 5 0 0110 0v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"></path></svg></span><p
-class="mz-ikl-t">Verdecktes Schloss – geschützt vor Nässe und Frost</p></li><li>
-<span
-class="mz-ikl-ico"><svg
-viewbox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><circle
-cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"></circle><path
-d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"></path></svg></span><p
-class="mz-ikl-t">Beschichtung hält Sonne, Regen und Frost stand</p></li></ul></div></div><div
-class="clearfix d-block d-sm-none"></div><div
-class="col  col-md-6 col-lg-6 col-xl-6 col-12" data-area-id="col-1"><h3 style=" text-align:left" class=" ">
-Individuelle Lasergravur</h3><div
-style="max-width:1080px; margin-left: auto;margin-right: auto;" class="mz-img mz-ki"><picture>
-<source
- sizes="(max-width: 767px) 100vw, (max-width: 991px) 50vw, (max-width: 1299px) 50vw, (min-width: 1300px) 50vw, 100vw" width="1080" height="810" type="image/webp">
-<img
-src="assets/briefkasten/siebert-gravur-laser.jpg" sizes="(max-width: 767px) 100vw, (max-width: 991px) 50vw, (max-width: 1299px) 50vw, (min-width: 1300px) 50vw, 100vw" class="img-aspect-ratio lazyload img-fluid w-100" alt="Lasergravur mit Funkenflug brennt den Wunschnamen in die Edelstahl-Gravurleiste des Metzler Siebert" width="1080" height="810" style="" draggable="false">
-</source></picture></div><div
-style="" class=""><ul
-class="mz-ikl"><li>
-<span
-class="mz-ikl-ico"><svg
-viewbox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path
-d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"></path></svg></span><p
-class="mz-ikl-t">Gravur von Name, Straße und Hausnummer nach Ihren Wünschen</p></li><li>
-<span
-class="mz-ikl-ico"><svg
-viewbox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><circle
-cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"></circle><path
-d="M12 6v6l4 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"></path></svg></span><p
-class="mz-ikl-t">Kein Verblassen dank Lasergravur auf gebürstetem V4A-Edelstahl</p></li><li>
-<span
-class="mz-ikl-ico"><svg
-viewbox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path
-d="M3 8H6.5M11.5 8H21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><circle
-cx="9" cy="8" r="2.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"></circle><path
-d="M3 16H12.5M17.5 16H21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><circle
-cx="15" cy="16" r="2.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"></circle></svg></span><p
-class="mz-ikl-t">Schriftart und -größe wählbar, mit Vorschau im Bestellvorgang</p></li></ul></div></div><div
-class="clearfix d-block d-sm-none"></div><div
-class="clearfix d-none d-sm-block d-md-none"></div><div
-class="clearfix d-none d-md-block d-lg-none"></div><div
-class="clearfix d-none d-lg-block d-xl-none"></div></div><div
-class="opc-Divider hr-sect  mz-divider opc-Divider-empty" style=""></div><div class="kfg"><div
+class="clearfix d-none d-lg-block d-xl-none"></div></div><div class="kfg"><div
 style="" class=""><div
 class="mz-kopf mz-kopf-abstand"><p
 class="mz-eyebrow">Konfigurator</p><p><span
@@ -1536,14 +1704,14 @@ style="max-width:1005px; margin-left: auto;margin-right: auto;" class="opc-hidde
 <source
  sizes="(max-width: 767px) 100vw, (max-width: 991px) 100vw, (max-width: 1299px) 100vw, (min-width: 1300px) 100vw, 100vw" width="1005" height="764" type="image/webp">
 <img
-src="assets/briefkasten/siebert-konfigurator-graualuminium.jpg" sizes="(max-width: 767px) 100vw, (max-width: 991px) 100vw, (max-width: 1299px) 100vw, (min-width: 1300px) 100vw, 100vw" class="img-aspect-ratio rounded lazyload img-fluid w-100" alt="Metzler Konfigurator auf einem Laptop: links die 3D-Ansicht des gravierten Briefkastens Siebert, rechts die Eingabe von Namensschild, Straße und Hausnummer mit der Auswahl der Schriftart" width="1005" height="764" style="" draggable="false">
+src="assets/briefkasten/siebert-konfigurator.jpg" sizes="(max-width: 767px) 100vw, (max-width: 991px) 100vw, (max-width: 1299px) 100vw, (min-width: 1300px) 100vw, 100vw" class="img-aspect-ratio rounded lazyload img-fluid w-100" alt="Metzler Konfigurator auf einem Laptop: links die 3D-Ansicht des gravierten Briefkastens Siebert, rechts die Eingabe von Namensschild, Straße und Hausnummer mit der Auswahl der Schriftart" width="1005" height="764" style="" draggable="false">
 </source></picture></div><div
 style="max-width:720px; margin-left: auto;margin-right: auto;" class="opc-hidden-sm opc-hidden-md opc-hidden-lg mz-kfg-bild mz-kfg-bild-mobil">
 <picture>
 <source
  sizes="(max-width: 767px) 100vw, (max-width: 991px) 100vw, (max-width: 1299px) 100vw, (min-width: 1300px) 100vw, 100vw" width="720" height="795" type="image/webp">
 <img
-src="assets/briefkasten/siebert-konfigurator-mobil-3d-graualuminium.jpg" sizes="(max-width: 767px) 100vw, (max-width: 991px) 100vw, (max-width: 1299px) 100vw, (min-width: 1300px) 100vw, 100vw" class="img-aspect-ratio rounded lazyload img-fluid w-100" alt="Live-Vorschau im mobilen Metzler Konfigurator: Briefkasten Siebert in Graualuminium mit graviertem Namensschild, Straßenname und Hausnummer" width="720" height="795" style="" draggable="false">
+src="assets/briefkasten/siebert-konfigurator-mobil-3d.jpg" sizes="(max-width: 767px) 100vw, (max-width: 991px) 100vw, (max-width: 1299px) 100vw, (min-width: 1300px) 100vw, 100vw" class="img-aspect-ratio rounded lazyload img-fluid w-100" alt="Live-Vorschau im mobilen Metzler Konfigurator: Briefkasten Siebert in Anthrazit mit graviertem Namensschild, Straßenname und Hausnummer" width="720" height="795" style="" draggable="false">
 </source></picture></div><div
 style="max-width:720px; margin-left: auto;margin-right: auto;" class="opc-hidden-sm opc-hidden-md opc-hidden-lg mz-kfg-bild mz-kfg-bild-mobil">
 <picture>
@@ -1552,40 +1720,45 @@ style="max-width:720px; margin-left: auto;margin-right: auto;" class="opc-hidden
 <img
 src="assets/briefkasten/siebert-konfigurator-mobil-gravur.png" sizes="(max-width: 767px) 100vw, (max-width: 991px) 100vw, (max-width: 1299px) 100vw, (min-width: 1300px) 100vw, 100vw" class="img-aspect-ratio rounded lazyload img-fluid w-100" alt='Schritt 1 „Gravurdaten" im mobilen Metzler Konfigurator: Eingabefelder für Namensschild, Straße und Hausnummer und die Auswahl der Schriftart' width="720" height="1138" style="" draggable="false">
 </source></picture></div></div><div
-class="opc-Divider hr-sect  mz-divider opc-Divider-empty" style=""></div><div class="vrb"><div
+class="opc-Divider hr-sect  mz-divider opc-Divider-empty" style=""></div><div
 style="" class=""><div
 class="mz-kopf mz-kopf-abstand"><p
-class="mz-eyebrow">Verarbeitung</p><p><span
-class="mz-display">Qualität im Detail</span></p></div></div><div
-class="row  "><div
-class="col  col-md-6 col-lg-6 col-xl-6 col-12" data-area-id="col-0"><div
-style="max-width:1080px; margin-left: auto;margin-right: auto;" class="mz-img mz-ki">
-<picture>
-<source
- sizes="(max-width: 767px) 100vw, (max-width: 991px) 50vw, (max-width: 1299px) 50vw, (min-width: 1300px) 50vw, 100vw" width="1080" height="810" type="image/webp">
+class="mz-eyebrow">Erweiterungen &amp; Zubehör</p><p><span
+class="mz-display">Leises Schließen, sicherer Inhalt</span></p><div
+class="mz-lead mz-kopf-lead"><p>Absenkautomatik und Entnahmesicherung bestellen Metzler Kunden im Onlineshop am häufigsten gleich mit – alle vier Optionen sind direkt im Konfigurator wählbar.</p></div></div></div><div
+style="" class=""><style type="text/css">.mz-zk{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:1.5rem}.mz-zk-k{display:flex;align-items:center;gap:1.25rem;background:rgba(1,82,83,0.04);border-radius:var(--radius-lg,0.5rem);padding:1.25rem 1.5rem}.mz-zk-k:last-child:nth-child(odd){grid-column:1/-1}.mz-zk-b{flex:0 0 13rem;height:13rem;object-fit:contain;mix-blend-mode:multiply}.mz-zk-t{margin:0;font-weight:700;color:var(--schwarz,#1A171B);font-size:1.0625rem;line-height:1.3}.mz-zk-n{margin:0.25rem 0 0;color:var(--text-muted,#6a6a6a);font-size:0.9375rem;line-height:1.45}.mz-zk-p{margin:0.5rem 0 0;font-weight:700;color:var(--teal,#015253)}@media (max-width:47.9375rem){.mz-zk{grid-template-columns:1fr}.mz-zk-b{flex-basis:8rem;height:8rem}}</style><div
+class="mz-zk"><div
+class="mz-zk-k">
 <img
-src="assets/briefkasten/siebert-detail-gravur-graualuminium.jpg" sizes="(max-width: 767px) 100vw, (max-width: 991px) 50vw, (max-width: 1299px) 50vw, (min-width: 1300px) 50vw, 100vw" class="img-aspect-ratio rounded lazyload img-fluid w-100" alt="Makroaufnahme der gravierten V4A-Edelstahlleisten des Metzler Siebert mit Straßenname und Hausnummer" width="1080" height="810" style="" draggable="false">
-</source></picture></div><p class="vrb__cap"><b>Lasergravur</b>Gebürsteter V4A-Edelstahl – Schrift in der Oberfläche, kein Aufkleber</p></div><div
-class="clearfix d-block d-sm-none"></div><div
-class="col  col-md-6 col-lg-6 col-xl-6 col-12" data-area-id="col-1"><div
-style="max-width:1080px; margin-left: auto;margin-right: auto;" class="mz-img mz-ki">
-<picture>
-<source
- sizes="(max-width: 767px) 100vw, (max-width: 991px) 50vw, (max-width: 1299px) 50vw, (min-width: 1300px) 50vw, 100vw" width="1080" height="810" type="image/webp">
+class="mz-zk-b" src="assets/briefkasten/opt-absenkautomatik.jpg" alt="Metzler Briefkastendeckel mit Absenkautomatik" loading="lazy"><div><p
+class="mz-zk-t">Absenkautomatik (Soft-Close)</p><p
+class="mz-zk-n">Der Deckel fällt sanft zu statt zu knallen</p><p
+class="mz-zk-p">+ 8,99 €</p></div></div><div
+class="mz-zk-k">
 <img
-src="assets/briefkasten/siebert-detail-korpus-graualuminium.jpg" sizes="(max-width: 767px) 100vw, (max-width: 991px) 50vw, (max-width: 1299px) 50vw, (min-width: 1300px) 50vw, 100vw" class="img-aspect-ratio rounded lazyload img-fluid w-100" alt="Der Metzler Siebert im Studiolicht: pulverbeschichteter Korpus, saubere Kanten und Edelstahlleisten" width="1080" height="810" style="" draggable="false">
-</source></picture></div><p class="vrb__cap"><b>Korpus</b>Galvanisierter Stahl mit UV-beständiger Pulverbeschichtung</p></div><div
-class="clearfix d-block d-sm-none"></div><div
-class="clearfix d-none d-sm-block d-md-none"></div><div
-class="clearfix d-none d-md-block d-lg-none"></div><div
-class="clearfix d-none d-lg-block d-xl-none"></div></div></div><div
+class="mz-zk-b" src="assets/briefkasten/opt-entnahmesicherung.jpg" alt="Metzler Edelstahl-Entnahmesicherung mit gezacktem Eingriffschutz" loading="lazy"><div><p
+class="mz-zk-t">Entnahmesicherung</p><p
+class="mz-zk-n">Gezackter Eingriffschutz gegen Angeln durch den Einwurfschlitz</p><p
+class="mz-zk-p">+ 14,99 €</p></div></div><div
+class="mz-zk-k">
+<img
+class="mz-zk-b" src="assets/briefkasten/opt-zeitungsabdeckung-v2.jpg" alt="Abdeckung für das Zeitungsfach in RAL 7016 Anthrazit" loading="lazy"><div><p
+class="mz-zk-t">Zeitungsfach-Abdeckung</p><p
+class="mz-zk-n">Verschließt das offene Zeitungsfach</p><p
+class="mz-zk-p">+ 19,99 €</p></div></div><div
+class="mz-zk-k">
+<img
+class="mz-zk-b" src="assets/briefkasten/opt-werbeschild.jpg" alt="Metzler Briefkastenschild Bitte keine Werbung in Anthrazit" loading="lazy"><div><p
+class="mz-zk-t">Schild „Keine Werbung“</p><p
+class="mz-zk-n">Hält Prospekte aus dem Kasten</p><p
+class="mz-zk-p">+ 8,99 €</p></div></div></div></div><div
 class="opc-Divider hr-sect  mz-divider opc-Divider-empty" style=""></div><div
 style="" class=""><div
 class="mz-kopf mz-kopf-abstand"><p
 class="mz-eyebrow">Smarte Ausstattung</p><p><span
 class="mz-display">Aufschließen per Fingerabdruck, Bescheid wissen per App</span></p><div
 class="mz-lead mz-kopf-lead"><p>Zwei Optionen machen aus dem Siebert einen smarten Briefkasten: ein Schloss, das sich ohne Schlüssel öffnen lässt, und ein Sensor, der jeden Einwurf aufs Handy meldet. Beide direkt im Konfigurator wählbar.</p></div></div></div><div
-style="" class=""><style type="text/css">.mz-ikl{list-style:none;padding:0;margin:0;display:grid;gap:0.75rem}.mz-ikl li{display:flex;align-items:center;gap:0.75rem}.mz-ikl-ico{display:inline-flex;align-items:center;justify-content:center;width:2.5rem;height:2.5rem;border-radius:0.5rem;background:rgba(1,82,83,0.08);color:var(--teal);flex:0 0 auto}.mz-ikl-ico svg{width:1.25rem;height:1.25rem;display:block}.mz-ikl-ico svg.mz-fingerabdruck{width:auto;height:1.4rem}.mz-ikl-ico svg.mz-schirm{width:auto;height:1.65rem}.mz-ikl .mz-ikl-t{margin:0;font-size:1rem;color:var(--schwarz)}.mz-ikl-t b{display:block;font-weight:700}.mz-ikl-t span{display:block;color:var(--text-muted)}</style></div><div class="smart"><div class="smart__tabs" role="tablist" aria-label="Smarte Optionen"><button type="button" role="tab" class="smart__tab is-on" id="smartTabLock" aria-controls="smartLock" aria-selected="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 7.6-1.7"/><circle cx="12" cy="16" r="1.3"/></svg><span><b>Smart-Schloss</b><em>+ 49,99 €</em></span></button><button type="button" role="tab" class="smart__tab" id="smartTabSensor" aria-controls="smartSensor" aria-selected="false" tabindex="-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg><span><b>Briefsensor</b><em>+ 59,99 €</em></span></button></div><div class="smart__panel" id="smartLock" role="tabpanel" aria-labelledby="smartTabLock"><div class="smart__mhead"><p class="smart__mh">Aufschließen per Fingerabdruck</p><p class="smart__ml">Ein Schloss, das sich ohne Schlüssel öffnen lässt – so wird Ihr Briefkasten smart.</p></div><figure class="smart__media"><img class="mz-ki" src="assets/briefkasten/siebert-smartlock-fingerabdruck-v2-graualuminium.jpg" alt="Briefkasten Siebert per Fingerabdruck öffnen – der Sensor ist mit einem Fingerabdruck-Symbol markiert" loading="lazy" decoding="async"></figure><div class="smart__copy"><p class="smart__t">Öffnen ohne Schlüssel</p><ul
+style="" class=""><style type="text/css">.mz-ikl{list-style:none;padding:0;margin:0;display:grid;gap:0.75rem}.mz-ikl li{display:flex;align-items:center;gap:0.75rem}.mz-ikl-ico{display:inline-flex;align-items:center;justify-content:center;width:2.5rem;height:2.5rem;border-radius:0.5rem;background:rgba(1,82,83,0.08);color:var(--teal);flex:0 0 auto}.mz-ikl-ico svg{width:1.25rem;height:1.25rem;display:block}.mz-ikl-ico svg.mz-fingerabdruck{width:auto;height:1.4rem}.mz-ikl-ico svg.mz-schirm{width:auto;height:1.65rem}.mz-ikl .mz-ikl-t{margin:0;font-size:1rem;color:var(--schwarz)}.mz-ikl-t b{display:block;font-weight:700}.mz-ikl-t span{display:block;color:var(--text-muted)}</style></div><div class="smart"><div class="smart__tabs" role="tablist" aria-label="Smarte Optionen"><button type="button" role="tab" class="smart__tab is-on" id="smartTabLock" aria-controls="smartLock" aria-selected="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 7.6-1.7"/><circle cx="12" cy="16" r="1.3"/></svg><span><b>Smart-Schloss</b><em>+ 49,99 €</em></span></button><button type="button" role="tab" class="smart__tab" id="smartTabSensor" aria-controls="smartSensor" aria-selected="false" tabindex="-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg><span><b>Briefsensor</b><em>+ 59,99 €</em></span></button></div><div class="smart__panel" id="smartLock" role="tabpanel" aria-labelledby="smartTabLock"><div class="smart__mhead"><p class="smart__mh">Aufschließen per Fingerabdruck</p><p class="smart__ml">Ein Schloss, das sich ohne Schlüssel öffnen lässt – so wird Ihr Briefkasten smart.</p></div><figure class="smart__media"><img class="mz-ki" src="assets/briefkasten/siebert-smartlock-fingerabdruck-v2.jpg" alt="Briefkasten Siebert per Fingerabdruck öffnen – der Sensor ist mit einem Fingerabdruck-Symbol markiert" loading="lazy" decoding="async"></figure><div class="smart__copy"><p class="smart__t">Öffnen ohne Schlüssel</p><ul
 class="mz-ikl smart__ikl"><li>
 <span
 class="mz-ikl-ico"><svg
@@ -1606,7 +1779,7 @@ class="mz-ikl-ico"><svg
 viewbox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><rect
 x="3" y="11" width="18" height="11" rx="2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"></rect><path
 d="M7 11V7a5 5 0 0110 0v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"></path></svg></span><p
-class="mz-ikl-t">Ersetzt das Standardschloss des Siebert</p></li></ul><p class="smart__label">So öffnen Sie ihn</p><div class="smart__ways" role="group" aria-label="Öffnungsart ansehen"><button type="button" class="smart__way is-on" aria-pressed="true" data-img="assets/briefkasten/siebert-smartlock-fingerabdruck-v2-graualuminium.jpg" data-alt="Briefkasten Siebert per Fingerabdruck öffnen – der Sensor ist mit einem Fingerabdruck-Symbol markiert" data-hint="Finger auflegen – der Kasten öffnet."><img src="assets/briefkasten/siebert-smartlock-fingerabdruck-v2-graualuminium.jpg" alt="" width="1080" height="810" loading="lazy" decoding="async"><span class="smart__wayt">Finger&shy;abdruck</span></button><button type="button" class="smart__way" aria-pressed="false" data-img="assets/briefkasten/siebert-smartlock-rfid-v2-graualuminium.jpg" data-alt="Briefkasten Siebert per RFID-Chip öffnen – Funkwellen zwischen Sensor und Chip" data-hint="Chip oder Karte davorhalten."><img src="assets/briefkasten/siebert-smartlock-rfid-v2-graualuminium.jpg" alt="" width="1080" height="810" loading="lazy" decoding="async"><span class="smart__wayt">RFID-Chip</span></button><button type="button" class="smart__way" aria-pressed="false" data-img="assets/briefkasten/siebert-smartlock-app-v2-graualuminium.jpg" data-alt="Briefkasten Siebert per App bedienen – auf dem Smartphone-Display erscheint ein Haken" data-hint="Per App auf dem Smartphone öffnen."><img src="assets/briefkasten/siebert-smartlock-app-v2-graualuminium.jpg" alt="" width="1080" height="810" loading="lazy" decoding="async"><span class="smart__wayt">App</span></button></div><p class="smart__hint" aria-live="polite">Finger auflegen – der Kasten öffnet.</p><p class="smart__price"><b>+ 49,99 €</b>im Konfigurator wählbar</p></div></div><div class="smart__panel" id="smartSensor" role="tabpanel" aria-labelledby="smartTabSensor" hidden><div class="smart__mhead"><p class="smart__mh">Bescheid wissen per App</p><p class="smart__ml">Ein Sensor, der jeden Einwurf aufs Handy meldet – so wird Ihr Briefkasten smart.</p></div><figure class="smart__media"><img class="mz-ki" src="assets/briefkasten/siebert-sensor-app-v2-graualuminium.jpg" alt="Zustellbenachrichtigung des Metzler Briefkastensensors auf dem Smartphone: Brief empfangen" loading="lazy" decoding="async"></figure><div class="smart__copy"><p class="smart__t">Benachrichtigung aufs Handy</p><ul
+class="mz-ikl-t">Ersetzt das Standardschloss des Siebert</p></li></ul><p class="smart__label">So öffnen Sie ihn</p><div class="smart__ways" role="group" aria-label="Öffnungsart ansehen"><button type="button" class="smart__way is-on" aria-pressed="true" data-img="assets/briefkasten/siebert-smartlock-fingerabdruck-v2.jpg" data-alt="Briefkasten Siebert per Fingerabdruck öffnen – der Sensor ist mit einem Fingerabdruck-Symbol markiert" data-hint="Finger auflegen – der Kasten öffnet."><img src="assets/briefkasten/siebert-smartlock-fingerabdruck-v2.jpg" alt="" width="1080" height="810" loading="lazy" decoding="async"><span class="smart__wayt">Finger&shy;abdruck</span></button><button type="button" class="smart__way" aria-pressed="false" data-img="assets/briefkasten/siebert-smartlock-rfid-v2.jpg" data-alt="Briefkasten Siebert per RFID-Chip öffnen – Funkwellen zwischen Sensor und Chip" data-hint="Chip oder Karte davorhalten."><img src="assets/briefkasten/siebert-smartlock-rfid-v2.jpg" alt="" width="1080" height="810" loading="lazy" decoding="async"><span class="smart__wayt">RFID-Chip</span></button><button type="button" class="smart__way" aria-pressed="false" data-img="assets/briefkasten/siebert-smartlock-app-v2.jpg" data-alt="Briefkasten Siebert per App bedienen – auf dem Smartphone-Display erscheint ein Haken" data-hint="Per App auf dem Smartphone öffnen."><img src="assets/briefkasten/siebert-smartlock-app-v2.jpg" alt="" width="1080" height="810" loading="lazy" decoding="async"><span class="smart__wayt">App</span></button></div><p class="smart__hint" aria-live="polite">Finger auflegen – der Kasten öffnet.</p><p class="smart__price"><b>+ 49,99 €</b>im Konfigurator wählbar</p></div></div><div class="smart__panel" id="smartSensor" role="tabpanel" aria-labelledby="smartTabSensor" hidden><div class="smart__mhead"><p class="smart__mh">Bescheid wissen per App</p><p class="smart__ml">Ein Sensor, der jeden Einwurf aufs Handy meldet – so wird Ihr Briefkasten smart.</p></div><figure class="smart__media"><img class="mz-ki" src="assets/briefkasten/siebert-sensor-app-v2.jpg" alt="Zustellbenachrichtigung des Metzler Briefkastensensors auf dem Smartphone: Brief empfangen" loading="lazy" decoding="async"></figure><div class="smart__copy"><p class="smart__t">Benachrichtigung aufs Handy</p><ul
 class="mz-ikl smart__ikl"><li>
 <span
 class="mz-ikl-ico"><svg
@@ -1621,109 +1794,6 @@ cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8" stroke-linecap="
 d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"></path></svg></span><p
 class="mz-ikl-t">Nie wieder umsonst zum Briefkasten laufen</p></li></ul><p class="smart__label">So funktioniert es</p><ol class="smart__steps"><li>Post wird eingeworfen</li><li>Der Funk-Sensor erkennt den Einwurf</li><li>Ihr Handy meldet: Brief empfangen</li></ol><p class="smart__price"><b>+ 59,99 €</b>im Konfigurator wählbar</p></div></div></div><div
 style="margin-top:24px; margin-bottom:24px; " class=""></div><div
-class="opc-Divider hr-sect  mz-divider opc-Divider-empty" style=""></div><div
-style="" class=""><div
-class="mz-kopf mz-kopf-abstand"><p
-class="mz-eyebrow">Befestigung</p><p><span
-class="mz-display">Wandbriefkasten oder Standbriefkasten – Wand, Ständer oder Zaun</span></p><div
-class="mz-lead mz-kopf-lead"><p><strong>Für die Wandmontage ist alles dabei</strong> – Befestigungsmaterial liegt bei, ganz ohne Aufpreis. Wo keine Wand ist, macht einer von sieben Ständern den Siebert zum freistehenden <strong>Standbriefkasten</strong> – ein eleganter Postkasten als Blickfang im Vorgarten, vom klassischen Standfuß bis zum Design-Ständer Anna. Alle direkt im Konfigurator wählbar.</p></div></div></div><div
-style="" class=""><style type="text/css">.mz-sg-7be0a0000003e{max-width:60rem;margin:0 auto}
-.mz-sg-7be0a0000003e .sg-buehne{position:relative;max-width:50rem;margin:0 auto}
-.mz-sg-7be0a0000003e .sg-buehne img{width:100%;height:auto;display:block;border-radius:0.5rem;
-box-shadow:0 0.75rem 2rem rgba(0,0,0,0.12);transition:opacity .35s ease}
-.mz-sg-7be0a0000003e .sg-buehne img.wechsel{opacity:0}
-.mz-sg-7be0a0000003e .sg-cap{max-width:50rem;margin:0 auto}
-/* RASTER statt flex-wrap (Korrektur 30.07.): Mit `flex:0 1 8.5rem` haben zwar
-   alle Kacheln dieselbe Basisbreite, aber `min-width:auto` laesst sie nicht
-   unter ihre laengste unteilbare Textzeile schrumpfen. Namen wie
-   „Zaunbefestigung" blockieren damit mehr Platz als kurze – in der Folge passen
-   in eine Zeile drei Kacheln, in die naechste nur zwei, und die sechste bleibt
-   allein stehen (gemeldet 30.07.: Umbruch 3/2/1 statt 3/3).
-   Im Raster ist die Spaltenzahl gesetzt statt vom Text abgeleitet, die Zeilen
-   sind dadurch immer gleich besetzt. Spaltenzahl = Anzahl der Optionen, damit
-   der Baustein auch mit vier oder acht Kacheln aufgeht (wie bildgalerie()). */
-.mz-sg-7be0a0000003e .sg-kacheln{display:grid;grid-template-columns:repeat(7,1fr);
-gap:0.75rem;margin-top:1.25rem}
-.mz-sg-7be0a0000003e .sg-kachel{min-width:0;text-align:center;cursor:pointer;font:inherit;
-color:inherit;border:0.125rem solid transparent;border-radius:0.5rem;
-padding:0.5rem 0.25rem;transition:border-color .25s,transform .25s;background:#fff}
-.mz-sg-7be0a0000003e .sg-kachel:hover{transform:translateY(-0.25rem)}
-.mz-sg-7be0a0000003e .sg-kachel:focus-visible{outline:0.125rem solid var(--teal);outline-offset:0.125rem}
-.mz-sg-7be0a0000003e .sg-kachel.active{border-color:var(--teal)}
-.mz-sg-7be0a0000003e .sg-kachel img{width:100%;height:auto;display:block;border-radius:0.25rem;
-background:#f6f6f6}
-/* Lange Namen umbrechen statt die Spalte aufzudehnen – sonst kommt die
-   Ungleichheit ueber die Hintertuer zurueck. */
-.mz-sg-7be0a0000003e .sg-kachel .mz-tile-name{display:block;margin:0.5rem 0 0.125rem;
-overflow-wrap:break-word;hyphens:auto}
-.mz-sg-7be0a0000003e .sg-kachel .mz-tile-price{display:block;margin:0;white-space:nowrap}
-/* Tablet: halbe Spaltenzahl, damit 6 -> 3+3 und 4 -> 2+2 aufgehen. */
-@media (max-width:63.9375rem){
-.mz-sg-7be0a0000003e .sg-kacheln{grid-template-columns:repeat(4,1fr);gap:0.5rem}
-}
-/* Handy: zwei Spalten, sonst wird die Kachel schmaler als ihr Preis. */
-@media (max-width:35.9375rem){
-.mz-sg-7be0a0000003e .sg-kacheln{grid-template-columns:repeat(2,1fr)}
-}</style><div
-class="mz-sg-7be0a0000003e"><div
-class="sg-buehne mz-ki"><img
-loading="lazy" decoding="async" src="assets/briefkasten/siebert-befestigung-anna-2-v2.jpg" alt="Metzler Briefkasten Siebert als Standbriefkasten auf dem Design-Standfuß Anna 2 im Vorgarten"></div><div
-class="sg-kacheln">
-<button
-type="button" class="sg-kachel" aria-pressed="false" aria-label="Szene mit Erpo Edelstahl V2A anzeigen"><img
-src="assets/briefkasten/opt-staender-erpo-edelstahl.jpg" alt="Metzler Briefkastenständer Erpo aus V2A Edelstahl" loading="lazy"><span
-class="mz-tile-name">Erpo Edelstahl V2A</span><span
-class="mz-tile-price">+ 69,99 €</span></button><button
-type="button" class="sg-kachel" aria-pressed="false" aria-label="Szene mit Erpo Anthrazit anzeigen"><img
-src="assets/briefkasten/opt-staender-erpo-anthrazit.jpg" alt="Metzler Briefkastenständer Erpo in Anthrazit" loading="lazy"><span
-class="mz-tile-name">Erpo Anthrazit</span><span
-class="mz-tile-price">+ 59,99 €</span></button><button
-type="button" class="sg-kachel" aria-pressed="false" aria-label="Szene mit Standfuß Anna 1 anzeigen"><img
-src="assets/briefkasten/opt-staender-anna-1.jpg" alt="Metzler Design-Standfuß Anna 1 in RAL 7016 Anthrazit" loading="lazy"><span
-class="mz-tile-name">Standfuß Anna 1</span><span
-class="mz-tile-price">+ 99,00 €</span></button><button
-type="button" class="sg-kachel active" aria-pressed="true" aria-label="Szene mit Standfuß Anna 2 anzeigen"><img
-src="assets/briefkasten/opt-staender-anna-2.jpg" alt="Metzler Design-Standfuß Anna 2 in RAL 7016 Anthrazit" loading="lazy"><span
-class="mz-tile-name">Standfuß Anna 2</span><span
-class="mz-tile-price">+ 99,00 €</span></button><button
-type="button" class="sg-kachel" aria-pressed="false" aria-label="Szene mit Standfuß Anna 3 anzeigen"><img
-src="assets/briefkasten/opt-staender-anna-3.jpg" alt="Metzler Design-Standfuß Anna 3 in RAL 7016 Anthrazit" loading="lazy"><span
-class="mz-tile-name">Standfuß Anna 3</span><span
-class="mz-tile-price">+ 99,00 €</span></button><button
-type="button" class="sg-kachel" aria-pressed="false" aria-label="Szene mit Zaunbefestigung anzeigen"><img
-src="assets/briefkasten/opt-zaunbefestigung.jpg" alt="Zaunbefestigung für Metzler Briefkästen in Anthrazit" loading="lazy"><span
-class="mz-tile-name">Zaunbefestigung</span><span
-class="mz-tile-price">+ 32,99 €</span></button><button
-type="button" class="sg-kachel" aria-pressed="false" aria-label="Szene mit Zum Einbetonieren anzeigen"><img
-src="assets/briefkasten/opt-staender-einbetonieren.jpg" alt="Metzler Briefkastenständer universell zum Einbetonieren" loading="lazy"><span
-class="mz-tile-name">Zum Einbetonieren</span><span
-class="mz-tile-price">+ 69,99 €</span></button></div></div> <script>(function(){
-var P=[{"img": "assets/briefkasten/siebert-befestigung-erpo-edelstahl-v2.jpg", "alt": "Metzler Briefkasten Siebert auf Erpo-Ständer aus V2A Edelstahl im Vorgarten", "ki": true}, {"img": "assets/briefkasten/siebert-befestigung-erpo-anthrazit-v2.jpg", "alt": "Metzler Briefkasten Siebert auf Erpo-Ständer in Anthrazit RAL 7016 im Vorgarten", "ki": true}, {"img": "assets/briefkasten/siebert-befestigung-anna-1-v2.jpg", "alt": "Metzler Briefkasten Siebert als Standbriefkasten auf dem Design-Standfuß Anna 1 im Vorgarten", "ki": true}, {"img": "assets/briefkasten/siebert-befestigung-anna-2-v2.jpg", "alt": "Metzler Briefkasten Siebert als Standbriefkasten auf dem Design-Standfuß Anna 2 im Vorgarten", "ki": true}, {"img": "assets/briefkasten/siebert-befestigung-anna-3-v2.jpg", "alt": "Metzler Briefkasten Siebert als Standbriefkasten auf dem Design-Standfuß Anna 3 im Vorgarten", "ki": true}, {"img": "assets/briefkasten/siebert-befestigung-zaun-v2.jpg", "alt": "Metzler Briefkasten Siebert mit Zaunbefestigung am Doppelstabmattenzaun", "ki": true}, {"img": "assets/briefkasten/siebert-befestigung-einbetonieren-v2.jpg", "alt": "Metzler Briefkasten Siebert auf einbetoniertem Standpfosten im Vorgarten", "ki": true}], w=document.querySelector('.mz-sg-7be0a0000003e'); if(!w) return;
-var buehne=w.querySelector('.sg-buehne');
-var img=buehne.querySelector('img');
-var kacheln=w.querySelectorAll('.sg-kachel');
-function go(n){
-  img.classList.add('wechsel');
-  setTimeout(function(){
-    img.src=P[n].img; img.alt=P[n].alt;
-    /* KI-Kennzeichnung mitschalten: die Buehne zeigt je nach Auswahl eine
-       generierte oder eine echte Aufnahme. Ein festes Overlay waere in
-       beide Richtungen falsch – beim Siebert ist ausgerechnet das
-       Startbild eine echte Aufnahme des Auftraggebers. */
-    buehne.classList.toggle('mz-ki', !!P[n].ki);
-    img.classList.remove('wechsel');
-  },180);
-  kacheln.forEach(function(k,i){
-    k.classList.toggle('active', i===n);
-    k.setAttribute('aria-pressed', i===n ? 'true' : 'false');
-  });
-}
-kacheln.forEach(function(k,n){
-  k.addEventListener('click', function(){
-    if(!k.classList.contains('active')) go(n);
-  });
-});
-})();</script> </div><div
 class="opc-Divider hr-sect  mz-divider opc-Divider-empty" style=""></div><div
 style="" class=""><div
 class="mz-kopf mz-kopf-abstand"><p
@@ -1774,30 +1844,30 @@ loading="lazy" decoding="async" src="assets/briefkasten/siebert-dekoration-frame
 class="sg-kacheln">
 <button
 type="button" class="sg-kachel" aria-pressed="false" aria-label="Szene mit Blumenkasten Cubic I anzeigen"><img
-src="assets/briefkasten/opt-deko-cubic-i-graualuminium.jpg" alt="Metzler Blumenkasten Cubic I für Briefkästen" loading="lazy"><span
+src="assets/briefkasten/opt-deko-cubic-i.jpg" alt="Metzler Blumenkasten Cubic I für Briefkästen" loading="lazy"><span
 class="mz-tile-name">Blumenkasten Cubic I</span><span
 class="mz-tile-price">+ 9,99 €</span></button><button
 type="button" class="sg-kachel" aria-pressed="false" aria-label="Szene mit Blumenkasten Cubic H anzeigen"><img
-src="assets/briefkasten/opt-deko-cubic-h-graualuminium.jpg" alt="Metzler Blumenkasten Cubic H in Graualuminium RAL 9007" loading="lazy"><span
+src="assets/briefkasten/opt-deko-cubic-h.jpg" alt="Metzler Blumenkasten Cubic H in RAL 7016 Anthrazit" loading="lazy"><span
 class="mz-tile-name">Blumenkasten Cubic H</span><span
 class="mz-tile-price">+ 8,49 €</span></button><button
 type="button" class="sg-kachel" aria-pressed="false" aria-label="Szene mit Dekoschale Cubic G anzeigen"><img
-src="assets/briefkasten/opt-deko-cubic-g-graualuminium.jpg" alt="Metzler Dekoschale Cubic G in Graualuminium RAL 9007" loading="lazy"><span
+src="assets/briefkasten/opt-deko-cubic-g.jpg" alt="Metzler Dekoschale Cubic G in RAL 7016 Anthrazit" loading="lazy"><span
 class="mz-tile-name">Dekoschale Cubic G</span><span
 class="mz-tile-price">+ 8,49 €</span></button><button
 type="button" class="sg-kachel active" aria-pressed="true" aria-label="Szene mit Dekorahmen Frame J anzeigen"><img
-src="assets/briefkasten/opt-deko-frame-j-graualuminium.jpg" alt="Metzler Dekorahmen Frame J in Graualuminium RAL 9007" loading="lazy"><span
+src="assets/briefkasten/opt-deko-frame-j.jpg" alt="Metzler Dekorahmen Frame J in RAL 7016 Anthrazit" loading="lazy"><span
 class="mz-tile-name">Dekorahmen Frame J</span><span
 class="mz-tile-price">+ 19,99 €</span></button><button
 type="button" class="sg-kachel" aria-pressed="false" aria-label="Szene mit Dekoregal Frame K anzeigen"><img
-src="assets/briefkasten/opt-deko-frame-k-graualuminium.jpg" alt="Metzler Dekoregal Frame K in Graualuminium RAL 9007" loading="lazy"><span
+src="assets/briefkasten/opt-deko-frame-k.jpg" alt="Metzler Dekoregal Frame K in RAL 7016 Anthrazit" loading="lazy"><span
 class="mz-tile-name">Dekoregal Frame K</span><span
 class="mz-tile-price">+ 19,99 €</span></button><button
 type="button" class="sg-kachel" aria-pressed="false" aria-label="Szene mit Regal Plate D anzeigen"><img
-src="assets/briefkasten/opt-deko-plate-d-graualuminium.jpg" alt="Metzler Regal Plate D in Graualuminium RAL 9007" loading="lazy"><span
+src="assets/briefkasten/opt-deko-plate-d.jpg" alt="Metzler Regal Plate D in RAL 7016 Anthrazit" loading="lazy"><span
 class="mz-tile-name">Regal Plate D</span><span
 class="mz-tile-price">+ 5,99 €</span></button></div></div> <script>(function(){
-var P=[{"img": "assets/briefkasten/siebert-dekoration-cubic-i-v2.jpg", "alt": "Metzler Briefkasten Siebert mit Blumenkasten Cubic I und Heidekraut bepflanzt", "ki": true}, {"img": "assets/briefkasten/siebert-dekoration-cubic-h-v2.jpg", "alt": "Metzler Briefkasten Siebert mit Blumenkasten Cubic H in Graualuminium bepflanzt", "ki": true}, {"img": "assets/briefkasten/siebert-dekoration-cubic-g-v2.jpg", "alt": "Metzler Briefkasten Siebert mit Dekoschale Cubic G am Briefkasten", "ki": true}, {"img": "assets/briefkasten/siebert-dekoration-frame-j-v2.jpg", "alt": "Metzler Briefkasten Siebert mit Dekorahmen Frame J und Blumenkasten dekoriert", "ki": true}, {"img": "assets/briefkasten/siebert-dekoration-frame-k-v2.jpg", "alt": "Metzler Briefkasten Siebert mit Dekoregal Frame K, Vasen und Schleierkraut", "ki": true}, {"img": "assets/briefkasten/siebert-dekoration-plate-d-v2.jpg", "alt": "Metzler Briefkasten Siebert mit Regal Plate D als Ablage am Briefkasten", "ki": true}], w=document.querySelector('.mz-sg-7be0a00000042'); if(!w) return;
+var P=[{"img": "assets/briefkasten/siebert-dekoration-cubic-i-v2.jpg", "alt": "Metzler Briefkasten Siebert mit Blumenkasten Cubic I und Heidekraut bepflanzt", "ki": true}, {"img": "assets/briefkasten/siebert-dekoration-cubic-h-v2.jpg", "alt": "Metzler Briefkasten Siebert mit Blumenkasten Cubic H in Anthrazit bepflanzt", "ki": true}, {"img": "assets/briefkasten/siebert-dekoration-cubic-g-v2.jpg", "alt": "Metzler Briefkasten Siebert mit Dekoschale Cubic G am Briefkasten", "ki": true}, {"img": "assets/briefkasten/siebert-dekoration-frame-j-v2.jpg", "alt": "Metzler Briefkasten Siebert mit Dekorahmen Frame J und Blumenkasten dekoriert", "ki": true}, {"img": "assets/briefkasten/siebert-dekoration-frame-k-v2.jpg", "alt": "Metzler Briefkasten Siebert mit Dekoregal Frame K, Vasen und Schleierkraut", "ki": true}, {"img": "assets/briefkasten/siebert-dekoration-plate-d-v2.jpg", "alt": "Metzler Briefkasten Siebert mit Regal Plate D als Ablage am Briefkasten", "ki": true}], w=document.querySelector('.mz-sg-7be0a00000042'); if(!w) return;
 var buehne=w.querySelector('.sg-buehne');
 var img=buehne.querySelector('img');
 var kacheln=w.querySelectorAll('.sg-kachel');
@@ -1822,77 +1892,7 @@ kacheln.forEach(function(k,n){
     if(!k.classList.contains('active')) go(n);
   });
 });
-})();</script> </div><div
-class="opc-Divider hr-sect  mz-divider opc-Divider-empty" style=""></div><div
-style="" class=""><div
-class="mz-kopf mz-kopf-abstand"><p
-class="mz-eyebrow">Abmessung und Lieferumfang</p><p><span
-class="mz-display">Alle Maße auf einen Blick</span></p><div
-class="mz-lead mz-kopf-lead"><p>Der Siebert misst 37 × 37 × 10,5 cm und wird montagefertig geliefert – mit zwei Schlüsseln und dem Befestigungsmaterial für die Wandmontage.</p></div></div></div><div
-class="row  mz-mg abm"><div
-class="col  col-md-12 col-lg-5 col-xl-5 col-12" data-area-id="col-0"><figure class="dim"><div class="dim__box"><img src="assets/briefkasten/siebert-farbe-anthrazit-ral7016.jpg" width="900" height="900" loading="lazy" decoding="async" alt="Briefkasten Siebert in der Vorderansicht mit Maßangaben"><span class="dim__w" aria-hidden="true"><i>37 cm</i></span><span class="dim__h" aria-hidden="true"><i>37 cm</i></span></div><figcaption class="abm__cap"><b>37 × 37 × 10,5 cm</b>Breite × Höhe × Tiefe</figcaption></figure><div class="abm__side"><div
-style="max-width:890px; margin-left: auto;margin-right: auto;" class="mz-img">
-<picture>
-<source
- sizes="(max-width: 767px) 100vw, (max-width: 991px) 100vw, (max-width: 1299px) 41vw, (min-width: 1300px) 41vw, 100vw" width="890" height="1112" type="image/webp">
-<img
-src="assets/briefkasten/siebert-montagezeichnung.jpg" sizes="(max-width: 767px) 100vw, (max-width: 991px) 100vw, (max-width: 1299px) 41vw, (min-width: 1300px) 41vw, 100vw" class="img-aspect-ratio rounded lazyload img-fluid w-100" alt="Montagezeichnung des Metzler Briefkasten Siebert: der Kasten wird mit Dübeln und Schrauben an der Wand befestigt" width="890" height="1112" style="" draggable="false">
-</source></picture></div><p class="abm__cap"><b>Seitenansicht</b>Entnahmeklappe offen, mit Distanzhülsen an der Wand</p></div></div><div
-class="clearfix d-block d-sm-none"></div><div
-class="clearfix d-none d-sm-block d-md-none"></div><div
-class="col  col-md-12 col-lg-7 col-xl-7 col-12" data-area-id="col-1"><div
-style="" class=""><p><span
-class="mz-h3">Das liegt bei</span></p></div><div
-style="max-width:1270px; margin-left: auto;margin-right: auto;" class="opc-hidden-xs mz-img mz-cut mz-ki">
-<picture>
-<source
- sizes="(max-width: 767px) 100vw, (max-width: 991px) 100vw, (max-width: 1299px) 58vw, (min-width: 1300px) 58vw, 100vw" width="1270" height="779" type="image/webp">
-<img
-src="assets/briefkasten/siebert-lieferumfang-tafel.jpg" sizes="(max-width: 767px) 100vw, (max-width: 991px) 100vw, (max-width: 1299px) 58vw, (min-width: 1300px) 58vw, 100vw" class="img-aspect-ratio rounded lazyload img-fluid w-100" alt="Befestigungsmaterial des Metzler Briefkasten Siebert: 2 Schlüssel, 4 Dübel (28 mm), 4 Distanzhülsen und 4 Schrauben (46 mm)" width="1270" height="779" style="" draggable="false">
-</source></picture></div><div
-style="max-width:720px; margin-left: auto;margin-right: auto;" class="opc-hidden-sm opc-hidden-md opc-hidden-lg mz-img mz-cut mz-ki">
-<picture>
-<source
- sizes="(max-width: 767px) 100vw, (max-width: 991px) 100vw, (max-width: 1299px) 58vw, (min-width: 1300px) 58vw, 100vw" width="720" height="486" type="image/webp">
-<img
-src="assets/briefkasten/siebert-lieferumfang-tafel-xs.jpg" sizes="(max-width: 767px) 100vw, (max-width: 991px) 100vw, (max-width: 1299px) 58vw, (min-width: 1300px) 58vw, 100vw" class="img-aspect-ratio rounded lazyload img-fluid w-100" alt="Befestigungsmaterial des Metzler Briefkasten Siebert: 2 Schlüssel, 4 Dübel (28 mm), 4 Distanzhülsen und 4 Schrauben (46 mm)" width="720" height="486" style="" draggable="false">
-</source></picture></div></div><div
-class="clearfix d-block d-sm-none"></div><div
-class="clearfix d-none d-sm-block d-md-none"></div><div
-class="clearfix d-none d-md-block d-lg-none"></div><div
-class="clearfix d-none d-lg-block d-xl-none"></div></div><div
-class="opc-Divider hr-sect  mz-divider opc-Divider-empty" style=""></div><div
-style="" class=""><div
-class="mz-kopf mz-kopf-abstand"><p
-class="mz-eyebrow">Erweiterungen &amp; Zubehör</p><p><span
-class="mz-display">Leises Schließen, sicherer Inhalt</span></p><div
-class="mz-lead mz-kopf-lead"><p>Absenkautomatik und Entnahmesicherung bestellen Metzler Kunden im Onlineshop am häufigsten gleich mit – alle vier Optionen sind direkt im Konfigurator wählbar.</p></div></div></div><div
-style="" class=""><style type="text/css">.mz-zk{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:1.5rem}.mz-zk-k{display:flex;align-items:center;gap:1.25rem;background:rgba(1,82,83,0.04);border-radius:var(--radius-lg,0.5rem);padding:1.25rem 1.5rem}.mz-zk-k:last-child:nth-child(odd){grid-column:1/-1}.mz-zk-b{flex:0 0 13rem;height:13rem;object-fit:contain;mix-blend-mode:multiply}.mz-zk-t{margin:0;font-weight:700;color:var(--schwarz,#1A171B);font-size:1.0625rem;line-height:1.3}.mz-zk-n{margin:0.25rem 0 0;color:var(--text-muted,#6a6a6a);font-size:0.9375rem;line-height:1.45}.mz-zk-p{margin:0.5rem 0 0;font-weight:700;color:var(--teal,#015253)}@media (max-width:47.9375rem){.mz-zk{grid-template-columns:1fr}.mz-zk-b{flex-basis:8rem;height:8rem}}</style><div
-class="mz-zk"><div
-class="mz-zk-k">
-<img
-class="mz-zk-b" src="assets/briefkasten/opt-absenkautomatik-graualuminium.jpg" alt="Metzler Briefkastendeckel mit Absenkautomatik" loading="lazy"><div><p
-class="mz-zk-t">Absenkautomatik (Soft-Close)</p><p
-class="mz-zk-n">Der Deckel fällt sanft zu statt zu knallen</p><p
-class="mz-zk-p">+ 8,99 €</p></div></div><div
-class="mz-zk-k">
-<img
-class="mz-zk-b" src="assets/briefkasten/opt-entnahmesicherung-graualuminium.jpg" alt="Metzler Edelstahl-Entnahmesicherung mit gezacktem Eingriffschutz" loading="lazy"><div><p
-class="mz-zk-t">Entnahmesicherung</p><p
-class="mz-zk-n">Gezackter Eingriffschutz gegen Angeln durch den Einwurfschlitz</p><p
-class="mz-zk-p">+ 14,99 €</p></div></div><div
-class="mz-zk-k">
-<img
-class="mz-zk-b" src="assets/briefkasten/opt-zeitungsabdeckung-v2-graualuminium.jpg" alt="Abdeckung für das Zeitungsfach in Graualuminium RAL 9007" loading="lazy"><div><p
-class="mz-zk-t">Zeitungsfach-Abdeckung</p><p
-class="mz-zk-n">Verschließt das offene Zeitungsfach</p><p
-class="mz-zk-p">+ 19,99 €</p></div></div><div
-class="mz-zk-k">
-<img
-class="mz-zk-b" src="assets/briefkasten/opt-werbeschild-graualuminium.jpg" alt="Metzler Briefkastenschild Bitte keine Werbung in Graualuminium" loading="lazy"><div><p
-class="mz-zk-t">Schild „Keine Werbung“</p><p
-class="mz-zk-n">Hält Prospekte aus dem Kasten</p><p
-class="mz-zk-p">+ 8,99 €</p></div></div></div></div><!-- Warum Metzler – one brand block for every PDP. Metzler Design System: Section 14b
+})();</script> </div><!-- Warum Metzler – one brand block for every PDP. Metzler Design System: Section 14b
      „Über Metzler“ (photo · eyebrow · display-5 · one paragraph) + the key-figure row of
      Section 19. Light on purpose: a PDP carries at most one dark band. Self-contained – its
      own styles, tokens with fallbacks, prefix mz-brand – so it drops into any description. -->
