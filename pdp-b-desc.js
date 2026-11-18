@@ -2930,13 +2930,15 @@ var MZSwipe = (function () {
   }
   var MAP = {
     gravur:   { t: 'Gravurdaten', els: function () { return [q('.kfg'), q('.vrb')]; } },
-    lock:     { t: 'Smart-Briefkastenschloss', els: function () { return [kopf('Smarte Ausstattung'), q('.smart')]; }, tab: 'smartTabLock' },
-    sensor:   { t: 'Funk-Briefkastensensor', els: function () { return [kopf('Smarte Ausstattung'), q('.smart')]; }, tab: 'smartTabSensor' },
+    /* lock / sensor: only the one feature – its own panel, no shared head (it is about both)
+       and no switch (hidden in the dialog, CSS); the page's tab choice is put back on close */
+    lock:     { t: 'Smart-Briefkastenschloss', els: function () { return [q('.smart')]; }, tab: 'smartTabLock' },
+    sensor:   { t: 'Funk-Briefkastensensor', els: function () { return [q('.smart')]; }, tab: 'smartTabSensor' },
     mount:    { t: 'Befestigung', els: function () { return [kopf('Befestigung'), q('.mz-sg-7be0a0000003e')]; } },
     zubehoer: { t: 'Erweiterungen & Zubehör', els: function () { return [kopf('Erweiterungen & Zubehör'), q('.mz-zk')]; } },
     deko:     { t: 'Dekorieren & Verzieren', els: function () { return [kopf('Dekoration'), q('.mz-sg-7be0a00000042')]; } }
   };
-  var moved = [], trigger = null;
+  var moved = [], trigger = null, pageTab = null;
   function open(key, from) {
     var m = MAP[key]; if (!m) return;
     var els = m.els().filter(Boolean); if (!els.length) return;
@@ -2946,7 +2948,10 @@ var MZSwipe = (function () {
       var ph = document.createComment('infomod'); el.parentNode.insertBefore(ph, el);
       moved.push([el, ph]); body.appendChild(el);
     });
-    if (m.tab) { var tb = document.getElementById(m.tab); if (tb) tb.click(); }   /* lock / sensor: open the matching tab */
+    if (m.tab) {   /* lock / sensor: open the matching tab, remembering the page's */
+      var on = document.querySelector('#sx-beschreibung .smart__tab.is-on'); pageTab = on ? on.id : null;
+      var tb = document.getElementById(m.tab); if (tb) tb.click();
+    }
     mod.hidden = false;
     MZScroll.lock();
     body.scrollTop = 0;
@@ -2958,6 +2963,7 @@ var MZSwipe = (function () {
     if (mod.hidden) return;
     moved.forEach(function (p) { p[1].parentNode.insertBefore(p[0], p[1]); p[1].parentNode.removeChild(p[1]); });
     moved = [];
+    if (pageTab) { var pt = document.getElementById(pageTab); if (pt && !pt.classList.contains('is-on')) pt.click(); pageTab = null; }
     mod.classList.remove('is-open');
     mod.hidden = true;
     MZScroll.unlock();

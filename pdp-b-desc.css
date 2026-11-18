@@ -1611,6 +1611,22 @@ body.kbd-open .cfgb-dock.is-fixed { display: none !important; }
 #sx-beschreibung #infoMod .mz-lead, #sx-beschreibung #infoMod .mz-lead p { font-size: 1rem; }
 .infomod__body .mz-kopf > .mz-eyebrow { display: none; }   /* no eyebrows in the dialog – its title already names the feature */
 .infomod__body .mz-kopf-abstand { margin-bottom: 0; }
+#sx-beschreibung #infoMod .smart__tabs { display: none; }   /* Schloss / Sensor dialogs show one feature each – no switch (2 ids: beats the page rule) */
+/* Befestigung / Dekoration dialogs: scene and tiles side by side, so the dialog stays
+   short (the page keeps them vertical). Tiles 4 + 3 / 3 × 2 at 13 px – each tile keeps
+   >= 105 px of text width, so "Zaunbefestigung" never breaks. The scene fills the tile
+   grid's height (cropped from 4:3 – the product sits centre in every scene), so the
+   two halves end level. Below 64rem: stacked. */
+@media (min-width:64rem){
+  #sx-beschreibung #infoMod [class*="mz-sg-"]{ max-width:none; display:grid; grid-template-columns:minmax(0, 4.5fr) minmax(0, 7.5fr); column-gap:2rem; align-items:stretch; }
+  #sx-beschreibung #infoMod [class*="mz-sg-"] .sg-buehne{ max-width:none; margin:0; }
+  #sx-beschreibung #infoMod [class*="mz-sg-"] .sg-buehne img{ height:100%; object-fit:cover; object-position:center; }
+  #sx-beschreibung #infoMod [class*="mz-sg-"] .sg-kacheln{ margin-top:0; gap:0.75rem; }
+  #sx-beschreibung #infoMod .mz-sg-7be0a0000003e .sg-kacheln{ grid-template-columns:repeat(4, minmax(0, 1fr)); }
+  #sx-beschreibung #infoMod .mz-sg-7be0a00000042 .sg-kacheln{ grid-template-columns:repeat(3, minmax(0, 1fr)); }
+  #sx-beschreibung #infoMod [class*="mz-sg-"] .sg-kachel{ padding:0.625rem 0.375rem 0.5rem; }
+  #sx-beschreibung #infoMod [class*="mz-sg-"] .sg-kachel .mz-tile-name, #sx-beschreibung #infoMod [class*="mz-sg-"] .sg-kachel .mz-tile-price{ font-size:0.8125rem; }
+}
 /* Gravurdaten: the page's two blocks re-set as two sections of one dialog – one heading size,
    "how it works" beside its screenshot (centred on each other), a hairline, then the detail shots */
 #sx-beschreibung #infoMod .kfg .mz-display, #sx-beschreibung #infoMod .kfg .mz-display span,
@@ -3653,26 +3669,25 @@ body.is-scrolled #quickbar {
 }
 
 /* ── Scene galleries (Befestigung …3e, Dekoration …42): one layout for both ──────
-   The live component (stage photo + option tiles that swap it). Wide: a split like
-   every other – scene in one column, the tiles in two rows in the other (columns =
-   half the options: Deko 3 × 2, Befestigung 4 + 3), so choosing and seeing stay in
-   one view. Befestigung's scene sits right to keep the picture sides alternating
-   (Smart left → Befestigung right → Dekoration left). Tablets: the live stacked
-   form. Phones: the scene, then one swipe row. Kit: no hover lift. */
+   The live component (stage photo + option tiles that swap it), vertical: the scene
+   centred on top (live max 50rem), every option in one row under it (Befestigung 7,
+   Dekoration 6) on a 68rem row – wide enough that the longest name ("Zaunbefestigung",
+   113 px) never breaks mid-word. Below 75rem, where seven would not fit, both take the
+   live two rows (4 + 3, 3 + 3). Phones: the scene, then one swipe row. Kit: no hover lift. */
 #sx-beschreibung [class*="mz-sg-"] .sg-kachel:hover{ transform:none; }
 #sx-beschreibung [class*="mz-sg-"] .sg-kachel{ padding:0.75rem 0.5rem 0.625rem; }
 #sx-beschreibung [class*="mz-sg-"] .sg-kachel .mz-tile-name{ margin:0.625rem 0 0.25rem; line-height:1.35; }
 #sx-beschreibung [class*="mz-sg-"] .sg-kachel:not(.active):hover{ border-color:var(--color-graphite-300); }
 @media (min-width:64rem){
-  #sx-beschreibung [class*="mz-sg-"]{ max-width:none; display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); column-gap:var(--dsc-split); align-items:center; }
-  #sx-beschreibung [class*="mz-sg-"] .sg-buehne{ max-width:none; margin:0; }
-  #sx-beschreibung [class*="mz-sg-"] .sg-kacheln{ justify-content:stretch; gap:1rem; margin-top:0; }
-  #sx-beschreibung .mz-sg-7be0a00000042 .sg-kacheln{ grid-template-columns:repeat(3, minmax(0, 1fr)); }
+  #sx-beschreibung [class*="mz-sg-"]{ max-width:68rem; }
+  #sx-beschreibung [class*="mz-sg-"] .sg-kacheln{ gap:1rem; margin-top:1.75rem; }
+}
+@media (min-width:48rem) and (max-width:74.9375rem){
   #sx-beschreibung .mz-sg-7be0a0000003e .sg-kacheln{ grid-template-columns:repeat(4, minmax(0, 1fr)); }
-  #sx-beschreibung .mz-sg-7be0a0000003e .sg-buehne{ order:2; }
+  #sx-beschreibung .mz-sg-7be0a00000042 .sg-kacheln{ grid-template-columns:repeat(3, minmax(0, 1fr)); }
 }
 @media (max-width:47.9375rem){
-  #sx-beschreibung [class*="mz-sg-"] .sg-kacheln{ grid-template-columns:none; grid-auto-flow:column; grid-auto-columns:30%; gap:0.75rem; justify-content:start; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; margin:1rem -1rem 0; padding:0 1rem 0.25rem; scroll-padding-inline:1rem; }
+  #sx-beschreibung [class*="mz-sg-"] .sg-kacheln{ grid-template-columns:none; grid-auto-flow:column; grid-auto-columns:40%; gap:0.75rem; justify-content:start; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; margin:1rem -1rem 0; padding:0 1rem 0.25rem; scroll-padding-inline:1rem; }
   #sx-beschreibung [class*="mz-sg-"] .sg-kacheln::-webkit-scrollbar{ display:none; }
   #sx-beschreibung [class*="mz-sg-"] .sg-kachel{ scroll-snap-align:start; }
   #sx-beschreibung [class*="mz-sg-"] .sg-kachel .mz-tile-name, #sx-beschreibung [class*="mz-sg-"] .sg-kachel .mz-tile-price{ font-size:0.8125rem; line-height:1.35; }
@@ -3835,7 +3850,7 @@ body.is-scrolled #quickbar {
    fits". A framed spec card: thin precision bars, a caliper point at each bar's end with the
    format's size written above it, and the slot as a dashed teal line labelled at its top. */
 #sx-beschreibung .fit{ --slot-in:0.5rem; grid-area:fit; width:100%; max-width:34rem; margin:2rem auto 0; padding:1.5rem 1.75rem 1.25rem; text-align:left; box-sizing:border-box;
-  border:1px solid var(--color-graphite-200); border-radius:var(--radius-xl); background:linear-gradient(180deg, #fff 30%, var(--color-teal-50)); box-shadow:var(--shadow-soft); }
+  border:1px solid var(--color-graphite-200); border-radius:var(--radius-xl); background:linear-gradient(180deg, #fff 30%, var(--color-teal-50)); box-shadow:0 0.0625rem 0.125rem rgba(26,23,27,.04); }   /* minimal: the hairline carries the card */
 #sx-beschreibung .fit__head{ display:flex; justify-content:space-between; align-items:flex-end; gap:1rem; margin:0 0 0.5rem; font-size:0.9375rem; line-height:1.3; color:var(--color-digital-black); }
 /* the slot line's label, centred on the line's top: its right edge on the line's centre (--slot-in + 1px
    in from the right), shifted back by half its width; the dashes start just below it */
