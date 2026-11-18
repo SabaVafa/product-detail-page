@@ -20,7 +20,7 @@
 <!-- New PDP sections -->
 <link rel="stylesheet" href="pdp.css?v=35" />
 <!-- Version B – inline build panel -->
-<link rel="stylesheet" href="pdp-b-desc.css?v=86" />
+<link rel="stylesheet" href="pdp-b-desc.css?v=89" />
 <link rel="stylesheet" href="pdp-b-desc-opc.css?v=2" />
 <!-- Prototype variant switch – append ?flow=b (v2) or ?flow=c (v3) to load an alternative
      color-selection flow. Default (no param) renders v1 exactly as-is. Runs in <head> so the
@@ -1592,7 +1592,104 @@ style="" class=""><div
 class="mz-kopf mz-kopf-abstand"><p
 class="mz-eyebrow">Befestigung</p><p><span
 class="mz-display">Wandbriefkasten oder Standbriefkasten – Wand, Ständer oder Zaun</span></p><div
-class="mz-lead mz-kopf-lead"><p><strong>Für die Wandmontage ist alles dabei</strong> – Befestigungsmaterial liegt bei, ganz ohne Aufpreis. Wo keine Wand ist, macht der Erpo-Ständer aus V2A-Edelstahl den Siebert zum freistehenden <strong>Standbriefkasten</strong> – ein eleganter Postkasten als Blickfang im Vorgarten. Alternativ hält ihn die Zaunbefestigung sicher am Zaun. Beides direkt im Konfigurator wählbar.</p></div></div></div><ul class="mnts" aria-label="Befestigungsarten"><li class="mnt mnt--wand"><figure class="mnt__img"><img class="mz-ki" src="assets/briefkasten/siebert-hero-wand-poster.jpg" alt="Metzler Briefkasten Siebert an der Hauswand montiert" loading="lazy" decoding="async"></figure><div class="mnt__txt"><b>An der Wand</b><span>Befestigungsmaterial liegt bei</span></div><p class="mnt__price is-incl">Inklusive</p></li><li class="mnt mnt--erpo"><figure class="mnt__img"><img class="mz-ki" src="assets/briefkasten/siebert-befestigung-erpo-edelstahl-v2.jpg" alt="Metzler Briefkasten Siebert auf Erpo-Ständer aus V2A Edelstahl im Vorgarten" loading="lazy" decoding="async"></figure><div class="mnt__txt"><b>Auf dem Ständer</b><span>Erpo aus V2A-Edelstahl – freistehend im Vorgarten</span></div><p class="mnt__price">+ 69,99 €</p></li><li class="mnt mnt--zaun"><figure class="mnt__img"><img class="mz-ki" src="assets/briefkasten/siebert-befestigung-zaun-v2.jpg" alt="Metzler Briefkasten Siebert mit Zaunbefestigung am Zaun" loading="lazy" decoding="async"></figure><div class="mnt__txt"><b>Am Zaun</b><span>Zaunbefestigung hält ihn sicher am Zaun</span></div><p class="mnt__price">+ 32,99 €</p></li></ul><div
+class="mz-lead mz-kopf-lead"><p><strong>Für die Wandmontage ist alles dabei</strong> – Befestigungsmaterial liegt bei, ganz ohne Aufpreis. Wo keine Wand ist, macht einer von sieben Ständern den Siebert zum freistehenden <strong>Standbriefkasten</strong> – ein eleganter Postkasten als Blickfang im Vorgarten, vom klassischen Standfuß bis zum Design-Ständer Anna. Alle direkt im Konfigurator wählbar.</p></div></div></div><div
+style="" class=""><style type="text/css">.mz-sg-7be0a0000003e{max-width:60rem;margin:0 auto}
+.mz-sg-7be0a0000003e .sg-buehne{position:relative;max-width:50rem;margin:0 auto}
+.mz-sg-7be0a0000003e .sg-buehne img{width:100%;height:auto;display:block;border-radius:0.5rem;
+box-shadow:0 0.75rem 2rem rgba(0,0,0,0.12);transition:opacity .35s ease}
+.mz-sg-7be0a0000003e .sg-buehne img.wechsel{opacity:0}
+.mz-sg-7be0a0000003e .sg-cap{max-width:50rem;margin:0 auto}
+/* RASTER statt flex-wrap (Korrektur 30.07.): Mit `flex:0 1 8.5rem` haben zwar
+   alle Kacheln dieselbe Basisbreite, aber `min-width:auto` laesst sie nicht
+   unter ihre laengste unteilbare Textzeile schrumpfen. Namen wie
+   „Zaunbefestigung" blockieren damit mehr Platz als kurze – in der Folge passen
+   in eine Zeile drei Kacheln, in die naechste nur zwei, und die sechste bleibt
+   allein stehen (gemeldet 30.07.: Umbruch 3/2/1 statt 3/3).
+   Im Raster ist die Spaltenzahl gesetzt statt vom Text abgeleitet, die Zeilen
+   sind dadurch immer gleich besetzt. Spaltenzahl = Anzahl der Optionen, damit
+   der Baustein auch mit vier oder acht Kacheln aufgeht (wie bildgalerie()). */
+.mz-sg-7be0a0000003e .sg-kacheln{display:grid;grid-template-columns:repeat(7,1fr);
+gap:0.75rem;margin-top:1.25rem}
+.mz-sg-7be0a0000003e .sg-kachel{min-width:0;text-align:center;cursor:pointer;font:inherit;
+color:inherit;border:0.125rem solid transparent;border-radius:0.5rem;
+padding:0.5rem 0.25rem;transition:border-color .25s,transform .25s;background:#fff}
+.mz-sg-7be0a0000003e .sg-kachel:hover{transform:translateY(-0.25rem)}
+.mz-sg-7be0a0000003e .sg-kachel:focus-visible{outline:0.125rem solid var(--teal);outline-offset:0.125rem}
+.mz-sg-7be0a0000003e .sg-kachel.active{border-color:var(--teal)}
+.mz-sg-7be0a0000003e .sg-kachel img{width:100%;height:auto;display:block;border-radius:0.25rem;
+background:#f6f6f6}
+/* Lange Namen umbrechen statt die Spalte aufzudehnen – sonst kommt die
+   Ungleichheit ueber die Hintertuer zurueck. */
+.mz-sg-7be0a0000003e .sg-kachel .mz-tile-name{display:block;margin:0.5rem 0 0.125rem;
+overflow-wrap:break-word;hyphens:auto}
+.mz-sg-7be0a0000003e .sg-kachel .mz-tile-price{display:block;margin:0;white-space:nowrap}
+/* Tablet: halbe Spaltenzahl, damit 6 -> 3+3 und 4 -> 2+2 aufgehen. */
+@media (max-width:63.9375rem){
+.mz-sg-7be0a0000003e .sg-kacheln{grid-template-columns:repeat(4,1fr);gap:0.5rem}
+}
+/* Handy: zwei Spalten, sonst wird die Kachel schmaler als ihr Preis. */
+@media (max-width:35.9375rem){
+.mz-sg-7be0a0000003e .sg-kacheln{grid-template-columns:repeat(2,1fr)}
+}</style><div
+class="mz-sg-7be0a0000003e"><div
+class="sg-buehne mz-ki"><img
+loading="lazy" decoding="async" src="assets/briefkasten/siebert-befestigung-anna-2-v2.jpg" alt="Metzler Briefkasten Siebert als Standbriefkasten auf dem Design-Standfuß Anna 2 im Vorgarten"></div><div
+class="sg-kacheln">
+<button
+type="button" class="sg-kachel" aria-pressed="false" aria-label="Szene mit Erpo Edelstahl V2A anzeigen"><img
+src="assets/briefkasten/opt-staender-erpo-edelstahl.jpg" alt="Metzler Briefkastenständer Erpo aus V2A Edelstahl" loading="lazy"><span
+class="mz-tile-name">Erpo Edelstahl V2A</span><span
+class="mz-tile-price">+ 69,99 €</span></button><button
+type="button" class="sg-kachel" aria-pressed="false" aria-label="Szene mit Erpo Anthrazit anzeigen"><img
+src="assets/briefkasten/opt-staender-erpo-anthrazit.jpg" alt="Metzler Briefkastenständer Erpo in Anthrazit" loading="lazy"><span
+class="mz-tile-name">Erpo Anthrazit</span><span
+class="mz-tile-price">+ 59,99 €</span></button><button
+type="button" class="sg-kachel" aria-pressed="false" aria-label="Szene mit Standfuß Anna 1 anzeigen"><img
+src="assets/briefkasten/opt-staender-anna-1.jpg" alt="Metzler Design-Standfuß Anna 1 in RAL 7016 Anthrazit" loading="lazy"><span
+class="mz-tile-name">Standfuß Anna 1</span><span
+class="mz-tile-price">+ 99,00 €</span></button><button
+type="button" class="sg-kachel active" aria-pressed="true" aria-label="Szene mit Standfuß Anna 2 anzeigen"><img
+src="assets/briefkasten/opt-staender-anna-2.jpg" alt="Metzler Design-Standfuß Anna 2 in RAL 7016 Anthrazit" loading="lazy"><span
+class="mz-tile-name">Standfuß Anna 2</span><span
+class="mz-tile-price">+ 99,00 €</span></button><button
+type="button" class="sg-kachel" aria-pressed="false" aria-label="Szene mit Standfuß Anna 3 anzeigen"><img
+src="assets/briefkasten/opt-staender-anna-3.jpg" alt="Metzler Design-Standfuß Anna 3 in RAL 7016 Anthrazit" loading="lazy"><span
+class="mz-tile-name">Standfuß Anna 3</span><span
+class="mz-tile-price">+ 99,00 €</span></button><button
+type="button" class="sg-kachel" aria-pressed="false" aria-label="Szene mit Zaunbefestigung anzeigen"><img
+src="assets/briefkasten/opt-zaunbefestigung.jpg" alt="Zaunbefestigung für Metzler Briefkästen in Anthrazit" loading="lazy"><span
+class="mz-tile-name">Zaunbefestigung</span><span
+class="mz-tile-price">+ 32,99 €</span></button><button
+type="button" class="sg-kachel" aria-pressed="false" aria-label="Szene mit Zum Einbetonieren anzeigen"><img
+src="assets/briefkasten/opt-staender-einbetonieren.jpg" alt="Metzler Briefkastenständer universell zum Einbetonieren" loading="lazy"><span
+class="mz-tile-name">Zum Einbetonieren</span><span
+class="mz-tile-price">+ 69,99 €</span></button></div></div> <script>(function(){
+var P=[{"img": "assets/briefkasten/siebert-befestigung-erpo-edelstahl-v2.jpg", "alt": "Metzler Briefkasten Siebert auf Erpo-Ständer aus V2A Edelstahl im Vorgarten", "ki": true}, {"img": "assets/briefkasten/siebert-befestigung-erpo-anthrazit-v2.jpg", "alt": "Metzler Briefkasten Siebert auf Erpo-Ständer in Anthrazit RAL 7016 im Vorgarten", "ki": true}, {"img": "assets/briefkasten/siebert-befestigung-anna-1-v2.jpg", "alt": "Metzler Briefkasten Siebert als Standbriefkasten auf dem Design-Standfuß Anna 1 im Vorgarten", "ki": true}, {"img": "assets/briefkasten/siebert-befestigung-anna-2-v2.jpg", "alt": "Metzler Briefkasten Siebert als Standbriefkasten auf dem Design-Standfuß Anna 2 im Vorgarten", "ki": true}, {"img": "assets/briefkasten/siebert-befestigung-anna-3-v2.jpg", "alt": "Metzler Briefkasten Siebert als Standbriefkasten auf dem Design-Standfuß Anna 3 im Vorgarten", "ki": true}, {"img": "assets/briefkasten/siebert-befestigung-zaun-v2.jpg", "alt": "Metzler Briefkasten Siebert mit Zaunbefestigung am Doppelstabmattenzaun", "ki": true}, {"img": "assets/briefkasten/siebert-befestigung-einbetonieren-v2.jpg", "alt": "Metzler Briefkasten Siebert auf einbetoniertem Standpfosten im Vorgarten", "ki": true}], w=document.querySelector('.mz-sg-7be0a0000003e'); if(!w) return;
+var buehne=w.querySelector('.sg-buehne');
+var img=buehne.querySelector('img');
+var kacheln=w.querySelectorAll('.sg-kachel');
+function go(n){
+  img.classList.add('wechsel');
+  setTimeout(function(){
+    img.src=P[n].img; img.alt=P[n].alt;
+    /* KI-Kennzeichnung mitschalten: die Buehne zeigt je nach Auswahl eine
+       generierte oder eine echte Aufnahme. Ein festes Overlay waere in
+       beide Richtungen falsch – beim Siebert ist ausgerechnet das
+       Startbild eine echte Aufnahme des Auftraggebers. */
+    buehne.classList.toggle('mz-ki', !!P[n].ki);
+    img.classList.remove('wechsel');
+  },180);
+  kacheln.forEach(function(k,i){
+    k.classList.toggle('active', i===n);
+    k.setAttribute('aria-pressed', i===n ? 'true' : 'false');
+  });
+}
+kacheln.forEach(function(k,n){
+  k.addEventListener('click', function(){
+    if(!k.classList.contains('active')) go(n);
+  });
+});
+})();</script> </div><div
 class="opc-Divider hr-sect  mz-divider opc-Divider-empty" style=""></div><div
 style="" class=""><div
 class="mz-kopf mz-kopf-abstand"><p
@@ -1761,18 +1858,49 @@ class="mz-zk-k">
 class="mz-zk-b" src="assets/briefkasten/opt-werbeschild-graualuminium.jpg" alt="Metzler Briefkastenschild Bitte keine Werbung in Graualuminium" loading="lazy"><div><p
 class="mz-zk-t">Schild „Keine Werbung“</p><p
 class="mz-zk-n">Hält Prospekte aus dem Kasten</p><p
-class="mz-zk-p">+ 8,99 €</p></div></div></div></div><!-- Warum Metzler – one dark-teal brand band: the claim and four proof numbers side by side, then the six production steps as one strip (swipe row below 64rem). Replaces the grey box with three cards, a separate guarantee line and two rows of large photos. -->
-<section class="why" aria-labelledby="whyQuote"><div class="why__top"><div class="why__claim"><p class="why__eyebrow">Warum Metzler?</p><blockquote class="why__quote"><p id="whyQuote">„Wir glauben, dass ein Hauseingang mehr verdient als Standard.“</p><footer>Metzler · Familienunternehmen aus Reutlingen</footer></blockquote></div><ul class="why__stats" aria-label="Metzler in Zahlen"><li><span class="why__ico why__ico--line"><svg aria-hidden="true" data-icon="USP-10-kunden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.25" cy="8.25" r="3.5"/><path d="M3 19.75a5.25 5.25 0 0 1 5.25-5.25h2a5.25 5.25 0 0 1 5.25 5.25"/><circle cx="17.5" cy="7.5" r="2.5"/><path d="M17.25 13.25h.75a4 4 0 0 1 4 4v1.75"/></svg></span><b>über 2 Mio.</b><span class="why__sl">Kunden vertrauen auf Metzler</span></li><li><span class="why__ico"><img src="assets/briefkasten/ntv-siegel.png" alt="Siegel ntv Life &amp; Living Award, 1. Platz Kategorie Briefkästen" width="180" height="180" loading="lazy"></span><b>1. Platz</b><span class="why__sl">4 Jahre in Folge beim ntv „Life &amp; Living Award“, Kategorie Briefkästen</span></li><li><span class="why__ico why__ico--stars"><svg
-class="mz-sterne" viewbox="0 0 120 24" role="img" aria-label="4,7 von 5 Sternen"><defs><lineargradient
-id="mzstern" gradientunits="userSpaceOnUse" x1="0" y1="0" x2="120" y2="0"><stop
-offset="0.9400" stop-color="#fbbf24"></stop><stop
-offset="0.9400" stop-color="#e6e6e8"></stop></lineargradient></defs><g
-fill="url(#mzstern)"><path
-transform="translate(0,0)" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path><path
-transform="translate(24,0)" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path><path
-transform="translate(48,0)" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path><path
-transform="translate(72,0)" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path><path
-transform="translate(96,0)" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></g></svg></span><b>über 30.000</b><span class="why__sl">geprüfte Käuferbewertungen, Ø 4,7 von 5</span></li><li><span class="why__ico"><img src="ICONS/Garantie-hq.svg" alt="" width="128" height="125" loading="lazy"></span><b>10 Jahre</b><span class="why__sl">Metzler Garantie</span></li></ul></div><h3 class="why__h">Von der Konstruktion bis zu Ihrer Haustür</h3><ol class="why__steps"><li class="why__step"><figure class="why__img"><img src="assets/briefkasten/prozess-konstruktion.jpg" alt="Metzler Briefkasten Siebert: Konstruktion am CAD-Arbeitsplatz in Reutlingen" width="636" height="359" loading="lazy" decoding="async" draggable="false"></figure><p class="why__k">01 · Konstruktion</p><p class="why__st">Entwickelt in Reutlingen</p><p class="why__sd">Von unseren eigenen Konstrukteuren im Haus gezeichnet.</p></li><li class="why__step"><figure class="why__img mz-ki"><img src="assets/briefkasten/prozess-beschichtung.jpg" alt="Metzler Briefkasten Siebert: Mitarbeiter pulverbeschichtet Stahlteile in der Beschichtungskabine" width="636" height="475" loading="lazy" decoding="async" draggable="false"></figure><p class="why__k">02 · Material</p><p class="why__st">Wetterfest und rostfrei</p><p class="why__sd">Edelstahl und pulverbeschichteter Stahl für draußen.</p></li><li class="why__step"><figure class="why__img mz-ki"><img src="assets/briefkasten/prozess-gravur.jpg" alt="Metzler Briefkasten Siebert: Lasergravur der Edelstahlblende in Reutlingen" width="636" height="475" loading="lazy" decoding="async" draggable="false"></figure><p class="why__k">03 · Gravur</p><p class="why__st">In den Edelstahl gelasert</p><p class="why__sd">Liegt in der Oberfläche, lässt sich nicht abwischen.</p></li><li class="why__step"><figure class="why__img"><img src="assets/briefkasten/prozess-montage.jpg" alt="Metzler Briefkasten Siebert: Montage von Hand in Reutlingen" width="636" height="475" loading="lazy" decoding="async" draggable="false"></figure><p class="why__k">04 · Montage</p><p class="why__st">Von Hand montiert</p><p class="why__sd">Die Teile einzeln zusammengefügt, Stück für Stück.</p></li><li class="why__step"><figure class="why__img mz-ki"><img src="assets/briefkasten/prozess-pruefung.jpg" alt="Metzler Briefkasten Siebert: Endkontrolle in Reutlingen, ein Bauteil wird mit dem Messschieber gemessen" width="636" height="475" loading="lazy" decoding="async" draggable="false"></figure><p class="why__k">05 · Endkontrolle</p><p class="why__st">Geprüft im Vier-Augen-Prinzip</p><p class="why__sd">Funktion, Oberfläche und Gravur vor dem Versand.</p></li><li class="why__step"><figure class="why__img"><img src="assets/briefkasten/prozess-versand.jpg" alt="Metzler Briefkasten Siebert: versandfertig verpackt mit Anleitung" width="636" height="475" loading="lazy" decoding="async" draggable="false"></figure><p class="why__k">06 · Versand</p><p class="why__st">Montagefertig verpackt</p><p class="why__sd">Bruchsicher, mit Anleitung und Befestigungsmaterial.</p></li></ol></section><div
+class="mz-zk-p">+ 8,99 €</p></div></div></div></div><!-- Warum Metzler – one brand block for every PDP. Metzler Design System: Section 14b
+     „Über Metzler“ (photo · eyebrow · display-5 · one paragraph) + the key-figure row of
+     Section 19. Light on purpose: a PDP carries at most one dark band. Self-contained – its
+     own styles, tokens with fallbacks, prefix mz-brand – so it drops into any description. -->
+<div><style type="text/css">
+.mz-brand{margin:1.5rem 0;padding:2rem 1.25rem;border-radius:var(--radius-xl,0.75rem);background:var(--color-paper,#F5F6FA);text-align:left}
+.mz-brand__grid{display:grid;gap:1.5rem;align-items:center}
+.mz-brand__img{display:block;width:100%;height:auto;margin:0;border-radius:var(--radius-lg,0.5rem)}
+.mz-brand__eyebrow{margin:0 0 0.75rem;font-size:0.75rem;font-weight:700;line-height:1.4;letter-spacing:0.15em;text-transform:uppercase;color:var(--color-graphite-600,#6A6A6A)}
+.mz-brand__title{margin:0 0 1rem;font-size:1.75rem;font-weight:700;line-height:1.15;letter-spacing:-0.02em;color:var(--color-digital-black,#1A171B);text-wrap:balance}
+.mz-brand__lead{margin:0;max-width:35rem;font-size:1rem;line-height:1.6;color:var(--color-graphite-700,#54545C);text-wrap:pretty}
+.mz-brand__facts{list-style:none;margin:2rem 0 0;padding:1.5rem 0 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));row-gap:1.5rem;border-top:0.0625rem solid var(--color-graphite-200,#E6E6E8)}
+.mz-brand__facts li{display:flex;flex-direction:column;gap:0.3rem;min-width:0;margin:0;padding:0 0 0 1rem;border-left:0.0625rem solid var(--color-graphite-200,#E6E6E8)}
+.mz-brand__facts li:nth-child(odd){padding-left:0;border-left:0}
+.mz-brand__facts li::before,.mz-brand__facts li::marker{content:none}
+.mz-brand__facts strong{font-size:1.25rem;font-weight:700;line-height:1.1;letter-spacing:-0.02em;color:var(--color-digital-black,#1A171B);white-space:nowrap}
+.mz-brand__facts span{font-size:0.75rem;line-height:1.4;color:var(--color-graphite-600,#6A6A6A)}
+@media(min-width:48rem){.mz-brand{padding:2.5rem 2rem}.mz-brand__title{font-size:clamp(1.75rem,0.9rem + 1.5vw,2.25rem)}}
+@media(min-width:64rem){
+.mz-brand{padding:3rem}
+.mz-brand__grid{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(2rem,4vw,3.5rem)}
+.mz-brand__facts{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:2.5rem;padding-top:2rem}
+.mz-brand__facts li,.mz-brand__facts li:nth-child(odd){padding-left:1.5rem;border-left:0.0625rem solid var(--color-graphite-200,#E6E6E8)}
+.mz-brand__facts li:first-child{padding-left:0;border-left:0}
+.mz-brand__facts strong{font-size:1.5rem}
+.mz-brand__facts span{font-size:0.8125rem}
+}
+</style><section class="mz-brand" aria-labelledby="mzBrandTitle">
+<div class="mz-brand__grid">
+<img class="mz-brand__img" src="assets/metzler-firmensitz-reutlingen.webp" width="1405" height="780" loading="lazy" alt="Firmensitz der Metzler GmbH in Reutlingen">
+<div>
+<p class="mz-brand__eyebrow">Warum Metzler</p>
+<h2 class="mz-brand__title" id="mzBrandTitle">Mehr als ein Shop – ein Familienunternehmen seit 2013</h2>
+<p class="mz-brand__lead">In Reutlingen entwickeln, fertigen und prüfen 165 Mitarbeitende jedes Produkt selbst – rostfreier Edelstahl statt Kunststoff, materialtiefe Lasergravur statt Aufdruck.</p>
+</div>
+</div>
+<ul class="mz-brand__facts" role="list">
+<li><strong>über 2 Mio.</strong><span>zufriedene Kunden</span></li>
+<li><strong>4× Platz 1</strong><span>ntv Life &amp; Living Award, Kategorie Briefkästen</span></li>
+<li><strong>4,7 von 5</strong><span>aus über 30.000 Bewertungen</span></li>
+<li><strong>10 Jahre</strong><span>Metzler Garantie</span></li>
+</ul>
+</section></div><div
 style="margin-top:60px; margin-bottom:60px; " class=""></div><div
 style="" class=""><style type="text/css">#article-tabs .desc {display: none;}</style></div><div
 style="" class=""> <script>(function(){var start=function(){var v=document.querySelectorAll('video.mz-lazyvid');if(!v.length)return;var an=function(e){if(e.dataset.mzAn)return;e.dataset.mzAn=1;if(e.dataset.src&&!e.getAttribute('src')){e.src=e.dataset.src;}var s=e.querySelectorAll('source[data-src]');for(var i=0;i<s.length;i++){s[i].src=s[i].dataset.src;}e.load();var p=e.play();if(p&&p.catch)p.catch(function(){});};if(!('IntersectionObserver' in window)){for(var i=0;i<v.length;i++)an(v[i]);return;}var o=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){an(x.target);o.unobserve(x.target);}});},{rootMargin:'200px 0px'});for(var i=0;i<v.length;i++)o.observe(v[i]);};if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',start);}else{start();}})();</script> </div></div></div>
@@ -2487,7 +2615,7 @@ style="" class=""> <script>(function(){var start=function(){var v=document.query
 </div>
 
 <script src="chrome.js?v=14"></script>
-<script src="pdp-b-desc.js?v=27"></script>
+<script src="pdp-b-desc.js?v=28"></script>
 <style id="pf-lockdown-css">
 footer a,[class*="topbar"] a,[class*="top-bar"] a,[class*="trustbar"] a,[class*="claims"] a{pointer-events:none !important;cursor:default !important;}
 </style>

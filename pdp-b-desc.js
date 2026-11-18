@@ -2932,7 +2932,7 @@ var MZSwipe = (function () {
     gravur:   { t: 'Gravurdaten', els: function () { return [q('.kfg'), q('.vrb')]; } },
     lock:     { t: 'Smart-Briefkastenschloss', els: function () { return [kopf('Smarte Ausstattung'), q('.smart')]; }, tab: 'smartTabLock' },
     sensor:   { t: 'Funk-Briefkastensensor', els: function () { return [kopf('Smarte Ausstattung'), q('.smart')]; }, tab: 'smartTabSensor' },
-    mount:    { t: 'Befestigung', els: function () { return [kopf('Befestigung'), q('.mnts')]; } },
+    mount:    { t: 'Befestigung', els: function () { return [kopf('Befestigung'), q('.mz-sg-7be0a0000003e')]; } },
     zubehoer: { t: 'Erweiterungen & Zubehör', els: function () { return [kopf('Erweiterungen & Zubehör'), q('.mz-zk')]; } },
     deko:     { t: 'Dekorieren & Verzieren', els: function () { return [kopf('Dekoration'), q('.mz-sg-7be0a00000042')]; } }
   };
