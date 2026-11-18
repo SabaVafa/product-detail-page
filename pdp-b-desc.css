@@ -3550,7 +3550,7 @@ body.is-scrolled #quickbar {
 #sx-beschreibung [data-area-id="col-0"]:has(> .dsc-head) > div[style*="margin-top:24px"]{ display:none; }   /* OPC spacer */
 
 /* Section headlines: the live 2.875 rem (46 px, same on phones) broke most of them
-   onto two lines – scale fluidly 26 → 36 px and tighten the gap below the head. */
+   onto two lines – scale fluidly 26 → 36 px (the gap below is --dsc-head). */
 #sx-beschreibung .mz-display, #sx-beschreibung .mz-display span{ font-size:clamp(1.625rem, 1.1rem + 1.8vw, 2.25rem); line-height:1.15; letter-spacing:-0.01em; }
 /* ── One rhythm for the whole description ──────────────────────────────────────
    --dsc-gap: the space on BOTH sides of every subsection divider (and above the closing
@@ -3614,8 +3614,8 @@ body.is-scrolled #quickbar {
 /* the three ways to open it: tappable tiles (kit booklet icons BKL-20/19/05, 48 grid,
    one colour) – raised white tiles invite a tap, the shown one sits pressed in teal-50
    with a teal line; hover is colour only (kit rule: no lift, no scale) */
-#sx-beschreibung .smart__ways{ display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:0.5rem; max-width:24rem; }
-#sx-beschreibung .smart__way{ display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.375rem; min-height:2.75rem; padding:0.75rem 0.375rem 0.625rem;
+#sx-beschreibung .smart__ways{ display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:0.75rem; max-width:26rem; }
+#sx-beschreibung .smart__way{ display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.5rem; min-height:2.75rem; padding:1rem 0.5rem 0.875rem;
   border:1px solid var(--color-graphite-300); border-radius:var(--radius-lg); background:var(--color-white); box-shadow:var(--shadow-card, 0 0.125rem 0.5rem rgba(0,0,0,.08));
   color:var(--color-digital-black); font:inherit; font-size:0.8125rem; font-weight:700; line-height:1.2; text-align:center; hyphens:manual; cursor:pointer;
   transition:border-color .15s, background-color .15s, color .15s, box-shadow .15s; }
@@ -3660,20 +3660,22 @@ body.is-scrolled #quickbar {
    (Smart left → Befestigung right → Dekoration left). Tablets: the live stacked
    form. Phones: the scene, then one swipe row. Kit: no hover lift. */
 #sx-beschreibung [class*="mz-sg-"] .sg-kachel:hover{ transform:none; }
+#sx-beschreibung [class*="mz-sg-"] .sg-kachel{ padding:0.75rem 0.5rem 0.625rem; }
+#sx-beschreibung [class*="mz-sg-"] .sg-kachel .mz-tile-name{ margin:0.625rem 0 0.25rem; line-height:1.35; }
 #sx-beschreibung [class*="mz-sg-"] .sg-kachel:not(.active):hover{ border-color:var(--color-graphite-300); }
 @media (min-width:64rem){
   #sx-beschreibung [class*="mz-sg-"]{ max-width:none; display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); column-gap:var(--dsc-split); align-items:center; }
   #sx-beschreibung [class*="mz-sg-"] .sg-buehne{ max-width:none; margin:0; }
-  #sx-beschreibung [class*="mz-sg-"] .sg-kacheln{ justify-content:stretch; gap:0.75rem; margin-top:0; }
+  #sx-beschreibung [class*="mz-sg-"] .sg-kacheln{ justify-content:stretch; gap:1rem; margin-top:0; }
   #sx-beschreibung .mz-sg-7be0a00000042 .sg-kacheln{ grid-template-columns:repeat(3, minmax(0, 1fr)); }
   #sx-beschreibung .mz-sg-7be0a0000003e .sg-kacheln{ grid-template-columns:repeat(4, minmax(0, 1fr)); }
   #sx-beschreibung .mz-sg-7be0a0000003e .sg-buehne{ order:2; }
 }
 @media (max-width:47.9375rem){
-  #sx-beschreibung [class*="mz-sg-"] .sg-kacheln{ grid-template-columns:none; grid-auto-flow:column; grid-auto-columns:30%; justify-content:start; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; margin:1rem -1rem 0; padding:0 1rem 0.25rem; scroll-padding-inline:1rem; }
+  #sx-beschreibung [class*="mz-sg-"] .sg-kacheln{ grid-template-columns:none; grid-auto-flow:column; grid-auto-columns:30%; gap:0.75rem; justify-content:start; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; margin:1rem -1rem 0; padding:0 1rem 0.25rem; scroll-padding-inline:1rem; }
   #sx-beschreibung [class*="mz-sg-"] .sg-kacheln::-webkit-scrollbar{ display:none; }
   #sx-beschreibung [class*="mz-sg-"] .sg-kachel{ scroll-snap-align:start; }
-  #sx-beschreibung [class*="mz-sg-"] .sg-kachel .mz-tile-name, #sx-beschreibung [class*="mz-sg-"] .sg-kachel .mz-tile-price{ font-size:0.8125rem; line-height:1.3; }
+  #sx-beschreibung [class*="mz-sg-"] .sg-kachel .mz-tile-name, #sx-beschreibung [class*="mz-sg-"] .sg-kachel .mz-tile-price{ font-size:0.8125rem; line-height:1.35; }
 }
 
 /* ── Live OPC splits (Das Wichtigste, Warum dieser Briefkasten?): the same equal
@@ -3704,7 +3706,7 @@ body.is-scrolled #quickbar {
 #sx-beschreibung .row.mz-mg:not(.abm) > [data-area-id] > h3 + *{ order:1; }
 
 /* ── Verarbeitung: two macro shots with what they show, headline alongside ───────
-   Wide: headline | Gravur | Korpus in one row (~300 px instead of ~530). Phones:
+   Centred head above, the two shots side by side (picture cards). Phones:
    the two shots side by side under the headline. */
 /* like the other card sections at every width: centred head above, 2rem to the cards (with the gap), 1rem between them */
 #sx-beschreibung .vrb{ display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:1rem; align-items:start; }
@@ -3723,7 +3725,7 @@ body.is-scrolled #quickbar {
 #sx-beschreibung .abm > [data-area-id="col-0"]{ display:contents; }
 #sx-beschreibung .abm > [data-area-id="col-1"]{ grid-column:1 / -1; width:auto; max-width:none; flex:none; padding:0; }
 #sx-beschreibung .abm > .clearfix{ display:none; }
-#sx-beschreibung .abm .mz-h3{ font-size:1rem; }
+#sx-beschreibung .abm .mz-h3{ font-size:1.125rem; }
 #sx-beschreibung .dim{ margin:0; }
 #sx-beschreibung .dim__box{ position:relative; border-radius:var(--radius-lg); background:#fff; box-shadow:0 0 0 1px rgba(26,23,27,.08); overflow:hidden; }
 #sx-beschreibung .dim__box img{ display:block; width:100%; height:auto; transform:scale(.86); transform-origin:58% 44%; }
@@ -3735,11 +3737,11 @@ body.is-scrolled #quickbar {
 #sx-beschreibung .dim__w::before{ left:0; } #sx-beschreibung .dim__w::after{ right:0; }
 #sx-beschreibung .dim__h::before, #sx-beschreibung .dim__h::after{ content:""; position:absolute; left:-0.4rem; width:0.8rem; border-top:1.5px solid currentColor; }
 #sx-beschreibung .dim__h::before{ top:0; } #sx-beschreibung .dim__h::after{ bottom:0; }
-#sx-beschreibung .dim__w i, #sx-beschreibung .dim__h i{ position:absolute; padding:0.1rem 0.4rem; border-radius:var(--radius); background:#fff; font-style:normal; font-size:0.75rem; font-weight:700; white-space:nowrap; }
+#sx-beschreibung .dim__w i, #sx-beschreibung .dim__h i{ position:absolute; padding:0.1rem 0.4rem; border-radius:var(--radius); background:#fff; font-style:normal; font-size:0.8125rem; font-weight:700; white-space:nowrap; }
 #sx-beschreibung .dim__w i{ top:-0.7rem; }
 #sx-beschreibung .dim__h i{ left:-1.4rem; transform:rotate(-90deg); }
-#sx-beschreibung .abm__cap{ margin:0.6rem 0 0; font-size:0.8125rem; line-height:1.4; color:var(--text-secondary); }
-#sx-beschreibung .abm__cap b{ display:block; font-size:0.9375rem; color:var(--color-digital-black); }
+#sx-beschreibung .abm__cap{ margin:1rem 0 0; font-size:0.875rem; line-height:1.45; color:var(--text-secondary); }
+#sx-beschreibung .abm__cap b{ display:block; margin-bottom:0.25rem; font-size:1.125rem; line-height:1.3; color:var(--color-digital-black); }
 @media (min-width:64rem){
   #sx-beschreibung .row.abm{ grid-template-columns:minmax(0, 0.9fr) minmax(0, 0.75fr) minmax(0, 1.5fr); column-gap:clamp(1.5rem, 3vw, 2.5rem); }
   #sx-beschreibung .abm > [data-area-id="col-1"]{ grid-column:auto; }
@@ -3756,7 +3758,7 @@ body.is-scrolled #quickbar {
 #sx-beschreibung .vs__tag--old{ background:#D42924; background:color-mix(in srgb, #D42924 calc(var(--vs-old) * 100%), var(--color-graphite-500)); }
 #sx-beschreibung .vs__tag--new{ background:#009951; background:color-mix(in srgb, #009951 calc(var(--vs-new) * 100%), var(--color-graphite-500)); }
 #sx-beschreibung .vs__rows{ list-style:none; margin:0; padding:0; }
-#sx-beschreibung .vs__rows li{ align-items:start; margin:0; padding:0.8rem 0; border-top:1px solid rgba(26,23,27,.08); }
+#sx-beschreibung .vs__rows li{ align-items:start; margin:0; padding:1rem 0; border-top:1px solid rgba(26,23,27,.08); }
 #sx-beschreibung .vs__rows li::marker{ content:none; }
 #sx-beschreibung .vs__old, #sx-beschreibung .vs__new{ display:grid; grid-template-columns:1.1rem minmax(0, 1fr); column-gap:0.5rem; align-items:start; }
 #sx-beschreibung .vs__old svg, #sx-beschreibung .vs__new svg{ width:1.1rem; height:1.1rem; margin-top:0.12rem; }
@@ -3791,25 +3793,18 @@ body.is-scrolled #quickbar {
   right:auto; bottom:auto; left:calc(var(--ox-p) + (100% - 2.5rem - var(--ox-p)) / var(--zoom)); top:calc(var(--oy-p) + (0.5rem - var(--oy-p)) / var(--zoom));
   transform:scale(calc(1 / var(--zoom))); transform-origin:0 0; }
 
-/* Verfügbare Farben – tighter: the box stage (fixed 24rem, box at 82 %) and the
-   padding around it set the panel height; trim the air, keep every element.
-   ~609 → ~480 px on desktop. Live inline rules use !important on the title. */
-@media (min-width:48rem){
-  #sx-beschreibung .mz-kap-xdm .slider-viewport { height: 20rem; }
-  #sx-beschreibung .mz-kap-xdm .slide-track { height: 90%; }
-}
-#sx-beschreibung .mz-kap-xdm > [data-area-id] > .mz-eyebrow { margin-bottom: 0.9rem; }
-#sx-beschreibung .mz-kap-xdm .showcase-container { padding-bottom: 0; }
-#sx-beschreibung .mz-kap-xdm .info-panel { margin-top: 0.5rem; }
-#sx-beschreibung .mz-kap-xdm .swatch-nav { padding: 0.5rem 1rem; }
+/* Verfügbare Farben keeps the live block's own room (24rem stage, box at 82 %, the
+   live spacing around title and swatches) – premium over compact: an earlier pass
+   had trimmed it ~609 → ~480 px; that is undone. Live inline rules use !important
+   on the title. */
 /* the name always takes two lines (code / name – see pdp-b-desc.js), so switching colours
    never changes the panel height */
 #sx-beschreibung .mz-farbname .slider-product-title { min-height: 2.1em !important; margin-bottom: 1.25rem !important; }
 /* Two columns: the eyebrow belongs to the text column, so the visual (box stack +
    swatches) spans the full panel height and centres on what is VISIBLE – its
-   stage has ~2.9rem of empty space above the box (stage air + the render's
-   transparent top margin), pulled out with a negative top margin. Result:
-   equal space above the box and below the swatches. */
+   stage has empty space above the box (stage air + the render's transparent
+   top margin), pulled out with a negative top margin (measured for the 24rem
+   stage): ~64 px visible above the box and below the swatches. */
 @media (min-width:62rem){
   #sx-beschreibung .mz-kap-xdm > [data-area-id="col-0"] { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto 1fr; column-gap: var(--dsc-split); }
   #sx-beschreibung .mz-kap-xdm > [data-area-id="col-0"] > .mz-eyebrow { grid-column: 1; grid-row: 1; }
@@ -3817,14 +3812,9 @@ body.is-scrolled #quickbar {
   #sx-beschreibung .mz-kap-xdm > [data-area-id="col-0"] > .row > .clearfix { display: none; }
   #sx-beschreibung .mz-kap-xdm > [data-area-id="col-0"] > .row > [data-area-id] { width: auto; max-width: none; flex: none; padding-left: 0; padding-right: 0; }
   #sx-beschreibung .mz-kap-xdm > [data-area-id="col-0"] > .row > [data-area-id="col-0"] { grid-column: 1; grid-row: 2; align-self: start; }
-  #sx-beschreibung .mz-kap-xdm > [data-area-id="col-0"] > .row > [data-area-id="col-1"] { grid-column: 2; grid-row: 1 / 3; align-self: center; margin-top: -2.9rem; }
+  #sx-beschreibung .mz-kap-xdm > [data-area-id="col-0"] > .row > [data-area-id="col-1"] { grid-column: 2; grid-row: 1 / 3; align-self: center; margin-top: -3.25rem; }
 }
-/* phones: the 16 px facts wrapped 2–3 lines each – 14 px, tighter rows, a slightly shorter stage */
-@media (max-width:47.9375rem){
-  #sx-beschreibung .mz-kap-xdm .mz-ikl { gap: 0.55rem; }
-  #sx-beschreibung .mz-kap-xdm .mz-ikl .mz-ikl-t { font-size: 0.875rem; line-height: 1.4; }
-  #sx-beschreibung .mz-kap-xdm .mz-ikl-ico { width: 2rem; height: 2rem; }
-  #sx-beschreibung .mz-kap-xdm .slider-viewport { height: 13.5rem; }
+/* phones: the live sizes too – 16 px facts, their full row gap and icons, the 15rem stage */
 }
 
 /* The dark band (Verfügbare Farben) and the Warum Metzler block share one padding
@@ -3838,31 +3828,34 @@ body.is-scrolled #quickbar {
    list indent (.mz-body ul) would push it right – keep it flush like on live. */
 #sx-beschreibung .mz-kap .mz-ikl{ padding-left:0; margin:0; }
 
+/* Erweiterungen & Zubehör: two-line card titles get body-like leading (live 1.3) */
+#sx-beschreibung .mz-zk-t{ line-height:1.35; }
+
 /* Slot gauge: each format drawn to scale against the 335 mm slot – one glance says "it all
    fits". A framed spec card: thin precision bars, a caliper point at each bar's end with the
    format's size written above it, and the slot as a dashed teal line labelled at its top. */
-#sx-beschreibung .fit{ --slot-in:0.5rem; grid-area:fit; width:100%; max-width:34rem; margin:2rem auto 0; padding:1.25rem 1.5rem 1rem; text-align:left; box-sizing:border-box;
+#sx-beschreibung .fit{ --slot-in:0.5rem; grid-area:fit; width:100%; max-width:34rem; margin:2rem auto 0; padding:1.5rem 1.75rem 1.25rem; text-align:left; box-sizing:border-box;
   border:1px solid var(--color-graphite-200); border-radius:var(--radius-xl); background:linear-gradient(180deg, #fff 30%, var(--color-teal-50)); box-shadow:var(--shadow-soft); }
 #sx-beschreibung .fit__head{ display:flex; justify-content:space-between; align-items:flex-end; gap:1rem; margin:0 0 0.5rem; font-size:0.9375rem; line-height:1.3; color:var(--color-digital-black); }
 /* the slot line's label, centred on the line's top: its right edge on the line's centre (--slot-in + 1px
    in from the right), shifted back by half its width; the dashes start just below it */
-#sx-beschreibung .fit__slot{ margin-right:calc(var(--slot-in) + 1px); transform:translateX(50%); text-align:center; font-size:0.6875rem; font-weight:600; line-height:1.2; color:var(--color-graphite-600); white-space:nowrap; }
-#sx-beschreibung .fit__slot b{ display:block; font-size:0.75rem; font-weight:700; color:var(--color-teal); font-variant-numeric:tabular-nums; }
+#sx-beschreibung .fit__slot{ margin-right:calc(var(--slot-in) + 1px); transform:translateX(50%); text-align:center; font-size:0.75rem; font-weight:600; line-height:1.25; color:var(--color-graphite-600); white-space:nowrap; }
+#sx-beschreibung .fit__slot b{ display:block; font-size:0.8125rem; font-weight:700; color:var(--color-teal); font-variant-numeric:tabular-nums; }
 #sx-beschreibung .fit__rows{ position:relative; list-style:none; margin:0; padding:0; }
 #sx-beschreibung .fit__rows::after{ content:""; position:absolute; top:-0.25rem; bottom:0.75rem; right:var(--slot-in); width:2px; background:repeating-linear-gradient(to bottom, var(--color-teal) 0 0.375rem, transparent 0.375rem 0.625rem); pointer-events:none; }
-#sx-beschreibung .fit__rows li{ display:grid; grid-template-columns:8.5rem minmax(0, 1fr); column-gap:1rem; align-items:center; margin:0; padding:0.625rem 0; }
+#sx-beschreibung .fit__rows li{ display:grid; grid-template-columns:8.5rem minmax(0, 1fr); column-gap:1rem; align-items:center; margin:0; padding:0.75rem 0; }
 #sx-beschreibung .fit__rows li + li{ border-top:1px solid rgba(26,23,27,.06); }
 #sx-beschreibung .fit__rows li::before, #sx-beschreibung .fit__rows li::marker{ content:none; }
-#sx-beschreibung .fit__name{ font-size:0.75rem; line-height:1.3; color:var(--color-graphite-600); }
+#sx-beschreibung .fit__name{ font-size:0.8125rem; line-height:1.4; color:var(--color-graphite-600); }
 #sx-beschreibung .fit__name b{ display:block; font-size:0.875rem; color:var(--color-digital-black); }
 /* the track ends on the slot line (--slot-in from the right, at the middle of its 2px) */
-#sx-beschreibung .fit__bar{ position:relative; display:block; height:0.375rem; margin:1.375rem calc(var(--slot-in) + 1px) 0 0; border-radius:var(--radius-pill); background:var(--color-graphite-200); }
+#sx-beschreibung .fit__bar{ position:relative; display:block; height:0.375rem; margin:1.5rem calc(var(--slot-in) + 1px) 0 0; border-radius:var(--radius-pill); background:var(--color-graphite-200); }
 #sx-beschreibung .fit__bar i{ position:absolute; inset:0 auto 0 0; width:calc(var(--mm) / 335 * 100%); border-radius:inherit; background:linear-gradient(90deg, var(--color-teal-600), var(--color-teal)); }
 /* caliper point on the format's edge */
 #sx-beschreibung .fit__bar i::after{ content:""; position:absolute; right:-0.3125rem; top:50%; width:0.625rem; height:0.625rem; margin-top:-0.3125rem; box-sizing:border-box; border:2px solid var(--color-teal); border-radius:50%; background:#fff; }
-#sx-beschreibung .fit__bar em{ position:absolute; bottom:calc(100% + 0.45rem); right:max(calc(100% - var(--mm) / 335 * 100% - 0.3125rem), 0.625rem); font-style:normal; font-size:0.75rem; font-weight:700; line-height:1; white-space:nowrap; font-variant-numeric:tabular-nums; color:var(--color-graphite-800); }   /* right: never onto the slot line (C4 ends 11 mm short of it) */
+#sx-beschreibung .fit__bar em{ position:absolute; bottom:calc(100% + 0.45rem); right:max(calc(100% - var(--mm) / 335 * 100% - 0.3125rem), 0.625rem); font-style:normal; font-size:0.8125rem; font-weight:700; line-height:1; white-space:nowrap; font-variant-numeric:tabular-nums; color:var(--color-graphite-800); }   /* right: never onto the slot line (C4 ends 11 mm short of it) */
 @media (max-width:30rem){
-  #sx-beschreibung .fit{ --slot-in:0.875rem; padding:1rem 1rem 0.75rem; }   /* line further in: its centred label keeps clear of the card edge */
+  #sx-beschreibung .fit{ --slot-in:0.875rem; padding:1.25rem 1.25rem 1rem; }   /* line further in: its centred label keeps clear of the card edge */
   #sx-beschreibung .fit__rows li{ grid-template-columns:6.5rem minmax(0, 1fr); column-gap:0.75rem; }
 }
 /* bars draw out to their size once the gauge is in view, then the sizes fade in
@@ -3919,7 +3912,7 @@ body.is-scrolled #quickbar {
 .pdp-b .mbxdemo__env--c4 { left:calc((256 - var(--x0)) / var(--cw) * 100%); width:calc(216 / var(--cw) * 100%); animation-name:mbx-c4; }     /* 324 × 229 mm, long side first */
 
 /* size tags with a leader line to the letter (as in the Einwurf illustration) */
-.pdp-b .mbxdemo__tag { position:absolute; left:calc((510 - var(--x0)) / var(--cw) * 100%); top:8.5%; font-size:clamp(0.625rem, 2.3cqw, 0.8125rem); font-weight:700; letter-spacing:0.02em; line-height:1; white-space:nowrap; color:var(--color-digital-black); background:#fff; border-radius:var(--radius-pill); padding:0.45em 0.8em; box-shadow:0 0.15rem 0.5rem rgba(0,0,0,.14); opacity:0; pointer-events:none; animation:var(--T) linear infinite both paused; }
+.pdp-b .mbxdemo__tag { position:absolute; left:calc((510 - var(--x0)) / var(--cw) * 100%); top:8.5%; font-size:clamp(0.6875rem, 2.3cqw, 0.8125rem); font-weight:700; letter-spacing:0.02em; line-height:1; white-space:nowrap; color:var(--color-digital-black); background:#fff; border-radius:var(--radius-pill); padding:0.45em 0.8em; box-shadow:0 0.15rem 0.5rem rgba(0,0,0,.14); opacity:0; pointer-events:none; animation:var(--T) linear infinite both paused; }
 .pdp-b .mbxdemo__tag::before { content:""; position:absolute; right:100%; top:50%; width:var(--lead); height:1px; background:rgba(26,23,27,.55); }
 .pdp-b .mbxdemo__tag::after { content:""; position:absolute; right:calc(100% + var(--lead) - 3px); top:calc(50% - 3px); width:6px; height:6px; border-radius:50%; background:var(--color-digital-black); box-shadow:0 0 0 2px #fff; }
 .pdp-b .mbxdemo__tag--dl { --lead:calc(78 / var(--cw) * 100cqw); animation-name:mbx-tag-dl; }
@@ -3942,8 +3935,8 @@ body.is-scrolled #quickbar {
 .pdp-b .mbxstep__n { grid-area:n; width:1.375rem; height:1.375rem; border-radius:50%; display:grid; place-items:center; font-size:0.75rem; font-weight:700; border:1.5px solid rgba(26,23,27,.2); color:var(--text-secondary); transition:background-color .25s, border-color .25s, color .25s; }
 .pdp-b .mbxstep.is-on .mbxstep__n { background:var(--color-teal); border-color:var(--color-teal); color:#fff; }
 .pdp-b .mbxstep b { grid-area:t; font-size:0.875rem; font-weight:700; line-height:1.3; color:var(--color-digital-black); }
-.pdp-b .mbxstep__sub { grid-area:s; font-size:0.8125rem; line-height:1.35; color:var(--text-secondary); }
-@media (max-width:30rem){ .pdp-b .mbxstep { grid-template-areas:"bar bar" "n t" "s s"; } .pdp-b .mbxstep__sub { margin-top:0.2rem; font-size:0.75rem; } }
+.pdp-b .mbxstep__sub { grid-area:s; font-size:0.8125rem; line-height:1.45; color:var(--text-secondary); }
+@media (max-width:30rem){ .pdp-b .mbxstep { grid-template-areas:"bar bar" "n t" "s s"; } .pdp-b .mbxstep__sub { margin-top:0.25rem; } }
 
 /* ── letter timeline on the clip's 10.75 s (% = s ÷ 0.1075) ── */
 /* waiting letters sit fully above the stage (it shows ~80 clip px above the clip since the zoom-out) */
