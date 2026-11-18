@@ -1591,7 +1591,7 @@ body.kbd-open .cfgb-dock.is-fixed { display: none !important; }
 .infomod { position: fixed; inset: 0; z-index: 1200; display: flex; align-items: center; justify-content: center; padding: 1rem; }
 .infomod[hidden] { display: none; }
 .infomod__backdrop { position: absolute; inset: 0; background: rgba(0,0,0,.45); opacity: 0; transition: opacity .25s; }
-.infomod__panel { position: relative; display: flex; flex-direction: column; width: 100%; max-width: 60rem; max-height: 90vh; overflow: hidden; border-radius: var(--radius-xl);
+.infomod__panel { position: relative; display: flex; flex-direction: column; width: 100%; max-width: 60rem; height: min(90vh, 40rem); max-height: 90vh; overflow: hidden; border-radius: var(--radius-xl);
   background: var(--color-white); box-shadow: var(--shadow-modal, 0 1.25rem 3.75rem rgba(0,0,0,.2), 0 0.25rem 1rem rgba(0,0,0,.1));
   opacity: 0; transform: translateY(1.25rem) scale(.97); transition: opacity .25s, transform .45s cubic-bezier(.2,.8,.2,1); }
 .infomod.is-open .infomod__backdrop { opacity: 1; }
@@ -1604,7 +1604,13 @@ body.kbd-open .cfgb-dock.is-fixed { display: none !important; }
 .infomod__close:hover, .infomod__close:focus-visible { background: var(--color-graphite-100); color: var(--color-digital-black); outline: none; }
 .infomod__close:focus { outline: none; }
 .infomod__close svg { width: 1.125rem; height: 1.125rem; }
-.infomod__body { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 1.5rem; }
+/* One fixed size for every info dialog (kit LG: 960 px wide, max 90vh): min(90vh, 40rem) tall – close to the
+   typical content, so there is little empty frame; the galleries fit without scrolling, longer content scrolls in the body, shorter content sits
+   centred (auto margins collapse to 0 once it overflows). Phones: the bottom sheet at a fixed 85vh. */
+.infomod__body { display: flex; flex-direction: column; flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 1.5rem; }
+.infomod__body > * { flex: none; }
+#sx-beschreibung #infoMod .infomod__body > :first-child { margin-top: auto; }   /* 2 ids: beats the blocks' own margins */
+#sx-beschreibung #infoMod .infomod__body > :last-child { margin-bottom: auto; }
 .infomod__body > * + * { margin-top: 1.5rem; }
 #infoMod .mz-kopf, #infoMod .mz-kopf .mz-kopf-lead { max-width: none; margin-left: 0; margin-right: 0; text-align: left; }   /* id: beats the OPC inline .mz-kopf rules */
 #sx-beschreibung #infoMod .mz-display, #sx-beschreibung #infoMod .mz-display span { font-size: clamp(1.25rem, 1rem + 1vw, 1.625rem); }   /* 2 ids: beats the section-head scale */
@@ -1612,19 +1618,36 @@ body.kbd-open .cfgb-dock.is-fixed { display: none !important; }
 .infomod__body .mz-kopf > .mz-eyebrow { display: none; }   /* no eyebrows in the dialog – its title already names the feature */
 .infomod__body .mz-kopf-abstand { margin-bottom: 0; }
 #sx-beschreibung #infoMod .smart__tabs { display: none; }   /* Schloss / Sensor dialogs show one feature each – no switch (2 ids: beats the page rule) */
+/* Smart-Schloss / Sensor dialogs – the Dekoration dialog's structure: the feature's own head across
+   the top (.smart__mhead, dialog-only; it replaces the panel title – the page shows the shared head),
+   then the picture left and the details right (for the lock: with the three method tiles, as on the
+   page). The picture keeps its whole 4:3 (a portrait crop would cut the phone or the letter in the
+   sensor shot). */
+.smart__mhead { display: none; }
+#sx-beschreibung #infoMod .smart__mhead { display: block; margin: 0 0 1.5rem; }
+#sx-beschreibung #infoMod .smart__t { display: none; }
+#sx-beschreibung #infoMod .smart__mh { margin: 0 0 1.25rem; font-size: clamp(1.25rem, 1rem + 1vw, 1.625rem); font-weight: 700; line-height: 1.15; letter-spacing: -0.01em; color: var(--color-digital-black); }
+#sx-beschreibung #infoMod .smart__ml { margin: 0; font-size: 1rem; line-height: 1.5; color: var(--color-digital-black); }
+@media (min-width: 64rem) {
+  #sx-beschreibung #infoMod .smart__panel { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); grid-template-areas: "head head" "media copy"; column-gap: 2.5rem; row-gap: 0; align-items: center; }
+  #sx-beschreibung #infoMod .smart__mhead { grid-area: head; }
+  #sx-beschreibung #infoMod .smart__media { grid-area: media; }
+  #sx-beschreibung #infoMod .smart__copy { grid-area: copy; }
+}
 /* Befestigung / Dekoration dialogs: scene and tiles side by side, so the dialog stays
-   short (the page keeps them vertical). Tiles 4 + 3 / 3 × 2 at 13 px – each tile keeps
-   >= 105 px of text width, so "Zaunbefestigung" never breaks. The scene fills the tile
-   grid's height (cropped from 4:3 – the product sits centre in every scene), so the
-   two halves end level. Below 64rem: stacked. */
+   short (the page keeps them vertical). Scene 5/12 with its whole 4:3 picture (some
+   scenes have the box off-centre – a crop would cut it); tiles 4 + 3 / 3 × 2 at 13 px
+   with their pictures capped at 5.75rem, so the grid is about as tall as the scene and
+   each tile keeps >= 105 px of text width ("Zaunbefestigung" never breaks). Below
+   64rem: stacked. */
 @media (min-width:64rem){
-  #sx-beschreibung #infoMod [class*="mz-sg-"]{ max-width:none; display:grid; grid-template-columns:minmax(0, 4.5fr) minmax(0, 7.5fr); column-gap:2rem; align-items:stretch; }
+  #sx-beschreibung #infoMod [class*="mz-sg-"]{ max-width:none; display:grid; grid-template-columns:minmax(0, 5fr) minmax(0, 7fr); column-gap:2rem; align-items:center; }
   #sx-beschreibung #infoMod [class*="mz-sg-"] .sg-buehne{ max-width:none; margin:0; }
-  #sx-beschreibung #infoMod [class*="mz-sg-"] .sg-buehne img{ height:100%; object-fit:cover; object-position:center; }
-  #sx-beschreibung #infoMod [class*="mz-sg-"] .sg-kacheln{ margin-top:0; gap:0.75rem; }
+  #sx-beschreibung #infoMod [class*="mz-sg-"] .sg-kacheln{ margin-top:0; gap:0.625rem; }
   #sx-beschreibung #infoMod .mz-sg-7be0a0000003e .sg-kacheln{ grid-template-columns:repeat(4, minmax(0, 1fr)); }
   #sx-beschreibung #infoMod .mz-sg-7be0a00000042 .sg-kacheln{ grid-template-columns:repeat(3, minmax(0, 1fr)); }
-  #sx-beschreibung #infoMod [class*="mz-sg-"] .sg-kachel{ padding:0.625rem 0.375rem 0.5rem; }
+  #sx-beschreibung #infoMod [class*="mz-sg-"] .sg-kachel{ padding:0.625rem 0.25rem 0.5rem; }
+  #sx-beschreibung #infoMod [class*="mz-sg-"] .sg-kachel img{ max-width:5.75rem; margin-inline:auto; }
   #sx-beschreibung #infoMod [class*="mz-sg-"] .sg-kachel .mz-tile-name, #sx-beschreibung #infoMod [class*="mz-sg-"] .sg-kachel .mz-tile-price{ font-size:0.8125rem; }
 }
 /* Gravurdaten: the page's two blocks re-set as two sections of one dialog – one heading size,
@@ -1640,7 +1663,7 @@ body.kbd-open .cfgb-dock.is-fixed { display: none !important; }
 }
 @media (max-width: 47.9375rem) {
   .infomod { align-items: flex-end; padding: 0; }
-  .infomod__panel { max-width: none; max-height: 85vh; border-radius: var(--radius-xl) var(--radius-xl) 0 0; box-shadow: 0 -0.25rem 2rem rgba(0,0,0,.18); transform: translateY(2rem); }
+  .infomod__panel { max-width: none; height: 85vh; max-height: 85vh; border-radius: var(--radius-xl) var(--radius-xl) 0 0; box-shadow: 0 -0.25rem 2rem rgba(0,0,0,.18); transform: translateY(2rem); }
   .infomod__head { padding: 0.9rem 1.25rem; }
   .infomod__title { font-size: 1.125rem; line-height: 1.375; letter-spacing: normal; }
   .infomod__body { padding: 1.25rem 1.25rem calc(1.25rem + env(safe-area-inset-bottom)); }
@@ -3618,7 +3641,12 @@ body.is-scrolled #quickbar {
 #sx-beschreibung .smart__tab.is-on b{ color:var(--color-digital-black); }
 #sx-beschreibung .smart__tab:focus-visible, #sx-beschreibung .smart__way:focus-visible{ outline:2px solid var(--color-teal); outline-offset:2px; }
 #sx-beschreibung .smart__panel{ display:grid; grid-template-columns:minmax(0, 1fr); gap:1.25rem; align-items:center; animation:smart-in .35s cubic-bezier(.2,.8,.2,1); }
-#sx-beschreibung .smart__panel[hidden]{ display:none; }
+/* both panels share one cell: the hidden one keeps its space invisibly, so switching Schloss /
+   Sensor never changes the section's height (the dialog shows just its own panel) */
+#sx-beschreibung .smart{ display:grid; grid-template-columns:minmax(0, 1fr); }
+#sx-beschreibung .smart > .smart__panel{ grid-row:2; grid-column:1; }
+#sx-beschreibung .smart__panel[hidden]{ display:grid; visibility:hidden; }
+#sx-beschreibung #infoMod .smart__panel[hidden]{ display:none; }
 @keyframes smart-in{ from{ opacity:0; transform:translateY(0.375rem); } to{ opacity:1; transform:none; } }
 #sx-beschreibung .smart__media{ margin:0; aspect-ratio:4/3; border-radius:var(--radius-lg); overflow:hidden; background:#f2f2f0; box-shadow:var(--shadow-md); }
 #sx-beschreibung .smart__media img{ display:block; width:100%; height:100%; object-fit:cover; transition:opacity .2s; }
@@ -3627,19 +3655,25 @@ body.is-scrolled #quickbar {
 #sx-beschreibung .smart__list li{ position:relative; padding-left:1.6rem; margin:0; font-size:0.9375rem; line-height:1.45; color:var(--color-digital-black); }
 #sx-beschreibung .smart__list li::before{ content:""; position:absolute; left:0.15rem; top:0.3rem; width:0.9rem; height:0.5rem; border-left:2px solid var(--color-teal); border-bottom:2px solid var(--color-teal); transform:rotate(-45deg); }
 #sx-beschreibung .smart__label{ margin:0 0 0.45rem; font-size:0.75rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-secondary); }
-/* the three ways to open it: tappable tiles (kit booklet icons BKL-20/19/05, 48 grid,
-   one colour) – raised white tiles invite a tap, the shown one sits pressed in teal-50
-   with a teal line; hover is colour only (kit rule: no lift, no scale) */
-#sx-beschreibung .smart__ways{ display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:0.75rem; max-width:26rem; }
-#sx-beschreibung .smart__way{ display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.5rem; min-height:2.75rem; padding:1rem 0.5rem 0.875rem;
-  border:1px solid var(--color-graphite-300); border-radius:var(--radius-lg); background:var(--color-white); box-shadow:var(--shadow-card, 0 0.125rem 0.5rem rgba(0,0,0,.08));
-  color:var(--color-digital-black); font:inherit; font-size:0.8125rem; font-weight:700; line-height:1.2; text-align:center; hyphens:manual; cursor:pointer;
-  transition:border-color .15s, background-color .15s, color .15s, box-shadow .15s; }
-#sx-beschreibung .smart__way svg{ width:3rem; height:3rem; flex:none; }
-#sx-beschreibung .smart__way:hover{ border-color:var(--color-teal); color:var(--color-teal); }
-#sx-beschreibung .smart__way.is-on{ border-color:var(--color-teal); background:var(--color-teal-50); color:var(--color-teal); box-shadow:inset 0 0 0 1px var(--color-teal); }
-@media (max-width: 30rem){ #sx-beschreibung .smart__way{ padding-inline:0.25rem; } }   /* phones: "Fingerabdruck" stays on one line */
+/* the three ways to open it: tiles in the text column under "So öffnen Sie ihn", the same tile as
+   the Dekoration / Befestigung galleries (white tile, picture + bold name, teal frame when shown,
+   grey on hover, no lift) – one picker look on the whole page. Clicking swaps the photo opposite
+   and the hint. */
+#sx-beschreibung .smart__ways{ display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:1rem; margin-top:0.25rem; }
+#sx-beschreibung .smart__way{ display:flex; flex-direction:column; justify-content:flex-start; min-width:0; padding:0.75rem 0.5rem 0.625rem; border:0.125rem solid transparent; border-radius:0.5rem; background:#fff; font:inherit; color:inherit; text-align:center; cursor:pointer; transition:border-color .25s; }
+#sx-beschreibung .smart__way:not(.is-on):hover{ border-color:var(--color-graphite-300); }
+#sx-beschreibung .smart__way.is-on{ border-color:var(--color-teal); }
+#sx-beschreibung .smart__way img{ display:block; width:100%; height:auto; aspect-ratio:4 / 3; object-fit:cover; border-radius:0.25rem; background:#f6f6f6; }
+#sx-beschreibung .smart__wayt{ display:block; margin:0.625rem 0 0.25rem; font-size:0.875rem; font-weight:700; line-height:1.35; color:var(--color-digital-black); }
+#sx-beschreibung #infoMod .smart__ways{ gap:0.625rem; }   /* dialog: the gallery dialogs' tile gap */
+@media (max-width:47.9375rem){ #sx-beschreibung .smart__ways{ gap:0.625rem; } #sx-beschreibung .smart__way{ padding-inline:0.375rem; } #sx-beschreibung .smart__wayt{ font-size:0.8125rem; } }   /* phones: the galleries' 13 px tile labels; "Finger-/abdruck" breaks only if it must */
 #sx-beschreibung .smart__hint{ min-height:1.4em; margin:0.5rem 0 0; font-size:0.8125rem; color:var(--text-secondary); }
+/* Sensor: how it works – the Konfigurator's numbered-step style (no icons: the kit has no letter or
+   radio glyph in the booklet set the lock tiles use, and one icon style per page) */
+#sx-beschreibung .smart__steps{ list-style:none; counter-reset:sst; display:grid; gap:0.625rem; margin:0; padding:0; }
+#sx-beschreibung .smart__steps li{ counter-increment:sst; display:grid; grid-template-columns:1.75rem minmax(0, 1fr); column-gap:0.75rem; align-items:center; margin:0; font-size:0.9375rem; line-height:1.45; color:var(--color-digital-black); }
+#sx-beschreibung .smart__steps li::before{ content:counter(sst); width:1.75rem; height:1.75rem; border-radius:50%; display:grid; place-items:center; background:rgba(1,82,83,.08); color:var(--color-teal); font-size:0.8125rem; font-weight:700; }
+#sx-beschreibung .smart__steps li::marker{ content:none; }
 #sx-beschreibung .smart__price{ display:flex; align-items:baseline; gap:0.6rem; margin:1.25rem 0 0; padding-top:1rem; border-top:1px solid rgba(26,23,27,.1); font-size:0.8125rem; color:var(--text-secondary); }
 #sx-beschreibung .smart__price b{ font-size:1.25rem; color:var(--color-teal); }
 @media (min-width:64rem){ #sx-beschreibung .smart__panel{ grid-template-columns:repeat(2, minmax(0, 1fr)); gap:var(--dsc-split); } }
@@ -3675,7 +3709,11 @@ body.is-scrolled #quickbar {
    113 px) never breaks mid-word. Below 75rem, where seven would not fit, both take the
    live two rows (4 + 3, 3 + 3). Phones: the scene, then one swipe row. Kit: no hover lift. */
 #sx-beschreibung [class*="mz-sg-"] .sg-kachel:hover{ transform:none; }
-#sx-beschreibung [class*="mz-sg-"] .sg-kachel{ padding:0.75rem 0.5rem 0.625rem; }
+/* tiles are <button>s, which centre their content vertically – so a two-line name pushed its
+   picture up. Lay them out from the top instead: pictures and names start on one line, the
+   prices share one bottom line, whatever the name length. */
+#sx-beschreibung [class*="mz-sg-"] .sg-kachel{ display:flex; flex-direction:column; justify-content:flex-start; align-items:stretch; padding:0.75rem 0.5rem 0.625rem; }
+#sx-beschreibung [class*="mz-sg-"] .sg-kachel .mz-tile-price{ margin-top:auto; }
 #sx-beschreibung [class*="mz-sg-"] .sg-kachel .mz-tile-name{ margin:0.625rem 0 0.25rem; line-height:1.35; }
 #sx-beschreibung [class*="mz-sg-"] .sg-kachel:not(.active):hover{ border-color:var(--color-graphite-300); }
 @media (min-width:64rem){
@@ -3830,7 +3868,6 @@ body.is-scrolled #quickbar {
   #sx-beschreibung .mz-kap-xdm > [data-area-id="col-0"] > .row > [data-area-id="col-1"] { grid-column: 2; grid-row: 1 / 3; align-self: center; margin-top: -3.25rem; }
 }
 /* phones: the live sizes too – 16 px facts, their full row gap and icons, the 15rem stage */
-}
 
 /* The dark band (Verfügbare Farben) and the Warum Metzler block share one padding
    scale – 48 px wide, 40/32 on tablets, 32/20 on phones. Neither needs a divider:
