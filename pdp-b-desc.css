@@ -3856,9 +3856,9 @@ body.is-scrolled #quickbar {
 }
 
 /* The two dark bands (Verfügbare Farben, Warum Metzler) share one padding scale –
-   48 px wide, 40/32 on tablets, 32/20 on phones – and carry no margin of their own:
-   the first opens the section on its padding, dividers / --dsc-gap space the rest. */
-#sx-beschreibung .row.mz-kap{ margin:0; padding:3rem; }
+   48 px wide, 40/32 on tablets, 32/20 on phones. A band needs no divider: it sits
+   --dsc-gap from its neighbours (Farben mid-section, Warum Metzler closing it). */
+#sx-beschreibung .row.mz-kap{ margin:var(--dsc-gap) 0; padding:3rem; }
 @media (max-width:63.9375rem){ #sx-beschreibung .row.mz-kap{ padding:2.5rem 2rem; } }
 @media (max-width:47.9375rem){ #sx-beschreibung .row.mz-kap{ padding:2rem 1.25rem; } }
 
