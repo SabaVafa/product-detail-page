@@ -145,8 +145,7 @@ var MZSwipe = (function () {
     { key: 'sensor', name: 'Funk-Briefkastensensor' },
     { key: 'mount', name: 'Befestigung' },
     { key: 'zubehoer', name: 'Erweiterungen & Zubehör' },
-    { key: 'deko', name: 'Dekorieren & Verzieren' },
-    { key: 'proof', name: 'Entwurf zur Freigabe' }
+    { key: 'deko', name: 'Dekorieren & Verzieren' }
   ];
   var LIGHT_FINISHES = { 'Verkehrsweiß RAL 9016': 1, 'Edelstahl gebürstet': 1 };
   var CONN = { 'LAN / PoE': 'lan', '2-Draht IP': '2draht' };
@@ -282,7 +281,7 @@ var MZSwipe = (function () {
     innenSel: {},   /* legacy (doorbell) – unused for the Siebert, kept so shared helpers stay valid */
     strom: 'Standard', stromDelta: 0, stromQty: 1,
     mount: null,   /* Befestigung – { name, price, label } or null (= wall mount, included) */
-    extras: {}   /* name -> { price, qty, label, group } – group: lock | sensor | zubehoer | deko | proof */
+    extras: {}   /* name -> { price, qty, label, group } – group: lock | sensor | zubehoer | deko */
   };
 
   var items = [].slice.call(document.querySelectorAll('#cfgbSteps .stepr__item'));
@@ -301,7 +300,7 @@ var MZSwipe = (function () {
   function hasStrom() { return state.strom && state.strom !== 'Standard'; }
   function extrasCount() { return Object.keys(state.extras).length; }
   function extrasSum() { var s = 0; for (var k in state.extras) s += state.extras[k].price * state.extras[k].qty; return s; }
-  /* one step's add-ons (lock / sensor / zubehoer / deko / proof) */
+  /* one step's add-ons (lock / sensor / zubehoer / deko) */
   function groupSel(g) { var r = []; for (var k in state.extras) if (state.extras[k].group === g) r.push(state.extras[k]); return r; }
   function groupSum(g) { return groupSel(g).reduce(function (s, x) { return s + x.price * x.qty; }, 0); }
   function groupPick(g, none) {
@@ -410,7 +409,6 @@ var MZSwipe = (function () {
     setTxt('bPickMount', state.mount ? state.mount.label + ' · +' + euro(state.mount.price) : 'Wandmontage · inklusive');
     setTxt('bPickExtras', groupPick('zubehoer', 'Kein Zubehör'));
     setTxt('bPickDeko', groupPick('deko', 'Ohne Dekoration'));
-    setTxt('bPickProof', groupPick('proof', 'Ohne Entwurf'));
 
     var eng = $('bEngrave');
     if (eng) {
@@ -598,34 +596,55 @@ var MZSwipe = (function () {
   /* ── Single-step navigation (step-dock + Weiter/Zurück) ── */
   function openStep(i, skipScroll) {
     if (i < 0) i = 0; if (i > STEPS.length - 1) i = STEPS.length - 1;
+    /* where i's header will END once the step open now has collapsed (its body AND its header,
+       which grows back its summary line): lay the end state out with transitions off, read it,
+       put the start state back – the real toggle below then animates as usual (see scrollToStep) */
+    var endY = 0;   /* document y */
+    if (!skipScroll && items[i]) {
+      var was = items.map(function (it) { return it.classList.contains('is-active'); });
+      var root = document.documentElement;
+      root.style.overflowAnchor = 'none';   /* scroll anchoring would move the page during this pass and the scroll (released in scrollToStep) */
+      root.classList.add('cfgb-measure');
+      items.forEach(function (it, ix) { it.classList.toggle('is-active', ix === i); });
+      endY = window.pageYOffset + items[i].getBoundingClientRect().top;
+      items.forEach(function (it, ix) { it.classList.toggle('is-active', was[ix]); });
+      void root.offsetHeight;   /* commit the start state while transitions are still off */
+      root.classList.remove('cfgb-measure');
+    }
     items.forEach(function (it, ix) { it.classList.toggle('is-active', ix === i); });
     if (i > reached) reached = i;
     refresh();
     if (skipScroll) return;
-    var target = items[i];
-    if (!target) return;
-    var body = target.querySelector('.stepr__body');
-    var mobileAccordion = body && getComputedStyle(body).display === 'grid';   /* desktop shows all steps (display:block) – no accordion */
-    if (!mobileAccordion) {
-      /* Desktop: config is fully visible – only nudge it into view if off-screen. */
-      var deskDock = document.querySelector('.cfgb-dock');
-      if (deskDock) window.setTimeout(function () { deskDock.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 60);
-      return;
-    }
-    /* Mobile: scroll the opened step to just below the pinned header + step-dock.
-       The dock is sticky, so the old dock.scrollIntoView was a no-op once it was
-       stuck to the top (tapping a step went nowhere). scrollIntoView re-reads layout
-       at call time, and we call it again after the .45s accordion settle so it lands
-       correctly despite the other steps collapsing/reflowing. */
-    var scrollToStep = function () {
-      var hdr = document.querySelector('.header');
-      var dock = document.querySelector('.cfgb-dock');
-      var pin = (hdr ? hdr.getBoundingClientRect().height : 0) + (dock ? dock.getBoundingClientRect().height : 0) + 12;
-      target.style.scrollMarginTop = pin + 'px';
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (items[i]) scrollToStep(items[i], endY);
+  }
+  /* Bring an opened step's header to just below the pinned header + step-dock – desktop and
+     mobile alike (both are accordions). Aim at where the header ENDS once the step above has
+     collapsed, so it is one smooth scroll that lands, not a scroll plus a correction hop.
+     The dock is compact while stuck: measure that height even if it isn't stuck yet. */
+  function scrollToStep(target, endY) {
+    var dock = document.querySelector('.cfgb-dock');
+    var hdr = document.querySelector('.header') || document.querySelector('header');
+    var qb = document.getElementById('quickbar');
+    var under = function () {
+      if (!dock) return hdr ? hdr.getBoundingClientRect().height : 0;
+      if (dock.classList.contains('is-stuck')) return dock.getBoundingClientRect().bottom;
+      var phone = window.matchMedia('(max-width: 640px)').matches;   /* phones pin full-bleed below the header, wider screens below the quickbar */
+      var pinCls = phone ? ['is-stuck', 'is-fixed'] : ['is-stuck', 'is-fixed-dt'];
+      pinCls.forEach(function (c) { dock.classList.add(c); }); var h = dock.offsetHeight; pinCls.forEach(function (c) { dock.classList.remove(c); });
+      return (hdr ? hdr.getBoundingClientRect().height : 0) + (phone || !qb ? 0 : qb.offsetHeight) + h;
     };
-    window.setTimeout(scrollToStep, 60);    /* start moving immediately */
-    window.setTimeout(scrollToStep, 500);   /* re-align after the accordion finishes reflowing */
+    var root = document.documentElement;
+    root.style.overflowAnchor = 'none';
+    var go = function (docY) {   /* docY: the header's document y */
+      window.scrollTo({ top: Math.max(0, Math.round(docY - under() - 12)), behavior: 'smooth' });
+    };
+    go(endY);
+    window.setTimeout(function () {
+      /* settle check: correct only a visible miss (e.g. the page bottom capped the scroll) */
+      var miss = target.getBoundingClientRect().top - under() - 12;
+      if (Math.abs(miss) > 4 && window.innerHeight + window.pageYOffset < root.scrollHeight - 2) go(window.pageYOffset + target.getBoundingClientRect().top);
+      root.style.overflowAnchor = '';
+    }, 650);
   }
   function flashStep(i) { var it = items[i]; if (!it) return; var p = it.querySelector('.stepr__pad') || it; p.classList.remove('is-flash'); void p.offsetWidth; p.classList.add('is-flash'); }
   var invalidTimers = {};
@@ -660,9 +679,9 @@ var MZSwipe = (function () {
   document.querySelectorAll('#bSeg .cfgb-bar__step').forEach(function (b) {
     b.addEventListener('click', function () { openStep(parseInt(b.getAttribute('data-goto'), 10)); });
   });
-  /* Option A accordion (mobile): a step header toggles its step in place – tap an
-     open section's chevron to collapse it, tap a closed one to open it (and collapse
-     the rest). Headers are display:none on desktop, so this is a no-op there. */
+  /* Accordion: a step header toggles its step in place – tap an open section's chevron
+     to collapse it, tap a closed one to open it (and collapse the rest) and bring it under
+     the step-dock. */
   document.querySelectorAll('#cfgbSteps .stepr__head').forEach(function (h) {
     h.addEventListener('click', function () {
       var it = h.closest('.stepr__item'); if (!it) return;
@@ -672,7 +691,7 @@ var MZSwipe = (function () {
         it.classList.remove('is-active');   /* collapse the open section */
         refresh();
       } else {
-        openStep(i, true);
+        openStep(i);
       }
     });
   });
@@ -2831,6 +2850,23 @@ var MZSwipe = (function () {
     if (vis && !held && !playing) run(true);
     else if (!vis && playing) run(false);
   }, { threshold: 0.4 }).observe(demo);
+})();
+
+/* ── Beschreibung: Verfügbare Farben – the live title splits "RAL 7016 Anthrazitgrau" into a
+   bold code line and a light name line. Names without a RAL/DB code ("Edelstahl gebürstet",
+   "Wunschfarbe nach RAL") stayed one bold block and wrapped differently, so the panel jumped
+   on those swatches. Split them after the first word too: every colour reads as two lines. ── */
+(function () {
+  var t = document.querySelector('#sx-beschreibung .slider-product-title'); if (!t) return;
+  function split() {
+    var code = t.querySelector('.mz-fn-code'), name = t.querySelector('.mz-fn-name');
+    if (!code || !name || name.textContent.trim()) return;
+    var s = code.textContent.trim(), k = s.indexOf(' ');
+    if (k < 1) return;
+    code.textContent = s.slice(0, k); name.textContent = s.slice(k + 1);
+  }
+  split();
+  new MutationObserver(split).observe(t, { childList: true, characterData: true, subtree: true });
 })();
 
 /* ── Beschreibung: Vorher / Mit Siebert – the list follows the before/after slider.

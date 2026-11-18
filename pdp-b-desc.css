@@ -589,6 +589,8 @@
 /* body height morph */
 .stepr__body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .45s cubic-bezier(.2,.7,.2,1); }
 .stepr__item.is-active .stepr__body { grid-template-rows: 1fr; }
+/* openStep() lays a step change out once without motion to measure where it ends */
+.cfgb-measure .stepr__item, .cfgb-measure .stepr__item * { transition: none !important; }
 .stepr__inner { overflow: hidden; min-height: 0; }
 .stepr__pad { padding: 0.1rem 1rem 1.2rem; display: flex; flex-direction: column; gap: 1rem; }
 /* staggered reveal */
@@ -930,7 +932,9 @@ html[data-ts="float"]      .pdp-b .ts-slot[data-pos="float"]      { display: fle
 .cfgb-next { align-self: flex-start; display: inline-flex; align-items: center; gap: 0.4rem; font-family: inherit;
   font-size: 0.875rem; font-weight: 700; color: var(--color-white); background: var(--color-digital-black); border: 0;
   border-radius: var(--radius); padding: 0.6rem 1.4rem; cursor: pointer; transition: background .16s, transform .16s; }
-.cfgb-next::after { content: "→"; font-weight: 400; }
+/* NAV-07-pfeil-rechts (Metzler DS, 12 × 10 at 14 px text, scales with it) in the text colour – not a
+   "→" glyph: the brand font has none, so a fallback arrow sat low and tight against the label */
+.cfgb-next::after { content: ""; flex: none; width: 0.857em; height: 0.714em; background: currentColor; -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='3.83 5 16.33 14' fill='none' stroke='%23000' stroke-width='2.1' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M13.5 6.5L19 12l-5.5 5.5'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='3.83 5 16.33 14' fill='none' stroke='%23000' stroke-width='2.1' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M13.5 6.5L19 12l-5.5 5.5'/%3E%3C/svg%3E") center / contain no-repeat; }
 .cfgb-next:hover { background: var(--color-black); }
 
 /* filtered-out option (Anschluss dependency) */
@@ -1515,7 +1519,7 @@ body.kbd-open .cfgb-dock.is-fixed { display: none !important; }
 .pdp-b .cfg-note__t { flex: 1 1 10rem; }
 .pdp-b .cfg-more { display: inline-flex; align-items: center; gap: 0.3rem; margin-left: auto; padding: 0.35rem 0.7rem; border: 1px solid var(--color-teal); border-radius: var(--radius-pill);
   background: var(--color-white); font-family: inherit; font-size: 0.8125rem; font-weight: 700; color: var(--color-teal); white-space: nowrap; cursor: pointer; transition: background-color .15s, color .15s; }
-.pdp-b .cfg-more::after { content: "→"; font-weight: 400; }
+.pdp-b .cfg-more::after { content: ""; flex: none; width: 0.857em; height: 0.714em; background: currentColor; -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='3.83 5 16.33 14' fill='none' stroke='%23000' stroke-width='2.1' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M13.5 6.5L19 12l-5.5 5.5'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='3.83 5 16.33 14' fill='none' stroke='%23000' stroke-width='2.1' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M13.5 6.5L19 12l-5.5 5.5'/%3E%3C/svg%3E") center / contain no-repeat; }   /* NAV-07, see .cfgb-next */
 .pdp-b .cfg-more:hover { background: var(--color-teal); color: var(--color-white); }
 .pdp-b .cfg-more:focus-visible { outline: 2px solid var(--color-teal); outline-offset: 2px; }
 .pdp-b .cfg-note--link { padding: 0; border: 0; background: none; }   /* link only: the header already says "Optional" */
@@ -1531,7 +1535,6 @@ body.kbd-open .cfgb-dock.is-fixed { display: none !important; }
 .pdp-b .cfg-comment { margin: 0; }
 .pdp-b .cfg-comment summary { cursor: pointer; font-size: 0.8125rem; font-weight: 700; color: var(--color-teal); text-decoration: underline; text-underline-offset: 0.2em; }
 .pdp-b .cfg-comment textarea.cfg-input { height: auto; min-height: 4.5rem; margin-top: 0.5rem; resize: vertical; }
-.pdp-b .cfg-proof { margin: 0; font-size: 0.875rem; line-height: 1.5; color: var(--color-graphite-700); }
 /* one spacing scale per step: 1.5rem between blocks (the flex gap is the only spacer,
    blocks carry no margins), 1rem between fields, 0.375rem from a label to its control */
 .pdp-b .cfgb .stepr__pad { gap: 1.5rem; }
@@ -1551,7 +1554,9 @@ body.kbd-open .cfgb-dock.is-fixed { display: none !important; }
 .pdp-b .cfg-font__plate { container-type: inline-size; display: flex; align-items: center; justify-content: center; height: 2.9rem; padding: 0 0.45rem; border-radius: 3px; overflow: hidden;
   background: linear-gradient(180deg, rgba(255,255,255,.6), rgba(255,255,255,0) 45%, rgba(0,0,0,.07)), repeating-linear-gradient(0deg, #d8dbdd 0 1px, #e7e9eb 1px 3px);
   box-shadow: inset 0 0 0 1px rgba(0,0,0,.08); }
-.pdp-b .cfgb #bFonts .cfg-font__s { display: block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+/* padding + equal negative margin: brush and script glyphs (Kaushan, Caveat, Great Vibes) draw
+   past their advance box – give that ink room inside the clip without changing the layout */
+.pdp-b .cfgb #bFonts .cfg-font__s { display: block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 0 0.15em; margin: 0 -0.15em;
   font-size: calc(var(--fs, 1) * 15.5cqi); line-height: 1.25; color: #26292c; text-shadow: 0 1px 0 rgba(255,255,255,.75); }   /* dark, laser-engraved look */
 .pdp-b .cfgb #bFonts .cfg-font.is-selected .cfg-font__s { color: #1b1e21; }
 .pdp-b .cfgb #bFonts .cfg-font__n { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.01em; text-transform: none; text-align: center; color: var(--color-graphite-700); }
@@ -1606,6 +1611,17 @@ body.kbd-open .cfgb-dock.is-fixed { display: none !important; }
 #sx-beschreibung #infoMod .mz-lead, #sx-beschreibung #infoMod .mz-lead p { font-size: 1rem; }
 .infomod__body .mz-kopf > .mz-eyebrow { display: none; }   /* no eyebrows in the dialog – its title already names the feature */
 .infomod__body .mz-kopf-abstand { margin-bottom: 0; }
+/* Gravurdaten: the page's two blocks re-set as two sections of one dialog – one heading size,
+   "how it works" beside its screenshot (centred on each other), a hairline, then the detail shots */
+#sx-beschreibung #infoMod .kfg .mz-display, #sx-beschreibung #infoMod .kfg .mz-display span,
+#sx-beschreibung #infoMod .vrb .mz-display, #sx-beschreibung #infoMod .vrb .mz-display span { font-size: 1.25rem; line-height: 1.3; }
+#sx-beschreibung #infoMod .kfg .kfg__steps { max-width: none; margin: 1.25rem 0 0; gap: 0.75rem; }
+#sx-beschreibung #infoMod .vrb { margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--color-graphite-200); }
+@media (min-width: 48rem) {
+  #sx-beschreibung #infoMod .kfg { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 2rem; align-items: center; }
+  #sx-beschreibung #infoMod .kfg > div:first-child { grid-column: 1; }
+  #sx-beschreibung #infoMod .kfg .mz-kfg-bild:not(.mz-kfg-bild-mobil) { grid-column: 2; }
+}
 @media (max-width: 47.9375rem) {
   .infomod { align-items: flex-end; padding: 0; }
   .infomod__panel { max-width: none; max-height: 85vh; border-radius: var(--radius-xl) var(--radius-xl) 0 0; box-shadow: 0 -0.25rem 2rem rgba(0,0,0,.18); transform: translateY(2rem); }
@@ -3663,19 +3679,15 @@ body.is-scrolled #quickbar {
 /* ── Verarbeitung: two macro shots with what they show, headline alongside ───────
    Wide: headline | Gravur | Korpus in one row (~300 px instead of ~530). Phones:
    the two shots side by side under the headline. */
-#sx-beschreibung .vrb{ display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:1rem 0.75rem; align-items:start; }
+/* like the other card sections at every width: centred head above, 2rem to the cards (with the gap), 1rem between them */
+#sx-beschreibung .vrb{ display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:1rem; align-items:start; }
 #sx-beschreibung .vrb > div:first-child{ grid-column:1 / -1; }
-#sx-beschreibung .vrb .mz-kopf-abstand{ margin-bottom:0.25rem; }
+#sx-beschreibung .vrb .mz-kopf-abstand{ margin-bottom:0.75rem; }
 #sx-beschreibung .vrb > .row{ display:contents; }
 #sx-beschreibung .vrb > .row > .clearfix{ display:none; }
 #sx-beschreibung .vrb > .row > [data-area-id]{ width:auto; max-width:none; flex:none; padding:0; }
 #sx-beschreibung .vrb__cap{ margin:0.6rem 0 0; font-size:0.8125rem; line-height:1.4; color:var(--text-secondary); }
 #sx-beschreibung .vrb__cap b{ display:block; font-size:0.9375rem; color:var(--color-digital-black); }
-@media (min-width:64rem){
-  #sx-beschreibung .vrb{ grid-template-columns:minmax(0, 0.8fr) repeat(2, minmax(0, 1fr)); column-gap:clamp(1.5rem, 3vw, 2.5rem); align-items:center; }
-  #sx-beschreibung .vrb > div:first-child{ grid-column:1; }
-  #sx-beschreibung .vrb .mz-kopf{ text-align:left; }
-}
 
 /* ── Abmessung und Lieferumfang: a spec sheet that actually shows the measures ───
    Maße (front render with dimension lines on the box edges: x 95–805, y 99–801
@@ -3792,8 +3804,13 @@ body.is-scrolled #quickbar {
   #sx-beschreibung .why__step{ flex-basis:62%; }
 }
 
-/* Einwurf stage: the clip is AI-flagged on live – badge top-right, clear of the play button */
-#sx-beschreibung .mbxdemo__stage::after{ top:0.5rem; bottom:auto; }
+/* Einwurf stage: the clip is AI-flagged on live – badge top-right, clear of the play button.
+   The live rule draws it on the clip's parent (:has(> video.mz-ki)::after), which is the zoomed
+   .mbxdemo__frame: place it through the zoom and scale it back up, so it sits 0.5 rem inside
+   the stage's top-right corner at full size. */
+#sx-beschreibung .mbxdemo__frame::after{ --ox-p:calc((var(--ox) - var(--x0)) / var(--cw) * 100%); --oy-p:calc(var(--oy) / 400 * 100%);
+  right:auto; bottom:auto; left:calc(var(--ox-p) + (100% - 2.5rem - var(--ox-p)) / var(--zoom)); top:calc(var(--oy-p) + (0.5rem - var(--oy-p)) / var(--zoom));
+  transform:scale(calc(1 / var(--zoom))); transform-origin:0 0; }
 
 /* Verfügbare Farben – tighter: the box stage (fixed 24rem, box at 82 %) and the
    padding around it set the panel height; trim the air, keep every element.
@@ -3807,7 +3824,9 @@ body.is-scrolled #quickbar {
 #sx-beschreibung .mz-kap-xdm .showcase-container { padding-bottom: 0; }
 #sx-beschreibung .mz-kap-xdm .info-panel { margin-top: 0.5rem; }
 #sx-beschreibung .mz-kap-xdm .swatch-nav { padding: 0.5rem 1rem; }
-#sx-beschreibung .mz-farbname .slider-product-title { min-height: 0 !important; margin-bottom: 1.25rem !important; }
+/* the name always takes two lines (code / name – see pdp-b-desc.js), so switching colours
+   never changes the panel height */
+#sx-beschreibung .mz-farbname .slider-product-title { min-height: 2.1em !important; margin-bottom: 1.25rem !important; }
 /* Two columns: the eyebrow belongs to the text column, so the visual (box stack +
    swatches) spans the full panel height and centres on what is VISIBLE – its
    stage has ~2.9rem of empty space above the box (stage air + the render's
@@ -3834,33 +3853,53 @@ body.is-scrolled #quickbar {
    list indent (.mz-body ul) would push it right – keep it flush like on live. */
 #sx-beschreibung .mz-kap .mz-ikl{ padding-left:0; margin:0; }
 
-/* Slot gauge: each format drawn to scale against the 335 mm slot (dashed line) –
-   one glance says "it all fits", in a fraction of the space a chip row needs. */
-#sx-beschreibung .fit{ grid-area:fit; width:100%; max-width:34rem; margin:2rem auto 0; text-align:left; }
-#sx-beschreibung .fit__rows li{ display:grid; grid-template-columns:8.5rem minmax(0, 1fr); column-gap:1rem; align-items:center; }
-#sx-beschreibung .fit__head{ display:flex; justify-content:space-between; align-items:baseline; gap:1rem; margin:0 0 0.5rem; font-size:0.875rem; line-height:1.3; color:var(--color-digital-black); }
-#sx-beschreibung .fit__slot{ justify-self:end; font-size:0.75rem; font-weight:700; letter-spacing:0.02em; color:var(--color-teal); }
+/* Slot gauge: each format drawn to scale against the 335 mm slot – one glance says "it all
+   fits". A framed spec card: thin precision bars, a caliper point at each bar's end with the
+   format's size written above it, and the slot as a dashed teal line, named in a legend. */
+#sx-beschreibung .fit{ grid-area:fit; width:100%; max-width:34rem; margin:2rem auto 0; padding:1.25rem 1.5rem 1rem; text-align:left; box-sizing:border-box;
+  border:1px solid var(--color-graphite-200); border-radius:var(--radius-xl); background:linear-gradient(180deg, #fff 30%, var(--color-teal-50)); box-shadow:var(--shadow-soft); }
+#sx-beschreibung .fit__head{ display:flex; justify-content:space-between; align-items:center; gap:1rem; margin:0 0 0.5rem; font-size:0.9375rem; line-height:1.3; color:var(--color-digital-black); }
+/* legend for the slot line: the same dashed teal mark + its value */
+#sx-beschreibung .fit__slot{ display:inline-flex; align-items:center; gap:0.45rem; font-size:0.75rem; font-weight:700; letter-spacing:0.02em; line-height:1; color:var(--color-teal); white-space:nowrap; font-variant-numeric:tabular-nums; }
+#sx-beschreibung .fit__slot::before{ content:""; flex:none; width:2px; height:1rem; background:repeating-linear-gradient(to bottom, var(--color-teal) 0 0.375rem, transparent 0.375rem 0.625rem); }
 #sx-beschreibung .fit__rows{ position:relative; list-style:none; margin:0; padding:0; }
-#sx-beschreibung .fit__rows::after{ content:""; position:absolute; top:-0.35rem; bottom:0.1rem; right:0; border-right:2px dashed var(--color-teal); pointer-events:none; }
-#sx-beschreibung .fit__rows li{ margin:0; padding:0.35rem 0; }
+#sx-beschreibung .fit__rows::after{ content:""; position:absolute; top:0.25rem; bottom:0.75rem; right:0.5rem; width:2px; background:repeating-linear-gradient(to bottom, var(--color-teal) 0 0.375rem, transparent 0.375rem 0.625rem); pointer-events:none; }
+#sx-beschreibung .fit__rows li{ display:grid; grid-template-columns:8.5rem minmax(0, 1fr); column-gap:1rem; align-items:center; margin:0; padding:0.625rem 0; }
+#sx-beschreibung .fit__rows li + li{ border-top:1px solid rgba(26,23,27,.06); }
 #sx-beschreibung .fit__rows li::before, #sx-beschreibung .fit__rows li::marker{ content:none; }
-#sx-beschreibung .fit__name{ font-size:0.75rem; line-height:1.3; color:var(--text-secondary); }
+#sx-beschreibung .fit__name{ font-size:0.75rem; line-height:1.3; color:var(--color-graphite-600); }
 #sx-beschreibung .fit__name b{ display:block; font-size:0.875rem; color:var(--color-digital-black); }
-#sx-beschreibung .fit__bar{ position:relative; display:block; height:1.5rem; border-radius:0.375rem; background:rgba(1,82,83,.07); }
-#sx-beschreibung .fit__bar i{ position:absolute; inset:0 auto 0 0; width:calc(var(--mm) / 335 * 100%); display:flex; align-items:center; justify-content:flex-end; padding:0 0.5rem; box-sizing:border-box; border-radius:inherit; background:var(--color-teal); color:#fff; font-style:normal; font-size:0.6875rem; font-weight:700; white-space:nowrap; font-variant-numeric:tabular-nums; }
-/* bars draw in once the gauge is in view (JS arms it; no JS / reduced motion: static) */
-#sx-beschreibung .fit.is-armed .fit__bar i{ clip-path:inset(0 100% 0 0); transition:clip-path .9s cubic-bezier(.2,.8,.2,1); }
-#sx-beschreibung .fit.is-armed.is-in .fit__bar i{ clip-path:inset(0 0 0 0); }
+/* the track ends on the slot line (0.5rem in from the right, at the middle of its 2px) */
+#sx-beschreibung .fit__bar{ position:relative; display:block; height:0.375rem; margin:1.375rem calc(0.5rem + 1px) 0 0; border-radius:var(--radius-pill); background:var(--color-graphite-200); }
+#sx-beschreibung .fit__bar i{ position:absolute; inset:0 auto 0 0; width:calc(var(--mm) / 335 * 100%); border-radius:inherit; background:linear-gradient(90deg, var(--color-teal-600), var(--color-teal)); }
+/* caliper point on the format's edge */
+#sx-beschreibung .fit__bar i::after{ content:""; position:absolute; right:-0.3125rem; top:50%; width:0.625rem; height:0.625rem; margin-top:-0.3125rem; box-sizing:border-box; border:2px solid var(--color-teal); border-radius:50%; background:#fff; }
+#sx-beschreibung .fit__bar em{ position:absolute; bottom:calc(100% + 0.45rem); right:max(calc(100% - var(--mm) / 335 * 100% - 0.3125rem), 0.625rem); font-style:normal; font-size:0.75rem; font-weight:700; line-height:1; white-space:nowrap; font-variant-numeric:tabular-nums; color:var(--color-graphite-800); }   /* right: never onto the slot line (C4 ends 11 mm short of it) */
+@media (max-width:30rem){
+  #sx-beschreibung .fit{ padding:1rem 1rem 0.75rem; }
+  #sx-beschreibung .fit__rows li{ grid-template-columns:6.5rem minmax(0, 1fr); column-gap:0.75rem; }
+}
+/* bars draw out to their size once the gauge is in view, then the sizes fade in
+   (JS arms it; no JS / reduced motion: static) */
+#sx-beschreibung .fit.is-armed .fit__bar i{ width:0; transition:width .9s cubic-bezier(.2,.8,.2,1); }
+#sx-beschreibung .fit.is-armed.is-in .fit__bar i{ width:calc(var(--mm) / 335 * 100%); }
+#sx-beschreibung .fit.is-armed .fit__bar em{ opacity:0; transform:translateY(0.25rem); transition:opacity .35s ease .7s, transform .35s ease .7s; }
+#sx-beschreibung .fit.is-armed.is-in .fit__bar em{ opacity:1; transform:none; }
 #sx-beschreibung .fit.is-armed li:nth-child(2) .fit__bar i{ transition-delay:.08s; }
 #sx-beschreibung .fit.is-armed li:nth-child(3) .fit__bar i{ transition-delay:.16s; }
 #sx-beschreibung .fit.is-armed li:nth-child(4) .fit__bar i{ transition-delay:.24s; }
+#sx-beschreibung .fit.is-armed li:nth-child(2) .fit__bar em{ transition-delay:.78s; }
+#sx-beschreibung .fit.is-armed li:nth-child(3) .fit__bar em{ transition-delay:.86s; }
+#sx-beschreibung .fit.is-armed li:nth-child(4) .fit__bar em{ transition-delay:.94s; }
 
 @media (min-width:64rem){
-  #sx-beschreibung .row:has(> [data-area-id="col-0"] > .dsc-brand){ grid-template-columns:minmax(0, 1fr) minmax(0, 1.5fr); column-gap:clamp(2.5rem, 4vw, 5rem); grid-template-rows:1fr auto auto auto auto 1fr auto; grid-template-areas:". stage" "brand stage" "head stage" "body stage" "fit stage" ". stage" ". steps"; }
-  #sx-beschreibung .row:has(> [data-area-id="col-0"] > .dsc-brand) > [data-area-id="col-1"]{ margin-top:0; }
+  #sx-beschreibung .row:has(> [data-area-id="col-0"] > .dsc-brand){ grid-template-columns:minmax(0, 1fr) minmax(0, 1.5fr); column-gap:clamp(2.5rem, 4vw, 5rem); grid-template-rows:1fr auto auto auto auto 1fr; grid-template-areas:". stage" "brand stage" "head stage" "body stage" "fit stage" ". stage"; }
+  #sx-beschreibung .row:has(> [data-area-id="col-0"] > .dsc-brand) > [data-area-id="col-1"]{ margin-top:0; align-self:start; }
   #sx-beschreibung [data-area-id="col-0"]:has(> .dsc-brand){ text-align:left; }
   #sx-beschreibung [data-area-id="col-0"]:has(> .dsc-brand) > .mz-body{ margin-inline:0; max-width:34rem; }
-  #sx-beschreibung [data-area-id="col-0"]:has(> .dsc-brand) > .mbxsteps{ max-width:none; margin:1rem 0 0; }
+  /* the steps share the stage's area, right under it: the stage is 2/3 of the area's width (600 × 400 crop,
+     .mbxdemo), and a % margin resolves against that width – they stay 1rem below it however tall the copy runs */
+  #sx-beschreibung [data-area-id="col-0"]:has(> .dsc-brand) > .mbxsteps{ grid-area:stage; align-self:start; max-width:none; margin:calc(100% * 400 / 600 + 1rem) 0 0; }
   #sx-beschreibung .fit{ margin:1.75rem 0 0; }
   #sx-beschreibung .mbxdemo{ max-width:none; }
 }
@@ -3873,8 +3912,17 @@ body.is-scrolled #quickbar {
    pdp-b-desc.js so they can never drift. The box's front rim (y ≈ 82 px of the
    clip) swallows them. The end cross-fades into frame 0 for a seamless loop.  */
 .pdp-b .mbxdemo { --T:10.75s; --x0:120; --cw:600; max-width:40rem; margin:0 auto; }   /* crop of the clip in source px: from x0, cw wide, full 400 px height */
-.pdp-b .mbxdemo__stage { position:relative; aspect-ratio:var(--cw) / 400; container-type:inline-size; overflow:hidden; border-radius:var(--radius-lg); background:#e9e3da; box-shadow:var(--shadow-md); }
-/* phones: x 120–720 px (box + room for the open door); ≥ 90 rem: x 0–800 so the larger stage stays ~1:1, never upscaled */
+.pdp-b .mbxdemo__stage { position:relative; aspect-ratio:var(--cw) / 400; container-type:inline-size; overflow:hidden; border-radius:var(--radius-lg); background:#eae2da url(assets/briefkasten/siebert-hero-wand-poster.jpg) right center / auto 100% no-repeat; box-shadow:var(--shadow-md); }
+/* The clip is only 400 px tall and the box fills it top to bottom – cramped. The clip (with
+   its letters and labels) is shown at 78 % around the box; the air around it is a wall plate
+   cut from the clip's own empty right-hand wall (stage background), the clip's edges feathered
+   into it. Most of the new air goes on top, where the lid lifts and the letters fly in; the
+   bottom band stays thin because the box's shadow runs off the clip's lower edge. */
+.pdp-b .mbxdemo { --zoom:.78; --ox:347; --oy:280; }   /* zoom origin in clip px: the box's centre line, a little low */
+.pdp-b .mbxdemo__frame { position:absolute; inset:0; transform:scale(var(--zoom)); transform-origin:calc((var(--ox) - var(--x0)) / var(--cw) * 100%) calc(var(--oy) / 400 * 100%); }
+.pdp-b .mbxdemo__vid, .pdp-b .mbxdemo__still { -webkit-mask-image:linear-gradient(to bottom, transparent, #000 7%, #000 96%, transparent), linear-gradient(to right, transparent, #000 4%); -webkit-mask-composite:source-in; mask-image:linear-gradient(to bottom, transparent, #000 7%, #000 96%, transparent), linear-gradient(to right, transparent, #000 4%); mask-composite:intersect; }
+/* x 120–720 px (box + room for the open door) at every width: shown at 78 % (below) the clip is
+   never upscaled, and the 3:2 stage matches the copy column's height on desktop */
 .pdp-b .mbxdemo__vid, .pdp-b .mbxdemo__still { position:absolute; top:0; left:calc(var(--x0) / var(--cw) * -100%); width:calc(1400 / var(--cw) * 100%); max-width:none; height:100%; object-fit:fill; display:block; }
 .pdp-b .mbxdemo__still { opacity:0; pointer-events:none; }
 
@@ -3890,7 +3938,6 @@ body.is-scrolled #quickbar {
 .pdp-b .mbxdemo__tag::after { content:""; position:absolute; right:calc(100% + var(--lead) - 3px); top:calc(50% - 3px); width:6px; height:6px; border-radius:50%; background:var(--color-digital-black); box-shadow:0 0 0 2px #fff; }
 .pdp-b .mbxdemo__tag--dl { --lead:calc(78 / var(--cw) * 100cqw); animation-name:mbx-tag-dl; }
 .pdp-b .mbxdemo__tag--c4 { --lead:calc(45 / var(--cw) * 100cqw); top:7.5%; animation-name:mbx-tag-c4; }
-@media (min-width:90rem){ #sx-beschreibung .mbxdemo { --x0:0; --cw:800; } }
 
 .pdp-b .mbxdemo__play { position:absolute; right:0.75rem; bottom:0.75rem; width:2.25rem; height:2.25rem; padding:0; border:0; border-radius:50%; display:grid; place-items:center; cursor:pointer; color:var(--color-digital-black); background:rgba(255,255,255,.9); box-shadow:0 0.1rem 0.45rem rgba(0,0,0,.16); transition:background-color .2s; }
 .pdp-b .mbxdemo__play:hover { background:#fff; }
@@ -3913,14 +3960,15 @@ body.is-scrolled #quickbar {
 @media (max-width:30rem){ .pdp-b .mbxstep { grid-template-areas:"bar bar" "n t" "s s"; } .pdp-b .mbxstep__sub { margin-top:0.2rem; font-size:0.75rem; } }
 
 /* ── letter timeline on the clip's 10.75 s (% = s ÷ 0.1075) ── */
+/* waiting letters sit fully above the stage (it shows ~80 clip px above the clip since the zoom-out) */
 @keyframes mbx-dl {
-  0%, 34.9%   { transform:translate(-5%, -128%) rotate(-5deg); animation-timing-function:cubic-bezier(.22,.7,.3,1); }   /* 3.75 s: brought in from above */
+  0%, 34.9%   { transform:translate(-5%, -260%) rotate(-5deg); animation-timing-function:cubic-bezier(.22,.7,.3,1); }   /* 3.75 s: brought in from above */
   39.1%       { transform:translate(0, -5%) rotate(-0.6deg); animation-timing-function:linear; }                         /* 4.2 s: lined up on the slot */
   40.5%       { transform:translate(0, 6%) rotate(0); animation-timing-function:cubic-bezier(.45,0,.75,.4); }           /* 4.35 s: let go */
   44.2%, 100% { transform:translate(0, 104%) rotate(0); }                                                                 /* 4.75 s: inside */
 }
 @keyframes mbx-c4 {
-  0%, 43.7%   { transform:translate(4%, -64%) rotate(3.5deg); animation-timing-function:cubic-bezier(.22,.7,.3,1); }     /* 4.7 s */
+  0%, 43.7%   { transform:translate(4%, -125%) rotate(3.5deg); animation-timing-function:cubic-bezier(.22,.7,.3,1); }     /* 4.7 s */
   47.9%       { transform:translate(0, -4%) rotate(0.4deg); animation-timing-function:linear; }                          /* 5.15 s */
   49.3%       { transform:translate(0, 5%) rotate(0); animation-timing-function:cubic-bezier(.45,0,.75,.4); }           /* 5.3 s */
   53.5%, 100% { transform:translate(0, 104%) rotate(0); }                                                                 /* 5.75 s – door opens from 6 s */
