@@ -351,7 +351,7 @@ var MZSwipe = (function () {
     var t = euro(total());
     var el = $('bTotal');
     if (el && el.textContent !== t) { el.textContent = t; el.classList.remove('is-bump'); void el.offsetWidth; el.classList.add('is-bump'); }
-    var sp = $('bStickyPrice'); if (sp) sp.innerHTML = (state.finish ? 'konfiguriert · ' : 'ab ') + '<b>' + t + '</b>';
+    var sp = $('bStickyPrice'); if (sp) sp.innerHTML = '<span class="pdp-stickybar__lbl">' + (state.finish ? 'konfiguriert' : 'ab') + '</span><span class="pdp-stickybar__sep">' + (state.finish ? ' · ' : ' ') + '</span><b>' + t + '</b>';
 
     setTxt('pdpFinishName', finishText() || 'Bitte Farbe wählen');
     /* Product title carries the colour only once a complete colour is chosen
@@ -381,7 +381,8 @@ var MZSwipe = (function () {
     /* CTA prompts for what's missing: a colour first, then (for Wunschfarbe) a RAL tone */
     var ctaTxt = !state.finish ? 'Bitte Farbe wählen' : (needsRal() ? 'Bitte RAL-Farbe wählen' : 'In den Warenkorb');
     var cartBtn = $('bCart'); if (cartBtn) cartBtn.textContent = ctaTxt;
-    var sLabel = $('pdpStickyLabel'); if (sLabel) sLabel.textContent = ctaTxt;
+    var sLabel = $('pdpStickyLabel');   /* the kit's short form for narrow phones: „Bitte Farbe wählen“ → „Farbe wählen“ (CSS picks) */
+    if (sLabel) sLabel.innerHTML = ctaTxt.indexOf('Bitte ') === 0 ? '<span class="pdp-stickybar__long">' + ctaTxt + '</span><span class="pdp-stickybar__short">' + ctaTxt.slice(6) + '</span>' : ctaTxt;
     var sheetCartBtn = $('bSheetCart'); if (sheetCartBtn) sheetCartBtn.textContent = ctaTxt;   /* keep the bottom-sheet CTA label in sync with the configurator CTA */
     var checkout = $('bCheckout'); if (checkout) checkout.classList.toggle('is-precolor', !state.finish);
 
@@ -3049,6 +3050,7 @@ var MZSwipe = (function () {
   var box = document.querySelector('#sx-beschreibung .smart'); if (!box) return;
   var tabs = [].slice.call(box.querySelectorAll('.smart__tab'));
   function pick(tab, focus) {
+    var was = tab.classList.contains('is-on');
     tabs.forEach(function (t) {
       var on = t === tab;
       t.classList.toggle('is-on', on);
@@ -3056,6 +3058,11 @@ var MZSwipe = (function () {
       t.tabIndex = on ? 0 : -1;
       document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
     });
+    if (!was) {   /* the sensor tells its story once each time its tab opens */
+      stopStory();
+      var panel = document.getElementById(tab.getAttribute('aria-controls'));
+      if (panel.playStory) panel.playStory();
+    }
     if (focus) tab.focus();
   }
   tabs.forEach(function (t, i) {
@@ -3066,14 +3073,42 @@ var MZSwipe = (function () {
       pick(tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length], true);
     });
   });
-  var img = box.querySelector('#smartLock .smart__media img');
-  box.querySelectorAll('.smart__way').forEach(function (w, i, all) {
-    w.addEventListener('click', function () {
-      all.forEach(function (o) { o.classList.toggle('is-on', o === w); o.setAttribute('aria-pressed', o === w ? 'true' : 'false'); });
+  /* one tile row per panel drives its photo: the lock's ways swap the picture, the sensor's steps
+     frame their moment in the one scene (data-step on the figure, see the CSS) */
+  var STEP_MS = 2600, story = null;
+  var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function stopStory() {
+    if (!story) return;
+    window.clearTimeout(story.t);
+    story.ways.forEach(function (o) { o.classList.remove('is-playing'); });
+    story = null;
+  }
+  box.querySelectorAll('.smart__panel').forEach(function (panel) {
+    var ways = [].slice.call(panel.querySelectorAll('.smart__way')); if (!ways.length) return;
+    var fig = panel.querySelector('.smart__media'), img = fig && fig.querySelector('img');
+    function show(w) {
+      ways.forEach(function (o) { o.classList.toggle('is-on', o === w); o.setAttribute('aria-pressed', o === w ? 'true' : 'false'); });
       if (!img) return;
+      if (w.hasAttribute('data-step')) { fig.setAttribute('data-step', w.getAttribute('data-step')); img.alt = w.getAttribute('data-alt'); return; }
       img.style.opacity = '0.35';
       window.setTimeout(function () { img.src = w.getAttribute('data-img'); img.alt = w.getAttribute('data-alt'); img.style.opacity = '1'; }, 150);
-    });
+    }
+    ways.forEach(function (w) { w.addEventListener('click', function () { stopStory(); show(w); }); });
+    if (!ways[0].hasAttribute('data-step')) return;
+    panel.playStory = function () {   /* 1 → 2 → 3, then it rests on the phone; a click takes over */
+      show(ways[0]);
+      if (still) return;
+      var i = 0; story = { ways: ways, t: 0 };
+      (function run() {
+        void ways[i].offsetWidth;   /* restart the line when the same tile plays again */
+        ways[i].classList.add('is-playing');
+        story.t = window.setTimeout(function () {
+          ways[i].classList.remove('is-playing');
+          show(ways[++i]);
+          if (i < ways.length - 1) run(); else story = null;
+        }, STEP_MS);
+      })();
+    };
   });
 })();
 

@@ -961,7 +961,7 @@ html[data-ts="float"]      .pdp-b .ts-slot[data-pos="float"]      { display: fle
   .cfgb .cfg-opts .cfg-opt { flex-direction: row; align-items: center; gap: 0.8rem; padding: 0.65rem 0.75rem; text-align: left; }
   .cfgb .cfg-opts .cfg-opt__thumb { width: 3.25rem; height: 3.25rem; flex: none; border-radius: var(--radius); }
   .cfgb .cfg-opts .cfg-opt__body { flex: 1 1 auto; min-width: 0; padding-right: 0; }
-  .cfgb .cfg-opts .cfg-opt__desc { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .cfgb .cfg-opts .cfg-opt__desc { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; -webkit-hyphens: auto; hyphens: auto; overflow-wrap: anywhere; }   /* long words („Briefkastenschloss“) break instead of being cut at the clamp edge */
   .cfgb .cfg-opts .cfg-opt__price { margin: 0 0 0 auto; align-self: center; padding-top: 0; text-align: right; white-space: nowrap; }
   .cfgb .cfg-opts .cfg-opt__mark { display: none; }   /* selection shown by the card's teal ring – saves width on the narrow row */
   /* status tag: keep it clear of the small thumb in row layout */
@@ -1028,6 +1028,7 @@ html[data-ts="float"]      .pdp-b .ts-slot[data-pos="float"]      { display: fle
 .cfgb-next,
 .cfgb-hint { display: none !important; }
 .pdp-stickybar__cta svg { display: none; }          /* remove arrow from sticky CTA */
+.pdp-stickybar__short { display: none; }   /* the short button text is for narrow phones only (phone block) */
 
 /* A/B prototype switcher – hidden on B so it never covers the fixed purchase bar */
 .vswitch { display: none !important; }
@@ -1440,8 +1441,11 @@ body.kbd-open .cfgb-dock.is-fixed { display: none !important; }
 @media (max-width: 48rem) {
   /* Full-bleed grey config surface: break out of the .container side gutter so the
      frame spans the viewport edge-to-edge – no rounded corners or side hairline.
-     `calc(50% - 50vw)` resolves to exactly the container inset on each side. */
-  .pdp-b .cfgb { margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);
+     The bleed is the container's own inset (styles-v2 .container padding-inline), so it
+     cancels exactly in every browser – `calc(50% - 50vw)` counted a classic scrollbar
+     into 100vw and pushed the panel 8 px past both edges (sideways scroll on desktop
+     windows below 48rem). */
+  .pdp-b .cfgb { margin-left: calc(-1 * clamp(var(--sp-6), 4vw, 56px)); margin-right: calc(-1 * clamp(var(--sp-6), 4vw, 56px));
     border-radius: 0; border-left: 0; border-right: 0; }
   /* configuration progress bar – a compact step ribbon (numbered steps, completed =
      filled, current = highlighted). In-flow at the top of the config; via JS
@@ -3242,7 +3246,7 @@ body.is-scrolled #quickbar {
   .cfgb .cfg-opts .cfg-opt { flex-direction: row; align-items: center; gap: 0.8rem; padding: 0.65rem 0.75rem; text-align: left; }
   .cfgb .cfg-opts .cfg-opt__thumb { width: 3.25rem; height: 3.25rem; flex: none; border-radius: var(--radius); }
   .cfgb .cfg-opts .cfg-opt__body { flex: 1 1 auto; min-width: 0; padding-right: 0; }
-  .cfgb .cfg-opts .cfg-opt__desc { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .cfgb .cfg-opts .cfg-opt__desc { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; -webkit-hyphens: auto; hyphens: auto; overflow-wrap: anywhere; }   /* long words („Briefkastenschloss“) break instead of being cut at the clamp edge */
   .cfgb .cfg-opts .cfg-opt__price { margin: 0 0 0 auto; align-self: center; padding-top: 0; text-align: right; white-space: nowrap; }
   /* show the selection control (checkbox / radio) on mobile too – parity with desktop */
   .cfgb .cfg-opts .cfg-opt__mark { display: grid; position: relative; top: auto; left: auto; right: auto; flex: none; margin: 0; }
@@ -3334,10 +3338,26 @@ body.is-scrolled #quickbar {
   .pdp-stickybar__details > span { display: none; }
   .pdp-stickybar__details svg { width: 1.5rem; height: 1.5rem; color: var(--color-graphite-400); }
   .pdp-stickybar__details:hover { border: 0; color: var(--color-graphite-600); }
-  .pdp-stickybar__info { display: flex; flex-direction: column; flex: 1 1 auto; min-width: 0; overflow: hidden; }
-  .pdp-stickybar__name { max-width: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .pdp-stickybar__price { display: block; white-space: nowrap; }
-  #pdpStickyBar .pdp-stickybar__cta { flex: 0 0 auto; margin-left: 0; padding: 0 1.1rem; }
+  /* the kit's phone Kaufleiste (v2.0): image · „ab“ / „konfiguriert“ above the price · text-only
+     button. The price column is max-content and never shortened (it was squeezed out below
+     ~410 px, behind the name line); no name on phones; the button takes the rest and breaks
+     into two balanced rows only if it must. */
+  .pdp-stickybar__info { display: flex; flex-direction: column; flex: 0 0 auto; min-width: 0; overflow: visible; }
+  .pdp-stickybar__name { display: none; }
+  .pdp-stickybar__price { display: grid; gap: 0.125rem; white-space: nowrap; font-size: 0.75rem; line-height: 1.2; color: var(--color-graphite-700); }
+  .pdp-stickybar__sep { display: none; }
+  .pdp-stickybar__price b { font-size: 1rem; line-height: 1.2; font-variant-numeric: tabular-nums; }
+  #pdpStickyBar .pdp-stickybar__cta { flex: 1 1 auto; min-width: 0; justify-content: center; height: auto; min-height: 2.75rem; margin-left: 0; padding: 0.5rem 0.875rem; white-space: normal; text-align: center; line-height: 1.15; }
+  #pdpStickyBar .pdp-stickybar__cta span { text-wrap: balance; }
+  /* narrow phones (< 360 px, the kit's Kaufleiste): smaller image, tighter gaps, the short button text */
+  @media (max-width: 22.4375rem) {
+    #pdpStickyBar .pdp-stickybar__inner { gap: 0.5rem; }
+    .pdp-stickybar__thumb { width: 2.5rem; height: 2.5rem; }
+    .pdp-stickybar__price b { font-size: 0.9375rem; }
+    #pdpStickyBar .pdp-stickybar__cta { font-size: 0.875rem; padding: 0.375rem 0.625rem; }
+    .pdp-stickybar__long { display: none; }
+    .pdp-stickybar__short { display: inline; }
+  }
 }
 
 /* Technik rail on mobile: collapse the sidebar into a clean full-width vertical
@@ -3686,53 +3706,82 @@ body.is-scrolled #quickbar {
    price; inside the lock the three ways to open it swap the photo. Replaces two
    stacked rows of the same weight – about 40 % less height, nothing dropped. */
 #sx-beschreibung .smart{ max-width:none; margin:0; }
-#sx-beschreibung .smart__tabs{ display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:0.5rem; width:100%; max-width:40rem; margin:0 auto var(--dsc-head); padding:0.3rem; border-radius:var(--radius-xl); background:rgba(1,82,83,.06); }   /* wider switch: 640 px, roomier options */
+#sx-beschreibung .smart__tabs{ display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:0.5rem; width:100%; max-width:40rem; margin:0 auto var(--dsc-head); padding:0.3rem; border-radius:var(--radius-lg); background:rgba(1,82,83,.06); position:relative; }   /* wider switch: 640 px, roomier options */
+/* one white pill that slides under the chosen option (the accordion's curve and 420 ms), instead of
+   two backgrounds fading out and in – width = one column: (padding box − 2 × 0.3rem − 0.5rem gap) / 2 */
+#sx-beschreibung .smart__tabs::before{ content:""; position:absolute; top:0.3rem; bottom:0.3rem; left:0.3rem; width:calc((100% - 1.1rem) / 2); border-radius:var(--radius-lg); background:#fff; box-shadow:0 0.1rem 0.5rem rgba(0,0,0,.1); transition:transform .42s cubic-bezier(.4,0,.2,1); }
+#sx-beschreibung .smart__tabs:has(> .smart__tab:last-child.is-on)::before{ transform:translateX(calc(100% + 0.5rem)); }
 @media (max-width:30rem){ #sx-beschreibung .smart__tab{ gap:0.5rem; padding:0.7rem 0.5rem; } #sx-beschreibung .smart__tab b{ font-size:0.875rem; white-space:nowrap; } }   /* phones: both names stay on one line */
-#sx-beschreibung .smart__tab{ display:flex; align-items:center; justify-content:center; gap:0.75rem; padding:0.8rem 1rem; border:0; border-radius:var(--radius-lg); background:transparent; color:var(--text-secondary); font:inherit; text-align:left; cursor:pointer; transition:background-color .2s, color .2s, box-shadow .2s; }
+#sx-beschreibung .smart__tab{ display:flex; align-items:center; justify-content:center; gap:0.75rem; padding:0.8rem 1rem; border:0; border-radius:var(--radius-lg); background:transparent; color:var(--text-secondary); font:inherit; text-align:left; cursor:pointer; position:relative; z-index:1; transition:color .42s cubic-bezier(.4,0,.2,1); }
 #sx-beschreibung .smart__tab svg{ width:1.375rem; height:1.375rem; flex:none; }
-#sx-beschreibung .smart__tab b{ display:block; font-size:0.9375rem; line-height:1.2; color:inherit; }
+#sx-beschreibung .smart__tab b{ display:block; font-size:0.9375rem; line-height:1.2; color:inherit; transition:color .42s cubic-bezier(.4,0,.2,1); }
 #sx-beschreibung .smart__tab em{ display:block; font-style:normal; font-size:0.8125rem; font-weight:600; line-height:1.2; }
-#sx-beschreibung .smart__tab.is-on{ background:#fff; color:var(--color-teal); box-shadow:0 0.1rem 0.5rem rgba(0,0,0,.1); }
+#sx-beschreibung .smart__tab.is-on{ color:var(--color-teal); }   /* the pill under it is the sliding ::before */
 #sx-beschreibung .smart__tab.is-on b{ color:var(--color-digital-black); }
 #sx-beschreibung .smart__tab:focus-visible, #sx-beschreibung .smart__way:focus-visible{ outline:2px solid var(--color-teal); outline-offset:2px; }
 /* one rhythm: head → switch → content all --dsc-head apart; photo and text start on one line
    (centring them moved the start with each panel's text length) */
-#sx-beschreibung .smart__panel{ display:grid; grid-template-columns:minmax(0, 1fr); gap:1.25rem; align-items:start; animation:smart-in .35s cubic-bezier(.2,.8,.2,1); }
+#sx-beschreibung .smart__panel{ display:grid; grid-template-columns:minmax(0, 1fr); gap:1.25rem; align-items:start; transition:opacity .42s cubic-bezier(.4,0,.2,1) .1s, transform .42s cubic-bezier(.4,0,.2,1) .1s, visibility 0s linear 0s; }
 /* both panels share one cell: the hidden one keeps its space invisibly, so switching Schloss /
    Sensor never changes the section's height (the dialog shows just its own panel) */
 #sx-beschreibung .smart{ display:grid; grid-template-columns:minmax(0, 1fr); }
 #sx-beschreibung .smart > .smart__panel{ grid-row:2; grid-column:1; }
-#sx-beschreibung .smart__panel[hidden]{ display:grid; visibility:hidden; }
+/* the switch crossfades: the old panel fades out quickly (0.2s), the new one fades in and rises
+   0.375rem into place, starting 0.1s later – the photos sit in the same spot, so they blend */
+#sx-beschreibung .smart__panel[hidden]{ display:grid; visibility:hidden; opacity:0; transform:translateY(0.375rem); transition:opacity .2s ease, transform 0s linear .2s, visibility 0s linear .2s; }
 #sx-beschreibung #infoMod .smart__panel[hidden]{ display:none; }
-@keyframes smart-in{ from{ opacity:0; transform:translateY(0.375rem); } to{ opacity:1; transform:none; } }
-#sx-beschreibung .smart__media{ margin:0; aspect-ratio:4/3; border-radius:var(--radius-lg); overflow:hidden; background:#f2f2f0; box-shadow:var(--shadow-md); }
-#sx-beschreibung .smart__media img{ display:block; width:100%; height:100%; object-fit:cover; transition:opacity .2s; }
+#sx-beschreibung .smart__media{ position:relative; margin:0; aspect-ratio:4/3; border-radius:var(--radius-lg); overflow:hidden; background:#f2f2f0; box-shadow:var(--shadow-md); }
+#sx-beschreibung .smart__media img{ display:block; width:100%; height:100%; object-fit:cover; transition:opacity .2s, transform .8s cubic-bezier(.4,0,.2,1); }
+/* the sensor's one scene, framed per step (1.5×, the moment pulled towards the middle, the edges
+   always covered): 1 the letter at the slot, 2 the slot itself – the sensor answers with the
+   lock photos' cyan rings, 3 the phone. Same frame and size as the lock's photos. */
+#sx-beschreibung .smart__media[data-step="1"] img{ transform:translate(-25%, 19.5%) scale(1.5); }
+#sx-beschreibung .smart__media[data-step="2"] img{ transform:translate(4.86%, 16.11%) scale(1.5); }
+#sx-beschreibung .smart__media[data-step="3"] img{ transform:translate(25%, -24%) scale(1.5); }
+/* the rings live on their own layer: the frame's ::after is the live AI badge (:has(> img.mz-ki)) */
+#sx-beschreibung .smart__ping{ position:absolute; inset:0; z-index:1; pointer-events:none; }
+#sx-beschreibung .smart__ping::before, #sx-beschreibung .smart__ping::after{ content:""; position:absolute; left:50%; top:50%; width:22%; aspect-ratio:1; border:0.125rem solid rgb(110, 214, 204); border-radius:50%; box-shadow:0 0 0.75rem rgba(110, 214, 204, .6), inset 0 0 0.75rem rgba(110, 214, 204, .35); opacity:0; transform:translate(-50%, -50%) scale(.3); }
+#sx-beschreibung .smart__media[data-step="2"] .smart__ping::before{ animation:smart-ping 1.8s cubic-bezier(.25,.6,.35,1) .6s infinite; }
+#sx-beschreibung .smart__media[data-step="2"] .smart__ping::after{ animation:smart-ping 1.8s cubic-bezier(.25,.6,.35,1) 1.5s infinite; }
+@keyframes smart-ping{ 0%{ opacity:0; transform:translate(-50%, -50%) scale(.3); } 20%{ opacity:1; } 100%{ opacity:0; transform:translate(-50%, -50%) scale(1.4); } }
 #sx-beschreibung .smart__t{ margin:0 0 0.75rem; font-size:1.375rem; font-weight:700; line-height:1.25; color:var(--color-digital-black); }
 /* the points: the live icon list (mz-ikl – line icon in a teal-tint badge), as on the live shop */
 #sx-beschreibung .smart__copy .smart__ikl{ margin:0 0 1.25rem; }
 #sx-beschreibung .smart__label{ margin:0 0 0.45rem; font-size:0.75rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-secondary); }
-/* the three ways to open it: tiles in the text column under "So öffnen Sie ihn", the same tile as
-   the Dekoration / Befestigung galleries (white tile, picture + bold name, teal frame when shown,
-   grey on hover, no lift) – one picker look on the whole page. Clicking swaps the photo opposite
-   and the hint. */
+/* one tile row in both tabs: the lock's three ways to open it, the sensor's three steps – the same
+   tile as the Dekoration / Befestigung galleries (white tile, picture + bold name, teal frame when
+   shown, grey on hover, no lift). A tile drives its panel's photo: a way swaps the picture, a step
+   frames its moment in the one sensor scene. The steps carry their number on the picture and
+   play through once when the tab opens – a thin teal line on the picture shows the time running. */
 #sx-beschreibung .smart__ways{ display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:1rem; margin-top:0.25rem; }
-#sx-beschreibung .smart__way{ display:flex; flex-direction:column; justify-content:flex-start; min-width:0; padding:0.75rem 0.5rem 0.625rem; border:0.125rem solid transparent; border-radius:0.5rem; background:#fff; font:inherit; color:inherit; text-align:center; cursor:pointer; transition:border-color .25s; }
+#sx-beschreibung .smart__way{ display:flex; flex-direction:column; justify-content:flex-start; min-width:0; padding:0.75rem 0.5rem 0.625rem; border:0.125rem solid transparent; border-radius:var(--radius-lg); background:#fff; font:inherit; color:inherit; text-align:center; cursor:pointer; transition:border-color .25s; position:relative; }
 #sx-beschreibung .smart__way:not(.is-on):hover{ border-color:var(--color-graphite-300); }
 #sx-beschreibung .smart__way.is-on{ border-color:var(--color-teal); }
-#sx-beschreibung .smart__way img{ display:block; width:100%; height:auto; aspect-ratio:4 / 3; object-fit:cover; border-radius:0.25rem; background:#f6f6f6; }
+#sx-beschreibung .smart__way img{ display:block; width:100%; height:auto; aspect-ratio:4 / 3; object-fit:cover; border-radius:var(--radius); background:#f6f6f6; }
 #sx-beschreibung .smart__wayt{ display:block; margin:0.625rem 0 0.25rem; font-size:0.875rem; font-weight:700; line-height:1.35; color:var(--color-digital-black); }
 #sx-beschreibung #infoMod .smart__ways{ gap:0.625rem; }   /* dialog: the gallery dialogs' tile gap */
-@media (max-width:47.9375rem){ #sx-beschreibung .smart__ways{ gap:0.625rem; } #sx-beschreibung .smart__way{ padding-inline:0.375rem; } #sx-beschreibung .smart__wayt{ font-size:0.8125rem; } }   /* phones: the galleries' 13 px tile labels; "Finger-/abdruck" breaks only if it must */
-/* Sensor: how it works – the Konfigurator's numbered-step style (no icons: the kit has no letter or
-   radio glyph in the booklet set the lock tiles use, and one icon style per page) */
-#sx-beschreibung .smart__steps{ list-style:none; counter-reset:sst; display:grid; gap:0.625rem; margin:0; padding:0; }
-#sx-beschreibung .smart__steps li{ counter-increment:sst; display:grid; grid-template-columns:1.75rem minmax(0, 1fr); column-gap:0.75rem; align-items:center; margin:0; font-size:0.9375rem; line-height:1.45; color:var(--color-digital-black); }
-#sx-beschreibung .smart__steps li::before{ content:counter(sst); width:1.75rem; height:1.75rem; border-radius:50%; display:grid; place-items:center; background:rgba(1,82,83,.08); color:var(--color-teal); font-size:0.8125rem; font-weight:700; }
-#sx-beschreibung .smart__steps li::marker{ content:none; }
+@media (max-width:47.9375rem){ #sx-beschreibung .smart__ways{ gap:0.625rem; } #sx-beschreibung .smart__way{ padding-inline:0.375rem; } #sx-beschreibung .smart__wayt{ font-size:0.8125rem; min-height:2.7em; } #sx-beschreibung .smart__way::after{ left:0.375rem; right:0.375rem; } #sx-beschreibung .smart__wayn{ top:1.0625rem; left:0.6875rem; width:1.25rem; height:1.25rem; font-size:0.6875rem; } }   /* phones: the galleries' 13 px tile labels; "Finger-/abdruck" breaks only if it must */
+/* the step number on the picture (the Konfigurator's numbered steps, in white on the photo) */
+#sx-beschreibung .smart__wayn{ position:absolute; top:1.125rem; left:0.875rem; width:1.5rem; height:1.5rem; border-radius:50%; display:grid; place-items:center; background:#fff; color:var(--color-teal); font-size:0.75rem; font-weight:700; line-height:1; box-shadow:0 0.1rem 0.4rem rgba(0,0,0,.15); }
+/* the running time while the steps play: a teal line drawn along the picture's bottom edge (a box
+   laid exactly over the picture – same inset, same 4 : 3) */
+#sx-beschreibung .smart__way::after{ content:""; position:absolute; top:0.75rem; left:0.5rem; right:0.5rem; aspect-ratio:4 / 3; box-sizing:border-box; border-bottom:0.1875rem solid var(--color-teal); border-radius:var(--radius); clip-path:inset(0 100% 0 0); pointer-events:none; }
+#sx-beschreibung .smart__way.is-playing::after{ animation:smart-run 2.6s linear forwards; }
+@keyframes smart-run{ to{ clip-path:inset(0 0 0 0); } }
 #sx-beschreibung .smart__price{ display:flex; align-items:baseline; gap:0.6rem; margin:1.25rem 0 0; padding-top:1rem; border-top:1px solid rgba(26,23,27,.1); font-size:0.8125rem; color:var(--text-secondary); }
 #sx-beschreibung .smart__price b{ font-size:1.25rem; color:var(--color-teal); }
 @media (min-width:64rem){ #sx-beschreibung .smart__panel{ grid-template-columns:repeat(2, minmax(0, 1fr)); gap:var(--dsc-split); } }
-@media (prefers-reduced-motion: reduce){ #sx-beschreibung .smart__panel{ animation:none; } }
+/* both tabs, one layout whatever wraps: title and points start on the photo's top line, the tile
+   row and the price end on its bottom line (or on the shared cell's bottom, when a tab's text is
+   the taller) – so a point that wraps in one tab only never moves the tiles when switching (page
+   only – the dialog shows one panel). On phones every tile name gets two lines, so "Sensor erkennt"
+   breaking and "RFID-Chip" not leaves both rows one height. */
+#sx-beschreibung .smart > .smart__panel > .smart__copy{ align-self:stretch; display:flex; flex-direction:column; }
+#sx-beschreibung .smart > .smart__panel .smart__label{ margin-top:auto; }
+@media (max-width:63.9375rem){ #sx-beschreibung .smart > .smart__panel{ grid-template-rows:auto minmax(0, 1fr); } }   /* photo above: the free height goes to the text */
+@media (prefers-reduced-motion: reduce){ #sx-beschreibung .smart__panel, #sx-beschreibung .smart__panel[hidden], #sx-beschreibung .smart__tabs::before, #sx-beschreibung .smart__tab, #sx-beschreibung .smart__tab b, #sx-beschreibung .smart__media img{ transition:none; }
+  #sx-beschreibung .smart__media[data-step="2"] .smart__ping::before{ animation:none; opacity:1; transform:translate(-50%, -50%) scale(.55); }
+  #sx-beschreibung .smart__media[data-step="2"] .smart__ping::after{ animation:none; opacity:.6; transform:translate(-50%, -50%) scale(1); } }
 
 /* ── Konfigurator: the standard centred head, then the steps beside the screen ──
    The head and the steps share one wrapper in the markup – both wrappers dissolve
@@ -3858,7 +3907,7 @@ body.is-scrolled #quickbar {
 #sx-beschreibung .dim__w::before{ left:0; } #sx-beschreibung .dim__w::after{ right:0; }
 #sx-beschreibung .dim__h::before, #sx-beschreibung .dim__h::after{ content:""; position:absolute; left:-0.4rem; width:0.8rem; border-top:1.5px solid currentColor; }
 #sx-beschreibung .dim__h::before{ top:0; } #sx-beschreibung .dim__h::after{ bottom:0; }
-#sx-beschreibung .dim__w i, #sx-beschreibung .dim__h i{ position:absolute; padding:0.1rem 0.4rem; border-radius:var(--radius); background:#fff; font-style:normal; font-size:0.8125rem; font-weight:700; white-space:nowrap; }
+#sx-beschreibung .dim__w i, #sx-beschreibung .dim__h i{ position:absolute; padding:0.1rem 0.4rem; border-radius:var(--radius-sm); background:#fff; font-style:normal; font-size:0.8125rem; font-weight:700; white-space:nowrap; }
 #sx-beschreibung .dim__w i{ top:-0.7rem; }
 #sx-beschreibung .dim__h i{ left:-1.4rem; transform:rotate(-90deg); }
 #sx-beschreibung .abm__cap{ margin:1rem 0 0; font-size:0.875rem; line-height:1.45; color:var(--text-secondary); }
@@ -3876,7 +3925,7 @@ body.is-scrolled #quickbar {
 #sx-beschreibung .vs{ max-width:34rem; }
 #sx-beschreibung .vs__head, #sx-beschreibung .vs__rows li{ display:grid; grid-template-columns:minmax(0, 0.8fr) minmax(0, 1.2fr); column-gap:1.25rem; }
 #sx-beschreibung .vs__head{ margin:0 0 0.5rem; }
-#sx-beschreibung .vs__tag{ justify-self:start; padding:0.3rem 0.6rem; border-radius:var(--radius); color:#fff; font-size:0.6875rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; line-height:1; }
+#sx-beschreibung .vs__tag{ justify-self:start; padding:0.3rem 0.6rem; border-radius:var(--radius-sm); color:#fff; font-size:0.6875rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; line-height:1; }
 #sx-beschreibung .vs__tag--old{ background:#D42924; background:color-mix(in srgb, #D42924 calc(var(--vs-old) * 100%), var(--color-graphite-500)); }
 #sx-beschreibung .vs__tag--new{ background:#009951; background:color-mix(in srgb, #009951 calc(var(--vs-new) * 100%), var(--color-graphite-500)); }
 #sx-beschreibung .vs__rows{ list-style:none; margin:0; padding:0; }
@@ -3968,7 +4017,7 @@ body.is-scrolled #quickbar {
    fits". A framed spec card: thin precision bars, a caliper point at each bar's end with the
    format's size written above it, and the slot as a dashed teal line labelled at its top. */
 #sx-beschreibung .fit{ --slot-in:0.5rem; grid-area:fit; width:100%; max-width:34rem; margin:2rem auto 0; padding:1.5rem 1.75rem 1.25rem; text-align:left; box-sizing:border-box;
-  border:1px solid var(--color-graphite-200); border-radius:var(--radius-xl); background:linear-gradient(180deg, #fff 30%, var(--color-teal-50)); box-shadow:0 0.0625rem 0.125rem rgba(26,23,27,.04); }   /* minimal: the hairline carries the card */
+  border:1px solid var(--color-graphite-200); border-radius:var(--radius-lg); background:linear-gradient(180deg, #fff 30%, var(--color-teal-50)); box-shadow:0 0.0625rem 0.125rem rgba(26,23,27,.04); }   /* minimal: the hairline carries the card */
 #sx-beschreibung .fit__head{ display:flex; justify-content:space-between; align-items:flex-end; gap:1rem; margin:0 0 0.5rem; font-size:0.9375rem; line-height:1.3; color:var(--color-digital-black); }
 /* the slot line's label, centred on the line's top: its right edge on the line's centre (--slot-in + 1px
    in from the right), shifted back by half its width; the dashes start just below it */
@@ -4064,7 +4113,7 @@ body.is-scrolled #quickbar {
 .pdp-b .mbxsteps li { margin:0; padding:0; }
 .pdp-b .mbxsteps li::before, .pdp-b .mbxsteps li::marker { content:none; }
 .pdp-b .mbxstep { display:grid; grid-template-columns:1.375rem minmax(0, 1fr); grid-template-areas:"bar bar" "n t" ". s"; column-gap:0.5rem; align-items:center; width:100%; padding:0 0 0.25rem; margin:0; border:0; background:none; font:inherit; color:inherit; text-align:left; cursor:pointer; border-radius:var(--radius); }
-.pdp-b .mbxstep__bar { grid-area:bar; display:block; height:3px; margin-bottom:0.65rem; border-radius:2px; background:rgba(26,23,27,.1); overflow:hidden; }
+.pdp-b .mbxstep__bar { grid-area:bar; display:block; height:3px; margin-bottom:0.65rem; border-radius:var(--radius-pill); background:rgba(26,23,27,.1); overflow:hidden; }
 .pdp-b .mbxstep__bar i { display:block; height:100%; background:var(--color-teal); transform-origin:0 50%; transform:scaleX(var(--p, 0)); }
 .pdp-b .mbxstep__n { grid-area:n; width:1.375rem; height:1.375rem; border-radius:50%; display:grid; place-items:center; font-size:0.75rem; font-weight:700; border:1.5px solid rgba(26,23,27,.2); color:var(--text-secondary); transition:background-color .25s, border-color .25s, color .25s; }
 .pdp-b .mbxstep.is-on .mbxstep__n { background:var(--color-teal); border-color:var(--color-teal); color:#fff; }
