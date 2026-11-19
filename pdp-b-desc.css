@@ -4337,3 +4337,14 @@ body.is-scrolled #quickbar {
 /* the frame is the kit's Modal: LG width (60rem) and no fixed height – as tall as its content, up to
    90vh (phones: the bottom sheet, up to 85vh); a short dialog never floats in an empty frame */
 #infoMod .infomod__panel { height: auto; }
+
+/* ── Zigzag ── from 64rem the text | picture sections alternate down the description: Das Wichtigste
+   picture left, Warum dieser Briefkasten? right, Einwurf left – (cards, columns, gallery) – Verfügbare
+   Farben right (the dark panel keeps its black-to-teal fall), Konfigurator left, Smarte Ausstattung
+   right. Stacked (below 64rem) each section keeps its own order. */
+@media (min-width:64rem){
+  #sx-beschreibung .mz-flip > [data-area-id="col-1"]{ order:-1; }   /* Warum dieser Briefkasten?: the text to the front – moving the slider to the end would put it after the row's clearfix line breaks */
+  #sx-beschreibung .row:has(> [data-area-id="col-0"] > .dsc-head){ grid-template-areas:"head head" "stage body" "stage fit" "stage ."; }   /* Einwurf: the stage and its steps left, copy and slot gauge right */
+  #sx-beschreibung .kfg:not(#infoMod .kfg){ grid-template-areas:"eb eb" "h h" "img steps"; }   /* Konfigurator: the screen left, the steps right (the Gravurdaten dialog keeps its own layout) */
+  #sx-beschreibung .smart:not(#infoMod .smart) > .smart__panel > .smart__media{ order:2; }   /* Smarte Ausstattung: the text left, the photo right */
+}
