@@ -20,7 +20,7 @@
 <!-- New PDP sections -->
 <link rel="stylesheet" href="pdp.css?v=35" />
 <!-- Version B – inline build panel -->
-<link rel="stylesheet" href="pdp-b-desc.css?v=175" />
+<link rel="stylesheet" href="pdp-b-desc.css?v=182" />
 <link rel="stylesheet" href="pdp-b-desc-opc.css?v=2" />
 <!-- Prototype variant switch – append ?flow=b (v2) or ?flow=c (v3) to load an alternative
      color-selection flow. Default (no param) renders v1 exactly as-is. Runs in <head> so the
@@ -666,14 +666,16 @@
 
         <!-- ===== BUY BLOCK – "Preis wie konfiguriert" · always-live cart (validate on click, never lock) ===== -->
         <div class="cfgb-checkout" id="bCheckout">
-          <!-- Price details (follows the config): opening reveals the itemised breakdown + total -->
-          <div class="cfgb-acc" id="bAcc">
-            <button type="button" class="cfgb-detailsbtn" id="bDetailsBtn" aria-expanded="false" aria-controls="bAccBody">
-              <span class="cfgb-detailsbtn__t">Preisdetails &amp; Menge</span>
-              <svg class="cfgb-detailsbtn__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-            </button>
-            <div class="cfgb-acc__body" id="bAccBody"><div class="cfgb-acc__inner"><div class="cfgb-summary" id="bSummaryInline" aria-label="Preisdetails · konfigurierte Positionen"></div></div></div>
-          </div>
+          <!-- Ihre Konfiguration (the kit's detail window, inline): the head opens the positions; the
+               price as configured stays on show, right above the cart button -->
+          <div class="cfgb-acc" id="bAcc"><div class="cfgb-acc__card">
+            <h2 class="cfgb-acc__h"><button type="button" class="cfgb-detailsbtn" id="bDetailsBtn" aria-expanded="false" aria-controls="bAccBody">
+              <span class="cfgb-detailsbtn__titles"><span class="cfgb-detailsbtn__t">Ihre Konfiguration</span><span class="cfgb-detailsbtn__n" id="bDetailsN"></span></span>
+              <svg class="cfgb-detailsbtn__chev" aria-hidden="true" data-icon="NAV-11-chevron-unten" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 9.5l5.5 5.5 5.5-5.5"/></svg>
+            </button></h2>
+            <div class="cfgb-acc__body" id="bAccBody"><div class="cfgb-acc__inner"><div class="cfgb-summary" id="bSummaryInline" role="list" aria-label="Positionen"></div></div></div>
+            <div class="cfgb-acc__total"><span class="cfgb-acc__label">Preis wie konfiguriert</span><b class="cfgb-acc__price" id="bAccTotal"></b><span class="cfgb-acc__vat">inkl. 19% USt. · zzgl. Versand</span></div>
+          </div></div>
           <div class="cfgb-buyrow">
             <span class="cfg-opt__qty cfgb-buyrow__qty" aria-label="Menge Briefkasten Siebert"><button type="button" data-qd="-1" data-target="main" aria-label="Menge verringern">−</button><span id="bMainQtyVal">1</span><button type="button" data-qd="1" data-target="main" aria-label="Menge erhöhen">+</button></span>
             <button type="button" class="pdp-cta cfgb-cta" id="bCart">In den Warenkorb</button>
@@ -1329,7 +1331,7 @@ Hochwertig verarbeitet</h3><div
 style="max-width:1080px; margin-left: auto;margin-right: auto;" class="mz-img mz-ki">
 <picture>
 <img
-src="assets/briefkasten/siebert-detail-korpus-v2.jpg" srcset="assets/briefkasten/siebert-detail-korpus-v2-480.jpg 480w, assets/briefkasten/siebert-detail-korpus-v2-720.jpg 720w, assets/briefkasten/siebert-detail-korpus-v2.jpg 1080w" sizes="(max-width: 29.99rem) 100vw, (max-width: 47.99rem) 46vw, 33vw" class="img-aspect-ratio lazyload img-fluid w-100" alt="Der Metzler Siebert im Studiolicht: pulverbeschichteter Korpus, saubere Kanten und Edelstahlleisten" width="1080" height="810" loading="lazy" decoding="async" draggable="false">
+src="assets/briefkasten/siebert-detail-korpus-v3.jpg" srcset="assets/briefkasten/siebert-detail-korpus-v3-480.jpg 480w, assets/briefkasten/siebert-detail-korpus-v3-720.jpg 720w, assets/briefkasten/siebert-detail-korpus-v3.jpg 1080w" sizes="(max-width: 29.99rem) 100vw, (max-width: 47.99rem) 46vw, 33vw" class="img-aspect-ratio lazyload img-fluid w-100" alt="Der Metzler Siebert im Studiolicht: pulverbeschichteter Korpus, saubere Kanten und Edelstahlleisten" width="1080" height="810" loading="lazy" decoding="async" draggable="false">
 </picture></div><div
 style="" class=""><ul
 class="mz-ikl"><li>
@@ -1354,7 +1356,7 @@ class="col  col-md-4 col-lg-4 col-xl-4 col-12" data-area-id="col-1"><h3 style=" 
 Witterungsbeständig</h3><div
 style="" class=""><div
 class="mz-vidwrap mz-media mz-img"><video
-class="mz-lazyvid mz-ki" preload="none" data-src="assets/briefkasten/siebert-wetter.mp4" poster="assets/briefkasten/siebert-wetter-poster.jpg" autoplay loop muted playsinline aria-label="Metzler Briefkasten Siebert bei starkem Regen, wetterbestaendig"></video></div></div><div
+class="mz-lazyvid mz-ki" preload="none" data-src="assets/briefkasten/siebert-wetter-v2.mp4" poster="assets/briefkasten/siebert-wetter-poster-v2.jpg" autoplay loop muted playsinline aria-label="Metzler Briefkasten Siebert bei starkem Regen, wetterbestaendig"></video></div></div><div
 style="" class=""><style type="text/css">.mz-ikl{list-style:none;padding:0;margin:0;display:grid;gap:0.75rem}.mz-ikl li{display:flex;align-items:center;gap:0.75rem}.mz-ikl-ico{display:inline-flex;align-items:center;justify-content:center;width:2.5rem;height:2.5rem;border-radius:0.5rem;background:rgba(1,82,83,0.08);color:var(--teal);flex:0 0 auto}.mz-ikl-ico svg{width:1.25rem;height:1.25rem;display:block}.mz-ikl-ico svg.mz-fingerabdruck{width:auto;height:1.4rem}.mz-ikl-ico svg.mz-schirm{width:auto;height:1.65rem}.mz-ikl .mz-ikl-t{margin:0;font-size:1rem;color:var(--schwarz)}.mz-ikl-t b{display:block;font-weight:700}.mz-ikl-t span{display:block;color:var(--text-muted)}</style><style type="text/css">.mz-mg,.row.mz-mg{align-items:flex-start}.mz-mg .mz-ikl{margin-top:1.25rem}@media(max-width:47.9375rem){.mz-mg,.row.mz-mg{row-gap:2rem}}</style><ul
 class="mz-ikl"><li>
 <span
@@ -2472,17 +2474,17 @@ style="" class=""> <script>(function(){var start=function(){var v=document.query
 <!-- ===== PREISDETAILS – bottom-up window (page-wide access) ===== -->
 <div class="sheet" id="bSheet" aria-hidden="true">
   <div class="sheet__backdrop" data-sheet-close></div>
-  <div class="sheet__panel" role="dialog" aria-modal="true" aria-label="Preisdetails und Menge">
+  <div class="sheet__panel" role="dialog" aria-modal="true" aria-label="Ihre Konfiguration">
     <div class="sheet__grip" aria-hidden="true"></div>
     <div class="sheet__head">
-      <span class="sheet__title">Preisdetails &amp; Menge</span>
-      <button class="sheet__close" type="button" data-sheet-close aria-label="Schließen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      <span class="sheet__title">Ihre Konfiguration</span>
+      <button class="sheet__close" type="button" data-sheet-close aria-label="Schließen"><svg aria-hidden="true" data-icon="NAV-03-schliessen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11"/></svg></button>
     </div>
-    <div class="cfgb-summary" id="bSummary" aria-label="Konfigurierte Positionen"></div>
+    <div class="cfgb-summary" id="bSummary" role="list" aria-label="Positionen"></div>
     <div class="sheet__foot">
       <div class="sheet__foot-lead">
-        <img class="sheet__thumb" src="Product Image/Sprechanlage/video-station.png" alt="" aria-hidden="true">
-        <div class="sheet__price"><span class="sheet__pricelabel" hidden>Preis wie konfiguriert</span><span class="sheet__pricefrom" id="bSheetFrom">ab</span><b class="cfgb-total__amount" id="bSheetTotal">699,00 €</b><span class="sheet__pricemeta">inkl. 19% USt.</span></div>
+        <img class="sheet__thumb" src="assets/briefkasten/siebert-farbe-anthrazit-ral7016.jpg" alt="" aria-hidden="true">
+        <div class="sheet__price"><span class="sheet__pricelabel" hidden>Preis wie konfiguriert</span><span class="sheet__pricefrom" id="bSheetFrom">ab</span><b class="cfgb-total__amount" id="bSheetTotal">699,00 €</b><span class="sheet__pricemeta">inkl. 19% USt. · zzgl. Versand</span></div>
       </div>
       <button type="button" class="pdp-cta" id="bSheetCart">In den Warenkorb</button>
     </div>
@@ -2765,7 +2767,7 @@ style="" class=""> <script>(function(){var start=function(){var v=document.query
 </div>
 
 <script src="chrome.js?v=14"></script>
-<script src="pdp-b-desc.js?v=34"></script>
+<script src="pdp-b-desc.js?v=37"></script>
 <style id="pf-lockdown-css">
 footer a,[class*="topbar"] a,[class*="top-bar"] a,[class*="trustbar"] a,[class*="claims"] a{pointer-events:none !important;cursor:default !important;}
 </style>

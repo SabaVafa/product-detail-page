@@ -855,8 +855,8 @@ html[data-ts="float"]      .pdp-b .ts-slot[data-pos="float"]      { display: fle
 .pdp-b .ts-float__meta b { color: var(--color-digital-black); font-weight: 800; }
 @media (max-width: 560px) { .pdp-b .ts-float { right: 0.6rem; bottom: 0.6rem; } }
 
-/* Preisdetails & Menge accordion lives in the checkout now (after the config); hide it
-   until a colour is chosen – nothing to detail yet */
+/* Ihre Konfiguration lives in the checkout (after the config); hidden until the config carries a
+   surcharge – nothing to detail before */
 #bAcc { display: none; }                              /* hidden until a paid item is added */
 .cfgb-checkout.is-priced #bAcc { display: block; }    /* revealed on the first surcharge */
 
@@ -1145,13 +1145,6 @@ html[data-ts="float"]      .pdp-b .ts-slot[data-pos="float"]      { display: fle
   body:not(.swtouch) .bx-swline { transition: none; }
 }
 
-/* ── Preisdetails trigger (buy block) ── */
-.cfgb-detailsbtn { display: flex; align-items: center; gap: 0.6rem; width: 100%; padding: 0.75rem 0.9rem;
-  background: var(--color-paper); border: 1px solid var(--color-graphite-200); border-radius: var(--radius);
-  cursor: pointer; font-family: inherit; font-size: 0.875rem; font-weight: 700; color: var(--color-digital-black);
-  transition: border-color .16s, background .16s; }
-.cfgb-detailsbtn:hover { border-color: var(--color-teal); background: var(--color-white); }
-.cfgb-detailsbtn__chev { width: 1rem; height: 1rem; color: var(--color-graphite-700); flex-shrink: 0; margin-left: auto; }
 
 /* ── Sticky bar: details button ── */
 .pdp-stickybar__details { display: inline-flex; align-items: center; gap: 0.35rem; flex-shrink: 0; margin-left: auto;
@@ -1173,7 +1166,7 @@ html[data-ts="float"]      .pdp-b .ts-slot[data-pos="float"]      { display: fle
 .sheet__grip { width: 2.5rem; height: 0.3rem; border-radius: var(--radius-pill); background: var(--color-graphite-200); margin: 0.7rem auto 0.1rem; }
 .sheet__head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.5rem 1.25rem 0.75rem; border-bottom: 1px solid var(--color-graphite-200); margin-bottom: 0.25rem; }
 .sheet__title { font-size: 1rem; font-weight: 700; letter-spacing: -0.01em; color: var(--color-digital-black); }
-.sheet__close { width: 2.2rem; height: 2.2rem; display: grid; place-items: center end; padding: 0; border: 0; background: none; border-radius: 0; cursor: pointer; color: var(--color-graphite-600); }
+.sheet__close { width: 2.75rem; height: 2.75rem; display: grid; place-items: center end; padding: 0; border: 0; background: none; border-radius: 0; cursor: pointer; color: var(--color-graphite-600); }
 .sheet__close svg { width: 1.1rem; height: 1.1rem; }
 .sheet__close:hover { color: var(--color-digital-black); }
 .sheet .cfgb-summary { border: 0; background: none; padding: 0 1.25rem 1.25rem; margin: 0; overflow-y: auto; }
@@ -1191,7 +1184,7 @@ html[data-ts="float"]      .pdp-b .ts-slot[data-pos="float"]      { display: fle
    stretches into a tall portrait when the price block grows to two lines (the
    "Preis wie konfiguriert" label sitting above the total). */
 .sheet__thumb { width: 2.625rem; height: 2.625rem; flex-shrink: 0; border-radius: var(--radius); background: var(--color-paper); border: 1px solid var(--color-graphite-200); object-fit: contain; padding: 0.25rem; }
-.sheet__pricelabel { display: block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-graphite-600); line-height: 1.25; }
+.sheet__pricelabel { display: block; font-size: 0.75rem; color: var(--color-graphite-700); line-height: 1.25; }   /* the kit's window label: sentence case, as inline */
 /* the explicit display:block above outranks the UA [hidden] rule – restore hiding so the
    "Preis wie konfiguriert" label / "ab" prefix stay mutually exclusive (only one shows) */
 .sheet__pricelabel[hidden], .sheet__pricefrom[hidden] { display: none; }
@@ -1892,17 +1885,49 @@ body.kbd-open .cfgb-dock.is-fixed { display: none !important; }
    "required" signal reads consistently – same animation, same red */
 .cfgb-dock__flag.is-pulse { animation: bx-swatch-alert .7s ease-out; }
 
-/* ── Preisdetails – inline accordion in the buy block ── */
-.cfgb-acc { border: 1px solid var(--color-graphite-200); border-radius: var(--radius); overflow: hidden; background: var(--color-white); }
-.cfgb-acc .cfgb-detailsbtn { border: 0; border-radius: 0; background: var(--color-paper); }
-.cfgb-acc .cfgb-detailsbtn:hover { background: var(--color-white); }
-.cfgb-acc.is-open .cfgb-detailsbtn { background: var(--color-white); border-bottom: 1px solid var(--color-graphite-200); }
-.cfgb-detailsbtn__chev { transition: transform .3s ease; }
+/* ── Ihre Konfiguration – the review step at the end of the configuration, built with the configuration
+   panel's anatomy so the buy flow reads as one system: the panel's grey shell (paper, graphite-200,
+   radius-lg, the stage's 1rem / 1.1rem inset) holding one step card (white, graphite-200, var(--radius),
+   the open step's teal-tinted lift while open). The head is a step head without the step node (it
+   is no step to number): the 1rem title, the teal pick line ("3 Positionen") while closed, the
+   kit's NAV-11 chevron (hover = colour only). Inside: the positions, then the price
+   as configured closing the card – always on show, right above the cart button. Content: the kit's
+   detail window (Kaufleiste, "Ihre Konfiguration"). ── */
+.cfgb-acc { padding: 1rem 1.1rem 1.1rem; border: 1px solid var(--color-graphite-200); border-radius: var(--radius-lg); background: var(--color-paper); }
+.cfgb-acc__card { overflow: hidden; border: 1px solid var(--color-graphite-200); border-radius: var(--radius); background: var(--color-white); transition: box-shadow .25s ease; }
+.cfgb-acc.is-open .cfgb-acc__card { box-shadow: 0 0.5rem 1.5rem rgba(1,82,83,0.08); }
+.cfgb-acc__h { margin: 0; font: inherit; }   /* the accordion head is a heading (H2, as "Farbe wählen") – screen readers can jump to it */
+.cfgb-detailsbtn { display: flex; align-items: center; gap: 0.8rem; width: 100%; padding: 0.95rem 1rem; border: 0; background: none;
+  cursor: pointer; font-family: inherit; text-align: left; color: var(--color-digital-black); }
+.cfgb-detailsbtn:focus-visible { outline: 2px solid var(--color-teal); outline-offset: -2px; }
+.cfgb-detailsbtn__titles { display: flex; flex-direction: column; gap: 0.12rem; flex: 1; min-width: 0; }
+.cfgb-detailsbtn__t { font-size: 1rem; font-weight: 700; line-height: 1.5; color: var(--color-digital-black); }
+.cfgb-detailsbtn__n { font-size: 0.8125rem; font-weight: 600; line-height: 1.5; color: var(--color-teal); white-space: nowrap; overflow: hidden; transition: height .3s ease, opacity .2s ease; }
+.cfgb-acc.is-open .cfgb-detailsbtn__n { height: 0; opacity: 0; }   /* as an open step: the list below says it */
+.cfgb-detailsbtn__chev { width: 1.5rem; height: 1.5rem; flex-shrink: 0; color: var(--color-graphite-600); transition: transform .3s ease, color .15s ease; }
+.cfgb-detailsbtn:hover .cfgb-detailsbtn__chev, .cfgb-acc.is-open .cfgb-detailsbtn__chev { color: var(--color-teal); }
 .cfgb-acc.is-open .cfgb-detailsbtn__chev { transform: rotate(180deg); }
+@media (prefers-reduced-motion: reduce) {
+  .cfgb-acc__body, .cfgb-acc__inner, .cfgb-acc__card, .cfgb-detailsbtn__chev, .cfgb-detailsbtn__n { transition: none; }
+}
+/* phones: as the configuration there – the panel runs edge to edge and its steps are flat, full-width
+   cards; the review step does the same (same bleed as .cfgb, the card's sides on the screen edges) */
+@media (max-width: 48rem) {
+  .pdp-b .cfgb-acc { margin-left: calc(-1 * clamp(var(--sp-6), 4vw, 56px)); margin-right: calc(-1 * clamp(var(--sp-6), 4vw, 56px));
+    padding: 0; border: 0; border-radius: 0; background: none; }
+  .pdp-b .cfgb-acc__card { border-radius: 0; }   /* its sides stay, on the screen edges, as the steps' do */
+}
 .cfgb-acc__body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .35s cubic-bezier(.2,.7,.2,1); }
 .cfgb-acc.is-open .cfgb-acc__body { grid-template-rows: 1fr; }
-.cfgb-acc__inner { overflow: hidden; min-height: 0; }
-.cfgb-acc .cfgb-summary { border: 0; background: none; padding: 0.35rem 0.9rem 0.75rem; margin: 0; }
+.cfgb-acc__inner { overflow: hidden; min-height: 0; visibility: hidden; transition: visibility 0s linear .35s; }   /* closed: out of the reading order too, not only clipped */
+.cfgb-acc.is-open .cfgb-acc__inner { visibility: visible; transition-delay: 0s; }
+.cfgb-acc .cfgb-summary { border: 0; border-top: 1px solid var(--color-graphite-200); border-radius: 0; background: none; padding: 0 1rem; margin: 0; }
+/* the price as configured: label left, amount right on one baseline, the tax line under them */
+.cfgb-acc__total { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; gap: 0.125rem 0.75rem;
+  padding: 0.875rem 1rem 1rem; border-top: 1px solid var(--color-graphite-200); }
+.cfgb-acc__label { font-size: 0.875rem; font-weight: 700; color: var(--color-digital-black); }
+.cfgb-acc__price { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.01em; color: var(--color-digital-black); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.cfgb-acc__vat { grid-column: 1 / -1; font-size: 0.75rem; color: var(--color-graphite-600); }
 
 /* ── Inline per-product quantity (in the configuration, next to each entry) ── */
 .cfg-choice { display: flex; flex-direction: column; }
@@ -2067,19 +2092,22 @@ body.kbd-open .cfgb-dock.is-fixed { display: none !important; }
 .cfgb .cfg-opts--rows .cfg-opt__body { flex: 1 1 auto; padding-right: 0; }
 .cfgb .cfg-opts--rows .cfg-opt__price { margin: 0 0 0 auto; padding-top: 0; align-self: center; text-align: right; white-space: nowrap; }
 
-/* ── Price-details summary (itemized cart with qty steppers) ── */
-/* One shared 3-column grid (name | qty | price); rows use subgrid so the qty and price
-   columns line up across every row instead of each row sizing its own columns. */
-.cfgb-summary { display: grid; grid-template-columns: 1fr auto auto; column-gap: 0.7rem; padding: 0.5rem 0.9rem; margin-bottom: 0.2rem;
-  background: var(--color-white); border: 1px solid var(--color-graphite-200); border-radius: var(--radius); }
-.sum-row { display: grid; grid-column: 1 / -1; grid-template-columns: subgrid; align-items: center; padding: 0.55rem 0; }
-.sum-row__price, .sum-qty, .sum-qty-ro { justify-self: end; }   /* right-align qty + price within their shared columns */
+/* ── Positions (inline window and the bottom sheet) – the kit's rows: "1 ×" in graphite-700 before
+   the name, the product in bold with its colour on a line under it, the price right on the first
+   baseline (tabular), "inklusive" green and bold. One shared 2-column grid (name | price); rows use
+   subgrid so every price lines up. ── */
+.cfgb-summary { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 1rem; padding: 0.5rem 1rem; margin-bottom: 0.2rem;
+  background: var(--color-white); border: 1px solid var(--color-graphite-200); border-radius: var(--radius-lg); }
+.sum-row { display: grid; grid-column: 1 / -1; grid-template-columns: subgrid; align-items: baseline; padding: 0.75rem 0; }
+.sum-row__price { justify-self: end; }
 .sum-row + .sum-row { border-top: 1px solid var(--color-graphite-100); }
-.sum-row__name { font-size: 0.8125rem; color: var(--color-digital-black); min-width: 0; }
+.sum-row__name { display: flex; gap: 0.3em; font-size: 0.8125rem; line-height: 1.4; color: var(--color-digital-black); min-width: 0; }   /* "1 ×" | name: a long name wraps under itself */
+.sum-row__txt { min-width: 0; }
 .sum-row__name b { font-weight: 700; }
-.sum-row__name .sum-sub { display: none; }   /* finish is shown in Ausführung + specs – not repeated per price line */
+.sum-row__name .sum-sub { display: block; margin-top: 0.125rem; font-size: 0.75rem; color: var(--color-graphite-600); }
+.sum-qty-ro { color: var(--color-graphite-700); font-variant-numeric: tabular-nums; white-space: nowrap; }
 .sum-row__price { font-size: 0.8125rem; font-weight: 700; color: var(--color-digital-black); font-variant-numeric: tabular-nums; white-space: nowrap; text-align: right; }
-.sum-row__price.is-incl { color: var(--color-green); font-weight: 600; }
+.sum-row__price.is-incl { color: color-mix(in srgb, var(--color-green) 75%, #000); font-weight: 700; }   /* the kit green, a step darker: #009951 is 3.7:1 on white at 13 px, this ~6:1 (AA) */
 .sum-qty { display: inline-flex; align-items: center; gap: 0.3rem; }
 .sum-qty button { width: 1.55rem; height: 1.55rem; border: 1px solid var(--color-graphite-300); background: var(--color-white);
   border-radius: var(--radius); cursor: pointer; font-size: 1rem; line-height: 1; color: var(--color-digital-black);

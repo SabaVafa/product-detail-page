@@ -489,25 +489,28 @@ var MZSwipe = (function () {
   }
 
   /* ── Price-details summary (itemized cart) ── */
-  function roQty(q) { return '<span class="sum-qty-ro">×&nbsp;' + q + '</span>'; }
+  /* the kit's detail window ("Ihre Konfiguration"): "1 ×" before the name, the price right, a detail line under it */
+  function roQty(q) { return '<span class="sum-qty-ro">' + q + '&nbsp;×</span>'; }
   function row(name, sub, qtyHtml, price, cls) {
-    return '<div class="sum-row ' + (cls || '') + '">'
-      + '<span class="sum-row__name">' + name + (sub ? '<span class="sum-sub">' + sub + '</span>' : '') + '</span>'
-      + (qtyHtml || '<span></span>')
+    return '<div class="sum-row ' + (cls || '') + '" role="listitem">'
+      + '<span class="sum-row__name">' + (qtyHtml || '') + '<span class="sum-row__txt">' + name + (sub ? '<span class="sum-sub">' + sub + '</span>' : '') + '</span></span>'
       + '<span class="sum-row__price' + (price === 'inklusive' ? ' is-incl' : '') + '">' + price + '</span>'
       + '</div>';
   }
   function renderSummary() {
     var el = $('bSummary'); if (!el) return;
     var h = '';
-    h += row('<b>Metzler Briefkasten Siebert</b>', esc(finishText()), roQty(state.mainQty), euro(state.mainQty * (BASE + state.finishDelta)));
+    h += row('<b>Metzler Briefkasten Siebert</b>', esc(finishText()), state.mainQty > 1 ? roQty(state.mainQty) : null, euro(state.mainQty * (BASE + state.finishDelta)));
     var gravParts = [state.gravurText, state.gravurStreet, state.gravurNr].filter(Boolean);
-    if (gravParts.length) h += row('Gravur', '„' + esc(gravParts.join(' · ')) + '" · ' + esc(state.font), null, 'inklusive');
-    if (state.mount) h += row(esc(state.mount.label), null, null, euro(state.mount.price));
+    if (gravParts.length) h += row('Gravur', '„' + esc(gravParts.join(' · ')) + '“ · ' + esc(state.font), roQty(1), 'inklusive');
+    if (state.mount) h += row(esc(state.mount.label), null, roQty(1), euro(state.mount.price));
     for (var k in state.extras) { var x = state.extras[k]; h += row(esc(x.label || k), null, roQty(x.qty), euro(x.price * x.qty)); }
     document.querySelectorAll('.cfgb-summary').forEach(function (x) { x.innerHTML = h; });
     var n = el.querySelectorAll('.sum-row').length;
     setTxt('bSheetTotal', euro(total()));
+    setTxt('bAccTotal', euro(total()));
+    var thumb = MAINIMG[state.article] || MAINIMG['31101'];   /* the window's thumbnail: the Siebert in the chosen colour */
+    document.querySelectorAll('.sheet__thumb').forEach(function (t) { if (t.getAttribute('src') !== thumb) t.setAttribute('src', thumb); });
     var dn = $('bDetailsN'); if (dn) dn.textContent = n + (n === 1 ? ' Position' : ' Positionen');
   }
   function applyQty(target, d) {
@@ -1896,8 +1899,20 @@ var MZSwipe = (function () {
 
   /* ── Bottom-up price sheet (accessible page-wide) ── */
   var sheet = $('bSheet');
-  function openSheet() { if (!sheet) return; renderSummary(); sheet.classList.add('is-open'); sheet.setAttribute('aria-hidden', 'false'); document.body.classList.add('cfg-sheet-open'); }
-  function closeSheet() { if (!sheet) return; sheet.classList.remove('is-open'); sheet.setAttribute('aria-hidden', 'true'); document.body.classList.remove('cfg-sheet-open'); }
+  /* a modal window: focus moves in on open (the close button), Tab stays inside, and it returns to the
+     trigger on close */
+  var sheetReturn = null;
+  function openSheet() { if (!sheet) return; sheetReturn = document.activeElement; renderSummary(); sheet.classList.add('is-open'); sheet.setAttribute('aria-hidden', 'false'); document.body.classList.add('cfg-sheet-open');
+    var c = sheet.querySelector('.sheet__close'); if (c) window.setTimeout(function () { c.focus({ preventScroll: true }); }, 60); }
+  function closeSheet() { if (!sheet) return; var was = sheet.classList.contains('is-open'); sheet.classList.remove('is-open'); sheet.setAttribute('aria-hidden', 'true'); document.body.classList.remove('cfg-sheet-open');
+    if (was && sheetReturn && sheetReturn.focus) sheetReturn.focus({ preventScroll: true }); sheetReturn = null; }
+  if (sheet) sheet.addEventListener('keydown', function (e) {
+    if (e.key !== 'Tab' || !sheet.classList.contains('is-open')) return;
+    var f = [].slice.call(sheet.querySelectorAll('button, a[href], input, select, [tabindex]:not([tabindex="-1"])')).filter(function (x) { return x.getClientRects().length; });
+    if (!f.length) return;
+    if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f[f.length - 1].focus(); }
+    else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
+  });
   /* buy-block trigger → inline accordion (expand in place) */
   var acc = $('bAcc'), dBtn = $('bDetailsBtn');
   if (dBtn && acc) dBtn.addEventListener('click', function () {
