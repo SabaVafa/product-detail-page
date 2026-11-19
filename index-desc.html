@@ -1943,7 +1943,8 @@ kacheln.forEach(function(k,n){
 .mz-brand__figs li::before,.mz-brand__figs li::marker{content:none}
 .mz-brand__figs strong{font-size:1.25rem;font-weight:700;line-height:1.1;letter-spacing:-0.02em;color:var(--color-digital-black,#1A171B);white-space:nowrap}
 .mz-brand__figs span{font-size:0.6875rem;font-weight:700;line-height:1.3;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-graphite-600,#6A6A6A)}
-/* proof bar: the band's white bottom edge, screen edge to screen edge, one slim line. Every item
+/* proof bar: a white bar inside the grey band – screen edge to screen edge, hairlines above and
+   below, framed evenly in the grey: the space above it is the band's padding, as the space below. Every item
    has one anatomy – a 2.75rem badge (the seal, or the rating source's logo at the same size), a
    bold title, a one-line caption – with short centred hairlines between: the awards, the
    three public ratings (values as in the Warum Metzler prototype, Nov 2026), then the promises.
@@ -1952,10 +1953,9 @@ kacheln.forEach(function(k,n){
    content edge and loops without end – a copy of the row on each side, re-centred on the real
    one whenever a scroll ends, so there is never an end nor a visible jump. No scrollbar: a soft
    fade at both edges (as wide as the content margin, so it never dims an item at rest), the kit's
-   small square arrows on mouse screens, touch swipes. The bar closes the band (its bottom padding
-   pulled out), the space above it is the band's top padding. */
-.mz-brand__trust{--fade:1.5rem;position:relative;margin:3.5rem calc(50% - 50vw) -3.5rem;padding:0 calc(50vw - 50%);background:var(--color-white,#FFF);border-block:0.0625rem solid var(--color-graphite-200,#E6E6E8)}
-.mz-brand__awards{position:relative;list-style:none;margin:0 calc(50% - 50vw);padding:1.5rem calc(50vw - 50%);display:flex;align-items:center;justify-content:safe center;gap:3rem;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none}
+   small square arrows on mouse screens, touch swipes. */
+.mz-brand__trust{--fade:1.5rem;--pt:1.5rem;position:relative;margin:3.5rem calc(50% - 50vw) 0;padding:0 calc(50vw - 50%);background:var(--color-white,#FFF);border-block:0.0625rem solid var(--color-graphite-200,#E6E6E8)}
+.mz-brand__awards{position:relative;list-style:none;margin:0 calc(50% - 50vw);padding:var(--pt) calc(50vw - 50%);display:flex;align-items:center;justify-content:safe center;gap:3rem;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none}
 .mz-brand__awards::-webkit-scrollbar{display:none}
 .mz-brand__awards:focus-visible{outline:0.125rem solid var(--color-teal,#015253);outline-offset:-0.125rem}
 .mz-brand__trust[data-more-right] .mz-brand__awards{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - var(--fade)),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - var(--fade)),transparent)}
@@ -1971,7 +1971,7 @@ kacheln.forEach(function(k,n){
 .mz-brand__of{font-weight:400;letter-spacing:0;color:var(--color-graphite-600,#6A6A6A)}
 .mz-brand__award > span{font-size:0.8125rem;line-height:1.4;color:var(--color-graphite-700,#54545C)}
 /* the kit's NavigationArrows, small (2.1875rem, teal outline, var(--radius)) – over the fade */
-.mz-brand__nav{position:absolute;z-index:1;top:50%;display:inline-flex;align-items:center;justify-content:center;width:2.1875rem;height:2.1875rem;padding:0;border:0.0625rem solid var(--color-teal,#015253);border-radius:var(--radius,0.25rem);background:var(--color-white,#FFF);color:var(--color-teal,#015253);cursor:pointer;transform:translateY(-50%);transition:background 0.15s ease}
+.mz-brand__nav{position:absolute;z-index:1;top:calc(var(--pt) + 1.375rem);display:inline-flex;align-items:center;justify-content:center;width:2.1875rem;height:2.1875rem;padding:0;border:0.0625rem solid var(--color-teal,#015253);border-radius:var(--radius,0.25rem);background:var(--color-white,#FFF);color:var(--color-teal,#015253);cursor:pointer;transform:translateY(-50%);transition:background 0.15s ease}
 .mz-brand__nav:hover{background:var(--color-teal-100,#E6EEEE)}
 .mz-brand__nav:active{background:var(--color-teal,#015253);color:var(--color-white,#FFF)}
 .mz-brand__nav svg{display:block;width:auto;height:0.625rem}
@@ -1983,7 +1983,7 @@ kacheln.forEach(function(k,n){
 @media(min-width:48rem){
 .mz-brand{padding-block:4.5rem}
 .mz-brand__title{font-size:var(--display-5-size,2.25rem)}
-.mz-brand__trust{margin-block:4.5rem -4.5rem}
+.mz-brand__trust{margin-top:4.5rem}
 }
 @media(min-width:64rem){
 .mz-brand{padding-block:5.5rem}
@@ -1991,8 +1991,7 @@ kacheln.forEach(function(k,n){
 .mz-brand__lead{font-size:var(--text-body-lg-size,1.125rem)}
 .mz-brand__figs{--g:1.25rem;margin-top:2.25rem}
 .mz-brand__figs strong{font-size:1.375rem}
-.mz-brand__trust{margin-block:5.5rem -5.5rem}
-.mz-brand__awards{padding-block:1.75rem}
+.mz-brand__trust{margin-top:5.5rem;--pt:1.75rem}
 }
 @media(min-width:88rem){
 .mz-brand__figs{--g:1.75rem}
