@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.9 2.1 22.2 20.9">
+  
+  <defs>
+    <style>
+      .st0 {
+        fill: #04da8d;
+      }
+
+      .st1 {
+        fill: #126849;
+      }
+    </style>
+  </defs>
+  <path class="st0" d="M23,10.1h-8.4l-2.6-7.9-2.6,7.9H1s6.8,4.9,6.8,4.9l-2.6,7.9,6.8-4.9,6.8,4.9-2.6-7.9,6.8-4.9Z"/>
+  <path class="st1" d="M16.8,16.7l-.6-1.8-4.2,3s4.8-1.2,4.8-1.2Z"/>
+</svg>

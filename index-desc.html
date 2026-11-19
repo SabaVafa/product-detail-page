@@ -1943,36 +1943,47 @@ kacheln.forEach(function(k,n){
 .mz-brand__figs li::before,.mz-brand__figs li::marker{content:none}
 .mz-brand__figs strong{font-size:1.25rem;font-weight:700;line-height:1.1;letter-spacing:-0.02em;color:var(--color-digital-black,#1A171B);white-space:nowrap}
 .mz-brand__figs span{font-size:0.6875rem;font-weight:700;line-height:1.3;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-graphite-600,#6A6A6A)}
-/* trust card: one white card, hairline cells (the kit's Section 02 grid-gap trick – the card's
-   graphite-200 shows through 1 px gaps), each award as badge + text, left-aligned. Badges sit
-   at one optical size – each badge file is cropped to its visible outline, so one height fits
-   all and they share one centre line (the ntv seal is a wide stack of four). Every title on one line: a compact list on phones (badge beside the text), centred
-   seals from 36rem – 2 columns, 3 + 2 from 64rem, 5 across from 88rem. */
-.mz-brand__awards{list-style:none;margin:2.5rem 0 0;padding:0;display:grid;grid-template-columns:minmax(0,1fr);gap:0.0625rem;background:var(--color-graphite-200,#E6E6E8);border:0.0625rem solid var(--color-graphite-200,#E6E6E8);border-radius:var(--radius-lg,0.5rem);overflow:hidden;box-shadow:0 0.0625rem 0.125rem rgba(0,0,0,0.04),0 0.75rem 2rem rgba(0,0,0,0.05)}
-.mz-brand__awards li{display:flex;align-items:center;gap:1rem;min-width:0;margin:0;padding:1.25rem;background:var(--color-white,#FFF)}
-.mz-brand__awards li::before,.mz-brand__awards li::marker{content:none}
-.mz-brand__badge{flex:none;display:grid;place-items:center;width:3.5rem;height:3.5rem}
-.mz-brand__badge img{display:block;width:auto;height:2.25rem;max-width:3.5rem;margin:0}
-.mz-brand__badge img.mz-brand__badge--line{height:2rem}   /* outline icon: optically as large as the solid seals */
-.mz-brand__award{display:flex;flex-direction:column;gap:0.2rem;min-width:0}
-.mz-brand__awards strong{font-size:0.9375rem;font-weight:700;line-height:1.3;color:var(--color-digital-black,#1A171B)}
-.mz-brand__award > span{font-size:0.8125rem;line-height:1.45;color:var(--color-graphite-600,#6A6A6A);text-wrap:pretty}
-/* from 36rem every cell is a centred seal: the badge 3rem tall, title and caption centred under it */
-@media(min-width:36rem){
-.mz-brand__awards{grid-template-columns:repeat(2,minmax(0,1fr))}
-.mz-brand__awards li:last-child{grid-column:1 / -1}
-.mz-brand__awards li{flex-direction:column;justify-content:flex-start;gap:0.875rem;padding:1.75rem 1.25rem 1.5rem;text-align:center}
-.mz-brand__badge{width:auto;height:3rem}
-.mz-brand__badge img{height:3rem;max-width:4.5rem}
-.mz-brand__badge img.mz-brand__badge--line{height:2.75rem}
-.mz-brand__award{align-items:center}
-.mz-brand__award > span{text-wrap:balance}
-}
+/* proof bar: the band's white bottom edge, screen edge to screen edge, one slim line. Every item
+   has one anatomy – a 2.75rem badge (the seal, or the rating source's logo at the same size), a
+   bold title, a one-line caption – with short centred hairlines between: the awards, the
+   three public ratings (values as in the Warum Metzler prototype, Nov 2026), then the promises.
+   Type: titles 1rem bold, tracked in a hair, numbers tabular; scores read "4,73 von 5" with the
+   scale light; captions graphite-700, facts split by a middle dot. The row starts on the band's
+   content edge and loops without end – a copy of the row on each side, re-centred on the real
+   one whenever a scroll ends, so there is never an end nor a visible jump. No scrollbar: a soft
+   fade at both edges (as wide as the content margin, so it never dims an item at rest), the kit's
+   small square arrows on mouse screens, touch swipes. The bar closes the band (its bottom padding
+   pulled out), the space above it is the band's top padding. */
+.mz-brand__trust{--fade:1.5rem;position:relative;margin:3.5rem calc(50% - 50vw) -3.5rem;padding:0 calc(50vw - 50%);background:var(--color-white,#FFF);border-block:0.0625rem solid var(--color-graphite-200,#E6E6E8)}
+.mz-brand__awards{position:relative;list-style:none;margin:0 calc(50% - 50vw);padding:1.5rem calc(50vw - 50%);display:flex;align-items:center;justify-content:safe center;gap:3rem;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none}
+.mz-brand__awards::-webkit-scrollbar{display:none}
+.mz-brand__awards:focus-visible{outline:0.125rem solid var(--color-teal,#015253);outline-offset:-0.125rem}
+.mz-brand__trust[data-more-right] .mz-brand__awards{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - var(--fade)),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - var(--fade)),transparent)}
+.mz-brand__trust[data-more-left] .mz-brand__awards{-webkit-mask-image:linear-gradient(90deg,transparent,#000 var(--fade));mask-image:linear-gradient(90deg,transparent,#000 var(--fade))}
+.mz-brand__trust[data-more-left][data-more-right] .mz-brand__awards{-webkit-mask-image:linear-gradient(90deg,transparent,#000 var(--fade),#000 calc(100% - var(--fade)),transparent);mask-image:linear-gradient(90deg,transparent,#000 var(--fade),#000 calc(100% - var(--fade)),transparent)}
+.mz-brand__awards li{position:relative;flex:none;display:flex;align-items:center;gap:0.875rem;margin:0;padding:0}
+.mz-brand__awards li::marker{content:none}
+.mz-brand__awards li + li::before{content:"";position:absolute;left:-1.5rem;top:50%;width:0.0625rem;height:2.25rem;background:var(--color-graphite-200,#E6E6E8);transform:translateY(-50%)}
+.mz-brand__seal{flex:none;display:block;width:2.75rem;height:2.75rem;object-fit:contain}
+.mz-brand__seal--pale{transform:scale(1.1);filter:drop-shadow(0 0.0625rem 0.1875rem rgba(26,23,27,0.22))}   /* the Top Shop coin is pale gold all over (the others have dark rims): drawn 10 % larger (optical size, the layout keeps 2.75rem) with a tight shadow on its edge, it reads as large as the dark seals */
+.mz-brand__award{display:flex;flex-direction:column;gap:0.1875rem;white-space:nowrap}
+.mz-brand__award strong{font-size:1rem;font-weight:700;line-height:1.25;letter-spacing:-0.01em;color:var(--color-digital-black,#1A171B);font-variant-numeric:tabular-nums}
+.mz-brand__of{font-weight:400;letter-spacing:0;color:var(--color-graphite-600,#6A6A6A)}
+.mz-brand__award > span{font-size:0.8125rem;line-height:1.4;color:var(--color-graphite-700,#54545C)}
+/* the kit's NavigationArrows, small (2.1875rem, teal outline, var(--radius)) – over the fade */
+.mz-brand__nav{position:absolute;z-index:1;top:50%;display:inline-flex;align-items:center;justify-content:center;width:2.1875rem;height:2.1875rem;padding:0;border:0.0625rem solid var(--color-teal,#015253);border-radius:var(--radius,0.25rem);background:var(--color-white,#FFF);color:var(--color-teal,#015253);cursor:pointer;transform:translateY(-50%);transition:background 0.15s ease}
+.mz-brand__nav:hover{background:var(--color-teal-100,#E6EEEE)}
+.mz-brand__nav:active{background:var(--color-teal,#015253);color:var(--color-white,#FFF)}
+.mz-brand__nav svg{display:block;width:auto;height:0.625rem}
+.mz-brand__nav--prev{left:var(--nav-x,1rem)}
+.mz-brand__nav--next{right:var(--nav-x,1rem)}   /* centred in the side margin (set by the script), clear of the first item */
+.mz-brand__nav[hidden]{display:none}
+@media (hover:none),(pointer:coarse){.mz-brand__nav{display:none}}
 /* one rhythm: the band's bottom padding matches its top */
 @media(min-width:48rem){
 .mz-brand{padding-block:4.5rem}
 .mz-brand__title{font-size:var(--display-5-size,2.25rem)}
-.mz-brand__awards{margin-top:3rem}
+.mz-brand__trust{margin-block:4.5rem -4.5rem}
 }
 @media(min-width:64rem){
 .mz-brand{padding-block:5.5rem}
@@ -1980,15 +1991,13 @@ kacheln.forEach(function(k,n){
 .mz-brand__lead{font-size:var(--text-body-lg-size,1.125rem)}
 .mz-brand__figs{--g:1.25rem;margin-top:2.25rem}
 .mz-brand__figs strong{font-size:1.375rem}
-.mz-brand__awards{margin-top:3.5rem;grid-template-columns:repeat(6,minmax(0,1fr))}
-.mz-brand__awards li{grid-column:span 2}
-.mz-brand__awards li:nth-last-child(-n+2){grid-column:span 3}
+.mz-brand__trust{margin-block:5.5rem -5.5rem}
+.mz-brand__awards{padding-block:1.75rem}
 }
 @media(min-width:88rem){
 .mz-brand__figs{--g:1.75rem}
-.mz-brand__awards{grid-template-columns:repeat(5,minmax(0,1fr))}
-.mz-brand__awards li,.mz-brand__awards li:nth-last-child(-n+2){grid-column:auto;padding:2rem 1rem 1.75rem}
 }
+
 </style><section class="mz-brand" aria-labelledby="mzBrandTitle">
 <div class="mz-brand__grid">
 <img class="mz-brand__img" src="assets/metzler-firmensitz-reutlingen.webp" width="1405" height="780" loading="lazy" alt="Firmensitz der Metzler GmbH in Reutlingen">
@@ -2004,13 +2013,42 @@ kacheln.forEach(function(k,n){
 </ul>
 </div>
 </div>
-<ul class="mz-brand__awards" role="list" aria-label="Gute Gründe, uns zu vertrauen">
-<li><span class="mz-brand__badge"><img src="assets/ntv-award-siegel.webp" width="262" height="176" loading="lazy" alt=""></span><span class="mz-brand__award"><strong>Beliebtester Anbieter</strong><span>ntv Life &amp; Living Award, 4× in Folge</span></span></li>
-<li><span class="mz-brand__badge"><img class="mz-brand__badge--line" src="assets/badge-vergleich-org.svg" width="75" height="75" loading="lazy" alt=""></span><span class="mz-brand__award"><strong>Vergleichssieger</strong><span>Vergleich.org, Note „sehr gut“</span></span></li>
-<li><span class="mz-brand__badge"><img src="assets/badge-top-shop.svg" width="61" height="61" loading="lazy" alt=""></span><span class="mz-brand__award"><strong>Top Shop</strong><span>Computer Bild, 3 Jahre in Folge</span></span></li>
-<li><span class="mz-brand__badge"><img src="assets/badge-trusted-shops.webp" width="240" height="240" loading="lazy" alt=""></span><span class="mz-brand__award"><strong>Käuferschutz</strong><span>Trusted Shops, 4,73 von 5 Sternen</span></span></li>
-<li><span class="mz-brand__badge"><img src="assets/badge-metzler-garantie.svg" width="68" height="66" loading="lazy" alt=""></span><span class="mz-brand__award"><strong>Metzler Garantie</strong><span>Bis zu 10 Jahre, Schutz vor Durchrostung</span></span></li>
+<div class="mz-brand__trust">
+<button type="button" class="mz-brand__nav mz-brand__nav--prev" aria-label="Zurück" hidden><svg overflow="visible" viewBox="7.12 4.62 8.31 14.77" fill="none" stroke="currentColor" stroke-width="2.03" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-icon="NAV-09-chevron-links"><path d="M14.5 6l-6 6 6 6"/></svg></button>
+<ul class="mz-brand__awards" role="list" aria-label="Gute Gründe, uns zu vertrauen" tabindex="0">
+<li><img class="mz-brand__seal" src="assets/trust/trust-ntv.svg" width="691" height="691" loading="lazy" alt=""><span class="mz-brand__award"><strong>Beliebtester Anbieter</strong><span>ntv Life &amp; Living · 4× in Folge</span></span></li>
+<li><img class="mz-brand__seal" src="assets/trust/trust-vergleich.svg" width="76" height="76" loading="lazy" alt=""><span class="mz-brand__award"><strong>Vergleichssieger</strong><span>Vergleich.org · Note „sehr gut“</span></span></li>
+<li><img class="mz-brand__seal mz-brand__seal--pale" src="assets/trust/trust-topshop.svg?v=2" width="61" height="61" loading="lazy" alt=""><span class="mz-brand__award"><strong>Top Shop</strong><span>Computer Bild · 3 Jahre in Folge</span></span></li>
+<li><img class="mz-brand__seal" src="assets/trust/rate-trustedshops.svg?v=2" width="24" height="24" loading="lazy" alt=""><span class="mz-brand__award"><strong>4,73 <span class="mz-brand__of">von 5</span></strong><span>Trusted Shops · 32.853 Bewertungen</span></span></li>
+<li><img class="mz-brand__seal" src="assets/trust/rate-google.svg?v=2" width="24" height="24" loading="lazy" alt=""><span class="mz-brand__award"><strong>4,62 <span class="mz-brand__of">von 5</span></strong><span>Google · 3.304 Bewertungen</span></span></li>
+<li><img class="mz-brand__seal" src="assets/trust/rate-trustpilot.svg?v=2" width="24" height="23" loading="lazy" alt=""><span class="mz-brand__award"><strong>4,43 <span class="mz-brand__of">von 5</span></strong><span>Trustpilot · 1.219 Bewertungen</span></span></li>
+<li><img class="mz-brand__seal" src="assets/trust/trust-trustedshops.svg" width="70" height="68" loading="lazy" alt=""><span class="mz-brand__award"><strong>Käuferschutz</strong><span>geprüft von Trusted Shops</span></span></li>
+<li><img class="mz-brand__seal" src="assets/trust/trust-garantie.svg" width="70" height="68" loading="lazy" alt=""><span class="mz-brand__award"><strong>Bis zu 10 Jahre Garantie</strong><span>Schutz vor Durchrostung</span></span></li>
 </ul>
+<button type="button" class="mz-brand__nav mz-brand__nav--next" aria-label="Weiter" hidden><svg overflow="visible" viewBox="8.58 4.62 8.31 14.77" fill="none" stroke="currentColor" stroke-width="2.03" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-icon="NAV-10-chevron-rechts"><path d="M9.5 6l6 6-6 6"/></svg></button>
+</div>
+<script>(function(){
+var t=document.currentScript.previousElementSibling,r=t.querySelector('.mz-brand__awards'),pv=t.querySelector('.mz-brand__nav--prev'),nx=t.querySelector('.mz-brand__nav--next');
+var still=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var orig=[].slice.call(r.children),clones=[],looping=false,tm=0,rz=0;
+function copy(li){var c=li.cloneNode(true);c.setAttribute('aria-hidden','true');c.classList.add('is-clone');[].forEach.call(c.querySelectorAll('img'),function(i){i.loading='eager';});return c;}
+function padL(){return parseFloat(getComputedStyle(r).paddingLeft)||0;}
+function base(){return orig[0].offsetLeft-padL();}                        /* the real first item on the content edge */
+function span(){return clones[orig.length].offsetLeft-orig[0].offsetLeft;}   /* one whole row, gap included */
+function wrap(){if(!looping)return;var s=span(),b=base(),x=r.scrollLeft;if(x<b-s/2)r.scrollLeft=x+s;else if(x>b+s/2)r.scrollLeft=x-s;}
+function on(){if(looping)return;looping=true;var f=document.createDocumentFragment();
+  orig.forEach(function(li){f.appendChild(copy(li));});r.insertBefore(f,orig[0]);
+  orig.forEach(function(li){r.appendChild(copy(li));});
+  clones=[].slice.call(r.querySelectorAll('.is-clone'));r.scrollLeft=base();}
+function off(){if(!looping)return;looping=false;clones.forEach(function(c){c.remove();});clones=[];r.scrollLeft=0;}
+function state(){var pl=padL(),ov=(window.innerWidth-document.documentElement.clientWidth)/2;t.style.setProperty('--fade',Math.min(96,Math.max(16,pl))+'px');t.style.setProperty('--nav-x',(ov+Math.max(2,(pl-ov-35)/2))+'px');t.toggleAttribute('data-more-left',looping);t.toggleAttribute('data-more-right',looping);pv.hidden=nx.hidden=!looping;}
+function setup(){off();if(r.scrollWidth>r.clientWidth+1)on();state();}
+function go(d){wrap();var pl=padL(),x=r.scrollLeft,w=r.clientWidth,k=[].slice.call(r.children),to=null,i,s;if(d>0){for(i=0;i<k.length;i++){if(k[i].offsetLeft+k[i].offsetWidth>x+w-pl+1){to=k[i].offsetLeft-pl;break;}}}else{var g=x-(w-2*pl);for(i=0;i<k.length;i++){s=k[i].offsetLeft-pl;if(s>=g-1){to=s;break;}}}if(to===null||Math.abs(to-x)<8)to=x+d*Math.max(200,w*0.6);r.scrollTo({left:to,behavior:still?'auto':'smooth'});}
+pv.addEventListener('click',function(){go(-1);});nx.addEventListener('click',function(){go(1);});
+if('onscrollend' in window)r.addEventListener('scrollend',wrap);else r.addEventListener('scroll',function(){clearTimeout(tm);tm=setTimeout(wrap,140);},{passive:true});
+window.addEventListener('resize',function(){clearTimeout(rz);rz=setTimeout(setup,150);});
+window.addEventListener('load',setup);setup();
+})();</script>
 </section></div><div
 style="margin-top:60px; margin-bottom:60px; " class=""></div><div
 style="" class=""><style type="text/css">#article-tabs .desc {display: none;}</style></div><div
