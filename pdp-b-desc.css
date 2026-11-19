@@ -584,9 +584,10 @@
 .stepr__edit { font-size: 0.75rem; font-weight: 700; color: var(--color-teal); flex-shrink: 0; display: none; }
 .stepr__item.is-done .stepr__edit { display: inline; }
 .stepr__item.is-active .stepr__edit { display: none; }
-.stepr__chev { width: 1.1rem; height: 1.1rem; color: var(--color-graphite-400); flex-shrink: 0;
-  transition: transform .42s cubic-bezier(.4,0,.2,1), color .2s ease; }   /* the accordion's clock (pdp-b-desc.js ACC_MS) */
-.stepr__item.is-active .stepr__chev { transform: rotate(180deg); color: var(--color-teal); }
+.stepr__chev { width: 1.5rem; height: 1.5rem; color: var(--color-graphite-600); flex-shrink: 0;
+  transition: transform .42s cubic-bezier(.4,0,.2,1), color .2s ease; }   /* the kit's NAV-11 chevron, size M, secondary grey (guideline 40); the accordion's clock (pdp-b-desc.js ACC_MS) */
+.stepr__head:hover .stepr__chev, .stepr__item.is-active .stepr__chev { color: var(--color-teal); }   /* hover = colour only */
+.stepr__item.is-active .stepr__chev { transform: rotate(180deg); }
 .stepr__item.is-done .stepr__chev { display: none; }
 /* body height morph */
 .stepr__body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .45s cubic-bezier(.2,.7,.2,1); }
