@@ -1629,8 +1629,7 @@ body.kbd-open .cfgb-dock.is-fixed { display: none !important; }
 .smart__mhead { display: none; }
 #sx-beschreibung #infoMod .smart__mhead { display: block; margin: 0 0 1.5rem; }
 #sx-beschreibung #infoMod .smart__t { display: none; }
-#sx-beschreibung #infoMod .smart__mh { margin: 0 0 1.25rem; font-size: clamp(1.25rem, 1rem + 1vw, 1.625rem); font-weight: 700; line-height: 1.15; letter-spacing: -0.01em; color: var(--color-digital-black); }
-#sx-beschreibung #infoMod .smart__ml { margin: 0; font-size: 1rem; line-height: 1.5; color: var(--color-digital-black); }
+#sx-beschreibung #infoMod .smart__mh { margin: 0; font-size: clamp(1.25rem, 1rem + 1vw, 1.625rem); font-weight: 700; line-height: 1.15; letter-spacing: -0.01em; color: var(--color-digital-black); }
 @media (min-width: 64rem) {
   #sx-beschreibung #infoMod .smart__panel { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); grid-template-areas: "head head" "media copy"; column-gap: 2.5rem; row-gap: 0; align-items: center; }
   #sx-beschreibung #infoMod .smart__mhead { grid-area: head; }
@@ -1691,6 +1690,30 @@ body.kbd-open .cfgb-dock.is-fixed { display: none !important; }
 @media (min-width: 48rem) {
   #sx-beschreibung #infoMod .kfg { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-areas: "eb eb" "h h" "steps img"; column-gap: 2rem; align-items: center; }
   #sx-beschreibung #infoMod .kfg .mz-kfg-bild:not(.mz-kfg-bild-mobil) { margin-top: 0; }
+}
+/* Every info dialog, one inner rhythm: 2rem above and below the content, and the content fills the
+   fixed frame – its last block takes the free height and its pictures or tiles stretch with it
+   (gallery rows + cover scene, Zubehör tiles, the Smart photo, the Gravurdaten screenshot). Before,
+   short dialogs floated centred (39–54 px above and below) and Gravurdaten sat on 24 px. */
+@media (min-width: 64rem) {
+  #sx-beschreibung #infoMod .infomod__body { padding: 2rem 1.5rem; }
+  #sx-beschreibung #infoMod .infomod__body > :first-child { margin-top: 0; }
+  #sx-beschreibung #infoMod .infomod__body > :last-child { margin-bottom: 0; flex: 1 1 auto; min-height: 0; }
+  #sx-beschreibung #infoMod [class*="mz-sg-"] .sg-kacheln { grid-auto-rows: minmax(0, 1fr); align-content: stretch; }
+  #sx-beschreibung #infoMod [class*="mz-sg-"] .sg-kachel { justify-content: center; }
+  #sx-beschreibung #infoMod [class*="mz-sg-"] .sg-kachel .mz-tile-price { margin-top: 0; }
+  #sx-beschreibung #infoMod .mz-zk { grid-auto-rows: minmax(0, 1fr); align-content: stretch; }
+  #sx-beschreibung #infoMod .mz-zk-b { flex: 1 1 0; height: auto; min-height: 6rem; }   /* the product picture takes the card's free height, not an empty strip */
+  #sx-beschreibung #infoMod [class*="mz-sg-"] .sg-kachel img { max-width: clamp(4.75rem, 0.5rem + 5.5vw, 5.25rem); }   /* Befestigung's 4 + 3 grid fits the frame with 2rem below, also on smaller laptops */
+  #questionModal .qf-body { padding: 2rem 1.5rem; }   /* the same 2rem above and below as the info dialogs (id: beats the base rule further down) */
+  #sx-beschreibung #infoMod .smart { grid-template-rows: auto minmax(0, 1fr); }
+  #sx-beschreibung #infoMod .smart__panel { grid-template-rows: auto minmax(0, 1fr); }
+  #sx-beschreibung #infoMod .smart__media { align-self: stretch; min-width: 0; min-height: 0; aspect-ratio: auto; }   /* the page's 4:3 frame would set the width from the stretched height and push into the text */
+  #sx-beschreibung #infoMod .smart__media img { width: 100%; height: 100%; aspect-ratio: auto; object-fit: cover; }
+  #sx-beschreibung #infoMod[data-key="gravur"] .infomod__body { grid-template-rows: auto auto minmax(0, 1fr) auto; align-content: stretch; }
+  #sx-beschreibung #infoMod[data-key="gravur"] .kfg .mz-kfg-bild:not(.mz-kfg-bild-mobil) { min-height: 0; }
+  #sx-beschreibung #infoMod[data-key="gravur"] .kfg .mz-kfg-bild:not(.mz-kfg-bild-mobil) picture { display: block; height: 100%; }   /* the inline <picture> would let the image keep its natural height */
+  #sx-beschreibung #infoMod[data-key="gravur"] .kfg .mz-kfg-bild:not(.mz-kfg-bild-mobil) img { height: 100% !important; aspect-ratio: auto; }   /* !important: beats the OPC .img-fluid height:auto !important */
 }
 @media (max-width: 47.9375rem) {
   .infomod { align-items: flex-end; padding: 0; }
@@ -3091,9 +3114,9 @@ body.is-scrolled #quickbar {
   background: var(--color-white); border-radius: var(--radius-xl); box-shadow: var(--shadow-modal); animation: qfIn .2s ease; }
 @keyframes qfIn { from { opacity: 0; transform: translateY(0.5rem) scale(0.985); } to { opacity: 1; transform: none; } }
 .qf-head { flex: none; display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-  padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--color-graphite-200); }
+  padding: 0.9rem 1.5rem; border-bottom: 1px solid var(--color-graphite-200); }   /* the popups' one header bar (66 px) */
 .qf-head-t { font-size: 1.25rem; font-weight: 700; line-height: 1.35; letter-spacing: -0.01em; color: var(--color-digital-black); }
-.qf-close { flex: none; width: 2.25rem; height: 2.25rem; margin-right: -0.5625rem; display: inline-flex; align-items: center; justify-content: center; cursor: pointer;
+.qf-close { flex: none; width: 2.25rem; height: 2.25rem; margin-right: -0.8672rem; display: inline-flex; align-items: center; justify-content: center; cursor: pointer;
   color: var(--color-graphite-600); background: transparent; border: 0; border-radius: var(--radius); transition: background .15s; }   /* neg margin = (btn − icon)/2 so the icon box lines up with the body's right edge */
 .qf-close:hover { background: var(--color-graphite-100); }
 .qf-close:focus-visible { outline: 2px solid var(--color-teal); outline-offset: 2px; }
@@ -3464,14 +3487,14 @@ body.is-scrolled #quickbar {
 
 /* Header – title + close */
 .colorwin__head { flex: none; display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-  padding: 1.35rem 1.25rem; border-bottom: 1px solid var(--color-graphite-200); }
+  padding: 0.9rem 1.25rem; border-bottom: 1px solid var(--color-graphite-200); }   /* the popups' one header bar (66 px) */
 .colorwin__headtext { min-width: 0; }
-.colorwin__title { margin: 0; font-size: 1.2rem; font-weight: 700; letter-spacing: -0.015em; line-height: 1.25; color: var(--color-digital-black); }
-.colorwin__close { flex: none; width: 2.5rem; height: 2.5rem; margin: -0.35rem -0.5rem -0.35rem 0; display: grid; place-items: center; cursor: pointer;
+.colorwin__title { margin: 0; font-size: 1.25rem; font-weight: 700; letter-spacing: -0.01em; line-height: 1.35; color: var(--color-digital-black); }
+.colorwin__close { flex: none; width: 2.25rem; height: 2.25rem; margin: 0 -0.8672rem 0 0; display: grid; place-items: center; cursor: pointer;
   color: var(--color-graphite-600); background: transparent; border: 0; border-radius: var(--radius); transition: background .15s ease, color .15s ease; }
 .colorwin__close:hover { background: var(--color-graphite-100); color: var(--color-digital-black); }
 .colorwin__close:focus-visible { outline: 2px solid var(--color-teal); outline-offset: 2px; }
-.colorwin__close svg { width: 1.2rem; height: 1.2rem; }
+.colorwin__close svg { width: 1.125rem; height: 1.125rem; }
 
 /* List – thin refined scrollbar */
 .colorwin__list { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding: 0.5rem 0 1rem; -webkit-overflow-scrolling: touch;
