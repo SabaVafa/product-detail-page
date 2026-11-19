@@ -3924,23 +3924,25 @@ body.is-scrolled #quickbar {
    never changes the panel height */
 #sx-beschreibung .mz-farbname .slider-product-title { min-height: 2.1em !important; margin-bottom: 1.25rem !important; }
 /* Two columns, one padding: the band's 48 px padding is the visible space above AND below
-   both columns. The text column (eyebrow + text) centres vertically; the visual centres on
+   both columns. Text 5 : stage 7 – the text is a short block, the stage carries the fan of
+   colours (front box plus three each side, see the script) and fills the middle that a
+   half-width stage left empty. The text column centres vertically; the visual centres on
    what is VISIBLE. Its stage scales with its width, so the square render always fills the
-   60 % × 82 % track: stage = 73.17 % of the width, and the air above the box (stage air +
-   the render's transparent top) is always 12.81 % of it, the air below 12.03 % – both pulled
-   out, so the box starts on the top edge and the swatches sit 2rem under it. (A fixed 24rem
-   stage left 63–91 px above the box but 74–86 px below, depending on the width.) */
+   50 % × 82 % track: stage = 60.98 % of the width, and the air above the box (stage air +
+   the render's transparent top) is always 10.67 % of it, the air below 10.03 % – both pulled
+   out, so the box starts on the top edge and the swatches sit 2rem under it. */
 @media (min-width:62rem){
-  #sx-beschreibung .mz-kap-xdm > [data-area-id="col-0"] { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: 1fr auto auto 1fr; column-gap: var(--dsc-split); }
+  #sx-beschreibung .mz-kap-xdm > [data-area-id="col-0"] { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); grid-template-rows: 1fr auto auto 1fr; column-gap: var(--dsc-split); }
   #sx-beschreibung .mz-kap-xdm > [data-area-id="col-0"] > .mz-eyebrow { grid-column: 1; grid-row: 2; }
   #sx-beschreibung .mz-kap-xdm > [data-area-id="col-0"] > .row { display: contents; }
   #sx-beschreibung .mz-kap-xdm > [data-area-id="col-0"] > .row > .clearfix { display: none; }
   #sx-beschreibung .mz-kap-xdm > [data-area-id="col-0"] > .row > [data-area-id] { width: auto; max-width: none; flex: none; padding-left: 0; padding-right: 0; }
   #sx-beschreibung .mz-kap-xdm > [data-area-id="col-0"] > .row > [data-area-id="col-0"] { grid-column: 1; grid-row: 3; align-self: start; }
   #sx-beschreibung .mz-kap-xdm > [data-area-id="col-0"] > .row > [data-area-id="col-1"] { grid-column: 2; grid-row: 1 / 5; align-self: center; }
-  #sx-beschreibung .mz-kap-xdm .showcase-container { container-type: inline-size; }
-  #sx-beschreibung .mz-kap-xdm .slider-viewport { height: 73.17cqw; margin-top: -12.81cqw; }
-  #sx-beschreibung .mz-kap-xdm .info-panel { margin-top: calc(2rem - 12.03cqw); }
+  #sx-beschreibung .mz-kap-xdm .showcase-container { container-type: inline-size; max-width: none; }
+  #sx-beschreibung .mz-kap-xdm .slide-track { width: 50%; }
+  #sx-beschreibung .mz-kap-xdm .slider-viewport { height: 60.98cqw; margin-top: -10.67cqw; }
+  #sx-beschreibung .mz-kap-xdm .info-panel { margin-top: calc(2rem - 10.03cqw); }
 }
 /* every width: no spare padding under the swatches – the band's padding is the space below */
 #sx-beschreibung .mz-kap-xdm .showcase-container { padding-bottom: 0; }

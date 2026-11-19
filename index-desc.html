@@ -20,7 +20,7 @@
 <!-- New PDP sections -->
 <link rel="stylesheet" href="pdp.css?v=35" />
 <!-- Version B – inline build panel -->
-<link rel="stylesheet" href="pdp-b-desc.css?v=142" />
+<link rel="stylesheet" href="pdp-b-desc.css?v=143" />
 <link rel="stylesheet" href="pdp-b-desc-opc.css?v=2" />
 <!-- Prototype variant switch – append ?flow=b (v2) or ?flow=c (v3) to load an alternative
      color-selection flow. Default (no param) renders v1 exactly as-is. Runs in <head> so the
@@ -1560,9 +1560,10 @@ function zeichnen(){
   // kommende rechts – keine fliegt mehr komplett aus dem Bild.
   // Tiefe gedeckelt (max 3), damit der Faecher in die Buehne passt und die
   // Seite nicht horizontal scrollt; overflow:hidden trimmt den Rest sauber.
-  var STEP=13, MAX=3;               // Versatz je Stufe, Anteil der Slidebreite
+  var STEP=22, MAX=3;               // Versatz je Stufe, Anteil der Slidebreite – breit genug, dass der Faecher die ganze Buehne fuellt
   slides.forEach(function(s,n){
-    var d=n-i, ad=Math.abs(d), cap=Math.min(ad,MAX), dir=d<0?-1:1;
+    var N=slides.length, d=n-i; if(d>N/2) d-=N; if(d<-N/2) d+=N;   // im Kreis: die Farbe vorne hat immer Nachbarn links UND rechts – der Faecher fuellt die Buehne schon beim Laden
+    var ad=Math.abs(d), cap=Math.min(ad,MAX), dir=d<0?-1:1;
     s.className='slide';
     if(d===0){ s.classList.add('is-active');
       s.style.transform='translateX(0) scale(1) translateZ(0)'; s.style.zIndex=100; s.style.opacity=1; }
