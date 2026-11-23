@@ -509,8 +509,8 @@ var MZSwipe = (function () {
     var n = el.querySelectorAll('.sum-row').length;
     setTxt('bSheetTotal', euro(total()));
     setTxt('bAccTotal', euro(total()));
-    var thumb = MAINIMG[state.article] || MAINIMG['31101'];   /* the window's thumbnail: the Siebert in the chosen colour */
-    document.querySelectorAll('.sheet__thumb').forEach(function (t) { if (t.getAttribute('src') !== thumb) t.setAttribute('src', thumb); });
+    var thumb = MAINIMG[state.article] || MAINIMG['31101'];   /* the buy bar's and the window's thumbnail: the Siebert in the chosen colour */
+    document.querySelectorAll('.sheet__thumb, #pdpStickyThumb').forEach(function (t) { if (t.getAttribute('src') !== thumb) t.setAttribute('src', thumb); });
     var dn = $('bDetailsN'); if (dn) dn.textContent = n + (n === 1 ? ' Position' : ' Positionen');
   }
   function applyQty(target, d) {

@@ -1925,9 +1925,9 @@ body.kbd-open .cfgb-dock.is-fixed { display: none !important; }
 /* the price as configured: label left, amount right on one baseline, the tax line under them */
 .cfgb-acc__total { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; gap: 0.125rem 0.75rem;
   padding: 0.875rem 1rem 1rem; border-top: 1px solid var(--color-graphite-200); }
-.cfgb-acc__label { font-size: 0.875rem; font-weight: 700; color: var(--color-digital-black); }
+.cfgb-acc__label { font-size: 1rem; font-weight: 700; color: var(--color-digital-black); }
 .cfgb-acc__price { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.01em; color: var(--color-digital-black); white-space: nowrap; font-variant-numeric: tabular-nums; }
-.cfgb-acc__vat { grid-column: 1 / -1; font-size: 0.75rem; color: var(--color-graphite-600); }
+.cfgb-acc__vat { grid-column: 1 / -1; font-size: 0.8125rem; color: var(--color-graphite-600); }
 
 /* ── Inline per-product quantity (in the configuration, next to each entry) ── */
 .cfg-choice { display: flex; flex-direction: column; }
@@ -2094,19 +2094,20 @@ body.kbd-open .cfgb-dock.is-fixed { display: none !important; }
 
 /* ── Positions (inline window and the bottom sheet) – the kit's rows: "1 ×" in graphite-700 before
    the name, the product in bold with its colour on a line under it, the price right on the first
-   baseline (tabular), "inklusive" green and bold. One shared 2-column grid (name | price); rows use
+   baseline (tabular), "inklusive" green and bold. Read at the configurator's sizes: 15 px positions
+   and prices (its option names are 14-16 px), 13 px detail lines. One shared 2-column grid (name | price); rows use
    subgrid so every price lines up. ── */
 .cfgb-summary { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 1rem; padding: 0.5rem 1rem; margin-bottom: 0.2rem;
   background: var(--color-white); border: 1px solid var(--color-graphite-200); border-radius: var(--radius-lg); }
 .sum-row { display: grid; grid-column: 1 / -1; grid-template-columns: subgrid; align-items: baseline; padding: 0.75rem 0; }
 .sum-row__price { justify-self: end; }
 .sum-row + .sum-row { border-top: 1px solid var(--color-graphite-100); }
-.sum-row__name { display: flex; gap: 0.3em; font-size: 0.8125rem; line-height: 1.4; color: var(--color-digital-black); min-width: 0; }   /* "1 ×" | name: a long name wraps under itself */
+.sum-row__name { display: flex; gap: 0.3em; font-size: 0.9375rem; line-height: 1.45; color: var(--color-digital-black); min-width: 0; }   /* "1 ×" | name: a long name wraps under itself */
 .sum-row__txt { min-width: 0; }
 .sum-row__name b { font-weight: 700; }
-.sum-row__name .sum-sub { display: block; margin-top: 0.125rem; font-size: 0.75rem; color: var(--color-graphite-600); }
+.sum-row__name .sum-sub { display: block; margin-top: 0.125rem; font-size: 0.8125rem; color: var(--color-graphite-600); }
 .sum-qty-ro { color: var(--color-graphite-700); font-variant-numeric: tabular-nums; white-space: nowrap; }
-.sum-row__price { font-size: 0.8125rem; font-weight: 700; color: var(--color-digital-black); font-variant-numeric: tabular-nums; white-space: nowrap; text-align: right; }
+.sum-row__price { font-size: 0.9375rem; font-weight: 700; color: var(--color-digital-black); font-variant-numeric: tabular-nums; white-space: nowrap; text-align: right; }
 .sum-row__price.is-incl { color: color-mix(in srgb, var(--color-green) 75%, #000); font-weight: 700; }   /* the kit green, a step darker: #009951 is 3.7:1 on white at 13 px, this ~6:1 (AA) */
 .sum-qty { display: inline-flex; align-items: center; gap: 0.3rem; }
 .sum-qty button { width: 1.55rem; height: 1.55rem; border: 1px solid var(--color-graphite-300); background: var(--color-white);
