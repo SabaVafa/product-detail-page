@@ -2720,9 +2720,9 @@ body.is-scrolled #quickbar {
    One category at a time → no long scroll; the vertical rail is visually distinct
    from the horizontal mid-nav → no tabs-in-tabs. Collapses to a chip row on
    small screens. */
-.techms { margin-top: 2rem; display: grid; grid-template-columns: 1fr;   /* title→content gap = the lead's 2rem, matching the other sections (Technik has no lead) */
+.techms { margin-top: 2rem; display: grid; grid-template-columns: minmax(0, 1fr);   /* minmax(0,…) lets the track shrink below the content's min-content, so the rail/panel never blow the card past the viewport and get clipped on narrow phones */
   border: 1px solid var(--color-teal); border-radius: var(--radius-xl); overflow: hidden; background: var(--color-white); }
-@media (min-width: 56rem) { .techms { grid-template-columns: 17rem 1fr; } }
+@media (min-width: 56rem) { .techms { grid-template-columns: 17rem minmax(0, 1fr); } }
 
 /* rail – design-system dark band, consistent with .nfeat: a fixed-size soft top
    spotlight over a gentle in-hue teal→teal-700 vertical deepening (aspect-independent,
