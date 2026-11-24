@@ -1,0 +1,507 @@
+/* ============================================================
+   led.css — Außenleuchten PDP (Metzler LED Wandleuchte Up-Down)
+   ------------------------------------------------------------
+   Sits ON TOP of the shared prototype chrome:
+     Home/styles-v2.css · chrome.css · pdp.css · pdp-b.css
+   Only NEW, product-specific pieces live here (Staffelpreise
+   buy box, quantity-driven price, simplified story + technik).
+   Everything else reuses the existing design-system classes.
+   Tokens only — no invented colours or sizes.
+   ============================================================ */
+
+/* ---- Swatches: the product's real finish photos (the same variation images
+        the live shop uses, assets/variations/*.jpg) carried on <img>. All six
+        finishes have a photo, so there is no flat-fill fallback. Selection =
+        teal border, no check badge — matching the prototype's swatches. */
+
+/* ---- Price: unit suffix + savings line -------------------------- */
+.led-unit{
+  font-size:0.875rem;
+  font-weight:500;
+  color:var(--color-graphite-600);
+  align-self:flex-end;
+  margin-bottom:.3rem;
+}
+.led-save-inline{
+  display:inline-flex; align-items:center; gap:.4rem;
+  margin-left:.1rem;
+  font-size:0.875rem;
+  font-weight:700;
+  color:var(--color-green);
+}
+
+/* ---- Staffelpreise table --------------------------------------- */
+.led-staffel{
+  margin:0;   /* spacing comes from the buy-box flex gap — no doubled-up margins */
+  border:1px solid var(--color-graphite-200);
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+  background:var(--color-white);
+}
+/* Header hierarchy: icon + [ title (anchor) · muted subtitle ].
+   The benefit line is demoted from a loud uppercase-teal hint to a quiet
+   sentence-case subtitle so "Staffelpreise" is the single clear anchor. */
+.led-staffel__head{
+  display:flex; align-items:center; gap:.6rem;
+  padding:.8rem 1rem;
+  background:var(--color-teal-50);
+  border-bottom:1px solid var(--color-graphite-200);
+}
+.led-staffel__icon{ flex:none; display:inline-grid; place-items:center; color:var(--color-teal); }
+.led-staffel__icon svg{ width:1.2rem; height:1.2rem; }
+.led-staffel__headtext{ display:flex; flex-direction:column; gap:.05rem; min-width:0; }
+.led-staffel__title{
+  font-size:1rem; font-weight:700;
+  letter-spacing:-.01em; line-height:1.25;
+  color:var(--color-graphite-900);
+}
+.led-staffel__hint{
+  margin-left:auto;   /* pushed to the opposite (right) side of the header */
+  font-size:0.75rem; font-weight:500;
+  line-height:1.3; letter-spacing:0; text-transform:none;
+  color:var(--color-graphite-600);
+}
+.led-staffel__table{ width:100%; border-collapse:collapse; }
+.led-staffel__table th,
+.led-staffel__table td{
+  padding:.62rem 1rem; text-align:left;
+  font-size:0.875rem;
+  border-bottom:1px solid var(--color-graphite-100);
+}
+/* Column labels: the only uppercase left → quiet functional micro-labels,
+   clearly a step below the title + subtitle above. */
+.led-staffel__table thead th{
+  font-weight:600; color:#6a6a6a;
+  font-size:.6875rem; text-transform:uppercase; letter-spacing:.05em;
+  padding-top:.7rem; padding-bottom:.5rem;
+  background:var(--color-white);
+}
+.led-staffel__table td:nth-child(2){ font-weight:700; color:var(--color-graphite-900); }
+.led-staffel__table td:last-child,
+.led-staffel__table th:last-child{ text-align:right; }
+.led-staffel__table tbody tr:last-child td{ border-bottom:0; }
+.led-staffel__off{
+  display:inline-block; min-width:2.9rem; text-align:center;
+  padding:.1rem .45rem; border-radius:var(--radius-pill);
+  font-size:0.75rem; font-weight:700;
+  color:var(--color-green); background:rgba(0,153,81,.10);
+}
+.led-staffel__off.is-zero{ color:var(--color-graphite-600); background:var(--color-graphite-100); }
+/* active tier (mirrors current quantity) */
+.led-staffel__table tbody tr{ transition:background .35s ease, box-shadow .35s ease; }
+.led-staffel__table tbody tr.is-active{
+  background:var(--color-teal-50);
+}
+@keyframes led-rowhit{ 0%{ background:rgba(0,153,81,.16); } 100%{ background:var(--color-teal-50); } }
+.led-staffel__table tbody tr.is-hit{ animation:led-rowhit .65s ease; }
+/* Accent bar on the active row: put it on the first CELL (not the <tr>) so it
+   renders as one clean full-height teal bar — a <tr> box-shadow on a
+   border-collapse table clips to a short, floating sliver. */
+.led-staffel__table tbody tr.is-active td:first-child{
+  font-weight:700; color:var(--color-teal);
+  box-shadow:inset 3px 0 0 var(--color-teal);
+}
+
+/* ---- Erweiterungen & Zubehör – add-on picker -------------------
+   Same card language as the Staffelpreise / price module (white, hairline
+   border, radius). Checkbox cards; selection = teal border + check, driven by
+   :has() so the styling needs no JS. */
+.led-addons{
+  border:1px solid var(--color-graphite-200);
+  border-radius:var(--radius-lg);
+  background:var(--color-paper);   /* same surface as the price card (#F5F6FA) */
+  overflow:hidden;
+}
+.led-addons__head{
+  display:flex; align-items:center; gap:.6rem; width:100%;
+  padding:.8rem 1rem; border:0; cursor:pointer;
+  background:transparent;          /* show the card's paper surface (consistent with the price card) */
+  border-bottom:1px solid var(--color-graphite-200);
+  font:inherit; text-align:left;
+}
+.led-addons__num{
+  flex:none; display:inline-grid; place-items:center;
+  width:1.25rem; height:1.25rem; border-radius:999px;
+  background:var(--color-teal); color:#fff; font-size:.9rem; font-weight:700; line-height:1;
+}
+.led-addons__title{ flex:1 1 auto; font-size:1rem; font-weight:700; color:var(--color-graphite-900); }
+.led-addons__count{
+  flex:none; padding:.1rem .5rem; border-radius:var(--radius-pill);
+  font-size:.6875rem; font-weight:700; color:var(--color-teal); background:var(--color-white);
+  border:1px solid var(--color-teal);
+}
+/* chevron points DOWN when collapsed (click to open) and UP when expanded
+   (click to collapse). The accordion starts expanded, so it starts pointing up. */
+.led-addons__chev{ flex:none; width:1.15rem; height:1.15rem; color:var(--color-graphite-600); transition:transform .3s ease; }
+.led-addons__head[aria-expanded="true"] .led-addons__chev{ transform:rotate(180deg); }
+.led-addons__body{
+  overflow:hidden; max-height:40rem;   /* generous bound; collapses to 0 */
+  transition:max-height .4s cubic-bezier(.2,.7,.2,1);
+}
+.led-addons.is-collapsed .led-addons__body{ max-height:0; }
+/* 3-up grid of VERTICAL cards (image on top, name + price below) — the live
+   "Erweiterungen & Zubehör" layout. */
+.led-addons__list{ padding:.55rem; display:grid; grid-template-columns:repeat(3, 1fr); gap:.5rem; }
+.led-addon{
+  position:relative;
+  display:flex; flex-direction:column; align-items:center; gap:.45rem;
+  padding:1.45rem .5rem .7rem;        /* top room for the check indicator */
+  border:1px solid var(--color-graphite-200); border-radius:var(--radius);
+  background:var(--color-white); cursor:pointer; text-align:center;
+  transition:border-color .2s ease, box-shadow .2s ease;
+}
+.led-addon:hover{ border-color:var(--color-graphite-300); }
+.led-addon__cb{ position:absolute; opacity:0; width:0; height:0; pointer-events:none; }
+.led-addon__check{
+  position:absolute; top:.5rem; left:.5rem;
+  display:grid; place-items:center;
+  width:1.3rem; height:1.3rem; border-radius:.3rem;   /* square checkbox, not a radio */
+  border:1.5px solid var(--color-graphite-300); background:var(--color-white);
+  color:#fff; transition:background .2s ease, border-color .2s ease;
+}
+.led-addon__check svg{ width:.8rem; height:.8rem; opacity:0; transform:scale(.6); transition:opacity .2s ease, transform .2s ease; }
+.led-addon__media{
+  width:5.5rem; height:5.5rem; border-radius:var(--radius-sm, .35rem);
+  overflow:hidden; background:var(--color-white);
+}
+.led-addon__media img{ width:100%; height:100%; object-fit:contain; display:block; }
+.led-addon__text{ display:flex; flex-direction:column; align-items:center; gap:.2rem; }
+.led-addon__name{ font-size:0.6875rem; font-weight:500; line-height:1.3; color:var(--color-graphite-700);
+  display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+.led-addon__price{ font-size:0.8125rem; font-weight:700; color:var(--color-graphite-900); }
+.led-addon:has(.led-addon__cb:checked){ border-color:var(--color-teal); box-shadow:inset 0 0 0 1px var(--color-teal); }
+.led-addon:has(.led-addon__cb:checked) .led-addon__check{ background:var(--color-teal); border-color:var(--color-teal); }
+.led-addon:has(.led-addon__cb:checked) .led-addon__check svg{ opacity:1; transform:none; }
+.led-addon__cb:focus-visible ~ .led-addon__media{ outline:2px solid var(--color-teal); outline-offset:2px; }
+/* Phones: the 3-up grid is too tight below ~600px → horizontal scroll-snap
+   carousel. Keeps the vertical cards a comfortable size; the peeking edge card
+   signals that the row scrolls. */
+@media (max-width: 600px){
+  .led-addons__list{
+    display:flex; gap:.5rem;
+    overflow-x:auto; scroll-snap-type:x proximity; scroll-padding-left:.55rem;
+    scrollbar-width:none; -webkit-overflow-scrolling:touch;
+  }
+  .led-addons__list::-webkit-scrollbar{ display:none; }
+  .led-addon{ flex:0 0 9rem; scroll-snap-align:start; }
+}
+
+/* ---- Order summary under the CTA -------------------------------
+   Clean confirmation card in the same language as the Staffelpreise table
+   above it (white, hairline border, same radius; the savings pill is the
+   table's .led-staffel__off exactly). Secondary rows are quiet; the total is
+   the single emphasis. Numbers use tabular figures so the two value columns
+   align. At qty 1 the discount rows hide and the card collapses to the total
+   alone (.is-plain). */
+.led-summary{
+  margin:0;                       /* spacing to the CTA comes from .cfgb-checkout's flex gap */
+  padding:1.1rem 1.25rem 1.15rem; /* live .pdp-price-card rhythm (17.6/20/18.4) */
+  border:1px solid var(--color-graphite-200);   /* live hairline #E6E6E8 */
+  border-radius:var(--radius-lg);               /* live 8px */
+  background:var(--color-paper);  /* live price-card surface #F5F6FA (cool paper) */
+  font-variant-numeric:tabular-nums;
+}
+/* Configured-price panel — the live shop's price values (.pdp-price-card:
+   price 32px/600/#000 -0.8px, note & caption 14px #54545C, Versand link #015253
+   underlined, status 14px/700 #009951, energy label 53×29), laid out as a
+   balanced TWO-COLUMN total block so it fills the card width (no blank left):
+   left column = caption + tax note; right column = price + availability/energy.
+   Grid auto-flow places label→(1,1), price→(1,2), tax→(2,1), avail→(2,2). */
+.led-summary__konf{
+  display:grid; grid-template-columns:1fr auto;
+  align-items:baseline; column-gap:1rem; row-gap:.4rem;
+}
+.led-summary__konf-label{ font-size:0.875rem; font-weight:400; color:var(--color-graphite-700); }
+.led-summary__amount{   /* live .price: 32px · 600 · #000 · line-height 1.05 · -0.025em */
+  justify-self:end; text-align:right;
+  font-size:2rem; font-weight:600; line-height:1.05; letter-spacing:-.025em;
+  color:#000;
+}
+.led-summary__konf-tax{ font-size:0.875rem; font-weight:400; line-height:1.3; color:var(--color-graphite-700); }
+.led-summary__konf-tax a{ color:var(--color-teal); text-decoration:underline; }
+.led-summary__konf-avail{
+  justify-self:end; display:inline-flex; align-items:center; gap:.45rem;
+}
+.led-summary__konf-status{ font-size:0.875rem; font-weight:700; color:var(--color-green); }
+.led-summary__konf-nrg{ display:inline-flex; line-height:0; }
+.led-summary__konf-nrg .pdp-nrg__arrow{ height:29px; width:auto; display:block; }  /* live energy label 53×29 (beats .pdp-b .pdp-nrg__arrow) */
+
+/* Add-ons block — itemises the selected Zubehör above the konf total so it's
+   explicit each add-on is ADDED into the configured price. Sits between the
+   status bar and the konf block (own hairline); hidden when nothing is picked. */
+.led-summary__addons{
+  position:relative;   /* positioning context for the tooltip */
+  margin:0 0 .9rem; padding:0 0 .9rem;
+  border-bottom:1px solid var(--color-graphite-200);
+}
+.led-summary__addons[hidden]{ display:none; }
+.led-summary__addons-label{
+  display:flex; align-items:center; gap:.3rem; margin-bottom:.45rem;
+  font-size:0.6875rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+  color:var(--color-graphite-600);
+}
+/* info tooltip — the "Festpreis / Mengenrabatt nur für die Leuchte" hint, moved
+   off the surface into a tooltip beside the title to declutter. Shows on
+   hover + focus (focus-within covers tap/keyboard). */
+.led-info-wrap{ display:inline-flex; margin-left:auto; }  /* push the icon to the row's right edge */
+.led-info{
+  display:inline-grid; place-items:center; width:1rem; height:1rem; padding:0;
+  border:0; background:transparent; color:var(--color-graphite-600); cursor:pointer;
+}
+.led-info svg{ width:.95rem; height:.95rem; }
+.led-info:hover, .led-info:focus-visible{ color:var(--color-teal); }
+/* tooltip is right-anchored to the block and capped at its width, so it can
+   never overflow the card at any screen size; the arrow points down to the icon */
+.led-tip{
+  position:absolute; right:0; bottom:calc(100% + .5rem);
+  width:max-content; max-width:100%; padding:.55rem .7rem;
+  background:var(--color-white); color:var(--color-graphite-800);
+  border:1px solid var(--color-graphite-200); border-radius:.5rem;
+  box-shadow:0 6px 18px rgba(26,26,31,.12), 0 1px 3px rgba(26,26,31,.07);
+  font-size:0.6875rem; font-weight:500; line-height:1.4; letter-spacing:0; text-transform:none;
+  opacity:0; visibility:hidden; transform:translateY(.25rem);
+  transition:opacity .15s ease, transform .15s ease; z-index:6; pointer-events:none;
+}
+/* bordered arrow — a rotated square straddling the bottom edge, bottom-right
+   sides bordered so it matches the light tooltip */
+.led-tip::after{
+  content:''; position:absolute; top:100%; right:.85rem; width:.6rem; height:.6rem;
+  background:var(--color-white);
+  border-right:1px solid var(--color-graphite-200);
+  border-bottom:1px solid var(--color-graphite-200);
+  transform:translateY(-50%) rotate(45deg);
+}
+.led-info-wrap:hover .led-tip,
+.led-info-wrap:focus-within .led-tip{ opacity:1; visibility:visible; transform:translateY(0); }
+/* scannable rows: [thumb] name … + price, hairline-separated */
+.led-summary__addon-line{
+  display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:.65rem;
+  padding:.5rem 0; font-size:0.8125rem;
+}
+.led-summary__addon-line + .led-summary__addon-line{ border-top:1px solid var(--color-graphite-200); }
+.led-summary__addon-thumb{
+  width:2.1rem; height:2.1rem; flex:none; display:grid; place-items:center;
+  border:1px solid var(--color-graphite-200); border-radius:.35rem;
+  background:var(--color-white); overflow:hidden;
+}
+.led-summary__addon-thumb img{ width:100%; height:100%; object-fit:contain; display:block; }
+.led-summary__addon-name{
+  color:var(--color-graphite-800); min-width:0; line-height:1.3;
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+}
+.led-summary__addon-val{ color:var(--color-graphite-900); font-weight:700; white-space:nowrap; }
+
+/* CTA follows the prototype: always a live teal button whose LABEL morphs
+   ("Bitte Farbe wählen" → "In den Warenkorb"). Missing-colour validation is
+   surfaced at the swatches via the kit's .bx-swatches.is-invalid alert, so no
+   greyed/locked CTA styling is needed here. */
+
+/* Sticky purchase bar: this build has no "Details" button (which in the VDM10
+   PDP carries margin-left:auto), so push the CTA to the right edge itself. */
+#pdpStickyBar .pdp-stickybar__cta{ margin-left:auto; }
+
+/* CTA — align with the live Metzler shop primary button: flat teal, DS radius,
+   NO drop shadow, weight 600. The live buy button sits flush (no elevation), so
+   drop the prototype's teal glow for authentic consistency. (led.css loads after
+   pdp-b.css, so these equal-specificity rules win.) */
+.cfgb-cta{ box-shadow:none; font-weight:600; }
+.cfgb-cta:hover{ box-shadow:none; }
+
+/* ---- Simplified technik spec table ----------------------------- */
+.led-spectable{ width:100%; border-collapse:collapse; }
+.led-spectable th,
+.led-spectable td{
+  padding:.7rem 1rem; text-align:left; vertical-align:top;
+  font-size:0.875rem;
+  border-bottom:1px solid var(--color-graphite-100);
+}
+.led-spectable th{
+  width:42%; font-weight:600; color:var(--color-graphite-700);
+  background:var(--color-teal-50);
+}
+.led-spectable td{ color:var(--color-graphite-900); font-weight:500; }
+.led-spectable tr:last-child th,
+.led-spectable tr:last-child td{ border-bottom:0; }
+.led-lieferumfang{ margin:0; padding-left:1.15rem; }
+.led-lieferumfang li{ margin:.35rem 0; font-size:0.875rem; color:var(--color-graphite-800); }
+
+/* ---- Lightweight story: sticky image swaps as scenes scroll ----- */
+/* (Reuses .psx-story* from pdp-b.css; nothing extra required here) */
+
+/* ---- Staffel progress status bar ---------------------------------
+   Top row of the price card (above the add-ons block / konf block); a hairline
+   divides it from the content below. The fill is the lively accent (teal→mint),
+   shifting to green at the best-price tier. */
+.led-nudge{
+  margin:0 0 .9rem;
+  padding:0 0 .9rem;
+  border-bottom:1px solid var(--color-graphite-200);
+  transition:border-color .3s ease;
+}
+.led-nudge.is-max{ border-bottom-color:rgba(0,153,81,.22); }
+/* ── "Jetzt anpassen" flow (mirrors the live shop) ───────────────────────────
+   Default: the top price card (#ledPrice) + "Jetzt anpassen" button show; the
+   Zubehör configurator, the qty+cart row and the sticky dock are hidden.
+   Configuring (.pdp-buybox.is-configuring, set by pressing "Jetzt anpassen"):
+   the top card + the button fold away, the Zubehör configurator + qty row open,
+   and the price moves into the fixed bottom dock with the cart CTA. */
+.led-anpassen{ width:100%; }
+/* "Ihre Konfiguration" price section — grabbed from the PDP prototype
+   (index-desc .cfgb-acc, pdp-b-desc.css), ported under led- names so it keeps the
+   "desc" styling (the LED page's pdp-b.css has its own, different .cfgb-acc).
+   Shown in the configurator while is-configuring. */
+.pdp-buybox:not(.is-configuring) .led-acc{ display:none; }
+.led-acc{ padding:1rem 1.1rem 1.1rem; border:1px solid var(--color-graphite-200); border-radius:var(--radius-lg); background:var(--color-paper); }
+.led-acc__card{ overflow:hidden; border:1px solid var(--color-graphite-200); border-radius:var(--radius); background:var(--color-white); transition:box-shadow .25s ease; }
+.led-acc.is-open .led-acc__card{ box-shadow:0 .5rem 1.5rem rgba(1,82,83,.08); }
+.led-acc__h{ margin:0; font:inherit; }
+/* static (always-expanded) header — the collapse/dropdown toggle was removed */
+.led-acc__head{ margin:0; padding:.95rem 1rem; font-size:1rem; font-weight:700; line-height:1.5; color:var(--color-digital-black); }
+.led-detailsbtn{ display:flex; align-items:center; gap:.8rem; width:100%; padding:.95rem 1rem; border:0; background:none; cursor:pointer; font-family:inherit; text-align:left; color:var(--color-digital-black); }
+.led-detailsbtn:focus-visible{ outline:2px solid var(--color-teal); outline-offset:-2px; }
+.led-detailsbtn__titles{ display:flex; flex-direction:column; gap:.12rem; flex:1; min-width:0; }
+.led-detailsbtn__t{ font-size:1rem; font-weight:700; line-height:1.5; color:var(--color-digital-black); }
+.led-detailsbtn__n{ font-size:.8125rem; font-weight:600; line-height:1.5; color:var(--color-teal); white-space:nowrap; overflow:hidden; transition:height .3s ease, opacity .2s ease; }
+.led-acc.is-open .led-detailsbtn__n{ height:0; opacity:0; }
+.led-detailsbtn__chev{ width:1.5rem; height:1.5rem; flex-shrink:0; color:var(--color-graphite-600); transition:transform .3s ease, color .15s ease; }
+.led-detailsbtn:hover .led-detailsbtn__chev, .led-acc.is-open .led-detailsbtn__chev{ color:var(--color-teal); }
+.led-acc.is-open .led-detailsbtn__chev{ transform:rotate(180deg); }
+.led-acc__body{ display:grid; grid-template-rows:0fr; transition:grid-template-rows .35s cubic-bezier(.2,.7,.2,1); }
+.led-acc.is-open .led-acc__body{ grid-template-rows:1fr; }
+.led-acc__inner{ overflow:hidden; min-height:0; visibility:hidden; transition:visibility 0s linear .35s; }
+.led-acc.is-open .led-acc__inner{ visibility:visible; transition-delay:0s; }
+.led-sumlist{ border-top:1px solid var(--color-graphite-200); padding:0 1rem; display:grid; grid-template-columns:minmax(0,1fr) auto; column-gap:1rem; }
+.led-sumrow{ display:grid; grid-column:1 / -1; grid-template-columns:subgrid; align-items:baseline; padding:.75rem 0; }
+.led-sumrow + .led-sumrow{ border-top:1px solid var(--color-graphite-200); }
+.led-sumrow__name{ display:flex; gap:.3em; font-size:.9375rem; line-height:1.45; color:var(--color-digital-black); min-width:0; }
+.led-sumrow__txt{ min-width:0; }
+.led-sumrow__name b{ font-weight:700; }
+.led-sumrow__sub{ display:block; margin-top:.125rem; font-size:.8125rem; color:var(--color-graphite-600); }
+.led-sumrow__price{ justify-self:end; font-size:.9375rem; font-weight:700; color:var(--color-digital-black); font-variant-numeric:tabular-nums; white-space:nowrap; text-align:right; }
+/* The configured total is its OWN fully separate section — a standalone card below
+   the "Ihre Konfiguration" positions. One cohesive, left-aligned stacked block so the
+   label never floats alone in an empty half: it reads top-to-bottom like the page's
+   primary price card — eyebrow caption · amount (+ struck reference) · tax/shipping,
+   then a hairline and the availability + EU energy-class row. The teal uppercase
+   eyebrow matches the lead card's "Preis wie konfiguriert" label exactly. */
+.led-acc__total{ margin-top:.7rem; display:flex; flex-direction:column; align-items:flex-start; gap:.15rem; padding:1rem; border:1px solid var(--color-graphite-200); border-radius:var(--radius); background:var(--color-white); text-align:left; }
+.led-acc__label{ font-size:.6875rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; line-height:1.3; color:var(--color-teal); white-space:nowrap; }
+.led-acc__pricewrap{ margin-top:.05rem; display:inline-flex; flex-wrap:wrap; align-items:baseline; gap:.5rem; }
+.led-acc__price{ font-size:1.625rem; font-weight:700; letter-spacing:-.015em; color:var(--color-digital-black); white-space:nowrap; font-variant-numeric:tabular-nums; }
+.led-acc__was{ font-size:1rem; font-weight:500; color:var(--color-graphite-500); text-decoration:line-through; white-space:nowrap; font-variant-numeric:tabular-nums; }
+.led-acc__vat{ font-size:.8125rem; color:var(--color-graphite-600); }
+.led-acc__vat a{ color:var(--color-teal); text-decoration:underline; }
+.led-acc__avail{ align-self:stretch; margin-top:.55rem; padding-top:.75rem; border-top:1px solid var(--color-graphite-200); justify-content:space-between; }
+.led-acc__avail .pdp-nrg__arrow{ height:29px; width:auto; display:block; }
+/* In the bottom price section the Staffel tracker reads as its own tinted panel
+   above the config card — a quiet teal tint while climbing, a soft green tint once
+   the best price is reached. Rounded, padded, no divider. */
+.led-acc .led-nudge{
+  margin:0 0 .9rem; padding:.7rem .85rem; border:0; border-radius:var(--radius);
+  background:var(--color-teal-50);
+  transition:background .35s ease;
+}
+.led-acc .led-nudge.is-max{ background:rgba(0,153,81,.09); }
+.pdp-buybox.is-configuring #ledPrice,
+.pdp-buybox.is-configuring .led-anpassen{ display:none; }
+.pdp-buybox:not(.is-configuring) .cfgb-buyrow{ display:none; }
+
+/* Zubehör accordion reveal, animated — folded until configuring, then unfolds via
+   the proportional grid-template-rows 1fr↔0fr technique + a fade. It is a flex
+   child of #bCheckout (gap:1.6rem), so while collapsed it pulls a negative margin
+   to leave a single gap, not a doubled one. */
+.led-swap{
+  display:grid; grid-template-rows:1fr;
+  transition:grid-template-rows .42s cubic-bezier(.4,0,.2,1),
+             opacity .3s ease,
+             margin .42s cubic-bezier(.4,0,.2,1),
+             visibility .42s;
+}
+.led-swap > *{ min-height:0; overflow:hidden; }
+
+/* default (not configuring) → Zubehör accordion folded away */
+.pdp-buybox:not(.is-configuring) .led-swap--addons{ grid-template-rows:0fr; opacity:0; visibility:hidden; margin-bottom:-1.6rem; }
+/* a 0fr row can't shrink past the card's own padding + border — fold those too */
+.led-swap--addons > .led-addons{ transition:padding .42s cubic-bezier(.4,0,.2,1), border-width .42s cubic-bezier(.4,0,.2,1); }
+.pdp-buybox:not(.is-configuring) .led-swap--addons > .led-addons{ padding-top:0; padding-bottom:0; border-top-width:0; border-bottom-width:0; }
+
+/* ── Configuring dock = the shared .pdp-stickybar (consistent with the PDP
+   prototype). #ledDock inherits all of pdp.css's .pdp-stickybar styling (fixed
+   bottom, blur surface, thumb, name+price, teal CTA, Details). It is hidden by
+   default (base transform:translateY(110%)) and slides up only while configuring;
+   the scroll-reveal #pdpStickyBar is suppressed meanwhile so only one bar shows. */
+/* #ledDock is a direct .pdp-buybox child, so it inherits the buy-box entrance
+   animation (pdp-rise: opacity 0→1, transform→none, fill:forwards). That forwards
+   fill would PIN transform at 0 and show the dock even when it shouldn't, so opt
+   it out and let the base .pdp-stickybar transform (translateY(110%)) hide it. */
+.pdp-buybox > #ledDock{ animation:none; opacity:1; transform:translateY(110%); }
+.pdp-buybox.is-configuring #ledDock{ transform:translateY(0); }
+body.led-configuring #pdpStickyBar{ transform:translateY(110%) !important; }
+/* the price caption ("konfiguriert") reads as a quiet teal eyebrow before the amount */
+#ledDock .pdp-stickybar__lbl{ font-size:.625rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--color-teal); }
+/* keep Details + cart grouped together on the right (Details is pushed right by its
+   own margin-left:auto; the cart should sit right next to it, not be pushed apart). */
+#ledDock .pdp-stickybar__cta{ margin-left:.6rem; }
+.led-nudge__row{
+  display:flex; align-items:baseline; justify-content:space-between; gap:.75rem;
+  margin-bottom:.5rem;
+}
+.led-nudge__text{ font-size:0.8125rem; color:var(--color-graphite-700); }
+.led-nudge__text b{ color:var(--color-teal); font-weight:700; }
+.led-nudge.is-max .led-nudge__text b{ color:var(--color-green); }
+.led-nudge__next{ font-size:0.8125rem; font-weight:700; color:var(--color-teal); white-space:nowrap; }
+.led-nudge.is-max .led-nudge__next{ color:var(--color-green); }
+.led-nudge__track{
+  height:.4rem; border-radius:var(--radius-pill);
+  background:rgba(1,82,83,.12); overflow:hidden;   /* faint teal rail, visible on paper */
+}
+.led-nudge.is-max .led-nudge__track{ background:rgba(0,153,81,.14); }
+.led-nudge__fill{
+  display:block; height:100%; width:0; border-radius:inherit;
+  background:linear-gradient(90deg, var(--color-teal), var(--color-mint));
+  transition:width .55s cubic-bezier(.2,.7,.2,1), background .3s ease;
+}
+.led-nudge.is-max .led-nudge__fill{ background:linear-gradient(90deg, var(--color-green), #4fd18a); }
+
+/* ---- Dynamic price feedback -------------------------------------- */
+/* rolling number pop (unit price · line total · quantity value) */
+@keyframes led-pop{ 0%{ transform:scale(1); } 32%{ transform:scale(1.08); } 100%{ transform:scale(1); } }
+#bUnit, .led-summary__amount{ display:inline-block; transition:color .25s ease; will-change:transform; }
+#bUnit.is-bump, .led-summary__amount.is-bump,
+.cfgb-buyrow__qty > span.is-bump, .pdp-cta.is-bump{
+  animation:led-pop .42s cubic-bezier(.2,.7,.2,1);
+}
+.cfgb-buyrow__qty > span{ display:grid; } /* keep the stepper value centred while it pops */
+/* green flash the moment a cheaper tier unlocks */
+#bUnit.is-drop, .led-summary__amount.is-drop{ color:var(--color-green); }
+
+@media (prefers-reduced-motion: reduce){
+  #bUnit.is-bump, .led-summary__amount.is-bump,
+  .cfgb-buyrow__qty > span.is-bump, .pdp-cta.is-bump{ animation:none; }
+  .led-nudge__fill, .led-staffel__table tbody tr{ transition:none; }
+  .led-staffel__table tbody tr.is-hit{ animation:none; }
+}
+
+@media (max-width:767px){
+  .led-staffel__table th,
+  .led-staffel__table td{ padding:.55rem .7rem; }
+  .led-spectable th{ width:48%; }
+  .led-nudge__row{ flex-direction:column; gap:.15rem; }
+  .led-nudge__next{ align-self:flex-start; }
+}
+
+/* ---- Responsive hardening (full audit, 320 → 1440) -----------------
+   Fixes found while auditing across device widths. */
+/* Spec row: the dimensions value ("10,00 × 10,00 × 10,00 cm") is wide. The 3-up
+   auto-fit grid split the row into three EQUAL columns, so the middle one was too
+   narrow and the value broke to two lines (with a dangling "×") even on desktop.
+   Give the dimensions column the slack instead — brand & article no. hug their
+   content (auto), dimensions take the rest (1fr) — so it fits on one line where
+   there's room; it still wraps safely at the tightest widths. */
+.pdp-b .pdp-specs{ grid-template-columns:auto 1fr auto; }
+.pdp-b .pdp-specs__value{ white-space:normal; overflow-wrap:break-word; }
+/* Lead-price offer pill: at ~320px "Mengenrabatt (Staffelpreis)" ran 7px past
+   its box — allow it to wrap rather than overflow. */
+@media (max-width:360px){
+  .pdp-price--lead .pdp-offer{ flex-wrap:wrap; }
+}

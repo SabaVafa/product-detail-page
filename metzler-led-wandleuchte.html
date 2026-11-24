@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="de" class="flow-c">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- keep this internal prototype out of search results (direct visits + link previews still work) -->
+<meta name="robots" content="noindex, nofollow" />
+<title>Metzler PDP – LED Wandleuchte Up-Down (Außenleuchten)</title>
+<!-- Pflicht: Metzler-Favicon (rotes M-Quadrat) – self-contained data-URI aus dem Design System -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 184.3 184.3'%3E%3Crect width='184.3' height='184.3' rx='5.75' fill='%23cc322b'/%3E%3Cpath fill='%23fff' d='M70.19,34.81l19.04,32.98-9.58,16.57-28.59-49.55h19.13ZM70.28,108.58h0l-23.45-40.64v85.89h-16.57V34.81h16.57l33.02,57.21L123.92,15.65h19.13l-63.22,109.52-9.58-16.57.02-.02ZM153.14,153.83h-16.57v-85.87l-33,57.14h-19.13l52.11-90.28h16.57v119.02l.02-.02Z'/%3E%3C/svg%3E" />
+<meta name="description" content="Metzler LED Wandleuchte Up-Down | IP65 | 9W warmweiß 3000K | austauschbares G9 Leuchtmittel | Cube – Produktdetailseite mit Staffelpreisen, geteilte Chrome-Komponenten aus dem Metzler Design System." />
+<!-- Design system (topbar · header · nav strip · mobile-nav · footer) – reused as-is -->
+<link rel="stylesheet" href="Home/styles-v2.css?v=19" />
+<!-- Mega-menu dropdown, grabbed from the PLP -->
+<link rel="stylesheet" href="chrome.css?v=6" />
+<!-- Shared hero / layout base -->
+<link rel="stylesheet" href="pdp.css?v=35" />
+<!-- Shared PDP sections + buy-box styling -->
+<link rel="stylesheet" href="pdp-b.css?v=704" />
+<!-- Außenleuchten-specific additions (Staffelpreise buy box, spec table) -->
+<link rel="stylesheet" href="led.css?v=68" />
+</head>
+<body class="plp">
+
+<!-- ===== SVG ICON SPRITE (from home design system) ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></symbol>
+    <symbol id="i-search-m" viewBox="0 0 19 20" fill="currentColor"><path d="M16.625 8.86618C16.6247 4.81893 13.2882 1.49999 9.125 1.49999C4.96183 1.49999 1.62525 4.81893 1.625 8.86618C1.625 12.9136 4.96168 16.2333 9.125 16.2333V17.7333L8.66211 17.7216C3.90667 17.4843 0.125 13.6101 0.125 8.86618C0.125251 3.96948 4.15459 0 9.125 0C14.0954 0 18.1248 3.96948 18.125 8.86618C18.125 13.7631 14.0956 17.7333 9.125 17.7333V16.2333C13.2883 16.2333 16.625 12.9136 16.625 8.86618Z"/><path d="M18.659 19.6237C18.3683 19.9188 17.8935 19.9222 17.5984 19.6316L13.4441 15.5398L14.4969 14.4704L18.6511 18.5632C18.9462 18.8539 18.9496 19.3287 18.659 19.6237Z"/></symbol>
+    <symbol id="i-menu-m" viewBox="0 0 21 17" fill="currentColor"><path d="M0 0.8C0 0.358172 0.358172 0 0.8 0H20.2C20.6418 0 21 0.358172 21 0.8C21 1.24183 20.6418 1.6 20.2 1.6H0.799999C0.358171 1.6 0 1.24183 0 0.8Z"/><path d="M0 8.4C0 7.95817 0.358172 7.6 0.8 7.6H14.2C14.6418 7.6 15 7.95817 15 8.4C15 8.84183 14.6418 9.2 14.2 9.2H0.8C0.358172 9.2 0 8.84183 0 8.4Z"/><path d="M0 16C0 15.5582 0.358172 15.2 0.8 15.2H20.2C20.6418 15.2 21 15.5582 21 16C21 16.4418 20.6418 16.8 20.2 16.8H0.799999C0.358171 16.8 0 16.4418 0 16Z"/></symbol>
+    <symbol id="i-chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></symbol>
+    <symbol id="i-chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></symbol>
+    <symbol id="i-truck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M1 4h13v11H1zM14 8h4l3 3v4h-7z"/><circle cx="6" cy="18" r="1.6"/><circle cx="17.5" cy="18" r="1.6"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M12 3l2.7 5.46 6.03.88-4.36 4.25 1.03 6.01L12 16.9 6.57 19.6l1.03-6.01L3.24 9.34l6.03-.88z"/></symbol>
+    <symbol id="i-instagram" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></symbol>
+    <symbol id="i-facebook" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.5h2.5l.5-3h-3V8.5c0-.9.3-1.5 1.5-1.5H17V4.2c-.5-.1-1.5-.2-2.5-.2-2.4 0-4 1.4-4 4v2.5H8v3h2.5V21h3z"/></symbol>
+    <symbol id="i-youtube" viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.2c-.2-.9-.9-1.6-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4c-.9.2-1.6.9-1.8 1.8C2 8.8 2 12 2 12s0 3.2.4 4.8c.2.9.9 1.6 1.8 1.8 1.6.4 7.8.4 7.8.4s6.2 0 7.8-.4c.9-.2 1.6-.9 1.8-1.8.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8zM10 15V9l5.2 3-5.2 3z"/></symbol>
+    <symbol id="i-pinterest" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-3.6 19.3c-.1-.8-.2-2 0-2.9.2-.8 1.2-5 1.2-5s-.3-.6-.3-1.5c0-1.4.8-2.5 1.9-2.5.9 0 1.3.7 1.3 1.5 0 .9-.6 2.2-.9 3.5-.2 1 .5 1.9 1.6 1.9 1.9 0 3.4-2 3.4-5 0-2.6-1.9-4.4-4.5-4.4-3.1 0-4.9 2.3-4.9 4.7 0 .9.4 1.9.8 2.5.1.1.1.2.1.3l-.3 1.2c-.1.2-.2.3-.4.2-1.4-.7-2.3-2.7-2.3-4.4 0-3.6 2.6-6.9 7.5-6.9 3.9 0 7 2.8 7 6.6 0 3.9-2.5 7.1-5.9 7.1-1.2 0-2.3-.6-2.6-1.3l-.7 2.7c-.3 1-1 2.3-1.4 3.1A10 10 0 1012 2z"/></symbol>
+    <symbol id="i-x-social" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2H21l-6.54 7.47L22 22h-6.86l-4.39-5.74L5.6 22H2.84l7.01-8.01L2 2h7.04l3.97 5.25L18.244 2zm-2.4 18h1.79L7.24 4H5.34l10.5 16z"/></symbol>
+    <linearGradient id="pdpStarHalf"><stop offset="50%" stop-color="currentColor"/><stop offset="50%" stop-color="#d8dbe0"/></linearGradient>
+  </defs>
+</svg>
+
+<!-- ===== TOPBAR ===== -->
+<div class="topbar">
+  <div class="container topbar__inner">
+    <ul class="topbar__claims">
+      <li>Original Metzler Qualität seit 2013</li>
+      <li>über 1,8 Mio. zufriedene Kunden</li>
+      <li><a href="https://edelstahl-tuerklingel.de/metzler-garantieerklaerung" target="_blank" rel="noopener">10 Jahre Metzler Garantie</a></li>
+      <li>Trusted Shops Käuferschutz</li>
+      <li>Kauf auf Rechnung</li>
+    </ul>
+    <div class="topbar__links">
+      <a href="#">Kontaktiere uns</a>
+      <a href="#">Zahlung &amp; Versand</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== HEADER ===== -->
+<header class="header">
+  <div class="container">
+    <div class="header__main">
+      <div class="header__left-actions">
+        <button class="header__burger" id="navBurger" data-nav-toggle aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobileNav"><svg><use href="#i-menu-m"/></svg></button>
+        <button class="header__search-icon" id="searchIcon" aria-label="Suchen" type="button"><svg><use href="#i-search-m"/></svg></button>
+      </div>
+      <a href="#" class="header__logo" aria-label="Metzler Startseite">
+        <img src="Home/Logo/Metzler_Logo-rot-schwarz.svg" alt="Metzler" />
+      </a>
+      <button class="header__kategorien" type="button" data-nav-toggle aria-controls="mobileNav" aria-expanded="false" aria-label="Kategorien">
+        <img class="header__kategorien-icon" src="Home/ICONS/menu.svg" alt="" aria-hidden="true" />
+        <span class="header__kategorien-label">Kategorien</span>
+      </button>
+      <div class="header__search">
+        <svg><use href="#i-search"/></svg>
+        <input type="search" aria-label="Produkte suchen" placeholder="Suchen – Türklingel, Briefkasten, Sprechanlage…" />
+      </div>
+      <div class="header__icons">
+        <a class="icon-btn" href="#" aria-label="Mein Konto"><img src="Home/ICONS/profile.svg" alt="" /></a>
+        <a class="icon-btn" href="#" aria-label="Warenkorb"><img src="Home/ICONS/cart.svg" alt="" /><span class="badge">0</span></a>
+      </div>
+    </div>
+  </div>
+</header>
+
+  <nav class="header__nav" aria-label="Hauptnavigation">
+    <div class="container">
+      <button class="header__nav-all" type="button" data-nav-toggle aria-controls="mobileNav" aria-expanded="false" aria-label="Alle Kategorien">
+        <img class="header__nav-all-icon" src="Home/ICONS/menu.svg" alt="" aria-hidden="true" />
+        <span class="header__nav-all-label">Alle</span>
+      </button>
+      <ul>
+        <li class="hnav-item" data-mega-item>
+          <a href="#" class="is-featured"
+             id="mm-trigger-briefkasten" data-mega-trigger
+             aria-haspopup="true" aria-expanded="false" aria-controls="mm-panel-briefkasten">Briefkästen</a>
+
+          <div class="mega-panel" id="mm-panel-briefkasten" data-mega-panel
+               role="region" aria-label="Briefkästen – Unterkategorien" aria-hidden="true">
+            <div class="container mega-layout">
+              <ul class="mega-grid">
+                <li><a class="mega-card" href="#">
+                  <span class="mega-card__media"><img src="Product%20Image/einfamilien-briefkasten.png" alt="Einfamilien-Briefkasten" loading="lazy"></span>
+                  <span class="mega-card__label">Einfamilien-Briefkasten</span></a></li>
+                <li><a class="mega-card" href="#">
+                  <span class="mega-card__media"><img src="Product%20Image/briefkasten-ohne-gravur.webp" alt="Briefkasten ohne Gravur" loading="lazy"></span>
+                  <span class="mega-card__label">Briefkasten ohne Gravur</span></a></li>
+                <li><a class="mega-card" href="#">
+                  <span class="mega-card__media"><img src="Product%20Image/standbriefkaesten.webp" alt="Standbriefkästen" loading="lazy"></span>
+                  <span class="mega-card__label">Standbriefkästen</span></a></li>
+                <li><a class="mega-card" href="#">
+                  <span class="mega-card__media"><img src="Product%20Image/briefkasten-klingel-sprechanlage.webp" alt="Briefkasten mit Klingel & Sprechanlage" loading="lazy"></span>
+                  <span class="mega-card__label">Mit Klingel &amp; Sprechanlage</span></a></li>
+                <li><a class="mega-card" href="#">
+                  <span class="mega-card__media"><img src="Product%20Image/mehrfamilien-briefkaesten.webp" alt="Mehrfamilien Briefkästen" loading="lazy"></span>
+                  <span class="mega-card__label">Mehrfamilien Briefkästen</span></a></li>
+                <li><a class="mega-card" href="#">
+                  <span class="mega-card__media"><img src="Product%20Image/unterputz-briefkaesten.webp" alt="Unterputz Briefkästen" loading="lazy"></span>
+                  <span class="mega-card__label">Unterputz Briefkästen</span></a></li>
+                <li><a class="mega-card" href="#">
+                  <span class="mega-card__media"><img src="Product%20Image/paketboxen.webp" alt="Paketboxen" loading="lazy"></span>
+                  <span class="mega-card__label">Paketboxen</span></a></li>
+                <li><a class="mega-card" href="#">
+                  <span class="mega-card__media"><img src="Product%20Image/briefkastenschilder.webp" alt="Briefkastenschilder" loading="lazy"></span>
+                  <span class="mega-card__label">Briefkastenschilder</span></a></li>
+                <li><a class="mega-card" href="#">
+                  <span class="mega-card__media"><img src="Product%20Image/briefkastenstaender.webp" alt="Briefkastenständer" loading="lazy"></span>
+                  <span class="mega-card__label">Briefkastenständer</span></a></li>
+                <li><a class="mega-card" href="#">
+                  <span class="mega-card__media"><img src="Product%20Image/ersatzteile-zubehoer.webp" alt="Ersatzteile & Zubehör" loading="lazy"></span>
+                  <span class="mega-card__label">Ersatzteile &amp; Zubehör</span></a></li>
+              </ul>
+              <aside class="mega-poster" aria-label="Briefkastenanlagen Konfigurator">
+                <div class="mega-poster__media">
+                  <img class="mega-poster__bg" src="Poster/poster-briefkasten2.png" alt="Briefkastenanlage – 3D Konfigurator" loading="lazy">
+                </div>
+                <div class="mega-poster__content">
+                  <span class="mega-poster__eyebrow">3D Konfigurator</span>
+                  <p class="mega-poster__title">Briefkastenanlage individuell gestalten</p>
+                  <p class="mega-poster__features">Design · Farbe · Montageart</p>
+                  <a class="mega-poster__cta" href="#">Jetzt konfigurieren</a>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </li>
+        <li><a href="#">Paketboxen</a></li>
+        <li><a href="#">Mülltonnenboxen</a></li>
+        <li class="hnav-item" data-mega-item>
+          <a href="#"
+             id="mm-trigger-sprechanlagen" data-mega-trigger
+             aria-haspopup="true" aria-expanded="false" aria-controls="mm-panel-sprechanlagen">Sprechanlagen</a>
+
+          <div class="mega-panel" id="mm-panel-sprechanlagen" data-mega-panel
+               role="region" aria-label="Türsprechanlagen – Unterkategorien" aria-hidden="true">
+            <div class="container mega-layout">
+              <ul class="mega-grid">
+                <li><a class="mega-card" href="#">
+                  <span class="mega-card__media"><img src="Product%20Image/Sprechanlage/video-station.png" alt="Video-Sprechanlagen" loading="lazy"></span>
+                  <span class="mega-card__label">Video-Sprechanlagen</span></a></li>
+                <li><a class="mega-card" href="#">
+                  <span class="mega-card__media"><img src="Product%20Image/Sprechanlage/audio-station.png" alt="Audio-Sprechanlagen" loading="lazy"></span>
+                  <span class="mega-card__label">Audio-Sprechanlagen</span></a></li>
+                <li><a class="mega-card" href="#">
+                  <span class="mega-card__media"><img src="Product%20Image/Sprechanlage/mehrfamilien-anlage.png" alt="Mehrfamilien-Anlagen" loading="lazy"></span>
+                  <span class="mega-card__label">Mehrfamilien-Anlagen</span></a></li>
+                <li><a class="mega-card" href="#">
+                  <span class="mega-card__media"><img src="Product%20Image/Sprechanlage/touch-display-station.png" alt="Mit Gesichtserkennung" loading="lazy"></span>
+                  <span class="mega-card__label">Mit Gesichtserkennung</span></a></li>
+                <li><a class="mega-card" href="#">
+                  <span class="mega-card__media"><img src="Product%20Image/Sprechanlage/briefkasten-paketbox.png" alt="Mit Briefkasten/Paketbox" loading="lazy"></span>
+                  <span class="mega-card__label">Mit Briefkasten/Paketbox</span></a></li>
+                <li><a class="mega-card" href="#">
+                  <span class="mega-card__media"><img src="Product%20Image/Sprechanlage/innenstation.png" alt="Innenstationen" loading="lazy"></span>
+                  <span class="mega-card__label">Innenstationen</span></a></li>
+                <li><a class="mega-card" href="#">
+                  <span class="mega-card__media"><img src="Product%20Image/Sprechanlage/bus-xdm10.png" alt="2-Draht-BUS (XDM10)" loading="lazy"></span>
+                  <span class="mega-card__label">2-Draht-BUS (XDM10)</span></a></li>
+                <li><a class="mega-card" href="#">
+                  <span class="mega-card__media"><img src="Product%20Image/Sprechanlage/zubehoer.png" alt="Zubehör" loading="lazy"></span>
+                  <span class="mega-card__label">Zubehör</span></a></li>
+              </ul>
+              <aside class="mega-poster" aria-label="XDM10 Video-Türsprechanlage">
+                <div class="mega-poster__media">
+                  <img class="mega-poster__bg" src="Poster/poster-sprechanlage-xdm10.png" alt="XDM10 Video-Türsprechanlage – Red Dot Award Winner 2026" loading="lazy">
+                </div>
+                <div class="mega-poster__content">
+                  <span class="mega-poster__eyebrow">Video-Türsprechanlage</span>
+                  <p class="mega-poster__title">XDM10 – nachrüsten ohne neue Kabel</p>
+                  <p class="mega-poster__features">2-Draht-BUS · App-Anbindung · HD-Video</p>
+                  <a class="mega-poster__cta" href="#">Mehr erfahren</a>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </li>
+        <li><a href="#">Sicherheitstechnik</a></li>
+        <li><a href="#">Türklingeln</a></li>
+        <li><a href="#">Hausnummern</a></li>
+        <li><a href="#" class="is-current" aria-current="true">Außenleuchten</a></li>
+        <li><a href="#">Garten</a></li>
+      </ul>
+    </div>
+  </nav>
+
+<!-- ===== MOBILE SLIDE-IN NAV ===== -->
+<div class="mobile-nav" id="mobileNav" aria-hidden="true">
+  <div class="mobile-nav__backdrop" data-close></div>
+  <aside class="mobile-nav__panel" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+    <div class="mobile-nav__head">
+      <img src="Home/Logo/Metzler_Logo-rot-schwarz.svg" alt="Metzler" />
+      <button class="mobile-nav__close" data-close aria-label="Menü schließen">×</button>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#">Briefkästen</a></li>
+        <li><a href="#">Paketboxen</a></li>
+        <li><a href="#">Mülltonnenboxen</a></li>
+        <li><a href="#">Sprechanlagen</a></li>
+        <li><a href="#">Sicherheitstechnik</a></li>
+        <li><a href="#">Türklingeln</a></li>
+        <li><a href="#">Hausnummern</a></li>
+        <li><a href="#" aria-current="page">Außenleuchten</a></li>
+        <li><a href="#">Garten</a></li>
+      </ul>
+    </nav>
+  </aside>
+</div>
+
+<!-- ===== QUICKBAR (contact / quick actions) ===== -->
+<div class="quickbar" id="quickbar">
+  <div class="container quickbar-inner">
+    <button class="qa-mobile-toggle" type="button" aria-expanded="false" aria-controls="qaPanel">
+      <span>Info &amp; Hilfecenter</span>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <div class="qa-panel" id="qaPanel">
+      <div class="qa-group" id="quickbarItems">
+        <a class="qa" href="tel:+4971213177310">
+          <span class="qa-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+          <span class="qa-body">
+            <span class="qa-label">Allgemeine Hotline</span>
+            <span class="qa-meta"><strong>07121&nbsp;/&nbsp;317&nbsp;7310</strong></span>
+          </span>
+          <span class="qa-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+        </a>
+        <span class="qa-divider"></span>
+        <button class="qa termin" type="button" data-cm-open>
+          <span class="qa-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
+          <span class="qa-body">
+            <span class="qa-label">Termin vereinbaren</span>
+            <span class="qa-meta">Persönlichen Beratungstermin buchen.</span>
+          </span>
+          <span class="qa-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+        </button>
+        <span class="qa-divider"></span>
+        <a class="qa" href="#partner">
+          <span class="qa-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <span class="qa-body">
+            <span class="qa-label">Fachhandelspartner</span>
+            <span class="qa-meta">Installationspartner in Ihrer Nähe.</span>
+          </span>
+          <span class="qa-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+        </a>
+      </div>
+      <a class="qa-cta" href="#sx-frage">
+        <span class="qa-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2.5 2-2.5 4M12 17h.01"/></svg></span>
+        <span class="qa-body">
+          <span class="qa-label">Metzler FAQ</span>
+          <span class="qa-meta">Antworten auf häufige Fragen.</span>
+        </span>
+        <span class="qa-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== BREADCRUMB ===== -->
+<nav class="crumb" aria-label="Breadcrumb">
+  <div class="container">
+    <ol>
+      <li><a href="#">Home</a></li>
+      <li aria-hidden="true"><svg><use href="#i-chevron-right"/></svg></li>
+      <li><a href="#">Außenleuchten</a></li>
+      <li aria-hidden="true"><svg><use href="#i-chevron-right"/></svg></li>
+      <li><span aria-current="page">LED Wandleuchte Up-Down | Cube</span></li>
+    </ol>
+  </div>
+</nav>
+
+<main class="pdp pdp-b" id="pdpMain" tabindex="-1">
+
+  <!-- ===== SECTION 1 · ABOVE-THE-FOLD HERO ===== -->
+  <section class="pdp-hero" id="ueberblick" aria-label="Produktübersicht">
+    <div class="container pdp-hero__grid">
+
+      <!-- Product header – title · rating · share (precedes the image on mobile) -->
+      <header class="pdp-hero__head">
+        <p class="pdp-eyebrow">Außenleuchte · Up-Down-Light</p>
+        <h1 class="pdp-title">Metzler LED Wandleuchte Up-Down&nbsp;<span class="pdp-title__sep">|</span> IP65 <span class="pdp-title__sep">|</span> 9W warmweiß 3000K <span class="pdp-title__sep">|</span> austauschbares G9 Leuchtmittel<span class="pdp-title__color" id="pdpTitleColor"></span>&nbsp;<span class="pdp-title__sep">|</span> Cube</h1>
+        <div class="bx-cred">
+          <a href="#bewertungen" class="pdp-rate bx-cred__rate" aria-label="5,0 von 5">
+            <span class="pdp-stars" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            </span>
+            <span class="pdp-rate__count"><b>5,0</b> (32)</span>
+          </a>
+          <div class="bx-share-wrap">
+            <button type="button" class="bx-share" id="pdpShare" aria-haspopup="true" aria-expanded="false" aria-controls="pdpShareMenu">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a1 1 0 001 1h14a1 1 0 001-1v-7"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v13"/></svg>
+              <span class="bx-share__t">Produkt teilen</span>
+            </button>
+            <div class="bx-share-menu" id="pdpShareMenu" role="menu" aria-label="Seite teilen über" hidden>
+              <button type="button" class="bx-share-menu__item" role="menuitem" data-share="copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.5 13.5a4 4 0 005.7 0l2.6-2.6a4 4 0 00-5.7-5.7L11.8 6.3"/><path d="M13.5 10.5a4 4 0 00-5.7 0l-2.6 2.6a4 4 0 005.7 5.7l1.3-1.3"/></svg><span>Link kopieren</span><svg class="bx-share-menu__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+              <a class="bx-share-menu__item" role="menuitem" data-share="email" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 7l8.5 6 8.5-6"/></svg><span>E-Mail</span><svg class="bx-share-menu__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></a>
+              <a class="bx-share-menu__item" role="menuitem" data-share="whatsapp" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 01-12.7 7.4L3 20.5l1.7-5A8.5 8.5 0 1121 11.5z"/><path d="M8.5 9c0 3.6 2.9 6.5 6.5 6.5"/></svg><span>WhatsApp</span><svg class="bx-share-menu__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- LEFT · Media -->
+      <div class="pdp-media">
+        <div class="pdp-media__stage">
+          <img class="pdp-media__img" id="pdpMainImg"
+               src="https://edelstahl-tuerklingel.de/media/image/product/45161/lg/metzler-led-wandleuchte-up-down-ip65-lichtkegel-einstellbar-9w-warmweiss-3000k-austauschbares-g9-leuchtmittel-cube.webp"
+               alt="Metzler LED Wandleuchte Up-Down Cube in Tiefschwarz mit warmen Lichtkegeln nach oben und unten">
+        </div>
+        <ul class="pdp-thumbs" id="pdpThumbs" aria-label="Weitere Ansichten">
+          <li><button type="button" class="pdp-thumb is-active" aria-label="Ansicht 1" data-full="https://edelstahl-tuerklingel.de/media/image/product/45161/lg/metzler-led-wandleuchte-up-down-ip65-lichtkegel-einstellbar-9w-warmweiss-3000k-austauschbares-g9-leuchtmittel-cube.webp"><img src="https://edelstahl-tuerklingel.de/media/image/product/45161/sm/metzler-led-wandleuchte-up-down-ip65-lichtkegel-einstellbar-9w-warmweiss-3000k-austauschbares-g9-leuchtmittel-cube.webp" alt=""></button></li>
+          <li><button type="button" class="pdp-thumb" aria-label="Ansicht 2" data-full="https://edelstahl-tuerklingel.de/media/image/product/45161/sm/metzler-led-wandleuchte-up-down-ip65-lichtkegel-einstellbar-9w-warmweiss-3000k-austauschbares-g9-leuchtmittel-cube~2.webp"><img src="https://edelstahl-tuerklingel.de/media/image/product/45161/sm/metzler-led-wandleuchte-up-down-ip65-lichtkegel-einstellbar-9w-warmweiss-3000k-austauschbares-g9-leuchtmittel-cube~2.webp" alt="" loading="lazy"></button></li>
+          <li><button type="button" class="pdp-thumb" aria-label="Ansicht 3" data-full="https://edelstahl-tuerklingel.de/media/image/product/45161/sm/metzler-led-wandleuchte-up-down-ip65-lichtkegel-einstellbar-9w-warmweiss-3000k-austauschbares-g9-leuchtmittel-cube~3.webp"><img src="https://edelstahl-tuerklingel.de/media/image/product/45161/sm/metzler-led-wandleuchte-up-down-ip65-lichtkegel-einstellbar-9w-warmweiss-3000k-austauschbares-g9-leuchtmittel-cube~3.webp" alt="" loading="lazy"></button></li>
+          <li><button type="button" class="pdp-thumb" aria-label="Ansicht 4" data-full="https://edelstahl-tuerklingel.de/media/image/product/45161/sm/metzler-led-wandleuchte-up-down-ip65-lichtkegel-einstellbar-9w-warmweiss-3000k-austauschbares-g9-leuchtmittel-cube~4.webp"><img src="https://edelstahl-tuerklingel.de/media/image/product/45161/sm/metzler-led-wandleuchte-up-down-ip65-lichtkegel-einstellbar-9w-warmweiss-3000k-austauschbares-g9-leuchtmittel-cube~4.webp" alt="" loading="lazy"></button></li>
+          <li><button type="button" class="pdp-thumb" aria-label="Ansicht 5" data-full="https://edelstahl-tuerklingel.de/media/image/product/45161/sm/metzler-led-wandleuchte-up-down-ip65-lichtkegel-einstellbar-9w-warmweiss-3000k-austauschbares-g9-leuchtmittel-cube~5.webp"><img src="https://edelstahl-tuerklingel.de/media/image/product/45161/sm/metzler-led-wandleuchte-up-down-ip65-lichtkegel-einstellbar-9w-warmweiss-3000k-austauschbares-g9-leuchtmittel-cube~5.webp" alt="" loading="lazy"></button></li>
+          <li><button type="button" class="pdp-thumb" aria-label="Ansicht 6" data-full="https://edelstahl-tuerklingel.de/media/image/product/45161/sm/metzler-led-wandleuchte-up-down-ip65-lichtkegel-einstellbar-9w-warmweiss-3000k-austauschbares-g9-leuchtmittel-cube~6.webp"><img src="https://edelstahl-tuerklingel.de/media/image/product/45161/sm/metzler-led-wandleuchte-up-down-ip65-lichtkegel-einstellbar-9w-warmweiss-3000k-austauschbares-g9-leuchtmittel-cube~6.webp" alt="" loading="lazy"></button></li>
+          <li><button type="button" class="pdp-thumb" aria-label="Ansicht 7" data-full="https://edelstahl-tuerklingel.de/media/image/product/45161/sm/metzler-led-wandleuchte-up-down-ip65-lichtkegel-einstellbar-9w-warmweiss-3000k-austauschbares-g9-leuchtmittel-cube~7.webp"><img src="https://edelstahl-tuerklingel.de/media/image/product/45161/sm/metzler-led-wandleuchte-up-down-ip65-lichtkegel-einstellbar-9w-warmweiss-3000k-austauschbares-g9-leuchtmittel-cube~7.webp" alt="" loading="lazy"></button></li>
+          <li><button type="button" class="pdp-thumb" aria-label="Ansicht 8" data-full="https://edelstahl-tuerklingel.de/media/image/product/45161/sm/metzler-led-wandleuchte-up-down-ip65-lichtkegel-einstellbar-9w-warmweiss-3000k-austauschbares-g9-leuchtmittel-cube~8.webp"><img src="https://edelstahl-tuerklingel.de/media/image/product/45161/sm/metzler-led-wandleuchte-up-down-ip65-lichtkegel-einstellbar-9w-warmweiss-3000k-austauschbares-g9-leuchtmittel-cube~8.webp" alt="" loading="lazy"></button></li>
+          <li><button type="button" class="pdp-thumb" aria-label="Ansicht 9" data-full="https://edelstahl-tuerklingel.de/media/image/product/45161/sm/metzler-led-wandleuchte-up-down-ip65-lichtkegel-einstellbar-9w-warmweiss-3000k-austauschbares-g9-leuchtmittel-cube~9.webp"><img src="https://edelstahl-tuerklingel.de/media/image/product/45161/sm/metzler-led-wandleuchte-up-down-ip65-lichtkegel-einstellbar-9w-warmweiss-3000k-austauschbares-g9-leuchtmittel-cube~9.webp" alt="" loading="lazy"></button></li>
+          <li><button type="button" class="pdp-thumb" aria-label="Ansicht 10" data-full="https://edelstahl-tuerklingel.de/media/image/product/45161/sm/metzler-led-wandleuchte-up-down-ip65-lichtkegel-einstellbar-9w-warmweiss-3000k-austauschbares-g9-leuchtmittel-cube~10.webp"><img src="https://edelstahl-tuerklingel.de/media/image/product/45161/sm/metzler-led-wandleuchte-up-down-ip65-lichtkegel-einstellbar-9w-warmweiss-3000k-austauschbares-g9-leuchtmittel-cube~10.webp" alt="" loading="lazy"></button></li>
+        </ul>
+        <button type="button" class="pdp-thumbs__all" id="pdpThumbsAll" aria-haspopup="dialog" aria-controls="pdpLightbox">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          <span>Alle <span id="pdpThumbsCount">10</span> Bilder ansehen</span>
+        </button>
+      </div>
+
+      <!-- RIGHT · Buy box -->
+      <div class="pdp-buybox is-precolor">
+
+        <dl class="pdp-specs" aria-label="Produktdaten">
+          <div class="pdp-specs__item"><dt class="pdp-specs__label">Hersteller</dt><dd class="pdp-specs__value">Metzler</dd></div>
+          <div class="pdp-specs__item"><dt class="pdp-specs__label">Breite × Höhe × Tiefe</dt><dd class="pdp-specs__value">10,00 × 10,00 × 10,00&nbsp;cm</dd></div>
+          <div class="pdp-specs__item"><dt class="pdp-specs__label">Artikelnummer</dt><dd class="pdp-specs__value" id="bArticleInline">45161</dd></div>
+        </dl>
+
+        <!-- Price card — ONE stable block (consistent with index-desc): always visible,
+             shows "ab …" (per Stück) before a colour is chosen and "Preis wie
+             konfiguriert …" (the order total) after. Holds the Staffel progress bar +
+             the Zubehör breakdown + availability. The caption, the "ab" prefix and the
+             "/ Stück" suffix toggle on colour selection (driven by led.js). -->
+        <div class="pdp-price pdp-price--lead" id="ledPrice" aria-live="polite">
+          <span class="pdp-offer">
+            <b class="pdp-offer__pct">bis −15&nbsp;%</b><span class="pdp-offer__dur">Mengenrabatt (Staffelpreis)</span>
+          </span>
+          <span class="cfgb-price__label" id="ledKonfLabel" hidden>Preis wie konfiguriert</span>
+          <div class="pdp-price__row">
+            <span class="pdp-price__from" id="bTotalFrom">ab</span>
+            <b class="pdp-price__amount" id="bUnit" aria-live="polite">24,99 €</b>
+            <span class="led-unit" id="bUnitSuffix">/ Stück</span>
+          </div>
+          <p class="pdp-price__meta">inkl. 19% USt. · <a href="https://edelstahl-tuerklingel.de/zahlung-und-versand?shipping_calculator=0" target="_blank" rel="noopener">zzgl. Versand</a></p>
+
+          <!-- Zubehör breakdown — itemises the selected add-ons folded into the total
+               (shown only when ≥1 selected). -->
+          <div class="led-summary__addons" id="ledAddonsBlock" hidden>
+            <span class="led-summary__addons-label">Einmalig enthaltenes Zubehör<span class="led-info-wrap"><button type="button" class="led-info" aria-label="Preishinweis: Festpreis, der Mengenrabatt gilt nur für die Leuchte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4" stroke-linecap="round"/><path d="M12 8h.01" stroke-linecap="round"/></svg></button><span class="led-tip" role="tooltip">Festpreis – der Mengenrabatt gilt nur für die Leuchte.</span></span></span>
+            <div class="led-summary__addon-lines" id="ledAddonLines"></div>
+          </div>
+
+          <div class="pdp-avail">
+            <span class="pdp-avail__status">Sofort verfügbar</span>
+            <!-- EU-Energielabel · Energieeffizienzklasse G (wie im Shop), rechtsbündig auf der
+                 Verfügbarkeitszeile, verlinkt auf das Produktdatenblatt. -->
+            <a class="pdp-nrg" href="https://edelstahl-tuerklingel.de/mediafiles/Sonstiges/Datenblatt-WL-UD-AN.pdf" target="_blank" rel="noopener"
+               aria-label="Energieeffizienzklasse G – Produktdatenblatt ansehen"
+               title="Energieeffizienzklasse G – Produktdatenblatt ansehen">
+              <img class="pdp-nrg__arrow" src="assets/energylabel/G_Left.svg" width="53" height="29" alt="Energieeffizienzklasse G" />
+            </a>
+          </div>
+        </div>
+
+        <!-- ===== AUSFÜHRUNG · FARBE – eigene Variante (eigene Artikelnummer) ===== -->
+        <div class="bx-color" id="bFarbe">
+          <div class="bx-color__head">
+            <span class="bx-color__label">Farbe: <span class="bx-color__dot" id="pdpFinishDot" hidden></span><b id="pdpFinishName">Bitte Farbe wählen</b></span>
+          </div>
+
+          <div class="pdp-swatches bx-swatches" id="pdpSwatches" role="group" aria-label="Farbe wählen – jede Farbe ist eine eigene Variante mit eigener Artikelnummer">
+            <span class="bx-swline" aria-hidden="true"></span>
+            <button type="button" class="pdp-swatch" aria-pressed="false" data-finish="Anthrazitgrau RAL 7016" data-article="45161" title="Anthrazitgrau RAL 7016"><img src="assets/variations/anthrazit-7016.jpg" alt="Anthrazitgrau RAL 7016"><span class="pdp-swatch__check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span></button>
+            <button type="button" class="pdp-swatch" aria-pressed="false" data-finish="Verkehrsweiß RAL 9016" data-article="45162" title="Verkehrsweiß RAL 9016"><img src="assets/variations/verkehrsweiss-9016.jpg" alt="Verkehrsweiß RAL 9016"><span class="pdp-swatch__check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span></button>
+            <button type="button" class="pdp-swatch" aria-pressed="false" data-finish="Graualuminium RAL 9007" data-article="45163" title="Graualuminium RAL 9007"><img src="assets/variations/graualuminium-9007.jpg" alt="Graualuminium RAL 9007"><span class="pdp-swatch__check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span></button>
+            <button type="button" class="pdp-swatch" aria-pressed="false" data-finish="Eisenglimmer DB 703" data-article="45164" title="Eisenglimmer DB 703"><img src="assets/variations/eisenglimmer-db703.jpg" alt="Eisenglimmer DB 703"><span class="pdp-swatch__check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span></button>
+            <button type="button" class="pdp-swatch" aria-pressed="false" data-finish="Quarzgrau RAL 7039" data-article="45165" title="Quarzgrau RAL 7039"><img src="assets/variations/quarzgrau-7039.jpg" alt="Quarzgrau RAL 7039"><span class="pdp-swatch__check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span></button>
+            <button type="button" class="pdp-swatch" aria-pressed="false" data-finish="Tiefschwarz RAL 9005" data-article="45166" title="Tiefschwarz RAL 9005"><img src="assets/variations/tiefschwarz-9005.jpg" alt="Tiefschwarz RAL 9005"><span class="pdp-swatch__check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span></button>
+          </div>
+
+          <p class="bx-color__note">Jede Farbe ist eine <b>eigene Variante</b> mit eigener Artikelnummer. Auf Wunsch pulverbeschichten wir das Gehäuse in nahezu jeder RAL-Farbe – <a href="#sx-frage">sprechen Sie uns an</a>.</p>
+        </div>
+
+        <!-- ===== STAFFELPREISE – Mengenrabatt (5 % je Stufe bei 2 / 4 / 6 Stück) ===== -->
+        <div class="led-staffel" id="ledStaffel" aria-label="Staffelpreise">
+          <div class="led-staffel__head">
+            <span class="led-staffel__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg>
+            </span>
+            <span class="led-staffel__title">Staffelpreise</span>
+            <span class="led-staffel__hint">Mehr kaufen, mehr sparen</span>
+          </div>
+          <table class="led-staffel__table">
+            <thead>
+              <tr><th scope="col">Menge</th><th scope="col">Stückpreis</th><th scope="col">Sie sparen</th></tr>
+            </thead>
+            <tbody id="ledStaffelBody">
+              <tr data-min="1"><td>1 Stück</td><td>24,99 €</td><td><span class="led-staffel__off is-zero">–</span></td></tr>
+              <tr data-min="2"><td>ab 2 Stück</td><td>23,74 €</td><td><span class="led-staffel__off">−5 %</span></td></tr>
+              <tr data-min="4"><td>ab 4 Stück</td><td>22,49 €</td><td><span class="led-staffel__off">−10 %</span></td></tr>
+              <tr data-min="6"><td>ab 6 Stück</td><td>21,24 €</td><td><span class="led-staffel__off">−15 %</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- ===== BUY BLOCK – Zubehör · live total · quantity · CTA ===== -->
+        <div class="cfgb-checkout is-precolor" id="bCheckout">
+
+          <!-- "Jetzt anpassen" — the default CTA (mirrors the live shop). Pressing it
+               flips the buy box into configuring mode: the top price card folds away,
+               the Zubehör configurator opens, and the price moves to the sticky bottom
+               dock. Hidden once configuring. -->
+          <button type="button" class="pdp-cta cfgb-cta led-anpassen" id="bAnpassen" aria-controls="ledDock">
+            <span id="bAnpassenTxt">Bitte Farbe wählen</span>
+          </button>
+
+          <!-- Erweiterungen & Zubehör – checkbox add-ons, mirroring the live
+               configurator. Each selection is a fixed-price line in the module below.
+               Wrapped in a .led-swap collapser: folded until "Jetzt anpassen" opens
+               the configurator, then unfolds smoothly. -->
+          <div class="led-swap led-swap--addons">
+          <div class="led-addons" id="ledAddons">
+            <button type="button" class="led-addons__head" id="ledAddonsToggle" aria-expanded="true" aria-controls="ledAddonsBody">
+              <span class="led-addons__num" aria-hidden="true">1</span>
+              <span class="led-addons__title">Erweiterungen &amp; Zubehör</span>
+              <span class="led-addons__count" id="ledAddonsCount" hidden></span>
+              <svg class="led-addons__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="led-addons__body" id="ledAddonsBody">
+             <div class="led-addons__list">
+              <label class="led-addon" for="addon-44054">
+                <input type="checkbox" class="led-addon__cb" id="addon-44054" data-name="G9 LED-Leuchtmittel mit App-Steuerung" data-price="12.99">
+                <span class="led-addon__media"><img src="assets/addons/g9-app-steuerung.jpg" alt="" loading="lazy"></span>
+                <span class="led-addon__text">
+                  <span class="led-addon__name">Metzler G9 LED-Leuchtmittel mit App-Steuerung | Glühbirne Dimmbar | 3000–6000 K</span>
+                  <span class="led-addon__price">+ 12,99 €</span>
+                </span>
+                <span class="led-addon__check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+              </label>
+              <label class="led-addon" for="addon-44803">
+                <input type="checkbox" class="led-addon__cb" id="addon-44803" data-name="G9 LED-Leuchtmittel RGBW · 2er-Set" data-price="24.99">
+                <span class="led-addon__media"><img src="assets/addons/g9-rgbw-2er.jpg" alt="" loading="lazy"></span>
+                <span class="led-addon__text">
+                  <span class="led-addon__name">Metzler G9 LED Leuchtmittel RGBW | Dimmbar per Fernbedienung | 2er Set | Farbwechsel</span>
+                  <span class="led-addon__price">+ 24,99 €</span>
+                </span>
+                <span class="led-addon__check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+              </label>
+              <label class="led-addon" for="addon-44848">
+                <input type="checkbox" class="led-addon__cb" id="addon-44848" data-name="G9 LED-Leuchtmittel RGBW · 4er-Set" data-price="39.99">
+                <span class="led-addon__media"><img src="assets/addons/g9-rgbw-4er.jpg" alt="" loading="lazy"></span>
+                <span class="led-addon__text">
+                  <span class="led-addon__name">Metzler G9 LED Leuchtmittel RGBW | Dimmbar per Fernbedienung | 4er Set | Farbwechsel</span>
+                  <span class="led-addon__price">+ 39,99 €</span>
+                </span>
+                <span class="led-addon__check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+              </label>
+             </div>
+            </div>
+          </div>
+          </div><!-- /.led-swap--addons -->
+
+          <!-- "Ihre Konfiguration" price section — grabbed from the PDP prototype
+               (index-desc .cfgb-acc): an expandable positions list (Leuchte + each
+               Zubehör) above the "Preis wie konfiguriert" total. Shown while
+               configuring, so the price section is never dropped from the flow. -->
+          <div class="led-acc" id="ledAcc">
+            <!-- Staffel progress status bar — moved into the bottom price section -->
+            <div class="led-nudge" id="ledNudge">
+              <div class="led-nudge__row">
+                <span class="led-nudge__text" id="ledNudgeText">Noch <b>1×</b> kaufen und <b>−5 %</b> sichern</span>
+                <span class="led-nudge__next" id="ledNudgeNext">→ 23,74 € / Stück</span>
+              </div>
+              <div class="led-nudge__track"><span class="led-nudge__fill" id="ledNudgeFill" style="width:16.7%"></span></div>
+            </div>
+            <div class="led-acc__card">
+              <h2 class="led-acc__head">Ihre Konfiguration</h2>
+              <div class="led-sumlist" id="ledSumList" role="list" aria-label="Positionen"></div>
+            </div>
+            <!-- "Preis wie konfiguriert" as its own recognisable section: price (+ struck
+                 reference) · tax/shipping · availability + EU energy class, in one card. -->
+            <div class="led-acc__total">
+              <span class="led-acc__label">Preis wie konfiguriert</span>
+              <span class="led-acc__pricewrap"><b class="led-acc__price" id="ledCfgPrice">24,99&nbsp;€</b><s class="led-acc__was" id="ledCfgWas" hidden></s></span>
+              <span class="led-acc__vat">inkl.&#8239;19&#8239;% USt. · zzgl. <a href="https://edelstahl-tuerklingel.de/zahlung-und-versand?shipping_calculator=0" target="_blank" rel="noopener">Versand</a></span>
+              <div class="pdp-avail led-acc__avail">
+                <span class="pdp-avail__status">Sofort verfügbar</span>
+                <!-- EU-Energielabel · Energieeffizienzklasse G (wie im Shop), rechtsbündig, verlinkt auf das Produktdatenblatt. -->
+                <a class="pdp-nrg" href="https://edelstahl-tuerklingel.de/mediafiles/Sonstiges/Datenblatt-WL-UD-AN.pdf" target="_blank" rel="noopener"
+                   aria-label="Energieeffizienzklasse G – Produktdatenblatt ansehen"
+                   title="Energieeffizienzklasse G – Produktdatenblatt ansehen">
+                  <img class="pdp-nrg__arrow" src="assets/energylabel/G_Left.svg" width="53" height="29" alt="Energieeffizienzklasse G" />
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="cfgb-buyrow">
+            <span class="cfg-opt__qty cfgb-buyrow__qty" aria-label="Menge Wandleuchte"><button type="button" data-qd="-1" data-target="main" aria-label="Menge verringern">−</button><span id="bMainQtyVal">1</span><button type="button" data-qd="1" data-target="main" aria-label="Menge erhöhen">+</button></span>
+            <button type="button" class="pdp-cta cfgb-cta" id="bCart">Bitte Farbe wählen</button>
+          </div>
+
+          <!-- delivery table (style consistent with the VDM10 PDP) -->
+          <div class="bx-delivery" aria-label="Versand und Lieferung">
+            <div class="bx-delivery__row">
+              <span class="bx-delivery__key"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16" rx="2"/><path d="M3 9h18M8 2.5v4M16 2.5v4"/></svg>Versanddatum</span>
+              <span class="bx-delivery__val"><b class="ph">TT.MM. – TT.MM.</b></span>
+            </div>
+            <div class="bx-delivery__row">
+              <span class="bx-delivery__key"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h11v9H3z"/><path d="M14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17.5" cy="18" r="1.6"/></svg>Lieferung</span>
+              <span class="bx-delivery__val"><b class="bx-delivery__free">Gratis Versand</b> · ab 99 € <a href="#" class="bx-delivery__details">Details</a></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Configuring dock — the shared .pdp-stickybar component (consistent with
+             the PDP prototype / index-desc): appears in configuring mode with the
+             configured price + cart CTA. The scroll-reveal #pdpStickyBar is suppressed
+             while this is up so only one bottom bar shows. -->
+        <div class="pdp-stickybar led-dock" id="ledDock" aria-live="polite">
+          <div class="container pdp-stickybar__inner">
+            <img class="pdp-stickybar__thumb" id="ledDockThumb" src="assets/variations/anthrazit-7016.jpg" alt="" aria-hidden="true">
+            <div class="pdp-stickybar__info">
+              <span class="pdp-stickybar__name">LED Wandleuchte Up-Down&nbsp;| Cube</span>
+              <span class="pdp-stickybar__price"><span class="pdp-stickybar__lbl">konfiguriert</span> <b id="ledDockPrice">24,99 €</b></span>
+            </div>
+            <button type="button" class="pdp-stickybar__details" id="ledDockDetails" aria-expanded="false">
+              <span>Details</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+            </button>
+            <button type="button" class="pdp-stickybar__cta" id="ledDockCart">In den Warenkorb</button>
+          </div>
+        </div>
+
+        <!-- ===== FEATURE HIGHLIGHTS – numbered editorial list (below the CTA) ===== -->
+        <section class="feat" aria-label="Produkt-Highlights">
+          <ol class="feat__list">
+            <li class="feat__item"><span class="feat__name">Up-Down-Lichteffekt für Fassade &amp; Wohnraum</span><span class="feat__desc">Inszeniert Ihr Zuhause mit zwei warmen Lichtkegeln nach oben und unten.</span></li>
+            <li class="feat__item"><span class="feat__name">Lichtkegel individuell einstellbar</span><span class="feat__desc">4 verstellbare Klappen für verschiedene Strahlwinkel – je nach Stimmung.</span></li>
+            <li class="feat__item"><span class="feat__name">Austauschbares 9W LED-Leuchtmittel (G9)</span><span class="feat__desc">Einfach wechselbar dank Standard-Sockel – kein fest verbautes LED-Modul.</span></li>
+            <li class="feat__item"><span class="feat__name">Warmweiß 3000K</span><span class="feat__desc">Angenehmes Licht für den Außen- und Innenbereich.</span></li>
+            <li class="feat__item"><span class="feat__name">IP65 &amp; witterungsbeständige Pulverbeschichtung</span><span class="feat__desc">Staub- und strahlwassergeschützt mit langlebiger Oberfläche.</span></li>
+          </ol>
+          <!-- Trust badges – inside the feature card -->
+          <div class="hl__badges hl__badges--infeat">
+            <span class="hl__badge">
+              <img class="hl__badge-seal" src="ICONS/Garantie-hq.svg" alt="" aria-hidden="true" width="42" height="42">
+              <span class="hl__badge-txt"><span class="hl__badge-pre">10&nbsp;Jahre Metzler</span><b>Garantie</b></span>
+            </span>
+            <span class="hl__badge">
+              <img class="hl__badge-seal hl__badge-seal--flag" src="ICONS/Flag-vector.svg?v=1" alt="" aria-hidden="true" width="26" height="26">
+              <span class="hl__badge-txt"><span class="hl__badge-pre">Designed in</span><b>Germany</b></span>
+            </span>
+          </div>
+        </section>
+
+        <div class="pdp-trust">
+          <span class="pdp-trust__item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
+            <span><a href="https://edelstahl-tuerklingel.de/metzler-garantieerklaerung" target="_blank" rel="noopener">10 Jahre Metzler Garantie</a></span>
+          </span>
+          <span class="pdp-trust__item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            <span>Designed in Germany</span>
+          </span>
+          <span class="pdp-trust__item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/></svg>
+            <span>Trusted Shops Käuferschutz</span>
+          </span>
+        </div>
+
+        <!-- Service & Beratung -->
+        <nav class="svc" aria-label="Service und Beratung">
+          <a class="svc__item" href="#sx-frage">
+            <span class="svc__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2.5 2-2.5 4M12 17h.01"/></svg></span>
+            <span class="svc__text"><span class="svc__title">Metzler FAQ</span><span class="svc__sub">Antworten auf häufige Fragen.</span></span>
+            <svg class="svc__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+          </a>
+          <a class="svc__item" href="#">
+            <span class="svc__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            <span class="svc__text"><span class="svc__title">Fachhandels- und Montagepartner</span><span class="svc__sub">Partner in Ihrer Nähe finden</span></span>
+            <svg class="svc__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+          </a>
+          <a class="svc__item" href="#" data-cm-open>
+            <span class="svc__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
+            <span class="svc__text"><span class="svc__title">Beratungstermin vereinbaren</span><span class="svc__sub">Kostenlos &amp; unverbindlich · persönlich beraten</span></span>
+            <svg class="svc__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+          </a>
+        </nav>
+
+        <div class="pdp-pay" aria-label="Zahlungsarten">
+          <img src="Paymentshipping%20logos/PaymentMethods/Delivery/Payment%20logo-5.png?v=4" alt="PayPal">
+          <img src="Paymentshipping%20logos/PaymentMethods/Delivery/Payment%20logo-4.png?v=4" alt="Klarna">
+          <img src="Paymentshipping%20logos/PaymentMethods/Delivery/Payment%20logo-2.png?v=4" alt="Visa">
+          <img src="Paymentshipping%20logos/PaymentMethods/Delivery/Payment%20logo-6.png?v=4" alt="Mastercard">
+          <img src="Paymentshipping%20logos/PaymentMethods/Delivery/Payment%20logo-1.png?v=4" alt="American Express">
+          <img src="Paymentshipping%20logos/PaymentMethods/Delivery/Payment%20logo-7.png?v=4" alt="Apple Pay">
+          <img src="Paymentshipping%20logos/PaymentMethods/Delivery/Payment%20logo-8.png?v=4" alt="Google Pay">
+          <img src="Paymentshipping%20logos/PaymentMethods/Delivery/Payment%20logo-3.png?v=4" alt="Amazon Pay">
+          <img src="Paymentshipping%20logos/PaymentMethods/Delivery/Payment%20logo.png?v=4" alt="SEPA-Lastschrift">
+          <img src="Paymentshipping%20logos/PaymentMethods/Delivery/Payment%20logo-9.png?v=4" alt="Vorkasse">
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Customer reviews – standalone preview ===== -->
+  <section id="bewertungen" class="rv" aria-labelledby="rvHeading">
+    <div class="container rv__inner">
+      <header class="rv__head">
+        <p class="rv__eyebrow">Kundenstimmen</p>
+        <h2 class="rv__title" id="rvHeading">Das sagen unsere Kunden</h2>
+        <p class="rv__sub">Echte Erfahrungen von verifizierten Metzler-Kunden.</p>
+      </header>
+
+      <div class="rv__layout">
+      <div class="rv__summary">
+        <div class="rv__score">
+          <div class="rv__score-num">5,0</div>
+          <span class="pdp-stars rv__score-stars" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          </span>
+          <p class="rv__score-count">Basierend auf <b>32</b> Bewertungen</p>
+        </div>
+
+        <div class="rv__dist" aria-label="Bewertungsverteilung">
+          <div class="rv__dist-row"><span class="rv__dist-label">5 Sterne</span><span class="rv__dist-bar"><i style="width:100%"></i></span><span class="rv__dist-val">32</span></div>
+          <div class="rv__dist-row"><span class="rv__dist-label">4 Sterne</span><span class="rv__dist-bar"><i style="width:0%"></i></span><span class="rv__dist-val">0</span></div>
+          <div class="rv__dist-row"><span class="rv__dist-label">3 Sterne</span><span class="rv__dist-bar"><i style="width:0%"></i></span><span class="rv__dist-val">0</span></div>
+          <div class="rv__dist-row"><span class="rv__dist-label">2 Sterne</span><span class="rv__dist-bar"><i style="width:0%"></i></span><span class="rv__dist-val">0</span></div>
+          <div class="rv__dist-row"><span class="rv__dist-label">1 Stern</span><span class="rv__dist-bar"><i style="width:0%"></i></span><span class="rv__dist-val">0</span></div>
+        </div>
+
+        <div class="rv__aside">
+          <a href="#sx-bewertungen" class="rv__cta">Alle 32 Bewertungen ansehen
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="rv__carousel">
+        <article class="rv__feature-card" id="rvFeatureCard" aria-live="polite">
+          <figure class="rv__feature-media">
+            <img id="rvFeatureImg" src="" alt="">
+            <figcaption class="rv__feature-cam"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h3l2-2h6l2 2h3v12H4z"/><circle cx="12" cy="13" r="3.2"/></svg>Kundenfoto</figcaption>
+          </figure>
+          <div class="rv__feature-body">
+          <div class="rv__feature-content">
+            <div class="rv__feature-head">
+              <span class="pdp-stars rv__feature-stars" id="rvFeatureStars" aria-hidden="true"></span>
+              <svg class="rv__feature-quote" viewBox="0 0 32 32" aria-hidden="true"><path d="M13 8v7a6 6 0 0 1-6 6H6v-4h1a2 2 0 0 0 2-2v-1H6V8zm12 0v7a6 6 0 0 1-6 6h-1v-4h1a2 2 0 0 0 2-2v-1h-3V8z"/></svg>
+            </div>
+            <h3 class="rv__feature-title" id="rvFeatureTitle"></h3>
+            <p class="rv__feature-text" id="rvFeatureText"></p>
+            <div class="rv__feature-foot">
+              <span class="rv__feature-who"><b id="rvFeatureAuthor"></b><time id="rvFeatureDate"></time></span>
+            </div>
+          </div>
+          <div class="rv__navwrap">
+            <p class="rv__navlabel">Weitere Bewertungen mit Foto</p>
+            <div class="rv__navrow">
+              <button type="button" class="rv__feature-arrow rv__feature-arrow--prev" aria-label="Vorherige Bewertung"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+              <div class="rv__thumbsnav" id="rvThumbsNav" aria-label="Kundenfotos – Bewertung wählen"></div>
+              <button type="button" class="rv__feature-arrow rv__feature-arrow--next" aria-label="Nächste Bewertung"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+            </div>
+          </div>
+          </div>
+        </article>
+
+        <!-- Data source (progressive enhancement): JS reads these to build the feature -->
+        <ul class="rv__track" id="rvTrack" hidden>
+          <li class="rv__card" data-img="https://edelstahl-tuerklingel.de/media/image/product/45161/sm/metzler-led-wandleuchte-up-down-ip65-lichtkegel-einstellbar-9w-warmweiss-3000k-austauschbares-g9-leuchtmittel-cube~2.webp" data-stars="5" data-title="Tolle Wirkung an der Fassade" data-author="Andreas K." data-date="7. Juli 2026">
+            Die zwei Lichtkegel setzen unsere Klinkerfassade abends perfekt in Szene. Warmweiß ist genau richtig – nicht zu kalt.
+          </li>
+          <li class="rv__card" data-img="https://edelstahl-tuerklingel.de/media/image/product/45161/sm/metzler-led-wandleuchte-up-down-ip65-lichtkegel-einstellbar-9w-warmweiss-3000k-austauschbares-g9-leuchtmittel-cube~5.webp" data-stars="5" data-title="Leuchtmittel selbst wechselbar – top" data-author="Gast" data-date="21. Juni 2026">
+            Endlich eine Leuchte mit austauschbarem G9-Leuchtmittel. Kein fest verbautes LED-Modul, das man wegwerfen muss. Sehr wertig verarbeitet.
+          </li>
+          <li class="rv__card" data-img="https://edelstahl-tuerklingel.de/media/image/product/45161/sm/metzler-led-wandleuchte-up-down-ip65-lichtkegel-einstellbar-9w-warmweiss-3000k-austauschbares-g9-leuchtmittel-cube~7.webp" data-stars="5" data-title="Klappen sind praktisch" data-author="Marion S." data-date="3. Juni 2026">
+            Über die Klappen lässt sich der Lichtwinkel schön einstellen. Wir haben gleich mehrere bestellt – dank Staffelpreis sehr fair.
+          </li>
+          <li class="rv__card" data-img="https://edelstahl-tuerklingel.de/media/image/product/45161/sm/metzler-led-wandleuchte-up-down-ip65-lichtkegel-einstellbar-9w-warmweiss-3000k-austauschbares-g9-leuchtmittel-cube~4.webp" data-stars="5" data-title="Auch nach Regen kein Problem" data-author="Gast" data-date="18. Mai 2026">
+            Hält Wind und Wetter problemlos stand. IP65 merkt man – nach dem ersten Starkregen alles trocken und einwandfrei.
+          </li>
+        </ul>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRODUCT INFO – sticky scroll-spy nav ===== -->
+  <nav class="psx-nav" id="psxNav" aria-label="Produktinformationen">
+    <div class="container psx-nav__inner">
+      <div class="psx-nav__tabs">
+        <a class="psx-nav__link is-active" href="#sx-beschreibung">Beschreibung</a>
+        <a class="psx-nav__link" href="#sx-bewertungen">Bewertungen</a>
+        <a class="psx-nav__link" href="#sx-downloads">Downloads</a>
+        <a class="psx-nav__link" href="#sx-technik">Technische Details</a>
+        <a class="psx-nav__link" href="#sx-frage">Frage zum Artikel</a>
+      </div>
+      <button type="button" class="psx-nav__termin" data-cm-open>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        Termin vereinbaren
+      </button>
+    </div>
+  </nav>
+
+  <!-- 1 · Beschreibung – pinned scrollytelling -->
+  <section id="sx-beschreibung" class="psx-sec psx-story" aria-label="Produktbeschreibung">
+    <div class="container psx-sec__inner">
+      <div class="psx-story__grid">
+        <div class="psx-story__pin">
+        <div class="psx-story__media" aria-hidden="true">
+          <img class="psx-story__img is-active" data-scene="0" src="https://edelstahl-tuerklingel.de/media/image/product/45161/lg/metzler-led-wandleuchte-up-down-ip65-lichtkegel-einstellbar-9w-warmweiss-3000k-austauschbares-g9-leuchtmittel-cube.webp" alt="">
+          <img class="psx-story__img" data-scene="1" src="https://edelstahl-tuerklingel.de/media/image/product/45161/sm/metzler-led-wandleuchte-up-down-ip65-lichtkegel-einstellbar-9w-warmweiss-3000k-austauschbares-g9-leuchtmittel-cube~3.webp" alt="">
+          <img class="psx-story__img" data-scene="2" src="https://edelstahl-tuerklingel.de/media/image/product/45161/sm/metzler-led-wandleuchte-up-down-ip65-lichtkegel-einstellbar-9w-warmweiss-3000k-austauschbares-g9-leuchtmittel-cube~6.webp" alt="">
+          <img class="psx-story__img" data-scene="3" src="https://edelstahl-tuerklingel.de/media/image/product/45161/sm/metzler-led-wandleuchte-up-down-ip65-lichtkegel-einstellbar-9w-warmweiss-3000k-austauschbares-g9-leuchtmittel-cube~8.webp" alt="">
+          <img class="psx-story__img" data-scene="4" src="https://edelstahl-tuerklingel.de/media/image/product/45161/sm/metzler-led-wandleuchte-up-down-ip65-lichtkegel-einstellbar-9w-warmweiss-3000k-austauschbares-g9-leuchtmittel-cube~9.webp" alt="">
+        </div>
+        </div>
+        <div class="psx-story__scenes">
+          <article class="psx-story__scene" data-scene="0">
+            <figure class="psx-story__sceneimg"><img src="https://edelstahl-tuerklingel.de/media/image/product/45161/sm/metzler-led-wandleuchte-up-down-ip65-lichtkegel-einstellbar-9w-warmweiss-3000k-austauschbares-g9-leuchtmittel-cube.webp" alt="" loading="lazy"></figure>
+            <h3>Up-Down-Light – Ihre Fassade als Lichtermeer</h3>
+            <p>Verwandeln Sie die Fassade Ihres Hauses in ein beeindruckendes Lichterspiel. Zwei warme Lichtkegel strahlen nach oben und unten. Vor allem beim Einsatz mehrerer Leuchten entsteht ein durchgehend stimmungsvoller, angenehm warmer Effekt.</p>
+            <ul class="psx-facts">
+              <li>Zwei Lichtkegel für Up- und Down-Light</li>
+              <li>Ideal für Fassade, Eingang, Terrasse und Wohnraum</li>
+              <li>Wirkung verstärkt sich beim Einsatz mehrerer Leuchten</li>
+            </ul>
+          </article>
+          <article class="psx-story__scene" data-scene="1">
+            <figure class="psx-story__sceneimg"><img src="https://edelstahl-tuerklingel.de/media/image/product/45161/sm/metzler-led-wandleuchte-up-down-ip65-lichtkegel-einstellbar-9w-warmweiss-3000k-austauschbares-g9-leuchtmittel-cube~3.webp" alt="" loading="lazy"></figure>
+            <h3>Einstellbare Lichtstrahler dank 4-teiliger Klappen</h3>
+            <p>Stellen Sie über die eingebauten, 4-teiligen Klappen ganz einfach verschiedene Lichtwinkel ein. So wechseln Sie je nach Laune zwischen unterschiedlichen Lichtformen und sorgen immer für eine abwechslungsreiche Atmosphäre.</p>
+            <ul class="psx-chips">
+              <li>4 Klappen</li><li>Enger Spot</li><li>Breiter Wash</li><li>Asymmetrisch</li>
+            </ul>
+          </article>
+          <article class="psx-story__scene" data-scene="2">
+            <figure class="psx-story__sceneimg"><img src="https://edelstahl-tuerklingel.de/media/image/product/45161/sm/metzler-led-wandleuchte-up-down-ip65-lichtkegel-einstellbar-9w-warmweiss-3000k-austauschbares-g9-leuchtmittel-cube~6.webp" alt="" loading="lazy"></figure>
+            <h3>Austauschbares 9W LED mit G9-Sockel</h3>
+            <p>Die hochwertige LED hellt nicht nur im Dunkeln auf, sondern spart auch Energie. Das 9&nbsp;Watt starke Leuchtmittel sitzt in einem Standard-G9-Sockel und lässt sich jederzeit selbst tauschen – kein fest verbautes Modul, das die ganze Leuchte unbrauchbar macht.</p>
+            <ul class="psx-facts">
+              <li>9&nbsp;Watt starkes, austauschbares LED-Leuchtmittel</li>
+              <li>Standard-G9-Sockel – werkzeuglos wechselbar</li>
+              <li>3000&nbsp;K warmweiß für eine angenehme Atmosphäre</li>
+            </ul>
+          </article>
+          <article class="psx-story__scene" data-scene="3">
+            <figure class="psx-story__sceneimg"><img src="https://edelstahl-tuerklingel.de/media/image/product/45161/sm/metzler-led-wandleuchte-up-down-ip65-lichtkegel-einstellbar-9w-warmweiss-3000k-austauschbares-g9-leuchtmittel-cube~8.webp" alt="" loading="lazy"></figure>
+            <h3>Vielseitig einsetzbar – innen wie außen</h3>
+            <p>Dank des eleganten, zeitlosen Designs passt die Wandleuchte zu jedem Stil und lässt sich vielfältig kombinieren. So macht sie nicht nur im Außenbereich eine gute Figur, sondern auch in Ihren Innenräumen.</p>
+            <ul class="psx-facts">
+              <li>Zeitloses, kubisches Design (10 × 10 × 10&nbsp;cm)</li>
+              <li>Passend für Außen- und Innenbereich</li>
+              <li>Spannung 230&nbsp;V</li>
+            </ul>
+          </article>
+          <article class="psx-story__scene" data-scene="4">
+            <figure class="psx-story__sceneimg"><img src="https://edelstahl-tuerklingel.de/media/image/product/45161/sm/metzler-led-wandleuchte-up-down-ip65-lichtkegel-einstellbar-9w-warmweiss-3000k-austauschbares-g9-leuchtmittel-cube~9.webp" alt="" loading="lazy"></figure>
+            <h3>Höchste Qualität – witterungsbeständig nach IP65</h3>
+            <p>Dank des witterungsbeständigen Designs ist die Leuchte besonders gut für den Außenbereich geeignet. Die Schutzart IP65 bedeutet: Weder Wasser noch Staub können der Leuchte etwas anhaben – ideal auch für ungeschützte, direkt bewitterte Stellen.</p>
+            <ul class="psx-facts">
+              <li>IP65 – staub- und strahlwassergeschützt</li>
+              <li>Witterungsbeständige Pulverbeschichtung</li>
+              <li>Langlebige, pflegeleichte Oberfläche</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+
+      <!-- ===== Merkmale – premium branded panel with icon cards ===== -->
+      <section class="nfeat" aria-labelledby="nfeatTitle">
+        <div class="nfeat__head">
+          <span class="nfeat__eyebrow">Auf einen Blick</span>
+          <h3 class="nfeat__title" id="nfeatTitle">Merkmale</h3>
+          <p class="nfeat__lead">Was die Metzler LED Wandleuchte Up-Down auszeichnet – von der Lichtwirkung bis zur Langlebigkeit.</p>
+        </div>
+        <ul class="nfeat__grid">
+          <li class="nfeat__card">
+            <h4 class="nfeat__cardtitle">Up- &amp; Down-Light</h4>
+            <p class="nfeat__cardtext">Zwei warme Lichtkegel nach oben und unten inszenieren Fassade und Eingang.</p>
+          </li>
+          <li class="nfeat__card">
+            <h4 class="nfeat__cardtitle">Einstellbare Klappen</h4>
+            <p class="nfeat__cardtext">4-teilige Klappen für verschiedene Strahlwinkel und Lichtformen.</p>
+          </li>
+          <li class="nfeat__card">
+            <h4 class="nfeat__cardtitle">Austauschbares G9-LED</h4>
+            <p class="nfeat__cardtext">9&nbsp;W Leuchtmittel mit Standard-Sockel – einfach selbst wechselbar.</p>
+          </li>
+          <li class="nfeat__card">
+            <h4 class="nfeat__cardtitle">Warmweiß 3000&nbsp;K</h4>
+            <p class="nfeat__cardtext">Angenehmes, gemütliches Licht für innen und außen.</p>
+          </li>
+          <li class="nfeat__card">
+            <h4 class="nfeat__cardtitle">Schutzart IP65</h4>
+            <p class="nfeat__cardtext">Staub- und strahlwassergeschützt – ideal für direkt bewitterte Stellen.</p>
+          </li>
+          <li class="nfeat__card">
+            <h4 class="nfeat__cardtitle">RAL nach Wunsch</h4>
+            <p class="nfeat__cardtext">Sechs Standardfarben – auf Anfrage Pulverbeschichtung in nahezu jeder RAL-Farbe.</p>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Produktdaten – compact spec summary -->
+      <div class="dspec">
+        <h3 class="dspec__title">Merkmale &amp; Technische Daten</h3>
+        <dl class="dspec__list">
+          <div class="dspec__row">
+            <dt class="dspec__key">Leistung</dt>
+            <dd class="dspec__val"><a class="dspec__chip" href="#">9&nbsp;W</a></dd>
+          </div>
+          <div class="dspec__row">
+            <dt class="dspec__key">Leuchtmittel</dt>
+            <dd class="dspec__val"><a class="dspec__chip" href="#">Austauschbar · G9-Sockel</a></dd>
+          </div>
+          <div class="dspec__row">
+            <dt class="dspec__key">Lichtfarbe</dt>
+            <dd class="dspec__val"><a class="dspec__chip" href="#">Warmweiß 3000&nbsp;K</a></dd>
+          </div>
+          <div class="dspec__row">
+            <dt class="dspec__key">Farbe</dt>
+            <dd class="dspec__val">
+              <a class="dspec__chip" href="#"><span class="dspec__dot" style="background:#31373b"></span>Anthrazitgrau</a>
+              <a class="dspec__chip" href="#"><span class="dspec__dot dspec__dot--light" style="background:#ffffff"></span>Verkehrsweiß</a>
+              <a class="dspec__chip" href="#"><span class="dspec__dot" style="background:#8c9196"></span>Graualuminium</a>
+              <a class="dspec__chip" href="#"><span class="dspec__dot" style="background:#3f444a"></span>Eisenglimmer</a>
+              <a class="dspec__chip" href="#"><span class="dspec__dot" style="background:#6d6a60"></span>Quarzgrau</a>
+              <a class="dspec__chip" href="#"><span class="dspec__dot" style="background:#1b1b21"></span>Tiefschwarz</a>
+            </dd>
+          </div>
+          <div class="dspec__row">
+            <dt class="dspec__key">Schutzart</dt>
+            <dd class="dspec__val"><a class="dspec__chip" href="#">IP65</a></dd>
+          </div>
+          <div class="dspec__row">
+            <dt class="dspec__key">Spannung</dt>
+            <dd class="dspec__val dspec__val--plain">230&nbsp;V</dd>
+          </div>
+          <div class="dspec__row">
+            <dt class="dspec__key">Abmessungen <span class="dspec__sub">(Breite × Höhe × Tiefe)</span></dt>
+            <dd class="dspec__val dspec__val--plain">10,00 × 10,00 × 10,00&nbsp;cm</dd>
+          </div>
+          <div class="dspec__row">
+            <dt class="dspec__key">Gewicht</dt>
+            <dd class="dspec__val dspec__val--plain">0,67&nbsp;kg</dd>
+          </div>
+          <div class="dspec__row">
+            <dt class="dspec__key">Versandgewicht</dt>
+            <dd class="dspec__val dspec__val--plain">0,67&nbsp;kg</dd>
+          </div>
+        </dl>
+        <p class="dspec__mfr">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>
+          <span><b>Metzler GmbH</b> · Täleswiesenstr.&nbsp;9 · 72770&nbsp;Reutlingen · Germany · <a href="mailto:service@metzlergmbh.de">service@metzlergmbh.de</a></span>
+          <a class="dspec__safety" href="https://edelstahl-tuerklingel.de/mediafiles/Sonstiges/gpsr/gpsr_sicherheitshinweise_leuchten.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 2.5 20h19z"/><path d="M12 10v4M12 17h.01"/></svg>Warn- &amp; Sicherheitshinweise</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 · Bewertungen -->
+  <section id="sx-bewertungen" class="psx-sec" aria-labelledby="sxRevTitle">
+    <div class="container psx-sec__inner">
+      <p class="psx-eyebrow">Kundenstimmen</p>
+      <h2 class="psx-title" id="sxRevTitle">Alle Bewertungen</h2>
+      <p class="psx-lead">Durchschnittlich <b>5,0&nbsp;von&nbsp;5</b> Sternen – echte Erfahrungen von Metzler-Kunden.</p>
+
+      <ul class="led-revlist" style="list-style:none;margin:2rem 0 0;padding:0;display:grid;gap:1rem;">
+        <li class="rvw-happy-card" style="grid-template-columns:1fr;max-width:none;">
+          <div class="rvw-happy-card__body">
+            <span class="rvw-stars" role="img" aria-label="5 von 5 Sternen"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></span>
+            <p class="rvw-happy-quote">Die zwei Lichtkegel setzen unsere Klinkerfassade abends perfekt in Szene. Warmweiß ist genau richtig – nicht zu kalt.</p>
+            <div class="rvw-happy-foot"><span class="rvw-author">Andreas K.</span><span class="rvw-meta"><span class="rvw-verified" title="Verifizierter Kauf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg><span class="rvw-vlabel">Verifizierter Kauf</span></span><time>07.07.2026</time></span></div>
+          </div>
+        </li>
+        <li class="rvw-happy-card" style="grid-template-columns:1fr;max-width:none;">
+          <div class="rvw-happy-card__body">
+            <span class="rvw-stars" role="img" aria-label="5 von 5 Sternen"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></span>
+            <p class="rvw-happy-quote">Endlich eine Leuchte mit austauschbarem G9-Leuchtmittel – kein fest verbautes LED-Modul, das man wegwerfen muss. Sehr wertig verarbeitet.</p>
+            <div class="rvw-happy-foot"><span class="rvw-author">Gast</span><span class="rvw-meta"><span class="rvw-verified" title="Verifizierter Kauf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg><span class="rvw-vlabel">Verifizierter Kauf</span></span><time>21.06.2026</time></span></div>
+          </div>
+        </li>
+        <li class="rvw-happy-card" style="grid-template-columns:1fr;max-width:none;">
+          <div class="rvw-happy-card__body">
+            <span class="rvw-stars" role="img" aria-label="5 von 5 Sternen"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></span>
+            <p class="rvw-happy-quote">Über die Klappen lässt sich der Lichtwinkel schön einstellen. Wir haben gleich mehrere bestellt – dank Staffelpreis sehr fair.</p>
+            <div class="rvw-happy-foot"><span class="rvw-author">Marion S.</span><span class="rvw-meta"><span class="rvw-verified" title="Verifizierter Kauf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg><span class="rvw-vlabel">Verifizierter Kauf</span></span><time>03.06.2026</time></span></div>
+          </div>
+        </li>
+      </ul>
+      <p class="psx-lead" style="margin-top:1.5rem;">Weitere Bewertungen finden Sie in der Bildergalerie oben. <a class="faq__link" href="#bewertungen">Zur Bewertungsübersicht<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></p>
+    </div>
+  </section>
+
+  <!-- 3 · Downloads -->
+  <section id="sx-downloads" class="psx-sec psx-sec--alt" aria-labelledby="sxDlTitle">
+    <div class="container psx-sec__inner">
+      <p class="psx-eyebrow">Downloads</p>
+      <h2 class="psx-title" id="sxDlTitle">Anleitungen &amp; Dokumente</h2>
+      <p class="psx-lead">Alle Unterlagen zu Ihrer LED Wandleuchte Up-Down – jederzeit als PDF zum Herunterladen.</p>
+      <ul class="psx-dl">
+        <li><a class="psx-dl__item" href="https://edelstahl-tuerklingel.de/mediafiles/Sonstiges/Metzler%20Lampen/Betriebsanleitung/MetzlerLEDWandleuchteUp-Down-Light(35722).pdf" target="_blank" rel="noopener"><span class="psx-dl__badge">PDF</span><span class="psx-dl__text"><b>Betriebsanleitung</b><span>Deutsch · LED Wandleuchte Up-Down-Light</span></span><svg class="psx-dl__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg></a></li>
+        <li><a class="psx-dl__item" href="https://edelstahl-tuerklingel.de/mediafiles/Sonstiges/Datenblatt-WL-UD-AN.pdf" target="_blank" rel="noopener"><span class="psx-dl__badge">PDF</span><span class="psx-dl__text"><b>Technisches Datenblatt</b><span>Deutsch · Maße &amp; Kennzahlen</span></span><svg class="psx-dl__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg></a></li>
+        <li><a class="psx-dl__item" href="https://edelstahl-tuerklingel.de/mediafiles/Sonstiges/Metzler%20Lampen/Konformitaetserklaerung/Konformitaetserklaerung.pdf" target="_blank" rel="noopener"><span class="psx-dl__badge">PDF</span><span class="psx-dl__text"><b>Konformitätserklärung</b><span>Deutsch · CE / EU-Konformität</span></span><svg class="psx-dl__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg></a></li>
+        <li><a class="psx-dl__item" href="https://edelstahl-tuerklingel.de/mediafiles/Sonstiges/gpsr/gpsr_sicherheitshinweise_leuchten.pdf" target="_blank" rel="noopener"><span class="psx-dl__badge">PDF</span><span class="psx-dl__text"><b>Warn- &amp; Sicherheitshinweise</b><span>Deutsch · GPSR Leuchten</span></span><svg class="psx-dl__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 4 · Technische Details -->
+  <section id="sx-technik" class="psx-sec" aria-labelledby="sxTechTitle">
+    <div class="container psx-sec__inner">
+      <p class="psx-eyebrow">Technische Details</p>
+      <h2 class="psx-title" id="sxTechTitle">Technische Daten im Überblick</h2>
+
+      <div class="techms">
+        <div class="techms__rail" role="tablist" aria-orientation="vertical" aria-label="Technische Übersichten">
+          <button class="techms__tab is-active" role="tab" id="tmt-daten" aria-selected="true" aria-controls="tmp-daten" type="button">
+            <span class="techms__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg></span>
+            <span class="techms__tabtext"><span class="techms__tablabel">Technische Daten</span><span class="techms__tabsub">Leistung, Maße &amp; Schutzart</span></span>
+            <span class="techms__count">9</span>
+          </button>
+          <button class="techms__tab" role="tab" id="tmt-liefer" aria-selected="false" aria-controls="tmp-liefer" tabindex="-1" type="button">
+            <span class="techms__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/></svg></span>
+            <span class="techms__tabtext"><span class="techms__tablabel">Lieferumfang &amp; Montage</span><span class="techms__tabsub">Was enthalten ist</span></span>
+            <span class="techms__count">4</span>
+          </button>
+          <button class="techms__tab" role="tab" id="tmt-db" aria-selected="false" aria-controls="tmp-db" tabindex="-1" type="button">
+            <span class="techms__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg></span>
+            <span class="techms__tabtext"><span class="techms__tablabel">Datenblatt</span><span class="techms__tabsub">Alle Kennzahlen als PDF</span></span>
+            <span class="techms__count">PDF</span>
+          </button>
+        </div>
+        <div class="techms__panels">
+
+          <!-- Technische Daten -->
+          <div class="techms__panel is-active" role="tabpanel" id="tmp-daten" aria-labelledby="tmt-daten">
+            <header class="techms__phead">
+              <div><h3 class="techms__ptitle">Technische Daten</h3><p class="techms__pdesc">Alle Kennzahlen der LED Wandleuchte Up-Down auf einen Blick.</p></div>
+            </header>
+            <table class="led-spectable">
+              <tbody>
+                <tr><th scope="row">Hersteller</th><td>Metzler</td></tr>
+                <tr><th scope="row">Leistung</th><td>9&nbsp;W</td></tr>
+                <tr><th scope="row">Leuchtmittel</th><td>Austauschbar · LED · G9-Sockel</td></tr>
+                <tr><th scope="row">Lichtfarbe</th><td>Warmweiß 3000&nbsp;K</td></tr>
+                <tr><th scope="row">Lichtwirkung</th><td>Up-Down – zwei Lichtkegel, einstellbar über 4 Klappen</td></tr>
+                <tr><th scope="row">Spannung</th><td>230&nbsp;V</td></tr>
+                <tr><th scope="row">Schutzart</th><td>IP65 – staub- und strahlwassergeschützt</td></tr>
+                <tr><th scope="row">Oberfläche</th><td>Witterungsbeständige Pulverbeschichtung</td></tr>
+                <tr><th scope="row">Abmessungen (B×H×T)</th><td>10,00 × 10,00 × 10,00&nbsp;cm</td></tr>
+                <tr><th scope="row">Gewicht</th><td>0,67&nbsp;kg</td></tr>
+                <tr><th scope="row">Versandgewicht</th><td>0,67&nbsp;kg</td></tr>
+                <tr><th scope="row">Anwendungsbereich</th><td>Außen- und Innenbereich</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Lieferumfang & Montage -->
+          <div class="techms__panel" role="tabpanel" id="tmp-liefer" aria-labelledby="tmt-liefer" hidden>
+            <header class="techms__phead">
+              <div><h3 class="techms__ptitle">Lieferumfang &amp; Montage</h3><p class="techms__pdesc">Was Sie erhalten und worauf Sie bei der Montage achten sollten.</p></div>
+            </header>
+            <ul class="led-lieferumfang">
+              <li>1 × Metzler LED Wandleuchte Up-Down (Cube) in der gewählten Farbe</li>
+              <li>1 × austauschbares 9&nbsp;W G9-Leuchtmittel (warmweiß 3000&nbsp;K)</li>
+              <li>Montagematerial &amp; Betriebsanleitung</li>
+              <li>Anschluss 230&nbsp;V – Installation durch eine Elektrofachkraft empfohlen</li>
+            </ul>
+          </div>
+
+          <!-- Datenblatt -->
+          <div class="techms__panel" role="tabpanel" id="tmp-db" aria-labelledby="tmt-db" hidden>
+            <header class="techms__phead">
+              <div><h3 class="techms__ptitle">Datenblatt</h3><p class="techms__pdesc">Alle technischen Kennzahlen als PDF.</p></div>
+            </header>
+            <a class="psx-dl__item" href="https://edelstahl-tuerklingel.de/mediafiles/Sonstiges/Datenblatt-WL-UD-AN.pdf" target="_blank" rel="noopener">
+              <span class="psx-dl__badge">PDF</span>
+              <span class="psx-dl__text">
+                <b>Technisches Datenblatt – LED Wandleuchte Up-Down</b>
+                <span>Maße, Anschlusswerte und Kennzahlen auf einen Blick · Deutsch</span>
+              </span>
+              <svg class="psx-dl__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · Frage zum Artikel – FAQ -->
+  <section id="sx-frage" class="psx-sec psx-sec--alt faq" aria-labelledby="sxFrageTitle">
+    <div class="container">
+      <div class="faq__inner">
+        <aside class="faq__support">
+          <h3>Beratung gewünscht?</h3>
+          <p>Unser Fachteam beantwortet Ihre Frage zum Artikel persönlich – zu Leuchtmittel, Montage und Einsatz. Kostenlos und unverbindlich.</p>
+          <a class="faq__cta" href="#" data-qf-open>Zum Kundensupport</a>
+          <div class="faq__phone">
+            Allgemeine Hotline
+            <strong>+49 (0) 7121 / 317 7310</strong>
+            <span class="faq__phone-hours">Mo–Fr · 09:00–16:00 Uhr</span>
+          </div>
+        </aside>
+        <div>
+          <p class="psx-eyebrow">Frage zum Artikel</p>
+          <h2 class="psx-title" id="sxFrageTitle">Häufige Fragen</h2>
+          <div class="faq__list">
+            <details class="faq__item" open>
+              <summary class="faq__q">Kann ich das Leuchtmittel selbst wechseln?<span class="faq__q-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+              <div class="faq__a">Ja. Die Leuchte hat ein austauschbares 9&nbsp;W LED-Leuchtmittel mit Standard-G9-Sockel. Anders als bei fest verbauten LED-Modulen können Sie das Leuchtmittel jederzeit selbst und werkzeuglos tauschen.</div>
+            </details>
+            <details class="faq__item">
+              <summary class="faq__q">Ist die Leuchte für den Außenbereich geeignet?<span class="faq__q-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+              <div class="faq__a">Ja. Mit Schutzart IP65 ist die Leuchte staub- und strahlwassergeschützt und dadurch auch für ungeschützte, direkt bewitterte Stellen geeignet. Die witterungsbeständige Pulverbeschichtung sorgt für eine langlebige Oberfläche.</div>
+            </details>
+            <details class="faq__item">
+              <summary class="faq__q">Lässt sich der Lichtkegel anpassen?<span class="faq__q-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+              <div class="faq__a">Ja. Über die eingebauten, 4-teiligen Klappen stellen Sie verschiedene Strahlwinkel ein – von einem engen Spot bis zu einem breiten Lichtkegel, jeweils nach oben und unten.</div>
+            </details>
+            <details class="faq__item">
+              <summary class="faq__q">Wie funktioniert der Staffelpreis?<span class="faq__q-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+              <div class="faq__a">Je mehr Leuchten Sie kaufen, desto günstiger der Stückpreis: ab 2&nbsp;Stück −5&nbsp;%, ab 4&nbsp;Stück −10&nbsp;% und ab 6&nbsp;Stück −15&nbsp;% auf den Grundpreis von 24,99&nbsp;€. Der passende Stückpreis wird im Warenkorb automatisch angewendet.</div>
+            </details>
+            <details class="faq__item">
+              <summary class="faq__q">Welchen Anschluss benötigt die Leuchte?<span class="faq__q-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+              <div class="faq__a">Die Leuchte wird an 230&nbsp;V angeschlossen. Wir empfehlen die Installation durch eine Elektrofachkraft. Details entnehmen Sie der Betriebsanleitung im Bereich Downloads.</div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== LIGHTBOX – full-screen gallery of all product images ===== -->
+<div class="pdp-lightbox" id="pdpLightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Alle Produktbilder">
+  <div class="pdp-lightbox__backdrop" data-lb-close></div>
+  <div class="pdp-lightbox__panel">
+    <div class="pdp-lightbox__bar">
+      <span class="pdp-lightbox__counter" aria-live="polite"><span id="pdpLbCur">1</span>&nbsp;/&nbsp;<span id="pdpLbTotal">10</span></span>
+      <button type="button" class="pdp-lightbox__close" data-lb-close aria-label="Schließen">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="pdp-lightbox__stage">
+      <button type="button" class="pdp-lightbox__nav pdp-lightbox__nav--prev" id="pdpLbPrev" aria-label="Vorheriges Bild"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+      <img class="pdp-lightbox__img" id="pdpLbImg" alt="">
+      <button type="button" class="pdp-lightbox__nav pdp-lightbox__nav--next" id="pdpLbNext" aria-label="Nächstes Bild"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+    </div>
+    <div class="pdp-lightbox__strip" id="pdpLbStrip"></div>
+  </div>
+</div>
+
+<!-- ===== STICKY PURCHASE BAR (reveals on scroll past the hero CTA) ===== -->
+<div class="pdp-stickybar" id="pdpStickyBar" aria-hidden="true">
+  <div class="container pdp-stickybar__inner">
+    <img class="pdp-stickybar__thumb" id="pdpStickyThumb" src="https://edelstahl-tuerklingel.de/media/image/product/45161/sm/metzler-led-wandleuchte-up-down-ip65-lichtkegel-einstellbar-9w-warmweiss-3000k-austauschbares-g9-leuchtmittel-cube.webp" alt="" aria-hidden="true">
+    <div class="pdp-stickybar__info">
+      <span class="pdp-stickybar__name">LED Wandleuchte Up-Down | Cube · <span id="pdpStickyFinish">Bitte Farbe wählen</span></span>
+      <span class="pdp-stickybar__price" id="bStickyPrice"><span id="bStickyFrom">ab </span><b id="bStickyAmt">24,99 €</b> / Stück</span>
+    </div>
+    <button type="button" class="pdp-stickybar__cta" id="pdpStickyCta">
+      <span id="pdpStickyLabel">Bitte Farbe wählen</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- ===== KONTAKT & SERVICE MODAL ===== -->
+<div class="cm-overlay" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="cmTitle" aria-hidden="true">
+  <div class="cm-modal">
+    <button class="cm-close" type="button" aria-label="Schließen" data-cm-close>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <aside class="cm-brand">
+      <div class="cm-brand-head">
+        <h2 class="cm-brand-title">Sprechen Sie<br>mit einem <em>Experten</em></h2>
+        <p class="cm-lede">Persönliche Beratung, technischer Support und Metzler Partnerbetriebe – wir sind für Sie da.</p>
+      </div>
+      <div class="cm-brand-foot">
+        <span class="cm-label">Hotline</span>
+        <a class="cm-phone" href="tel:+4971213177310">+49 (0) 7121 / 317 7310</a>
+        <span class="cm-metaline">Mo–Fr · 09:00–16:00 Uhr</span>
+        <a class="cm-mail" href="mailto:service@metzlergmbh.de">service@metzlergmbh.de</a>
+      </div>
+    </aside>
+    <section class="cm-actions">
+      <p class="cm-eyebrow">Kontakt &amp; Service</p>
+      <h3 class="cm-h2" id="cmTitle">Wie können wir Ihnen helfen?</h3>
+      <p class="cm-sub">Wählen Sie Ihr Anliegen – wir helfen Ihnen gerne weiter.</p>
+      <div class="cm-list">
+        <a class="cm-row" href="#sx-downloads">
+          <span class="cm-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span>
+          <span class="cm-body"><span class="cm-rowlabel">Dokumentation &amp; Downloads</span><span class="cm-rowmeta">Anleitungen, Datenblatt und Sicherheitshinweise.</span></span>
+          <span class="cm-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></span>
+        </a>
+        <a class="cm-row" href="#beratung">
+          <span class="cm-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10z"/></svg></span>
+          <span class="cm-body"><span class="cm-rowlabel">Produktberatung &amp; Bestellung</span><span class="cm-rowmeta">Beratung vor dem Kauf Ihrer Außenleuchte.</span></span>
+          <span class="cm-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></span>
+        </a>
+        <a class="cm-row" href="#partner">
+          <span class="cm-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <span class="cm-body"><span class="cm-rowlabel">Metzler Partnerbetriebe</span><span class="cm-rowmeta">Installationspartner in Ihrer Nähe.</span></span>
+          <span class="cm-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></span>
+        </a>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- ===== FOOTER (from home design system) ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <img src="Home/Logo/Metzler_Logo-rot-Wei%C3%9F.svg" alt="Metzler" class="footer__brand-logo" />
+        <p class="footer__brand-line">Edelstahl-Tuerklingel.de ist ein Unternehmen der <a href="#" class="footer__brand-link">Metzler Gruppe</a></p>
+        <p class="footer__brand-strong">Der Anbieter für Briefkästen, Sprechanlagen, Türklingeln und Hausnummern.</p>
+      </div>
+      <div class="footer__hotline">
+        <div class="footer__hotline-item">
+          <strong class="footer__hotline-label">Allgemeine Hotline:</strong>
+          <a class="footer__hotline-num" href="tel:+4971213177310">+49 (0) 7121 / 317 7310</a>
+          <em>(Mo-Fr.: 09:00-16:00 Uhr)</em>
+        </div>
+        <div class="footer__hotline-item">
+          <strong class="footer__hotline-label">Sprechanlagen Hotline:</strong>
+          <a class="footer__hotline-num" href="tel:+4971213177333">+49 (0) 7121 / 317 7333</a>
+          <em>(Mo-Fr.: 09:00-16:00 Uhr)</em>
+        </div>
+        <div class="footer__hotline-item">
+          <strong class="footer__hotline-label">E-Mail Support:</strong>
+          <a class="footer__hotline-num" href="mailto:service@metzlergmbh.de">service@metzlergmbh.de</a>
+        </div>
+      </div>
+      <details class="footer__details" open>
+        <summary><h4>Informationen</h4></summary>
+        <ul class="footer__links">
+          <li><a href="#">Auszeichnungen</a></li>
+          <li><a href="#">Fotowettbewerb</a></li>
+          <li><a href="#">Kundenbilder</a></li>
+          <li><a href="#">Stellenangebote</a></li>
+          <li><a href="#">News</a></li>
+          <li><a href="#">Zahlung und Versand</a></li>
+        </ul>
+      </details>
+      <details class="footer__details" open>
+        <summary><h4>Service</h4></summary>
+        <ul class="footer__links">
+          <li><a href="#">Begriffserklärung</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Geschäftskunden</a></li>
+          <li><a href="#">Newsletter</a></li>
+          <li><a href="#">Außenleuchten</a></li>
+        </ul>
+      </details>
+      <div class="footer__follow">
+        <h4>Follow us</h4>
+        <div class="footer__social">
+          <a href="#" aria-label="Pinterest"><svg><use href="#i-pinterest"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg><use href="#i-facebook"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg><use href="#i-instagram"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg><use href="#i-youtube"/></svg></a>
+          <a href="#" aria-label="X"><svg><use href="#i-x-social"/></svg></a>
+        </div>
+        <h4 class="footer__labels-title">Qualität</h4>
+        <div class="footer__labels" aria-label="Top Shop Auszeichnungen">
+          <img src="Home/Trust%20badges/Top%20SHOP/Label1.png" alt="Top Shop 2023" />
+          <img src="Home/Trust%20badges/Top%20SHOP/Label2.png" alt="Top Shop 2024" />
+          <img src="Home/Trust%20badges/Top%20SHOP/Label3.png" alt="Top Shop 2025" />
+          <img src="Home/Trust%20badges/Top%20SHOP/Labels4.png" alt="Top Shop 3 Jahre" />
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__partners">
+      <div class="footer__partners-block">
+        <span class="footer__partners-label">Unsere Versandpartners:</span>
+        <div class="footer__partners-logos">
+          <img src="Paymentshipping%20logos/DPD.png" alt="DPD" />
+          <img src="Paymentshipping%20logos/DHL.png" alt="DHL" />
+          <img src="Paymentshipping%20logos/GOGREEN.png" alt="GoGreen" />
+        </div>
+      </div>
+      <div class="footer__partners-block">
+        <span class="footer__partners-label">Einfach bezahlen:</span>
+        <div class="footer__partners-logos">
+          <img src="Paymentshipping%20logos/payment/SEPA.png" alt="SEPA" />
+          <img src="Paymentshipping%20logos/payment/AMEX.png" alt="Amex" />
+          <img src="Paymentshipping%20logos/payment/VISA.png" alt="Visa" />
+          <img src="Paymentshipping%20logos/payment/KLARNA.png" alt="Klarna" />
+          <img src="Paymentshipping%20logos/payment/PAYPAL.png" alt="PayPal" />
+          <img src="Paymentshipping%20logos/payment/MASTER%20CARD.png" alt="Mastercard" />
+          <img src="Paymentshipping%20logos/payment/APPLE%20PAY.png" alt="Apple Pay" />
+          <img src="Paymentshipping%20logos/payment/GOOGLE%20PAY.png" alt="Google Pay" />
+          <img src="Paymentshipping%20logos/payment/AMAZON.png" alt="Amazon Pay" />
+          <img src="Paymentshipping%20logos/payment/VORKASEE.png" alt="Vorkasse" />
+        </div>
+      </div>
+    </div>
+
+    <nav class="footer__legal-links" aria-label="Rechtliches">
+      <a href="#">Geprüfte Kundenbewertungen</a>
+      <a href="https://edelstahl-tuerklingel.de/metzler-garantieerklaerung" target="_blank" rel="noopener">Metzler Garantieerklärung</a>
+      <a href="#">Datenschutz</a>
+      <a href="#">AGB</a>
+      <a href="#">Sitemap</a>
+      <a href="#">Impressum</a>
+      <a href="#">Batterieentsorgungsgesetz</a>
+      <a href="#">Widerrufsrecht</a>
+      <a href="#">Hinweise zur Elektroaltgeräteentsorgung</a>
+      <a href="#">Cookie-Einstellungen</a>
+    </nav>
+
+    <div class="footer__copy">
+      Alle Preise inkl. gesetzliche MwSt., zzgl. <a href="#">Versand</a>
+      <span class="footer__copy-sep">·</span>
+      © 2013 - 2026 | Metzler GmbH
+    </div>
+  </div>
+</footer>
+
+<!-- Eine Frage zum Produkt stellen – form modal -->
+<div class="qf-overlay" id="questionModal" hidden>
+  <div class="qf-dialog" role="dialog" aria-modal="true" aria-labelledby="qfHeadTitle">
+    <div class="qf-grip" aria-hidden="true"></div>
+    <div class="qf-head">
+      <span class="qf-head-t" id="qfHeadTitle">Eine Frage zum Produkt stellen</span>
+      <button class="qf-close" id="qfClose" type="button" aria-label="Schließen"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+    <div class="qf-body">
+      <div id="qfFormView">
+        <form class="qf-form" id="questionForm" novalidate>
+          <div class="qf-field">
+            <div class="qf-wrap qf-wrap--area" id="qfFrageWrap">
+              <textarea id="qfFrage" class="qf-control" name="frage" placeholder=" " rows="5" required aria-required="true"></textarea>
+              <label for="qfFrage">Ihre Frage <span class="qf-req">*</span></label>
+            </div>
+          </div>
+          <div class="qf-row">
+            <div class="qf-field">
+              <div class="qf-wrap" id="qfVornameWrap">
+                <input type="text" id="qfVorname" class="qf-control" name="vorname" autocomplete="given-name" autocapitalize="words" enterkeyhint="next" placeholder=" " required aria-required="true">
+                <label for="qfVorname">Vorname <span class="qf-req">*</span></label>
+              </div>
+            </div>
+            <div class="qf-field">
+              <div class="qf-wrap" id="qfNachnameWrap">
+                <input type="text" id="qfNachname" class="qf-control" name="nachname" autocomplete="family-name" autocapitalize="words" enterkeyhint="next" placeholder=" " required aria-required="true">
+                <label for="qfNachname">Nachname <span class="qf-req">*</span></label>
+              </div>
+            </div>
+          </div>
+          <div class="qf-field">
+            <div class="qf-wrap" id="qfMailWrap">
+              <input type="email" id="qfMail" class="qf-control" name="email" inputmode="email" autocomplete="email" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="send" placeholder=" " required aria-required="true">
+              <label for="qfMail">E-Mail <span class="qf-req">*</span></label>
+            </div>
+          </div>
+          <div class="qf-foot">
+            <p class="qf-note">(<span class="qf-req">*</span> = Pflichtfelder)</p>
+            <p class="qf-note">Bitte beachten Sie unsere <a href="#" class="qf-link">Datenschutzerklärung</a>.</p>
+            <button type="submit" class="qf-submit">Frage abschicken</button>
+          </div>
+        </form>
+      </div>
+      <div class="qf-success" id="qfSuccess" hidden>
+        <div class="qf-success-art" aria-hidden="true">
+          <svg viewBox="0 0 140 140"><circle cx="70" cy="70" r="46" fill="var(--color-teal-50)"/><path d="M50 71l13 13 27-29" fill="none" stroke="var(--color-teal)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 class="qf-success-h">Frage gesendet – danke!</h3>
+        <p class="qf-success-p">Wir haben Ihre Frage erhalten und melden uns werktags innerhalb von zwei Stunden per E-Mail bei Ihnen.</p>
+        <button type="button" class="qf-submit" id="qfSuccessClose">Schließen</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="chrome.js?v=2"></script>
+<script src="led.js?v=36"></script>
+</body>
+</html>
