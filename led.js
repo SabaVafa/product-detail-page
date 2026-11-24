@@ -516,6 +516,7 @@ function ledRenderCta() {
     });
     var n = LEDState.addons.length;
     if (countEl) { countEl.hidden = n === 0; countEl.textContent = n + (n === 1 ? ' gewählt' : ' gewählt'); }
+    box.classList.toggle('is-done', n > 0);   /* done → badge flips to a teal check (like index-desc) */
     if (typeof ledRenderPrice === 'function') ledRenderPrice();
   }
   cbs.forEach(function (c) { c.addEventListener('change', sync); });
