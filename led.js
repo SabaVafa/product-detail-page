@@ -100,6 +100,9 @@ function ledRenderNudge(q, t) {
   for (var i = 0; i < LED_NUDGE.length; i++) { if (q < LED_NUDGE[i].at) { next = LED_NUDGE[i]; break; } }
   if (fill) fill.style.width = (Math.min(q, LED.maxMin) / LED.maxMin * 100).toFixed(1) + '%';
   box.classList.toggle('is-max', !next);
+  /* light up each tier milestone pip once its quantity is reached */
+  var dots = box.querySelectorAll('.led-nudge__dot');
+  for (var di = 0; di < dots.length; di++) { dots[di].classList.toggle('is-on', q >= (+dots[di].getAttribute('data-at') || 0)); }
   if (next) {
     var need = next.at - q;
     if (txt) txt.innerHTML = 'Noch <b>' + need + '×</b> kaufen und <b>−' + next.off + ' %</b> sichern';
@@ -886,4 +889,63 @@ function ledRenderCta() {
       if (form) form.reset();
     });
   }
+})();
+
+/* ===== 14 · Farb-Seitenfenster — "Alle Farben mit Bezeichnung ansehen" =====
+   Ported from the index.html prototype (#colorListLink + #colorwin). Each list row
+   is paired to a #pdpSwatches button by data-article and proxy-clicks it, so the
+   page's whole selection engine (finish, article, image, CTA unlock, magic line) is
+   reused. Dependency-free: a simple body-overflow lock, guarded if markup is absent. */
+(function () {
+  var grid = document.getElementById('pdpSwatches');
+  var link = document.getElementById('colorListLink');
+  var win = document.getElementById('colorwin');
+  if (!grid || !win || !link) return;
+  var swatches = [].slice.call(grid.querySelectorAll('.pdp-swatch'));
+  var rows = [].slice.call(win.querySelectorAll('.colorwin__row'));
+  if (!swatches.length || !rows.length) return;
+
+  function swatchFor(row) {
+    var art = row.getAttribute('data-article');
+    for (var i = 0; i < swatches.length; i++) { if (swatches[i].getAttribute('data-article') === art) return swatches[i]; }
+    return null;
+  }
+  /* reflect the selected swatch onto the list rows */
+  function markRows() {
+    rows.forEach(function (r) {
+      var sw = swatchFor(r);
+      var on = !!(sw && sw.getAttribute('aria-pressed') === 'true');
+      r.classList.toggle('is-selected', on);
+      r.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+  }
+  var lastFocus = null, prevOverflow = '';
+  function open() {
+    win.classList.add('is-open'); win.setAttribute('aria-hidden', 'false');
+    link.setAttribute('aria-expanded', 'true');
+    prevOverflow = document.body.style.overflow; document.body.style.overflow = 'hidden';
+    lastFocus = link; markRows();
+    var target = win.querySelector('.colorwin__row.is-selected') || rows[0];
+    if (target) target.focus({ preventScroll: true });
+  }
+  function close() {
+    win.classList.remove('is-open'); win.setAttribute('aria-hidden', 'true');
+    link.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = prevOverflow;
+    if (lastFocus) lastFocus.focus({ preventScroll: true });
+  }
+  rows.forEach(function (r) {
+    r.addEventListener('click', function () {
+      var sw = swatchFor(r);
+      if (sw) { sw.click(); markRows(); }   /* proxy → runs all of the page's selection logic */
+      close();
+    });
+  });
+  link.addEventListener('click', function () { win.classList.contains('is-open') ? close() : open(); });
+  win.addEventListener('click', function (e) { if (e.target.closest('[data-cw-close]')) close(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && win.classList.contains('is-open')) close(); });
+  if (window.MutationObserver) {
+    new MutationObserver(markRows).observe(grid, { subtree: true, attributes: true, attributeFilter: ['aria-pressed'] });
+  }
+  markRows();
 })();

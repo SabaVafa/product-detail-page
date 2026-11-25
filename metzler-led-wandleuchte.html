@@ -8,7 +8,7 @@
 <title>Metzler PDP – LED Wandleuchte Up-Down (Außenleuchten)</title>
 <!-- Pflicht: Metzler-Favicon (rotes M-Quadrat) – self-contained data-URI aus dem Design System -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 184.3 184.3'%3E%3Crect width='184.3' height='184.3' rx='5.75' fill='%23cc322b'/%3E%3Cpath fill='%23fff' d='M70.19,34.81l19.04,32.98-9.58,16.57-28.59-49.55h19.13ZM70.28,108.58h0l-23.45-40.64v85.89h-16.57V34.81h16.57l33.02,57.21L123.92,15.65h19.13l-63.22,109.52-9.58-16.57.02-.02ZM153.14,153.83h-16.57v-85.87l-33,57.14h-19.13l52.11-90.28h16.57v119.02l.02-.02Z'/%3E%3C/svg%3E" />
-<meta name="description" content="Metzler LED Wandleuchte Up-Down | IP65 | 9W warmweiß 3000K | austauschbares G9 Leuchtmittel | Cube – Produktdetailseite mit Staffelpreisen, geteilte Chrome-Komponenten aus dem Metzler Design System." />
+<meta name="description" content="Metzler LED Wandleuchte Up-Down | IP65 | Lichtkegel einstellbar | 9W | warmweiß 3000K | austauschbares G9 Leuchtmittel | Cube – Produktdetailseite mit Staffelpreisen, geteilte Chrome-Komponenten aus dem Metzler Design System." />
 <!-- Design system (topbar · header · nav strip · mobile-nav · footer) – reused as-is -->
 <link rel="stylesheet" href="Home/styles-v2.css?v=19" />
 <!-- Mega-menu dropdown, grabbed from the PLP -->
@@ -18,7 +18,7 @@
 <!-- Shared PDP sections + buy-box styling -->
 <link rel="stylesheet" href="pdp-b.css?v=740" />
 <!-- Außenleuchten-specific additions (Staffelpreise buy box, spec table) -->
-<link rel="stylesheet" href="led.css?v=71" />
+<link rel="stylesheet" href="led.css?v=75" />
 </head>
 <body class="plp">
 
@@ -299,7 +299,7 @@
       <!-- Product header – title · rating · share (precedes the image on mobile) -->
       <header class="pdp-hero__head">
         <p class="pdp-eyebrow">Außenleuchte · Up-Down-Light</p>
-        <h1 class="pdp-title">Metzler LED Wandleuchte Up-Down&nbsp;<span class="pdp-title__sep">|</span> IP65 <span class="pdp-title__sep">|</span> 9W warmweiß 3000K <span class="pdp-title__sep">|</span> austauschbares G9 Leuchtmittel<span class="pdp-title__color" id="pdpTitleColor"></span>&nbsp;<span class="pdp-title__sep">|</span> Cube</h1>
+        <h1 class="pdp-title">Metzler LED Wandleuchte Up-Down&nbsp;<span class="pdp-title__sep">|</span> IP65 <span class="pdp-title__sep">|</span> Lichtkegel einstellbar <span class="pdp-title__sep">|</span> 9W <span class="pdp-title__sep">|</span> warmweiß 3000K <span class="pdp-title__sep">|</span> austauschbares G9 Leuchtmittel<span class="pdp-title__color" id="pdpTitleColor"></span>&nbsp;<span class="pdp-title__sep">|</span> Cube</h1>
         <div class="bx-cred">
           <a href="#bewertungen" class="pdp-rate bx-cred__rate" aria-label="5,0 von 5">
             <span class="pdp-stars" aria-hidden="true">
@@ -411,6 +411,13 @@
             <button type="button" class="pdp-swatch" aria-pressed="false" data-finish="Tiefschwarz RAL 9005" data-article="45166" title="Tiefschwarz RAL 9005"><img src="assets/variations/tiefschwarz-9005.jpg" alt="Tiefschwarz RAL 9005"><span class="pdp-swatch__check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span></button>
           </div>
 
+          <!-- Opens the labelled colour list side window (#colorwin) — ported from the
+               index.html prototype. Its rows proxy-click the matching swatch. -->
+          <button type="button" class="bx-color__listlink" id="colorListLink" aria-haspopup="dialog" aria-expanded="false" aria-controls="colorwin">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13"/><path d="M3 6h.01M3 12h.01M3 18h.01"/></svg>
+            Alle Farben mit Bezeichnung ansehen
+          </button>
+
           <p class="bx-color__note">Jede Farbe ist eine <b>eigene Variante</b> mit eigener Artikelnummer. Auf Wunsch pulverbeschichten wir das Gehäuse in nahezu jeder RAL-Farbe – <a href="#sx-frage">sprechen Sie uns an</a>.</p>
         </div>
 
@@ -498,13 +505,21 @@
                Zubehör) above the "Preis wie konfiguriert" total. Shown while
                configuring, so the price section is never dropped from the flow. -->
           <div class="led-acc" id="ledAcc">
-            <!-- Staffel progress status bar — moved into the bottom price section -->
+            <!-- Staffel progress — premium milestone track toward the best price -->
             <div class="led-nudge" id="ledNudge">
               <div class="led-nudge__row">
-                <span class="led-nudge__text" id="ledNudgeText">Noch <b>1×</b> kaufen und <b>−5 %</b> sichern</span>
+                <span class="led-nudge__lead">
+                  <span class="led-nudge__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></span>
+                  <span class="led-nudge__text" id="ledNudgeText">Noch <b>1×</b> kaufen und <b>−5 %</b> sichern</span>
+                </span>
                 <span class="led-nudge__next" id="ledNudgeNext">→ 23,74 € / Stück</span>
               </div>
-              <div class="led-nudge__track"><span class="led-nudge__fill" id="ledNudgeFill" style="width:16.7%"></span></div>
+              <div class="led-nudge__track">
+                <span class="led-nudge__fill" id="ledNudgeFill" style="width:16.7%"></span>
+                <span class="led-nudge__dot" data-at="2" style="left:33.333%"></span>
+                <span class="led-nudge__dot" data-at="4" style="left:66.666%"></span>
+                <span class="led-nudge__dot" data-at="6" style="left:100%"></span>
+              </div>
             </div>
             <div class="led-acc__card">
               <h2 class="led-acc__head">Ihre Konfiguration</h2>
@@ -1076,6 +1091,52 @@
 
 </main>
 
+<!-- ===== FARB-SEITENFENSTER – labelled colour list (ported from index.html) =====
+     Rows proxy-click the matching #pdpSwatches button (by data-article); led.js wires it. -->
+<div class="colorwin" id="colorwin" aria-hidden="true">
+  <div class="colorwin__backdrop" data-cw-close></div>
+  <div class="colorwin__panel" role="dialog" aria-modal="true" aria-label="Farbe wählen">
+    <div class="colorwin__head">
+      <div class="colorwin__headtext">
+        <h2 class="colorwin__title">Farbe wählen</h2>
+      </div>
+      <button type="button" class="colorwin__close" data-cw-close aria-label="Schließen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+    </div>
+    <div class="colorwin__list" role="listbox" aria-label="Farben">
+      <button type="button" class="colorwin__row" role="option" aria-selected="false" data-article="45161">
+        <span class="colorwin__sw"><img src="assets/variations/anthrazit-7016.jpg" alt=""></span>
+        <span class="colorwin__text"><span class="colorwin__name">Anthrazitgrau</span><span class="colorwin__code">RAL 7016</span></span>
+        <span class="colorwin__check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+      </button>
+      <button type="button" class="colorwin__row" role="option" aria-selected="false" data-article="45162">
+        <span class="colorwin__sw"><img src="assets/variations/verkehrsweiss-9016.jpg" alt=""></span>
+        <span class="colorwin__text"><span class="colorwin__name">Verkehrsweiß</span><span class="colorwin__code">RAL 9016</span></span>
+        <span class="colorwin__check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+      </button>
+      <button type="button" class="colorwin__row" role="option" aria-selected="false" data-article="45163">
+        <span class="colorwin__sw"><img src="assets/variations/graualuminium-9007.jpg" alt=""></span>
+        <span class="colorwin__text"><span class="colorwin__name">Graualuminium</span><span class="colorwin__code">RAL 9007</span></span>
+        <span class="colorwin__check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+      </button>
+      <button type="button" class="colorwin__row" role="option" aria-selected="false" data-article="45164">
+        <span class="colorwin__sw"><img src="assets/variations/eisenglimmer-db703.jpg" alt=""></span>
+        <span class="colorwin__text"><span class="colorwin__name">Eisenglimmer</span><span class="colorwin__code">DB 703</span></span>
+        <span class="colorwin__check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+      </button>
+      <button type="button" class="colorwin__row" role="option" aria-selected="false" data-article="45165">
+        <span class="colorwin__sw"><img src="assets/variations/quarzgrau-7039.jpg" alt=""></span>
+        <span class="colorwin__text"><span class="colorwin__name">Quarzgrau</span><span class="colorwin__code">RAL 7039</span></span>
+        <span class="colorwin__check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+      </button>
+      <button type="button" class="colorwin__row" role="option" aria-selected="false" data-article="45166">
+        <span class="colorwin__sw"><img src="assets/variations/tiefschwarz-9005.jpg" alt=""></span>
+        <span class="colorwin__text"><span class="colorwin__name">Tiefschwarz</span><span class="colorwin__code">RAL 9005</span></span>
+        <span class="colorwin__check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+      </button>
+    </div>
+  </div>
+</div>
+
 <!-- ===== LIGHTBOX – full-screen gallery of all product images ===== -->
 <div class="pdp-lightbox" id="pdpLightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Alle Produktbilder">
   <div class="pdp-lightbox__backdrop" data-lb-close></div>
@@ -1322,6 +1383,6 @@
 </div>
 
 <script src="chrome.js?v=2"></script>
-<script src="led.js?v=37"></script>
+<script src="led.js?v=39"></script>
 </body>
 </html>

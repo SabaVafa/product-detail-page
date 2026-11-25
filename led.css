@@ -138,6 +138,11 @@
 .led-addons.is-done .led-addons__num-n{ display:none; }
 .led-addons.is-done .led-addons__num-check{ display:block; }
 .led-addons__title{ flex:1 1 auto; font-size:1rem; font-weight:700; color:var(--color-graphite-900); }
+
+/* This page runs in flow-c, which normally hides the "Alle Farben mit Bezeichnung"
+   text link in favour of a card the LED page doesn't use. Re-enable the link here
+   (led.css loads after pdp-b.css, so this equal-specificity !important wins). */
+.flow-c .bx-color__listlink{ display:inline-flex !important; align-self:flex-start; order:2; }   /* below the swatch grid (order:1), like the prototype */
 .led-addons__count{
   flex:none; padding:.1rem .5rem; border-radius:var(--radius-pill);
   font-size:.6875rem; font-weight:700; color:var(--color-teal); background:var(--color-white);
@@ -413,11 +418,15 @@
    above the config card — a quiet teal tint while climbing, a soft green tint once
    the best price is reached. Rounded, padded, no divider. */
 .led-acc .led-nudge{
-  margin:0 0 .9rem; padding:.7rem .85rem; border:0; border-radius:var(--radius);
+  position:relative; margin:0 0 .9rem; padding:.8rem .9rem .85rem;
+  border:1px solid rgba(1,82,83,.14); border-radius:var(--radius-lg);
   background:var(--color-teal-50);
-  transition:background .35s ease;
+  transition:background .35s ease, border-color .35s ease;
 }
-.led-acc .led-nudge.is-max{ background:rgba(0,153,81,.09); }
+.led-acc .led-nudge.is-max{
+  border-color:rgba(0,153,81,.24);
+  background:rgba(0,153,81,.1);
+}
 .pdp-buybox.is-configuring #ledPrice,
 .pdp-buybox.is-configuring .led-anpassen{ display:none; }
 .pdp-buybox:not(.is-configuring) .cfgb-buyrow{ display:none; }
@@ -459,25 +468,51 @@ body.led-configuring #pdpStickyBar{ transform:translateY(110%) !important; }
    own margin-left:auto; the cart should sit right next to it, not be pushed apart). */
 #ledDock .pdp-stickybar__cta{ margin-left:.6rem; }
 .led-nudge__row{
-  display:flex; align-items:baseline; justify-content:space-between; gap:.75rem;
-  margin-bottom:.5rem;
+  display:flex; align-items:center; justify-content:space-between; gap:.75rem;
+  margin-bottom:.65rem;
 }
-.led-nudge__text{ font-size:0.8125rem; color:var(--color-graphite-700); }
+.led-nudge__lead{ display:inline-flex; align-items:center; gap:.45rem; min-width:0; }
+/* icon chip before the label */
+.led-nudge__icon{
+  flex:none; display:grid; place-items:center; width:1.35rem; height:1.35rem;
+  border-radius:50%; color:var(--color-teal); background:rgba(1,82,83,.09);
+  transition:color .35s ease, background .35s ease;
+}
+.led-nudge__icon svg{ width:.8rem; height:.8rem; }
+.led-nudge.is-max .led-nudge__icon{ color:var(--color-green); background:rgba(0,153,81,.12); }
+.led-nudge__text{ font-size:0.8125rem; color:var(--color-graphite-700); line-height:1.3; }
 .led-nudge__text b{ color:var(--color-teal); font-weight:700; }
 .led-nudge.is-max .led-nudge__text b{ color:var(--color-green); }
-.led-nudge__next{ font-size:0.8125rem; font-weight:700; color:var(--color-teal); white-space:nowrap; }
-.led-nudge.is-max .led-nudge__next{ color:var(--color-green); }
-.led-nudge__track{
-  height:.4rem; border-radius:var(--radius-pill);
-  background:rgba(1,82,83,.12); overflow:hidden;   /* faint teal rail, visible on paper */
+/* next-price as a premium floating pill */
+.led-nudge__next{
+  flex:none; display:inline-flex; align-items:center;
+  padding:.24rem .55rem; border-radius:var(--radius-pill);
+  font-size:.78rem; font-weight:700; white-space:nowrap; color:var(--color-teal);
+  background:#fff; box-shadow:inset 0 0 0 1px rgba(1,82,83,.18);
+  transition:color .35s ease, box-shadow .35s ease;
 }
-.led-nudge.is-max .led-nudge__track{ background:rgba(0,153,81,.14); }
+.led-nudge.is-max .led-nudge__next{ color:var(--color-green); box-shadow:inset 0 0 0 1px rgba(0,153,81,.26); }
+/* track: a clean pill rail with milestone pips and a gradient fill (no glow/sheen) */
+.led-nudge__track{
+  position:relative; height:.4rem; border-radius:var(--radius-pill);
+  background:rgba(1,82,83,.1);
+}
+.led-nudge.is-max .led-nudge__track{ background:rgba(0,153,81,.12); }
 .led-nudge__fill{
   display:block; height:100%; width:0; border-radius:inherit;
-  background:linear-gradient(90deg, var(--color-teal), var(--color-mint));
+  background:var(--color-teal);
   transition:width .55s cubic-bezier(.2,.7,.2,1), background .3s ease;
 }
-.led-nudge.is-max .led-nudge__fill{ background:linear-gradient(90deg, var(--color-green), #4fd18a); }
+.led-nudge.is-max .led-nudge__fill{ background:var(--color-green); }
+/* milestone pips — one per Staffel tier (2× · 4× · 6×); fill in solid once reached */
+.led-nudge__dot{
+  position:absolute; top:50%; transform:translate(-50%,-50%);
+  width:.5rem; height:.5rem; border-radius:50%; z-index:1;
+  background:#fff; box-shadow:0 0 0 1.5px rgba(1,82,83,.25);
+  transition:box-shadow .3s ease, background .3s ease;
+}
+.led-nudge__dot.is-on{ background:var(--color-teal); box-shadow:0 0 0 1.5px var(--color-teal); }
+.led-nudge.is-max .led-nudge__dot.is-on{ background:var(--color-green); box-shadow:0 0 0 1.5px var(--color-green); }
 
 /* ---- Dynamic price feedback -------------------------------------- */
 /* rolling number pop (unit price · line total · quantity value) */
