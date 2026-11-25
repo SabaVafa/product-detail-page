@@ -399,6 +399,12 @@
 .led-sumrow__name b{ font-weight:700; }
 .led-sumrow__sub{ display:block; margin-top:.125rem; font-size:.8125rem; color:var(--color-graphite-600); }
 .led-sumrow__price{ justify-self:end; font-size:.9375rem; font-weight:700; color:var(--color-digital-black); font-variant-numeric:tabular-nums; white-space:nowrap; text-align:right; }
+/* Accessory rows read as extras attached to the hero lamp: lighter name + price,
+   a teal "+" marker, and a touch of indent — so hierarchy ≠ three equal items. */
+.led-sumrow--addon .led-sumrow__name{ color:var(--color-graphite-700); }
+.led-sumrow--addon .led-sumrow__name b{ font-weight:500; }
+.led-sumrow--addon .led-sumrow__price{ font-weight:600; color:var(--color-graphite-700); }
+.led-sumrow__plus{ flex:none; font-weight:700; color:var(--color-teal); }
 /* The configured total is its OWN fully separate section — a standalone card below
    the "Ihre Konfiguration" positions. One cohesive, left-aligned stacked block so the
    label never floats alone in an empty half: it reads top-to-bottom like the page's

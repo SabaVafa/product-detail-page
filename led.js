@@ -185,12 +185,15 @@ function ledRenderPrice(opts) {
     var rows = '<div class="led-sumrow" role="listitem"><span class="led-sumrow__name"><span class="led-sumrow__txt"><b>Metzler LED Wandleuchte Up-Down&nbsp;| IP65 | Lichtkegel einstellbar | 9W | warmweiß 3000K | austauschbares G9 Leuchtmittel | Cube</b>'
       + '</span></span><span class="led-sumrow__price">' + LED.euro(unit * q) + '</span></div>';
     rows += addons.map(function (a) {
-      return '<div class="led-sumrow" role="listitem"><span class="led-sumrow__name"><span class="led-sumrow__txt"><b>' + a.name + '</b></span></span><span class="led-sumrow__price">' + LED.euro(a.price) + '</span></div>';
+      /* Accessories are extras attached to the lamp, not peers of it: demoted weight
+         + a leading "+" so the group reads as "the lamp, with N add-ons". */
+      return '<div class="led-sumrow led-sumrow--addon" role="listitem"><span class="led-sumrow__name"><span class="led-sumrow__plus" aria-hidden="true">+</span><span class="led-sumrow__txt"><b>' + a.name + '</b></span></span><span class="led-sumrow__price">' + LED.euro(a.price) + '</span></div>';
     }).join('');
     sumList.innerHTML = rows;
-    var nPos = 1 + addons.length;
     var detailsN = document.getElementById('ledDetailsN');
-    if (detailsN) detailsN.innerHTML = nPos + ' ' + (nPos === 1 ? 'Position' : 'Positionen');
+    /* Collapsed summary only surfaces what's hidden — bundled accessories. Just the
+       lamp needs no count. */
+    if (detailsN) detailsN.textContent = addons.length ? 'Leuchte + ' + addons.length + ' Zubehör' : '';
   }
 
   document.querySelectorAll('#ledStaffelBody tr').forEach(function (r) {
@@ -366,7 +369,8 @@ function ledRenderCta() {
    selection engine (finish · article · title · CTA morph) is reused unchanged. */
 (function () {
   var grid = document.getElementById('pdpSwatches');
-  var card = document.getElementById('colorCardLink');
+  var card = document.getElementById('colorCardLink');   /* flow-c list-field opener (absent here) */
+  var link = document.getElementById('colorListLink');   /* "Alle Farben …" text-link opener */
   var win = document.getElementById('colorwin');
   if (!grid || !win) return;
   var swatches = Array.prototype.slice.call(grid.querySelectorAll('.pdp-swatch'));
@@ -406,8 +410,9 @@ function ledRenderCta() {
   function open(opener) {
     win.classList.add('is-open'); win.setAttribute('aria-hidden', 'false');
     if (card) card.setAttribute('aria-expanded', 'true');
+    if (link) link.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
-    lastFocus = opener || card;
+    lastFocus = opener || link || card;
     markRows();
     var target = win.querySelector('.colorwin__row.is-selected') || rows[0];
     if (target) target.focus({ preventScroll: true });
@@ -415,6 +420,7 @@ function ledRenderCta() {
   function close() {
     win.classList.remove('is-open'); win.setAttribute('aria-hidden', 'true');
     if (card) card.setAttribute('aria-expanded', 'false');
+    if (link) link.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
     if (lastFocus) lastFocus.focus({ preventScroll: true });
   }
@@ -427,6 +433,7 @@ function ledRenderCta() {
     });
   });
   if (card) card.addEventListener('click', function () { win.classList.contains('is-open') ? close() : open(card); });
+  if (link) link.addEventListener('click', function () { win.classList.contains('is-open') ? close() : open(link); });
   win.addEventListener('click', function (e) { if (e.target.closest('[data-cw-close]')) close(); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && win.classList.contains('is-open')) close(); });
 
@@ -890,61 +897,15 @@ function ledRenderCta() {
   }
 })();
 
-/* ===== 14 · Farb-Seitenfenster — "Alle Farben mit Bezeichnung ansehen" =====
-   Ported from the index.html prototype (#colorListLink + #colorwin). Each list row
-   is paired to a #pdpSwatches button by data-article and proxy-clicks it, so the
-   page's whole selection engine (finish, article, image, CTA unlock, magic line) is
-   reused. Dependency-free: a simple body-overflow lock, guarded if markup is absent. */
+/* ===== 14 · "Ihre Konfiguration" collapse toggle (chevron) — consistent with
+   index-desc's .cfgb-acc. Expanded by default; toggles .is-open on #ledAcc, which
+   drives the chevron rotation + the body grid-rows collapse (see led.css). ===== */
 (function () {
-  var grid = document.getElementById('pdpSwatches');
-  var link = document.getElementById('colorListLink');
-  var win = document.getElementById('colorwin');
-  if (!grid || !win || !link) return;
-  var swatches = [].slice.call(grid.querySelectorAll('.pdp-swatch'));
-  var rows = [].slice.call(win.querySelectorAll('.colorwin__row'));
-  if (!swatches.length || !rows.length) return;
-
-  function swatchFor(row) {
-    var art = row.getAttribute('data-article');
-    for (var i = 0; i < swatches.length; i++) { if (swatches[i].getAttribute('data-article') === art) return swatches[i]; }
-    return null;
-  }
-  /* reflect the selected swatch onto the list rows */
-  function markRows() {
-    rows.forEach(function (r) {
-      var sw = swatchFor(r);
-      var on = !!(sw && sw.getAttribute('aria-pressed') === 'true');
-      r.classList.toggle('is-selected', on);
-      r.setAttribute('aria-selected', on ? 'true' : 'false');
-    });
-  }
-  var lastFocus = null, prevOverflow = '';
-  function open() {
-    win.classList.add('is-open'); win.setAttribute('aria-hidden', 'false');
-    link.setAttribute('aria-expanded', 'true');
-    prevOverflow = document.body.style.overflow; document.body.style.overflow = 'hidden';
-    lastFocus = link; markRows();
-    var target = win.querySelector('.colorwin__row.is-selected') || rows[0];
-    if (target) target.focus({ preventScroll: true });
-  }
-  function close() {
-    win.classList.remove('is-open'); win.setAttribute('aria-hidden', 'true');
-    link.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = prevOverflow;
-    if (lastFocus) lastFocus.focus({ preventScroll: true });
-  }
-  rows.forEach(function (r) {
-    r.addEventListener('click', function () {
-      var sw = swatchFor(r);
-      if (sw) { sw.click(); markRows(); }   /* proxy → runs all of the page's selection logic */
-      close();
-    });
+  var btn = document.getElementById('ledDetailsBtn');
+  var acc = document.getElementById('ledAcc');
+  if (!btn || !acc) return;
+  btn.addEventListener('click', function () {
+    var open = acc.classList.toggle('is-open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
-  link.addEventListener('click', function () { win.classList.contains('is-open') ? close() : open(); });
-  win.addEventListener('click', function (e) { if (e.target.closest('[data-cw-close]')) close(); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && win.classList.contains('is-open')) close(); });
-  if (window.MutationObserver) {
-    new MutationObserver(markRows).observe(grid, { subtree: true, attributes: true, attributeFilter: ['aria-pressed'] });
-  }
-  markRows();
 })();

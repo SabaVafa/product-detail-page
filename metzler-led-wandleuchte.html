@@ -18,7 +18,7 @@
 <!-- Shared PDP sections + buy-box styling -->
 <link rel="stylesheet" href="pdp-b.css?v=740" />
 <!-- Außenleuchten-specific additions (Staffelpreise buy box, spec table) -->
-<link rel="stylesheet" href="led.css?v=75" />
+<link rel="stylesheet" href="led.css?v=76" />
 </head>
 <body class="plp">
 
@@ -504,7 +504,7 @@
                (index-desc .cfgb-acc): an expandable positions list (Leuchte + each
                Zubehör) above the "Preis wie konfiguriert" total. Shown while
                configuring, so the price section is never dropped from the flow. -->
-          <div class="led-acc" id="ledAcc">
+          <div class="led-acc is-open" id="ledAcc">
             <!-- Staffel progress — premium milestone track toward the best price -->
             <div class="led-nudge" id="ledNudge">
               <div class="led-nudge__row">
@@ -522,8 +522,13 @@
               </div>
             </div>
             <div class="led-acc__card">
-              <h2 class="led-acc__head">Ihre Konfiguration</h2>
-              <div class="led-sumlist" id="ledSumList" role="list" aria-label="Positionen"></div>
+              <!-- Collapsible header with chevron — consistent with index-desc (.cfgb-acc).
+                   Expanded by default; the position count shows when collapsed. -->
+              <h2 class="led-acc__h"><button type="button" class="led-detailsbtn" id="ledDetailsBtn" aria-expanded="true" aria-controls="ledAccBody">
+                <span class="led-detailsbtn__titles"><span class="led-detailsbtn__t">Ihre Konfiguration</span><span class="led-detailsbtn__n" id="ledDetailsN"></span></span>
+                <svg class="led-detailsbtn__chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 9.5l5.5 5.5 5.5-5.5"/></svg>
+              </button></h2>
+              <div class="led-acc__body" id="ledAccBody"><div class="led-acc__inner"><div class="led-sumlist" id="ledSumList" role="list" aria-label="Positionen"></div></div></div>
             </div>
             <!-- "Preis wie konfiguriert" as its own recognisable section: price (+ struck
                  reference) · tax/shipping · availability + EU energy class, in one card. -->
@@ -1383,6 +1388,6 @@
 </div>
 
 <script src="chrome.js?v=2"></script>
-<script src="led.js?v=40"></script>
+<script src="led.js?v=43"></script>
 </body>
 </html>
