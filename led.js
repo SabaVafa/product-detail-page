@@ -182,12 +182,12 @@ function ledRenderPrice(opts) {
      per flat Zubehör, plus the position count. ----- */
   var sumList = document.getElementById('ledSumList');
   if (sumList) {
-    var rows = '<div class="led-sumrow" role="listitem"><span class="led-sumrow__name"><span class="led-sumrow__txt"><b>Metzler LED Wandleuchte Up-Down&nbsp;| IP65 | Lichtkegel einstellbar | 9W | warmweiß 3000K | austauschbares G9 Leuchtmittel | Cube</b>'
+    var rows = '<div class="led-sumrow" role="listitem"><span class="led-sumrow__name"><span class="led-sumrow__qty">' + q + '&nbsp;&times;</span><span class="led-sumrow__txt"><b>Metzler LED Wandleuchte Up-Down&nbsp;| IP65 | Lichtkegel einstellbar | 9W | warmweiß 3000K | austauschbares G9 Leuchtmittel | Cube</b>'
       + '</span></span><span class="led-sumrow__price">' + LED.euro(unit * q) + '</span></div>';
     rows += addons.map(function (a) {
       /* Accessories are extras attached to the lamp, not peers of it: demoted weight
          + a leading "+" so the group reads as "the lamp, with N add-ons". */
-      return '<div class="led-sumrow led-sumrow--addon" role="listitem"><span class="led-sumrow__name"><span class="led-sumrow__plus" aria-hidden="true">+</span><span class="led-sumrow__txt"><b>' + a.name + '</b></span></span><span class="led-sumrow__price">' + LED.euro(a.price) + '</span></div>';
+      return '<div class="led-sumrow led-sumrow--addon" role="listitem"><span class="led-sumrow__name"><span class="led-sumrow__qty">1&nbsp;&times;</span><span class="led-sumrow__txt"><b>' + a.name + '</b></span></span><span class="led-sumrow__price">' + LED.euro(a.price) + '</span></div>';
     }).join('');
     sumList.innerHTML = rows;
     var detailsN = document.getElementById('ledDetailsN');
