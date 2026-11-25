@@ -97,6 +97,9 @@
 /* Accent bar on the active row: put it on the first CELL (not the <tr>) so it
    renders as one clean full-height teal bar — a <tr> box-shadow on a
    border-collapse table clips to a short, floating sliver. */
+/* Full-height accent bar on the active row's first cell. An INSET box-shadow is
+   painted strictly inside the cell, so it spans the full row height and can never
+   leak past the card border (unlike an absolutely-positioned pseudo-element). */
 .led-staffel__table tbody tr.is-active td:first-child{
   font-weight:700; color:var(--color-teal);
   box-shadow:inset 3px 0 0 var(--color-teal);
@@ -383,6 +386,7 @@
 .led-detailsbtn__titles{ display:flex; flex-direction:column; gap:.12rem; flex:1; min-width:0; }
 .led-detailsbtn__t{ font-size:1rem; font-weight:700; line-height:1.5; color:var(--color-digital-black); }
 .led-detailsbtn__n{ font-size:.8125rem; font-weight:600; line-height:1.5; color:var(--color-teal); white-space:nowrap; overflow:hidden; transition:height .3s ease, opacity .2s ease; }
+.led-detailsbtn__n:empty{ display:none; }   /* no summary (lamp only) → reserve no space, so the title stays vertically centred */
 .led-acc.is-open .led-detailsbtn__n{ height:0; opacity:0; }
 .led-detailsbtn__chev{ width:1.5rem; height:1.5rem; flex-shrink:0; color:var(--color-graphite-600); transition:transform .3s ease, color .15s ease; }
 .led-detailsbtn:hover .led-detailsbtn__chev, .led-acc.is-open .led-detailsbtn__chev{ color:var(--color-teal); }
@@ -402,11 +406,11 @@
 /* Every row leads with its quantity (e.g. "6 ×", "1 ×"). On the hero lamp it's the
    same strong black as the name; on accessory rows it's a teal accent — which, with
    the lighter name + price, keeps the extras reading as attached to the lamp. */
-.led-sumrow__qty{ flex:none; font-weight:700; color:var(--color-digital-black); font-variant-numeric:tabular-nums; white-space:nowrap; }
+.led-sumrow__qty{ flex:none; font-weight:700; color:inherit; font-variant-numeric:tabular-nums; white-space:nowrap; }   /* inherits the row name colour → quantity matches its text */
 .led-sumrow--addon .led-sumrow__name{ color:var(--color-graphite-700); }
 .led-sumrow--addon .led-sumrow__name b{ font-weight:500; }
 .led-sumrow--addon .led-sumrow__price{ font-weight:600; color:var(--color-graphite-700); }
-.led-sumrow--addon .led-sumrow__qty{ font-weight:600; color:var(--color-teal); }
+.led-sumrow--addon .led-sumrow__qty{ font-weight:500; }   /* match the accessory name weight (colour inherits) */
 /* The configured total is its OWN fully separate section — a standalone card below
    the "Ihre Konfiguration" positions. One cohesive, left-aligned stacked block so the
    label never floats alone in an empty half: it reads top-to-bottom like the page's
