@@ -183,7 +183,6 @@ function ledRenderPrice(opts) {
   var sumList = document.getElementById('ledSumList');
   if (sumList) {
     var rows = '<div class="led-sumrow" role="listitem"><span class="led-sumrow__name"><span class="led-sumrow__txt"><b>Metzler LED Wandleuchte Up-Down&nbsp;| IP65 | Lichtkegel einstellbar | 9W | warmweiß 3000K | austauschbares G9 Leuchtmittel | Cube</b>'
-      + '<span class="led-sumrow__sub">' + (LEDState.finish ? LEDState.finish + ' · ' : '') + 'Menge ' + q + '</span>'
       + '</span></span><span class="led-sumrow__price">' + LED.euro(unit * q) + '</span></div>';
     rows += addons.map(function (a) {
       return '<div class="led-sumrow" role="listitem"><span class="led-sumrow__name"><span class="led-sumrow__txt"><b>' + a.name + '</b></span></span><span class="led-sumrow__price">' + LED.euro(a.price) + '</span></div>';
