@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Trusted Shops emblem (official "e" mark), from e_trusted_shops-rgb.svg -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" role="img" aria-label="Trusted Shops">
+<svg width="1000" height="1000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" role="img" aria-label="Trusted Shops">
   <mask id="ts-e">
     <rect width="1000" height="1000" fill="#fff"/>
     <circle cx="500" cy="500" r="315" fill="#000"/>
