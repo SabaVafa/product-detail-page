@@ -525,6 +525,9 @@ body.led-configuring #pdpStickyBar{ transform:translateY(110%) !important; }
 }
 .led-nudge__dot.is-on{ background:var(--color-teal); box-shadow:0 0 0 1.5px var(--color-teal); }
 .led-nudge.is-max .led-nudge__dot.is-on{ background:var(--color-green); box-shadow:0 0 0 1.5px var(--color-green); }
+/* The final pip sits at 100%: right-align it (not centre) so its edge is flush with
+   the track/fill end and the price pill above — no overhang past the right side. */
+.led-nudge__dot:last-child{ transform:translate(-100%,-50%); }
 
 /* ---- Dynamic price feedback -------------------------------------- */
 /* rolling number pop (unit price · line total · quantity value) */
